@@ -95,7 +95,7 @@ def _make_handler():
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self) -> None:  # noqa: N802
             parsed = urlparse(self.path)
-            if parsed.path in {"", "/"}:
+            if parsed.path in {"", "/"} or _is_workspace_page(parsed.path):
                 return self._serve_file(INDEX_FILE, "text/html; charset=utf-8")
             if parsed.path == "/styles.css":
                 return self._serve_file(STYLE_FILE, "text/css; charset=utf-8")
@@ -136,7 +136,8 @@ def _make_handler():
                     return self._send_json({"ok": False, "error": "Missing q"}, status=HTTPStatus.BAD_REQUEST)
                 return self._send_json({"ok": True, "text": format_sources(query)})
             if parsed.path == "/api/threads":
-                return self._send_json({"ok": True, "state": _load_threads_state()})
+                workspace_id = _workspace_id_from_query(parsed.query)
+                return self._send_json({"ok": True, "state": _load_threads_state(workspace_id), "workspace": workspace_id})
             self.send_error(HTTPStatus.NOT_FOUND)
 
         def do_POST(self) -> None:  # noqa: N802
@@ -144,7 +145,7 @@ def _make_handler():
             if parsed.path == "/api/upload":
                 return self._handle_upload()
             if parsed.path == "/api/threads":
-                return self._handle_threads_save()
+                return self._handle_threads_save(_workspace_id_from_query(parsed.query))
             if parsed.path == "/api/create_file":
                 return self._handle_create_file()
             if parsed.path not in {"/api/chat", "/api/chat_stream"}:
@@ -318,7 +319,7 @@ def _make_handler():
                     )
             return self._send_json({"ok": True, "attachments": attachments})
 
-        def _handle_threads_save(self) -> None:
+        def _handle_threads_save(self, workspace_id: str) -> None:
             try:
                 length = int(self.headers.get("Content-Length", "0"))
                 payload = json.loads(self.rfile.read(length).decode("utf-8")) if length else {}
@@ -326,8 +327,8 @@ def _make_handler():
                 return self._send_json({"ok": False, "error": f"Invalid JSON: {error}"}, status=HTTPStatus.BAD_REQUEST)
 
             state = _normalize_threads_state(payload.get("state", payload))
-            _save_threads_state(state)
-            return self._send_json({"ok": True, "state": state})
+            _save_threads_state(state, workspace_id)
+            return self._send_json({"ok": True, "state": state, "workspace": workspace_id})
 
         def _handle_create_file(self) -> None:
             try:
@@ -436,6 +437,25 @@ def _query_param(query: str, key: str) -> str:
 
             return unquote_plus(v)
     return ""
+
+
+def _sanitize_workspace_id(value: object) -> str:
+    raw = str(value or "").strip()
+    cleaned = re.sub(r"[^a-zA-Z0-9_-]+", "", raw)[:48]
+    if not cleaned or cleaned in {"api", "app.js", "styles.css", "favicon.ico"}:
+        return "default"
+    return cleaned
+
+
+def _workspace_id_from_query(query: str) -> str:
+    return _sanitize_workspace_id(_query_param(query, "workspace"))
+
+
+def _is_workspace_page(path: str) -> bool:
+    cleaned = str(path or "").strip("/")
+    if not cleaned or "/" in cleaned or "." in cleaned:
+        return False
+    return _sanitize_workspace_id(cleaned) != "default"
 
 
 def _normalize_chat_mode(value: object) -> str:
@@ -1789,24 +1809,33 @@ def _unique_generated_path(name: str) -> Path:
             return next_candidate
         counter += 1
 
-def _load_threads_state() -> dict:
+def _threads_file_for_workspace(workspace_id: str = "default") -> Path:
+    workspace_id = _sanitize_workspace_id(workspace_id)
+    if workspace_id == "default":
+        return THREADS_FILE
+    return CHAT_HISTORY_DIR / workspace_id / "threads.json"
+
+
+def _load_threads_state(workspace_id: str = "default") -> dict:
+    threads_file = _threads_file_for_workspace(workspace_id)
     with THREADS_LOCK:
-        if not THREADS_FILE.exists():
+        if not threads_file.exists():
             return {"threads": [], "activeThreadId": None}
         try:
-            raw = json.loads(THREADS_FILE.read_text(encoding="utf-8"))
+            raw = json.loads(threads_file.read_text(encoding="utf-8"))
         except Exception:
             return {"threads": [], "activeThreadId": None}
     return _normalize_threads_state(raw)
 
-def _save_threads_state(state: dict) -> None:
+def _save_threads_state(state: dict, workspace_id: str = "default") -> None:
     normalized = _normalize_threads_state(state)
-    CHAT_HISTORY_DIR.mkdir(parents=True, exist_ok=True)
-    tmp = THREADS_FILE.with_suffix(".json.tmp")
+    threads_file = _threads_file_for_workspace(workspace_id)
+    threads_file.parent.mkdir(parents=True, exist_ok=True)
+    tmp = threads_file.with_suffix(".json.tmp")
     data = json.dumps(normalized, ensure_ascii=False, indent=2)
     with THREADS_LOCK:
         tmp.write_text(data, encoding="utf-8")
-        tmp.replace(THREADS_FILE)
+        tmp.replace(threads_file)
 
 def _normalize_threads_state(state: object) -> dict:
     if not isinstance(state, dict):

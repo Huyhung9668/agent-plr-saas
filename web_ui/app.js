@@ -24,9 +24,11 @@ const quickActions = document.getElementById("quickActions");
 const modeSelector = document.getElementById("modeSelector");
 const toast = document.getElementById("toast");
 
-const threadStorageKey = "master_agent_threads_v2";
+const workspaceId = detectWorkspaceId();
+const workspaceSuffix = workspaceId === "default" ? "" : `_${workspaceId}`;
+const threadStorageKey = `master_agent_threads_v2${workspaceSuffix}`;
 const themeStorageKey = "master_agent_theme_v1";
-const syncStorageKey = "master_agent_threads_file_sync_v1";
+const syncStorageKey = `master_agent_threads_file_sync_v1${workspaceSuffix}`;
 const modeStorageKey = "master_agent_response_mode_v1";
 const translationHideDelayMs = 180;
 
@@ -52,6 +54,19 @@ let hoverTooltipInstalled = false;
 applyTheme(loadTheme());
 applyResponseMode(responseMode);
 init();
+
+function detectWorkspaceId() {
+  const firstSegment = decodeURIComponent(window.location.pathname || "")
+    .split("/")
+    .filter(Boolean)[0];
+  if (!firstSegment || ["api", "app.js", "styles.css", "favicon.ico"].includes(firstSegment)) return "default";
+  return firstSegment.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48) || "default";
+}
+
+function workspaceApiUrl(path) {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}workspace=${encodeURIComponent(workspaceId)}`;
+}
 
 async function init() {
   await syncInitialState();
@@ -171,7 +186,7 @@ async function fetchServerState() {
   if (isLoadingServerState) return null;
   isLoadingServerState = true;
   try {
-    const response = await fetch("/api/threads");
+    const response = await fetch(workspaceApiUrl("/api/threads"));
     const data = await response.json();
     if (!data.ok || !data.state) return null;
     return normalizeState(data.state);
@@ -305,7 +320,7 @@ async function saveStateToServer() {
   if (!serverSyncReady) return;
   isSavingState = true;
   try {
-    await fetch("/api/threads", {
+    await fetch(workspaceApiUrl("/api/threads"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state }),
