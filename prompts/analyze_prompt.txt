@@ -1,0 +1,14 @@
+Analyze the PLR product and return:
+- original title
+- product type
+- niche
+- license clues
+- demand score
+- WarriorPlus fit score
+- rebrand potential score
+- SaaS potential score
+- ease of creation score
+- risk score
+- final recommendation
+- new product angle
+- SaaS angle

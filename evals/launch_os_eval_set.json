@@ -1,0 +1,77 @@
+[
+  {
+    "id": "email_campaign_raw_templates",
+    "prompt": "San pham nen lam: AI Email Campaign Kit for Beginners. Bao gom: 30 mau email ngan tieng Anh tao cho toi",
+    "expected": ["DECISION", "SCORECARD", "AI Replace Risk", "30 short English email", "campaign map", "checklist", "planner", "why buy if AI can do this"]
+  },
+  {
+    "id": "depth_check_raw_prompts",
+    "prompt": "/depth_check 100 ChatGPT prompts for affiliate marketers",
+    "expected": ["Product Depth", "too thin", "workflow", "checklist", "planner", "examples", "upgrade"]
+  },
+  {
+    "id": "build_assets_email_kit",
+    "prompt": "/build_assets AI Email Campaign Kit",
+    "expected": ["CREATED PRODUCT ASSETS", "00_Start_Here", "Campaign_Map", "Pre_Send_Checklist", "Campaign_Planner"]
+  },
+  {
+    "id": "write_sales_page_ai_objection",
+    "prompt": "/write_sales_page AI Email Campaign Kit",
+    "expected": ["SALES PAGE", "Why AI Alone Is Not Enough", "FAQ", "Can I just ask AI", "CTA", "Tool action"]
+  },
+  {
+    "id": "warriorplus_funnel",
+    "prompt": "/build_funnel AI Email Campaign Kit",
+    "expected": ["FE", "Order Bump", "OTO1", "OTO2", "Recurring", "Commission"]
+  },
+  {
+    "id": "warriorplus_listing",
+    "prompt": "/warriorplus_listing AI Email Campaign Kit",
+    "expected": ["Product Title", "Short Description", "Long Description", "Category", "Tags", "Commission", "Delivery Page"]
+  },
+  {
+    "id": "jv_pack",
+    "prompt": "/build_jv_pack AI Email Campaign Kit",
+    "expected": ["JV Page", "Commission", "Affiliate Email", "Outreach", "Review Access", "Prospect"]
+  },
+  {
+    "id": "delivery_page",
+    "prompt": "/delivery_page AI Email Campaign Kit",
+    "expected": ["Thank you", "Download", "Start Here", "Support", "Compliance", "Backend"]
+  },
+  {
+    "id": "onboarding",
+    "prompt": "/onboarding AI Email Campaign Kit",
+    "expected": ["download", "start", "mistake", "customize", "backend"]
+  },
+  {
+    "id": "launch_readiness",
+    "prompt": "/launch_readiness AI Email Campaign Kit",
+    "expected": ["Launch Readiness", "Product Depth", "Sales Page", "JV Material", "Delivery", "Risk"]
+  },
+  {
+    "id": "export_zip",
+    "prompt": "/export_zip AI Email Campaign Kit",
+    "expected": ["EXPORT ZIP DONE", "Launch_Pack.zip"]
+  },
+  {
+    "id": "plr_license_risk",
+    "prompt": "/analyze_plr Old Email Marketing PLR ebook with no license.txt",
+    "expected": ["License", "Risk", "do not sell raw", "rewrite", "rebrand", "HUMAN REVIEW REQUIRED"]
+  },
+  {
+    "id": "saas_upgrade",
+    "prompt": "/saas_upgrade AI Email Campaign Kit",
+    "expected": ["SaaS Potential", "MVP Features", "export", "pricing", "recurring"]
+  },
+  {
+    "id": "platform_fit",
+    "prompt": "/platform_fit AI PLR Rebrand Launch Kit",
+    "expected": ["WarriorPlus", "Gumroad", "Payhip", "JVZoo", "best platform"]
+  },
+  {
+    "id": "localize_en",
+    "prompt": "/translate_english Bo giup nguoi moi tao chien dich email 7 ngay",
+    "expected": ["English market", "product name", "positioning", "promise", "CTA"]
+  }
+]

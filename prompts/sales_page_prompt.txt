@@ -1,0 +1,15 @@
+Write a realistic sales page for the selected offer.
+
+Include:
+- headline
+- subheadline
+- problem
+- solution
+- product contents
+- bonuses
+- who it is for
+- FAQ
+- refund policy
+- CTA
+
+Avoid guaranteed income claims.

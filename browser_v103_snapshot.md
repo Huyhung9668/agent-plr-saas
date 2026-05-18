@@ -1,0 +1,12 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic [ref=e4]
+      - generic [ref=e15]
+    - main [ref=e68]:
+      - generic [ref=e69]
+      - generic [ref=e79]
+      - generic "Điều hướng câu hỏi và câu trả lời" [ref=e320]
+      - button "Nhảy xuống cuối chat": ↓
+      - generic [ref=e323]
+  - status

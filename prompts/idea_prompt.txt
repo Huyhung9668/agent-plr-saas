@@ -1,0 +1,14 @@
+Generate 10 new product ideas from the selected PLR assets.
+
+Each idea must include:
+- product name
+- buyer avatar
+- promise
+- product format
+- what is inside
+- bonuses
+- front-end price
+- OTOs
+- sales page angle
+- traffic angle
+- SaaS or membership upgrade path

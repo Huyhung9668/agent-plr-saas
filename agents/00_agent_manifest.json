@@ -1,0 +1,354 @@
+{
+  "created_at": "20260511-135159",
+  "agents": [
+    {
+      "id": "build_product",
+      "name": "BUILD PRODUCT",
+      "role": "Product builder agent for PLR, MRR, RR, prompt packs, templates, mini courses, and digital assets.",
+      "mission": "Turn raw source material into a packaged, deliverable digital product with bonuses, backend offers, and an improvement path.",
+      "input_root": "input_files/agent_workflows/01_build_product",
+      "final_output": "A complete product pack: core product, bonuses, delivery structure, upsell/backend plan, and version roadmap.",
+      "steps": [
+        {
+          "id": "01",
+          "name": "Nghien cuu san pham",
+          "folder": "01_product_research",
+          "output": "Research brief with niche, market demand, competitors, buyer pains, and validation notes.",
+          "checklist": [
+            "Read source files, PLR licenses, market notes, buyer comments, and competitor examples.",
+            "Score demand, freshness, rebrand potential, risk, and ease of creation.",
+            "Reject weak or risky angles before product creation starts."
+          ]
+        },
+        {
+          "id": "02",
+          "name": "Len y tuong va dinh vi",
+          "folder": "02_idea_positioning",
+          "output": "Product concept with buyer avatar, promise, title angles, USP, and pricing idea.",
+          "checklist": [
+            "Pick a narrow buyer segment.",
+            "Transform generic PLR into a fresh promise.",
+            "Write product names, positioning angles, and offer boundaries."
+          ]
+        },
+        {
+          "id": "03",
+          "name": "Tao san pham so",
+          "folder": "03_digital_product_creation",
+          "output": "Core product assets such as ebook, prompt pack, templates, checklist, mini course, or digital files.",
+          "checklist": [
+            "Choose the simplest format that can deliver the promise.",
+            "Create reusable assets instead of only long-form theory.",
+            "Keep claims realistic and license-safe."
+          ]
+        },
+        {
+          "id": "04",
+          "name": "Xay dung noi dung",
+          "folder": "04_content_building",
+          "output": "Module content, lessons, worksheets, examples, scripts, and implementation steps.",
+          "checklist": [
+            "Rewrite source material with a new angle.",
+            "Add examples, checklists, prompts, and current workflows.",
+            "Remove outdated claims, copied copy, and unsupported income promises."
+          ]
+        },
+        {
+          "id": "05",
+          "name": "Dong goi san pham",
+          "folder": "05_product_packaging",
+          "output": "Clean product structure with start-here file, modules, filenames, bundle map, and manifest.",
+          "checklist": [
+            "Organize files in buyer-friendly order.",
+            "Use simple names and numbered folders.",
+            "Add a start-here guide and usage instructions."
+          ]
+        },
+        {
+          "id": "06",
+          "name": "Tao bonus",
+          "folder": "06_bonus_creation",
+          "output": "Bonus stack with quick wins, templates, swipe files, extra prompts, and value logic.",
+          "checklist": [
+            "Add bonuses that help buyers implement faster.",
+            "Avoid fake inflated values.",
+            "Match each bonus to a real objection or desired shortcut."
+          ]
+        },
+        {
+          "id": "07",
+          "name": "Thiet ke va trinh bay",
+          "folder": "07_design_presentation",
+          "output": "Design notes, cover/mockup direction, formatting checklist, and presentation polish.",
+          "checklist": [
+            "Make product easy to scan and use.",
+            "Prepare cover, mockup, thumbnails, or layout guidance.",
+            "Check visual consistency across PDFs, docs, and delivery assets."
+          ]
+        },
+        {
+          "id": "08",
+          "name": "Setup giao hang",
+          "folder": "08_delivery_setup",
+          "output": "Delivery page, download page, member access notes, hosting checklist, and buyer email.",
+          "checklist": [
+            "Confirm files are zipped and accessible.",
+            "Create simple access instructions.",
+            "Include refund/support and license reminders."
+          ]
+        },
+        {
+          "id": "09",
+          "name": "Tao upsell backend",
+          "folder": "09_upsell_backend",
+          "output": "OTO/backend plan with upsell, downsell, agency license, and continuity ideas.",
+          "checklist": [
+            "Build backend offers from logical next steps.",
+            "Keep upsells complementary, not required for the front-end promise.",
+            "Add pricing and delivery notes."
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Cai tien san pham",
+          "folder": "10_product_improvement",
+          "output": "Feedback plan, update log, rebrand ideas, and version 2.0 roadmap.",
+          "checklist": [
+            "Collect buyer questions and failure points.",
+            "Turn support issues into updates.",
+            "Plan v2.0 with stronger assets and clearer positioning."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "jv_manager",
+      "name": "JV MANAGER",
+      "role": "Launch partner manager for affiliate recruitment, JV coordination, traffic pushes, and long-term relationships.",
+      "mission": "Prepare and manage the affiliate/JV side of a launch from recruitment through post-launch follow-up.",
+      "input_root": "input_files/agent_workflows/02_jv_manager",
+      "final_output": "A launch partner system: prospect list, outreach, calendar, promo assets, support scripts, contest, and relationship tracker.",
+      "steps": [
+        {
+          "id": "01",
+          "name": "Tim affiliate doi tac",
+          "folder": "01_affiliate_partner_research",
+          "output": "Affiliate and partner prospect list with contact notes, fit score, and priority.",
+          "checklist": [
+            "Find affiliates who already promote similar offers.",
+            "Segment by relationship strength and traffic source.",
+            "Avoid partners whose audience is a poor fit."
+          ]
+        },
+        {
+          "id": "02",
+          "name": "Outreach va ket noi",
+          "folder": "02_outreach_relationship",
+          "output": "DM/email outreach sequence, follow-up scripts, and relationship notes.",
+          "checklist": [
+            "Personalize outreach by partner type.",
+            "Lead with why the offer fits their audience.",
+            "Track replies, objections, and next action."
+          ]
+        },
+        {
+          "id": "03",
+          "name": "Lap ke hoach launch",
+          "folder": "03_launch_planning",
+          "output": "Launch calendar, timeline, pre-launch tasks, and responsibility checklist.",
+          "checklist": [
+            "Set dates for warmup, review access, cart open, and close.",
+            "Define daily tasks and promo pushes.",
+            "Prepare fallback actions for weak early traction."
+          ]
+        },
+        {
+          "id": "04",
+          "name": "Chuan bi promo materials",
+          "folder": "04_promo_materials",
+          "output": "JV page, affiliate swipe, email swipes, banners, review access, and bonus details.",
+          "checklist": [
+            "Give affiliates ready-to-send copy.",
+            "Include angles for different list types.",
+            "Make review access and commission details easy to find."
+          ]
+        },
+        {
+          "id": "05",
+          "name": "Ho tro affiliate",
+          "folder": "05_affiliate_support",
+          "output": "Support FAQ, reply scripts, bonus coordination, and performance updates.",
+          "checklist": [
+            "Answer affiliate questions quickly.",
+            "Share promo reminders without spamming.",
+            "Help affiliates choose the best angle for their audience."
+          ]
+        },
+        {
+          "id": "06",
+          "name": "Leaderboard va contest",
+          "folder": "06_leaderboard_contest",
+          "output": "Contest rules, prizes, leaderboard tracking, and incentive notes.",
+          "checklist": [
+            "Define fair contest rules before launch.",
+            "Track top affiliates and milestone prizes.",
+            "Use incentives to increase promo frequency."
+          ]
+        },
+        {
+          "id": "07",
+          "name": "Quan ly traffic va promo",
+          "folder": "07_traffic_promo_management",
+          "output": "Traffic plan, promo schedule, daily check-ins, and channel performance notes.",
+          "checklist": [
+            "Coordinate email, social, community, and paid/partner traffic.",
+            "Watch conversions and refund risk.",
+            "Shift emphasis toward angles that convert."
+          ]
+        },
+        {
+          "id": "08",
+          "name": "Sau launch",
+          "folder": "08_post_launch",
+          "output": "Thank-you follow-up, payout notes, results recap, and relaunch ideas.",
+          "checklist": [
+            "Thank every serious affiliate.",
+            "Summarize numbers, lessons, and testimonials.",
+            "Plan the next promo window."
+          ]
+        },
+        {
+          "id": "09",
+          "name": "Quan ly network JV lau dai",
+          "folder": "09_long_term_jv_network",
+          "output": "Long-term JV CRM, partner tiers, future launch notes, and relationship schedule.",
+          "checklist": [
+            "Keep partner notes current.",
+            "Tag affiliates by traffic quality and reliability.",
+            "Create a calendar for future collaborations."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sale_page",
+      "name": "SALE PAGE",
+      "role": "Direct-response sales page agent for offer research, copy, page structure, funnel pages, and conversion testing.",
+      "mission": "Turn offer notes and product assets into conversion-focused sales pages and funnel copy with realistic claims.",
+      "input_root": "input_files/agent_workflows/03_sale_page",
+      "final_output": "A complete front-end sales page plus funnel page copy, CTA map, FAQ, guarantee, and optimization checklist.",
+      "steps": [
+        {
+          "id": "01",
+          "name": "Nghien cuu offer va buyer",
+          "folder": "01_offer_buyer_research",
+          "output": "Buyer research brief with pains, desires, objections, proof needs, and competing offers.",
+          "checklist": [
+            "Study buyer language and urgent problems.",
+            "Identify what the buyer already tried.",
+            "List objections that the page must answer."
+          ]
+        },
+        {
+          "id": "02",
+          "name": "Xay offer",
+          "folder": "02_offer_building",
+          "output": "Offer stack with promise, mechanism, value proposition, price anchor, and risk reversal.",
+          "checklist": [
+            "Define what the buyer gets and why it matters.",
+            "Make the offer specific enough to visualize.",
+            "Keep promises useful but believable."
+          ]
+        },
+        {
+          "id": "03",
+          "name": "Headline va hook",
+          "folder": "03_headline_hook",
+          "output": "Headline bank, subheadline options, opening hook, curiosity angle, and pain angle.",
+          "checklist": [
+            "Write multiple headline angles.",
+            "Match hook to buyer awareness level.",
+            "Avoid exaggerated results claims."
+          ]
+        },
+        {
+          "id": "04",
+          "name": "Viet sales copy",
+          "folder": "04_sales_copy",
+          "output": "Full sales copy with problem, story, bullets, objection handling, and close.",
+          "checklist": [
+            "Translate features into practical buyer outcomes.",
+            "Use proof and specificity where available.",
+            "Remove hype that increases refund or compliance risk."
+          ]
+        },
+        {
+          "id": "05",
+          "name": "Trinh bay san pham",
+          "folder": "05_product_presentation",
+          "output": "What-is-inside section, module breakdown, use cases, and who-it-is-for section.",
+          "checklist": [
+            "Show product components clearly.",
+            "Explain how each module helps the buyer.",
+            "Make product assets easy to understand before purchase."
+          ]
+        },
+        {
+          "id": "06",
+          "name": "Bonus stack",
+          "folder": "06_bonus_stack",
+          "output": "Bonus section with bonus names, reasons, quick-win logic, and scarcity/urgency notes.",
+          "checklist": [
+            "Connect bonuses to objections or speed.",
+            "Avoid fake value math.",
+            "Use scarcity only when it is true."
+          ]
+        },
+        {
+          "id": "07",
+          "name": "Guarantee va FAQ",
+          "folder": "07_guarantee_faq",
+          "output": "Refund policy, guarantee copy, FAQ, and objection removal section.",
+          "checklist": [
+            "Answer buying friction directly.",
+            "Keep refund terms clear.",
+            "Handle license, access, skill level, and time objections."
+          ]
+        },
+        {
+          "id": "08",
+          "name": "CTA va conversion elements",
+          "folder": "08_cta_conversion_elements",
+          "output": "CTA copy, button labels, proof elements, countdown notes, trust elements, and page flow checklist.",
+          "checklist": [
+            "Place CTA after belief-building sections.",
+            "Use clear action language.",
+            "Add proof and trust where available."
+          ]
+        },
+        {
+          "id": "09",
+          "name": "Funnel pages",
+          "folder": "09_funnel_pages",
+          "output": "Front-end, OTO, upsell, downsell, thank-you, and delivery page copy notes.",
+          "checklist": [
+            "Keep each page to one decision.",
+            "Make upsells logical next steps.",
+            "Confirm thank-you and access instructions are clear."
+          ]
+        },
+        {
+          "id": "10",
+          "name": "Toi uu va test",
+          "folder": "10_optimization_testing",
+          "output": "Testing plan with headline tests, CTA tests, objections, heatmap notes, and conversion log.",
+          "checklist": [
+            "Test headline, offer stack, proof, price, and CTA.",
+            "Track conversion rate and refund signals.",
+            "Keep a changelog for each page version."
+          ]
+        }
+      ]
+    }
+  ]
+}

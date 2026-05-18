@@ -1,0 +1,14 @@
+Create a micro SaaS plan from a PLR-based product idea.
+
+Include:
+- SaaS name
+- target user
+- MVP workflow
+- upload/input
+- generated outputs
+- pricing tiers
+- lifetime deal
+- agency/whitelabel offer
+- 14-day MVP build plan
+- validation steps
+- risks

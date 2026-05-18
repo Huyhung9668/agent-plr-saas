@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent chủ v1.04</title>
+  <link rel="stylesheet" href="/styles.css?v=1.04" />
+  </head>
+  <body>
+    <div class="app" data-theme="dark">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand">
+            <div class="logo">M</div>
+            <div>
+              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.02</span></div>
+              <div class="subtitle">PLR, SaaS, WarriorPlus</div>
+            </div>
+          </div>
+          <button id="newChatBtn" class="new-chat-btn" type="button">+ Chat mới</button>
+          <label class="search-box" title="Tìm trong lịch sử chat">
+            <span>Tìm</span>
+            <input id="threadSearch" type="search" placeholder="Tìm chủ đề..." autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-label">Gần đây</div>
+          <div id="threadList" class="thread-list"></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="chat-title">Agent chủ <span class="version-badge" data-app-version>v1.02</span></div>
+            <div id="brainSummary" class="chat-subtitle">Đang kiểm tra 3 bộ não...</div>
+          </div>
+          <div class="topbar-actions">
+            <button id="statusBtn" class="icon-btn" type="button" title="Trạng thái bộ não">i</button>
+            <button id="exportBtn" class="icon-btn" type="button" title="Xuất chat Markdown">↓</button>
+            <button id="themeToggleBtn" class="icon-btn" type="button" title="Đổi sáng/tối">☾</button>
+            <button id="clearBtn" class="icon-btn danger-icon" type="button" title="Xóa nội dung chat hiện tại">×</button>
+          </div>
+        </header>
+
+        <section id="statusPanel" class="status-panel" hidden></section>
+        <section id="chat" class="chat"></section>
+        <div class="chat-jump-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
+          <button id="jumpPrevBtn" type="button" title="Nhảy lên câu hỏi/câu trả lời trước" aria-label="Nhảy lên câu hỏi/câu trả lời trước">↑</button>
+          <button id="jumpNextBtn" type="button" title="Nhảy xuống câu hỏi/câu trả lời tiếp theo" aria-label="Nhảy xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+        </div>
+        <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nhảy xuống cuối chat" aria-label="Nhảy xuống cuối chat">↓</button>
+
+        <footer class="composer">
+          <div id="quickActions" class="quick-actions">
+            <div class="quick-group">
+              <span class="quick-group-title">Build Product</span>
+              <button type="button" data-module="true" data-prompt="Analyze PLR File / Folder: Read this PLR/source note like a license-aware product strategist. Output: summary, niche, useful parts, parts to remove, license/risk level, rebrand recommendation, asset gaps, product kit angle, and final USE / USE ONLY AS RESEARCH / SKIP decision. Source or folder note: [paste here]">Analyze PLR</button>
+              <button type="button" data-module="true" data-prompt="Product Idea Scoring: Score this idea for Demand, Buyer Pain, AI Replace Risk, Workflow Value, WarriorPlus Fit, Rebrand Potential, Backend Potential, SaaS Potential, Risk, and final decision NEN LAM / CHUA NEN LAM / BO QUA. Also explain what must be added so it is not raw AI content. Idea: [paste idea here]">Idea Score</button>
+              <button type="button" data-module="true" data-prompt="Product Depth Checker: Check if this product is too thin. Score 0-10, identify missing workflow/checklist/planner/examples/prompts/QC/sales assets, then upgrade it into a stronger product kit with exact files. Product: [paste product idea here]">Depth Check</button>
+              <button type="button" data-module="true" data-prompt="Upgrade Raw Content Into Product Kit: Convert this raw AI/PLR content into a sellable implementation kit. Include workflow, use cases, examples, checklist, customization prompts, planner/sheet, compliance note, file structure, pricing, bump/OTO, and why buyers pay instead of asking AI. Content: [paste here]">Upgrade Kit</button>
+              <button type="button" data-module="true" data-prompt="Create Product Assets: Build a file-by-file product package. Output exact filenames, purpose, required contents, examples to include, quality checks, and build order. Product: [product name]">Product Assets</button>
+              <button type="button" data-module="true" data-prompt="/deep_create_product_assets AI Email Campaign Kit for Beginners">Deep Assets</button>
+              <button type="button" data-module="true" data-prompt="/deep_write_file AI Email Campaign Kit for Beginners 00_Start_Here.md">Deep File</button>
+              <button type="button" data-module="true" data-prompt="Quality Control Checklist: Audit this product for hype, income claims, fake scarcity, unclear CTA, missing examples, missing workflow, duplicate sections, weak AI differentiation, license risk, and delivery gaps. Product/content: [paste here]">QC Checklist</button>
+              <button type="button" data-module="true" data-prompt="Asset Completeness Checker: Use the active project memory and check whether this product is ready to sell. Output required asset checklist, missing assets, launch decision, fix priority, and next 3 actions. Product: [product name or leave blank for active project]">Completeness</button>
+              <button type="button" data-module="true" data-prompt="Launch Readiness Score: Use active project memory and score Product Depth, Sales Page, JV Material, Delivery, Funnel, Traffic Plan, Risk/Compliance. Give LAUNCH / SOFT LAUNCH / WAIT decision. Product: [product name or active project]">Readiness</button>
+              <button type="button" data-module="true" data-prompt="Export Product ZIP Plan: Create the final ZIP delivery structure with /product_assets, /sales_page, /jv_pack, /saas_plan, /export/product_zip_ready, README, license/compliance note, and file completion checklist. Product: [product name]">Export ZIP</button>
+              <button type="button" data-module="true" data-prompt="One-Click Launch Pack: Use active project memory. If assets are missing, list missing assets first. Otherwise create full launch pack structure: product_assets, sales_page, warriorplus_listing, jv_pack, email_funnel, traffic_content, delivery_page, saas_upgrade_plan, export ZIP name. Product: [product name or active project]">Launch Pack</button>
+              <button type="button" data-module="true" data-prompt="/full_launch_pack AI Email Campaign Kit">Full Launch Pack</button>
+            </div>
+            <div class="quick-group">
+              <span class="quick-group-title">Sale Page / Funnel</span>
+              <button type="button" data-module="true" data-prompt="Build Offer Angle: Turn this idea into a clear offer. Output buyer, pain, safe promise, mechanism, unique angle, deliverables, proof substitutes, and why AI alone is not enough. Product: [product name]">Offer Angle</button>
+              <button type="button" data-module="true" data-prompt="Write Sales Page: Write a complete WarriorPlus-friendly sales page with headline, subheadline, problem, why raw AI/PLR is not enough, solution, what is inside, how it works, bonuses, who it is for/not for, price framing, FAQ, compliance-safe risk reversal, CTA, and the objection 'Can I just ask AI?'. Product: [product name]">Sales Page</button>
+              <button type="button" data-module="true" data-prompt="Objection Handler: Create FAQ and sales-page blocks for: AI can do it, I already have PLR, I have no list, no guaranteed results, no tech skills, niche transferability, license/client use. Product: [product name]">Objections</button>
+              <button type="button" data-module="true" data-prompt="Create Funnel Plan: Build FE, order bump, OTO1, OTO2, downsell, recurring/backend if useful, commission plan, launch checklist, and explain why each upsell sells speed/depth/license instead of more raw AI text. Product: [product name]">Funnel Plan</button>
+              <button type="button" data-module="true" data-prompt="Build WarriorPlus Listing: Create Product Title, Short Description, Long Description, Category, Tags, Price, Commission, Refund Policy, Vendor Note, Affiliate Approval Note, Delivery Page Text, and Support Note. Product: [product name]">W+ Listing</button>
+              <button type="button" data-module="true" data-prompt="Proof Substitute Generator: Do not invent income proof. Create ethical proof substitutes: product folder preview, workflow screenshot idea, before/after example, sample checklist, sample swipe, sample sales-page block, demo video outline, and preview copy. Product: [product name]">Proof</button>
+              <button type="button" data-module="true" data-prompt="Delivery Page Builder: Create thank-you page copy, download instructions, Start Here steps, support email placeholder, refund/support note, next step, and gentle backend bridge. Product: [product name or active project]">Delivery</button>
+              <button type="button" data-module="true" data-prompt="Customer Onboarding Emails: Create 5 post-purchase emails: download, start file first, common mistake, customize faster, advanced/backend offer. Product: [product name or active project]">Onboarding</button>
+            </div>
+            <div class="quick-group">
+              <span class="quick-group-title">JV Manager</span>
+              <button type="button" data-module="true" data-prompt="Build JV Page: Create a JV page with product name, launch date placeholder, niche, buyer avatar, why it can convert, FE/OTO prices, commission, funnel map, review access, affiliate link placeholder, promo assets, rules, and contact. Product: [product name]">JV Page</button>
+              <button type="button" data-module="true" data-prompt="Create Affiliate Swipe Pack: Create 3 email swipes, 3 short promo emails, 5 Facebook posts, 5 X posts, 3 subject-line sets, 1 launch announcement, 1 last chance email, and 10 affiliate bonus ideas. Product: [product name]">Swipe Pack</button>
+              <button type="button" data-module="true" data-prompt="Create JV Prospect Tracker: Build a CSV-ready tracker with columns Name, Website/Profile, Platform, Audience Type, Contact, Niche Fit, List Size Estimate, Last Product Promoted, Contacted, Reply, Review Access Sent, Promoted, Notes, Follow-up Date, plus source ideas for finding prospects. Niche: [niche]">Prospects</button>
+              <button type="button" data-module="true" data-prompt="Generate Outreach Messages: Create a 3-message JV outreach sequence: first contact, follow-up, final soft close. Include review access angle, commission note, audience fit, and no hype. Product: [product name]">Outreach</button>
+              <button type="button" data-module="true" data-prompt="Affiliate Tier Manager: Create affiliate tiers, FE/OTO commission recommendations, approval rules, backend protection, and warnings about when not to offer 90 percent. Product: [product name]">Tiers</button>
+              <button type="button" data-module="true" data-prompt="Review Access Manager: Create review access message, approval checklist, follow-up checklist, and tracking fields for affiliate/JV partners. Product: [product name]">Review Access</button>
+            </div>
+            <div class="quick-group">
+              <span class="quick-group-title">SaaS / Membership</span>
+              <button type="button" data-module="true" data-prompt="SaaS Potential Analyzer: Analyze whether this digital product can become a SaaS/tool. Output score, tool name, MVP features, input/output flow, export workflow, recurring potential, pricing, agency/whitelabel angle, and risk. Product: [product name]">SaaS Potential</button>
+              <button type="button" data-module="true" data-prompt="SaaS MVP Planner: Build a phased SaaS roadmap: internal tool, user-facing MVP, paid SaaS, agency/whitelabel. Include features, data tables, export flow, pricing, and build priority. Product/tool: [name]">MVP Plan</button>
+              <button type="button" data-module="true" data-prompt="Membership Planner: Create a recurring membership offer from this product. Include monthly deliverables, tiers, price points, retention angle, launch offer, and compliance-safe positioning. Product: [product name]">Membership</button>
+              <button type="button" data-module="true" data-prompt="Whitelabel License Planner: Create Personal, Commercial, Agency, Whitelabel, and Developer license options with clear rights, restrictions, risk warnings, and when not to sell license because PLR rights are unclear. Product: [product name]">Whitelabel</button>
+              <button type="button" data-module="true" data-prompt="Product Line Planner: Create a 3-6 month product roadmap with FE, backend, membership, SaaS/tool beta, and bundle/license plan. Starting product: [product name or active project]">Product Line</button>
+            </div>
+            <div class="quick-group">
+              <span class="quick-group-title">Market Research</span>
+              <button type="button" data-module="true" data-prompt="Scan PLR Library: Create a PLR library scan plan and output format. Group files by niche, identify license/risk fields, score rebrand potential, WarriorPlus fit, SaaS potential, and next best products to build. Folder/note: [folder or notes]">Scan Library</button>
+              <button type="button" data-module="true" data-prompt="Market Gap Finder: For this product/niche, identify common competitor patterns, missing implementation assets, gaps buyers care about, unique angle, saturation risk, and a stronger product kit structure. Niche/product: [paste here]">Market Gap</button>
+              <button type="button" data-module="true" data-prompt="Competitor Pattern Analyzer: Analyze competitor patterns for this WarriorPlus-style product: names, headline angles, bonuses, FE price, OTOs, commission, proof style, saturation risk, and gaps to exploit without copying. Product/niche: [paste here]">Competitor</button>
+              <button type="button" data-module="true" data-prompt="Platform Fit Selector: Compare WarriorPlus, Gumroad, Payhip, Etsy, JVZoo for this product. Output best platform, backup platforms, why, price fit, and marketplace risk. Product: [product name or active project]">Platform Fit</button>
+              <button type="button" data-module="true" data-prompt="Vietnamese-to-English Product Mode: Localize this offer for the English WarriorPlus/Gumroad market. Do not only translate. Create product name, positioning, promise, bullets, CTA, FAQ, compliance note. Product/notes: [paste Vietnamese notes]">Localize EN</button>
+              <button type="button" data-module="true" data-prompt="Storage Report: Show local storage size, active brain databases, archive folder, biggest folders, and cleanup recommendation.">Storage Report</button>
+              <button type="button" data-module="true" data-prompt="Optimize Storage: Archive raw/legacy knowledge files, remove temp database artifacts, vacuum active role-brain databases, and report reclaimed space. Keep active role brains safe.">Optimize Storage</button>
+            </div>
+            <button type="button" data-prompt="Analyze Offer: Chấm điểm idea sản phẩm này theo Buyer Pain, AI Replace Risk, Workflow Value, Implementation Value, WarriorPlus Fit, Backend Potential, SaaS Potential, Risk và kết luận NÊN LÀM / CHƯA NÊN LÀM / BỎ QUA. Idea: [dán idea ở đây]">Analyze Offer</button>
+            <button type="button" data-prompt="Analyze PLR File / Folder: Phân tích PLR/source này có nên dùng không, dùng phần nào, bỏ phần nào, license/risk ra sao, rebrand thành offer gì, thêm asset nào để khác AI thô. Source/ghi chú: [dán nội dung hoặc mô tả file/folder]">Analyze PLR</button>
+            <button type="button" data-prompt="Upgrade Raw AI Content Into Product Kit: Nâng nội dung thô này thành product kit có workflow, use cases, examples, checklist, customization prompts, planner, compliance, pricing, bump/OTO và ZIP structure. Nội dung: [dán nội dung thô]">Upgrade Kit</button>
+            <button type="button" data-prompt="Build Buyer Avatar: Tạo buyer avatar chi tiết cho sản phẩm này gồm stage, platform, pain, desired result, objections, buying trigger, message angle và FAQ objection. Sản phẩm: [tên sản phẩm]">Buyer Avatar</button>
+            <button type="button" data-prompt="Create Product Assets: Tạo danh sách file asset cụ thể cho product pack này, gồm tên file, mục đích, nội dung cần có, checklist chất lượng và thứ tự build. Sản phẩm: [tên sản phẩm]">Product Assets</button>
+            <button type="button" data-prompt="Write Sales Page: Viết sales page hoàn chỉnh cho sản phẩm này, có objection 'Can I just ask AI?', proof substitutes, compliance, FAQ, CTA, không claim thu nhập. Sản phẩm: [tên sản phẩm]">Sales Page</button>
+            <button type="button" data-prompt="Create OTO/Funnel Plan: Tạo FE, order bump, OTO1, OTO2, downsell, recurring/club nếu hợp lý, affiliate angle và launch checklist. Sản phẩm: [tên sản phẩm]">OTO/Funnel</button>
+            <button type="button" data-prompt="Build WarriorPlus Listing: Tạo title, short description, long description, category, tags, price, commission, refund policy, vendor note, affiliate approval note và delivery page text. Sản phẩm: [tên sản phẩm]">W+ Listing</button>
+            <button type="button" data-prompt="Build JV/Affiliate Pack: Tạo JV page outline, JV invitation, 3 email swipes, 3 social posts, review access message, follow-up message, launch calendar, commission explanation và 10 bonus ideas. Sản phẩm: [tên sản phẩm]">JV Pack</button>
+            <button type="button" data-prompt="Generate Free Traffic Content: Tạo 10 Facebook posts, 5 group value posts, 5 Quora answers, 3 Medium outlines, 10 short video scripts, 10 comment templates theo hướng value-first không spam. Sản phẩm: [tên sản phẩm]">Traffic Content</button>
+            <button type="button" data-prompt="Build Email Funnel: Tạo lead magnet idea, opt-in page copy, thank-you page copy, 5-email welcome sequence, buyer onboarding, post-purchase email và backend promotion. Sản phẩm: [tên sản phẩm]">Email Funnel</button>
+            <button type="button" data-prompt="Plan SaaS Upgrade: Phân tích sản phẩm này có thể nâng thành SaaS/tool không, MVP features, input/output, export workflow, pricing, recurring, agency/whitelabel và roadmap. Sản phẩm: [tên sản phẩm]">SaaS Upgrade</button>
+            <button type="button" data-prompt="Export Product ZIP Plan: Tạo cấu trúc ZIP giao hàng đầy đủ với numbered files, Bonuses folder, README, license/compliance note và checklist build từng file. Sản phẩm: [tên sản phẩm]">Export ZIP</button>
+            <button type="button" data-prompt="Export Full Launch Pack: Tạo full launch pack gồm product assets, sales page, WarriorPlus listing, JV pack, email swipes, traffic content, delivery page và launch checklist. Sản phẩm: [tên sản phẩm]">Launch Pack</button>
+            <button type="button" data-prompt="Phân tích giúp tôi 3 ý tưởng sản phẩm PLR + SaaS dễ bán trên WarriorPlus nhất dựa trên brain hiện tại.">Ý tưởng sản phẩm</button>
+            <button type="button" data-prompt="Tạo cho tôi một funnel WarriorPlus gồm FE, OTO1, OTO2, bonus stack và email launch cho AI PLR Rebrand Kit.">Funnel WarriorPlus</button>
+            <button type="button" data-prompt="Viết sales page ngắn gọn, hợp lệ, không claim thu nhập cho một offer AI PLR Rebrand Kit.">Sales page</button>
+          </div>
+          <div id="modeSelector" class="mode-selector" aria-label="Chế độ trả lời">
+            <button type="button" data-mode="fast" class="active" title="Nhanh nhất, vẫn có cấu trúc cao cấp">Nhanh</button>
+            <button type="button" data-mode="balanced" title="Sâu hơn, tốc độ vừa phải">Cân bằng</button>
+            <button type="button" data-mode="deep" title="Phân tích kỹ nhất, chậm hơn">Sâu</button>
+          </div>
+          <input id="fileInput" class="file-input" type="file" multiple />
+          <div class="prompt-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
+            <button id="promptJumpPrevBtn" type="button" title="Lên câu hỏi/câu trả lời trước">↑</button>
+            <button id="promptJumpNextBtn" type="button" title="Xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+          </div>
+          <button id="attachBtn" class="attach-btn" type="button" title="Đính kèm file">+</button>
+          <textarea id="prompt" rows="1" placeholder="Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây..."></textarea>
+          <button id="sendBtn" class="send-btn" title="Gửi">➤</button>
+          <div id="attachmentBar" class="attachment-bar"></div>
+        </footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js?v=1.04"></script>
+  </body>
+</html>

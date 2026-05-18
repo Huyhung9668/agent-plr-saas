@@ -1,0 +1,43 @@
+# Project Structure
+
+```txt
+Agent PLR Saas/
+  app.py
+  config.py
+  scanner.py
+  reader.py
+  file_reader.py
+  analyzer.py
+  scoring.py
+  idea_generator.py
+  offer_builder.py
+  funnel_writer.py
+  sales_page_writer.py
+  saas_planner.py
+  product_pack_exporter.py
+  workflow_agents.py
+  auditor.py
+  importer.py
+  db.py
+  prompts.py
+  agents/
+    00_agent_manifest.json
+    01_build_product_agent.md
+    02_jv_manager_agent.md
+    03_sale_page_agent.md
+  prompts/
+  input_files/
+    agent_workflows/
+      01_build_product/
+      02_jv_manager/
+      03_sale_page/
+  plr_files/
+    _INBOX_DROP_HERE/
+  saas_files/
+    _INBOX_DROP_HERE/
+  database/
+  outputs/
+  reports/
+  exports/
+  extracted/
+```
