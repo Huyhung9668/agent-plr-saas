@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agent chủ v1.04</title>
-  <link rel="stylesheet" href="/styles.css?v=1.04" />
+  <title>Agent chủ v1.07</title>
+  <link rel="stylesheet" href="/styles.css?v=1.07" />
   </head>
   <body>
     <div class="app" data-theme="dark">
@@ -13,10 +13,15 @@
           <div class="brand">
             <div class="logo">M</div>
             <div>
-              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.04</span></div>
+              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.07</span></div>
               <div class="subtitle">PLR, SaaS, WarriorPlus</div>
             </div>
           </div>
+          <nav id="workspaceTabs" class="workspace-tabs" aria-label="Chọn kênh chat">
+            <a href="/1" data-workspace-tab="1">1</a>
+            <a href="/2" data-workspace-tab="2">2</a>
+            <a href="/3" data-workspace-tab="3">3</a>
+          </nav>
           <button id="newChatBtn" class="new-chat-btn" type="button">+ Chat mới</button>
           <label class="search-box" title="Tìm trong lịch sử chat">
             <span>Tìm</span>
@@ -32,11 +37,33 @@
 
       <main class="main">
         <header class="topbar">
+          <button id="sidebarToggleBtn" class="icon-btn sidebar-toggle" type="button" title="Ẩn/hiện lịch sử chat">☰</button>
           <div class="topbar-left">
-            <div class="chat-title">Agent chủ <span class="version-badge" data-app-version>v1.04</span></div>
+            <div class="chat-title">Agent chủ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.07</span></div>
             <div id="brainSummary" class="chat-subtitle">Đang kiểm tra 3 bộ não...</div>
           </div>
+          <div class="topbar-controls" aria-label="Cấu hình chat">
+            <label>
+              <span>Chế độ AI</span>
+              <select id="modelSelect">
+                <option value="agent">Agent chủ</option>
+                <option value="planner">Planner sâu</option>
+                <option value="creator">Dựng nội dung</option>
+                <option value="critic">Phản biện launch</option>
+              </select>
+            </label>
+            <label>
+              <span>Công cụ</span>
+              <select id="toolModeSelect">
+                <option value="auto">Tự động</option>
+                <option value="files">File/RAG</option>
+                <option value="launch">Launch OS</option>
+                <option value="none">Tắt</option>
+              </select>
+            </label>
+          </div>
           <div class="topbar-actions">
+            <button id="promptLibraryBtn" class="icon-btn" type="button" title="Mở thư viện prompt">⌘</button>
             <button id="statusBtn" class="icon-btn" type="button" title="Trạng thái bộ não">i</button>
             <button id="exportBtn" class="icon-btn" type="button" title="Xuất chat Markdown">↓</button>
             <button id="themeToggleBtn" class="icon-btn" type="button" title="Đổi sáng/tối">☾</button>
@@ -53,7 +80,15 @@
         <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nhảy xuống cuối chat" aria-label="Nhảy xuống cuối chat">↓</button>
 
         <footer class="composer">
-          <div id="quickActions" class="quick-actions">
+          <div class="composer-head">
+            <button id="quickActionsToggle" class="library-toggle" type="button">Thư viện prompt</button>
+            <div class="session-metrics">
+              <span id="messageCount">0 tin nhắn</span>
+              <span id="activeModeLabel">Nhanh</span>
+            </div>
+            <button id="retryLastBtn" class="retry-last-btn" type="button" hidden>Gửi lại</button>
+          </div>
+          <div id="quickActions" class="quick-actions collapsed">
             <div class="quick-group">
               <span class="quick-group-title">Build Product</span>
               <button type="button" data-module="true" data-prompt="Analyze PLR File / Folder: Read this PLR/source note like a license-aware product strategist. Output: summary, niche, useful parts, parts to remove, license/risk level, rebrand recommendation, asset gaps, product kit angle, and final USE / USE ONLY AS RESEARCH / SKIP decision. Source or folder note: [paste here]">Analyze PLR</button>
@@ -127,7 +162,8 @@
             <button type="button" data-prompt="Viết sales page ngắn gọn, hợp lệ, không claim thu nhập cho một offer AI PLR Rebrand Kit.">Sales page</button>
           </div>
           <div id="modeSelector" class="mode-selector" aria-label="Chế độ trả lời">
-            <button type="button" data-mode="fast" class="active" title="Nhanh nhất, vẫn có cấu trúc cao cấp">Nhanh</button>
+            <button type="button" data-mode="auto" class="active" title="Tự chọn nhanh/sâu theo câu hỏi và file">Auto</button>
+            <button type="button" data-mode="fast" title="Nhanh nhất, vẫn có cấu trúc cao cấp">Nhanh</button>
             <button type="button" data-mode="balanced" title="Sâu hơn, tốc độ vừa phải">Cân bằng</button>
             <button type="button" data-mode="deep" title="Phân tích kỹ nhất, chậm hơn">Sâu</button>
           </div>
@@ -143,7 +179,21 @@
         </footer>
       </main>
     </div>
+    <aside id="artifactPanel" class="artifact-panel" aria-label="Canvas kết quả" hidden>
+      <div class="artifact-head">
+        <div>
+          <div class="artifact-label">Canvas kết quả</div>
+          <div id="artifactTitle" class="artifact-title">Nội dung trả lời</div>
+        </div>
+        <div class="artifact-actions">
+          <button id="artifactCopyBtn" class="icon-btn" type="button" title="Copy canvas">⧉</button>
+          <button id="artifactDownloadBtn" class="icon-btn" type="button" title="Tải Markdown">↓</button>
+          <button id="artifactCloseBtn" class="icon-btn" type="button" title="Đóng canvas">×</button>
+        </div>
+      </div>
+      <div id="artifactBody" class="artifact-body"></div>
+    </aside>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="/app.js?v=1.04"></script>
+  <script src="/app.js?v=1.07"></script>
   </body>
 </html>

@@ -76,7 +76,18 @@ button {
   overflow: hidden;
 }
 
+.app.sidebar-collapsed {
+  grid-template-columns: 0 minmax(0, 1fr);
+}
+
+.app.sidebar-collapsed .sidebar {
+  padding: 0;
+  border-right: 0;
+  overflow: hidden;
+}
+
 .sidebar {
+  min-width: 0;
   height: 100vh;
   min-height: 0;
   display: flex;
@@ -137,6 +148,21 @@ button {
   vertical-align: middle;
 }
 
+.workspace-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  margin-left: 8px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: var(--accent);
+  font-size: 12px;
+  font-weight: 850;
+  line-height: 1;
+  vertical-align: middle;
+}
+
 .subtitle,
 .chat-subtitle,
 .section-label,
@@ -144,6 +170,37 @@ button {
 .thinking,
 .search-box span {
   color: var(--muted);
+}
+
+.workspace-tabs {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.workspace-tabs a {
+  min-width: 0;
+  min-height: 36px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.workspace-tabs a:hover {
+  background: var(--surface-3);
+}
+
+.workspace-tabs a.active {
+  border-color: rgba(47, 128, 255, 0.68);
+  color: #ffffff;
+  background: var(--accent);
 }
 
 .new-chat-btn {
@@ -394,6 +451,10 @@ button {
   backdrop-filter: blur(14px);
 }
 
+.sidebar-toggle {
+  flex: 0 0 auto;
+}
+
 .topbar-left {
   min-width: 0;
   display: grid;
@@ -417,6 +478,37 @@ button {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.topbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.topbar-controls label {
+  min-width: 132px;
+  display: grid;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 820;
+  text-transform: uppercase;
+}
+
+.topbar-controls select {
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 0 10px;
+  outline: 0;
+}
+
+.topbar-controls select:focus {
+  border-color: rgba(47, 128, 255, 0.68);
 }
 
 .icon-btn {
@@ -550,8 +642,8 @@ button {
   gap: 18px;
   overflow: auto;
   padding: 28px 22px 18px;
-  scroll-behavior: smooth;
-  overflow-anchor: none;
+  scroll-behavior: auto;
+  overflow-anchor: auto;
 }
 
 .scroll-bottom-btn {
@@ -653,11 +745,34 @@ button {
   line-height: 1.65;
 }
 
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.starter-grid button {
+  min-height: 72px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  padding: 12px;
+  text-align: left;
+  font-weight: 760;
+}
+
+.starter-grid button:hover {
+  border-color: rgba(47, 128, 255, 0.55);
+  background: var(--surface-2);
+}
+
 .msg {
   position: relative;
   line-height: 1.7;
   white-space: normal;
-  overflow-anchor: none;
+  overflow-anchor: auto;
 }
 
 .msg.assistant {
@@ -718,6 +833,9 @@ button {
 
 .copy-btn,
 .file-btn,
+.artifact-msg-btn,
+.edit-msg-btn,
+.retry-msg-btn,
 .delete-msg-btn {
   width: 30px;
   height: 30px;
@@ -729,6 +847,9 @@ button {
 
 .copy-btn:hover,
 .file-btn:hover,
+.artifact-msg-btn:hover,
+.edit-msg-btn:hover,
+.retry-msg-btn:hover,
 .delete-msg-btn:hover {
   background: var(--surface-3);
   color: var(--text);
@@ -741,6 +862,9 @@ button {
 
 .msg.user .copy-btn,
 .msg.user .file-btn,
+.msg.user .artifact-msg-btn,
+.msg.user .edit-msg-btn,
+.msg.user .retry-msg-btn,
 .msg.user .delete-msg-btn {
   border-color: rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.12);
@@ -752,7 +876,7 @@ button {
   z-index: 50;
   right: 0;
   top: 38px;
-  width: 132px;
+  width: 156px;
   display: grid;
   gap: 4px;
   padding: 6px;
@@ -848,12 +972,65 @@ button {
   display: grid;
   grid-template-columns: 44px 44px minmax(0, 1fr) 48px;
   grid-template-areas:
+    "head head head head"
     "quick quick quick mode"
     "sample attach prompt send"
     "files files files files";
   gap: 10px;
   padding: 12px 0 18px;
   background: transparent;
+}
+
+.composer-head {
+  grid-area: head;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.library-toggle {
+  min-height: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: 780;
+}
+
+.session-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.session-metrics span {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  padding: 5px 9px;
+}
+
+.retry-last-btn {
+  min-height: 34px;
+  border: 1px solid rgba(47, 128, 255, 0.5);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+  color: var(--text);
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.retry-last-btn:hover {
+  background: var(--accent);
+  color: #fff;
 }
 
 .quick-actions {
@@ -867,6 +1044,14 @@ button {
   overflow-y: auto;
   overflow-x: auto;
   scrollbar-width: thin;
+}
+
+.quick-actions.collapsed {
+  max-height: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .quick-group {
@@ -1153,6 +1338,105 @@ button {
   padding: 12px;
 }
 
+.artifact-panel {
+  position: fixed;
+  z-index: 90;
+  top: 12px;
+  right: 12px;
+  bottom: 12px;
+  width: min(620px, calc(100vw - 24px));
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  box-shadow: var(--shadow);
+  transform: translateX(calc(100% + 18px));
+  transition: transform 0.18s ease;
+}
+
+.artifact-panel.show {
+  transform: translateX(0);
+}
+
+.artifact-head {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding: 14px;
+}
+
+.artifact-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.artifact-title {
+  max-width: 390px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 820;
+}
+
+.artifact-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 7px;
+}
+
+.artifact-body {
+  min-width: 0;
+  overflow: auto;
+  padding: 18px;
+  line-height: 1.7;
+}
+
+.artifact-body h1,
+.artifact-body h2,
+.artifact-body h3,
+.artifact-body h4 {
+  margin: 14px 0 8px;
+  line-height: 1.28;
+}
+
+.artifact-body p {
+  margin: 0 0 11px;
+}
+
+.artifact-body ul,
+.artifact-body ol {
+  margin: 0 0 12px 22px;
+  padding: 0;
+}
+
+.artifact-body code {
+  padding: 2px 5px;
+  border-radius: 6px;
+  background: rgba(47, 128, 255, 0.15);
+}
+
+.artifact-body pre {
+  overflow: auto;
+  border-radius: var(--radius);
+  background: rgba(0, 0, 0, 0.24);
+  padding: 12px;
+}
+
+.artifact-body .table-wrap {
+  width: 100%;
+  margin: 16px 0 18px;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius);
+}
+
 .toast {
   position: fixed;
   z-index: 100;
@@ -1180,6 +1464,20 @@ button {
     grid-template-columns: 268px minmax(0, 1fr);
   }
 
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .topbar-controls {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .topbar-controls label {
+    flex: 1 1 160px;
+  }
+
   .composer {
     width: calc(100% - 28px);
   }
@@ -1189,23 +1487,50 @@ button {
   html,
   body {
     overflow: auto;
+    overflow-x: hidden;
   }
 
   .app {
+    display: block;
+    width: 100%;
+    max-width: 100vw;
     height: auto;
     min-height: 100vh;
     grid-template-columns: 1fr;
     overflow: visible;
   }
 
+  .app.sidebar-collapsed {
+    grid-template-columns: 1fr;
+  }
+
   .sidebar {
+    width: 100%;
+    max-width: 100vw;
     height: auto;
     max-height: 38vh;
     border-right: 0;
     border-bottom: 1px solid var(--border);
+    overflow-x: hidden;
+  }
+
+  .sidebar-top,
+  .sidebar-section,
+  .workspace-tabs,
+  .new-chat-btn,
+  .search-box {
+    width: 100%;
+    max-width: calc(100vw - 36px);
+  }
+
+  .workspace-tabs a {
+    width: 100%;
+    min-width: 0;
   }
 
   .main {
+    width: 100%;
+    max-width: 100vw;
     height: auto;
     min-height: 62vh;
     overflow: visible;
@@ -1213,9 +1538,16 @@ button {
 
   .topbar {
     align-items: flex-start;
+    padding: 14px;
+  }
+
+  .topbar-controls {
+    min-width: 0;
+    flex-wrap: wrap;
   }
 
   .topbar-actions {
+    min-width: 0;
     flex-wrap: wrap;
     justify-content: flex-end;
   }
@@ -1233,11 +1565,26 @@ button {
     max-width: 100%;
   }
 
+  .msg.assistant {
+    padding-right: 18px;
+    padding-top: 54px;
+  }
+
+  .msg.user {
+    padding-right: 16px;
+    padding-top: 54px;
+  }
+
+  .starter-grid {
+    grid-template-columns: 1fr;
+  }
+
   .composer {
     position: static;
     width: calc(100% - 24px);
     grid-template-columns: 42px 42px minmax(0, 1fr) 46px;
     grid-template-areas:
+      "head head head head"
       "mode mode mode mode"
       "quick quick quick quick"
       "sample attach prompt send"
@@ -1254,8 +1601,20 @@ button {
   }
 
   .mode-selector {
+    max-width: 100%;
     justify-self: start;
     overflow-x: auto;
+  }
+
+  .artifact-panel {
+    top: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: calc(100vw - 16px);
+  }
+
+  .artifact-title {
+    max-width: 190px;
   }
 
   .quick-actions {

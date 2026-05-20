@@ -17,20 +17,42 @@ const fileInput = document.getElementById("fileInput");
 const attachmentBar = document.getElementById("attachmentBar");
 const statusBtn = document.getElementById("statusBtn");
 const exportBtn = document.getElementById("exportBtn");
+const promptLibraryBtn = document.getElementById("promptLibraryBtn");
+const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+const quickActionsToggle = document.getElementById("quickActionsToggle");
+const modelSelect = document.getElementById("modelSelect");
+const toolModeSelect = document.getElementById("toolModeSelect");
+const messageCount = document.getElementById("messageCount");
+const activeModeLabel = document.getElementById("activeModeLabel");
+const retryLastBtn = document.getElementById("retryLastBtn");
+const artifactPanel = document.getElementById("artifactPanel");
+const artifactTitle = document.getElementById("artifactTitle");
+const artifactBody = document.getElementById("artifactBody");
+const artifactCopyBtn = document.getElementById("artifactCopyBtn");
+const artifactDownloadBtn = document.getElementById("artifactDownloadBtn");
+const artifactCloseBtn = document.getElementById("artifactCloseBtn");
 const statusPanel = document.getElementById("statusPanel");
 const brainSummary = document.getElementById("brainSummary");
 const appVersionBadges = document.querySelectorAll("[data-app-version]");
+const workspaceBadge = document.getElementById("workspaceBadge");
+const workspaceTabs = document.getElementById("workspaceTabs");
 const quickActions = document.getElementById("quickActions");
 const modeSelector = document.getElementById("modeSelector");
 const toast = document.getElementById("toast");
 
+const publicServerBaseUrl = "http://103.82.26.216:8088";
 const workspaceId = detectWorkspaceId();
 const workspaceSuffix = workspaceId === "default" ? "" : `_${workspaceId}`;
 const threadStorageKey = `master_agent_threads_v2${workspaceSuffix}`;
 const themeStorageKey = "master_agent_theme_v1";
 const syncStorageKey = `master_agent_threads_file_sync_v1${workspaceSuffix}`;
-const modeStorageKey = "master_agent_response_mode_v1";
+const modeStorageKey = "master_agent_response_mode_v2";
+const modelStorageKey = "master_agent_model_persona_v1";
+const toolModeStorageKey = "master_agent_tool_mode_v1";
+const sidebarStorageKey = "master_agent_sidebar_collapsed_v1";
+const promptLibraryStorageKey = "master_agent_prompt_library_open_v1";
 const translationHideDelayMs = 180;
+const streamStallTimeoutMs = 120000;
 
 let state = loadState();
 let activeThreadId = state.activeThreadId;
@@ -50,10 +72,30 @@ let activeModuleId = "";
 let selectionTranslateTimer = null;
 let selectionTooltip = null;
 let hoverTooltipInstalled = false;
+let selectedModelPersona = loadSelectValue(modelStorageKey, "agent");
+let selectedToolMode = loadSelectValue(toolModeStorageKey, "auto");
+let activeArtifactContent = "";
+let activeRequestId = "";
+let streamRenderTimer = null;
+let lastStreamRenderedText = "";
+let streamStallTimer = null;
+let lastRetryDraft = null;
 
 applyTheme(loadTheme());
 applyResponseMode(responseMode);
+applyShellPreferences();
 init();
+
+function initWorkspaceUi() {
+  const label = workspaceId === "default" ? "Chat chính" : `Chat ${workspaceId}`;
+  if (workspaceBadge) workspaceBadge.textContent = label;
+  document.title = `${label} · Agent chủ`;
+  workspaceTabs?.querySelectorAll("[data-workspace-tab]").forEach((tab) => {
+    const isActive = tab.dataset.workspaceTab === workspaceId;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-current", isActive ? "page" : "false");
+  });
+}
 
 function detectWorkspaceId() {
   const firstSegment = decodeURIComponent(window.location.pathname || "")
@@ -65,10 +107,18 @@ function detectWorkspaceId() {
 
 function workspaceApiUrl(path) {
   const separator = path.includes("?") ? "&" : "?";
-  return `${path}${separator}workspace=${encodeURIComponent(workspaceId)}`;
+  return apiUrl(`${path}${separator}workspace=${encodeURIComponent(workspaceId)}`);
+}
+
+function apiUrl(path) {
+  if (window.location.protocol === "file:") {
+    return `${publicServerBaseUrl}${path}`;
+  }
+  return path;
 }
 
 async function init() {
+  initWorkspaceUi();
   await syncInitialState();
   removeInterruptedReplies();
   if (!state.threads.length) createThread("Chat mới", { skipRender: true });
@@ -83,7 +133,7 @@ async function init() {
   installSelectionTranslator();
   installBlackCopy();
   loadStatus();
-  prompt.focus();
+  focusPrompt();
 }
 
 function loadTheme() {
@@ -104,17 +154,77 @@ function toggleTheme() {
   applyTheme(app.dataset.theme === "dark" ? "light" : "dark");
 }
 
+function loadSelectValue(key, fallback) {
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveSelectValue(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore private mode/localStorage errors.
+  }
+}
+
+function applyShellPreferences() {
+  const sidebarCollapsed = loadSelectValue(sidebarStorageKey, "0") === "1";
+  const libraryOpen = loadSelectValue(promptLibraryStorageKey, "0") === "1";
+  app.classList.toggle("sidebar-collapsed", sidebarCollapsed);
+  quickActions?.classList.toggle("collapsed", !libraryOpen);
+  if (quickActionsToggle) quickActionsToggle.textContent = libraryOpen ? "Ẩn thư viện prompt" : "Thư viện prompt";
+  if (modelSelect) modelSelect.value = selectedModelPersona;
+  if (toolModeSelect) toolModeSelect.value = selectedToolMode;
+}
+
+function toggleSidebar() {
+  const collapsed = !app.classList.contains("sidebar-collapsed");
+  app.classList.toggle("sidebar-collapsed", collapsed);
+  saveSelectValue(sidebarStorageKey, collapsed ? "1" : "0");
+}
+
+function togglePromptLibrary(forceOpen = null) {
+  const willOpen = forceOpen === null ? quickActions.classList.contains("collapsed") : Boolean(forceOpen);
+  quickActions.classList.toggle("collapsed", !willOpen);
+  if (quickActionsToggle) quickActionsToggle.textContent = willOpen ? "Ẩn thư viện prompt" : "Thư viện prompt";
+  saveSelectValue(promptLibraryStorageKey, willOpen ? "1" : "0");
+}
+
+function selectedPersonaInstruction() {
+  const modelMap = {
+    agent: "",
+    planner: "Persona: Planner sâu. Trả lời như chiến lược gia sản phẩm, ưu tiên roadmap, rủi ro, checklist hành động.",
+    creator: "Persona: Content builder. Tạo nội dung hoàn chỉnh, có cấu trúc file, ví dụ dùng được ngay, không chỉ outline.",
+    critic: "Persona: Launch critic. Audit thẳng tay, tìm lỗi bán hàng, thiếu proof, license risk, missing assets, rồi đưa fix list.",
+  };
+  const toolMap = {
+    auto: "Tool mode: Auto. Tự dùng brain, project memory và file đính kèm khi hữu ích.",
+    files: "Tool mode: Files/RAG. Ưu tiên nội dung file đính kèm và brain/source đã index.",
+    launch: "Tool mode: Launch OS. Ưu tiên active project, launch readiness, asset checklist, funnel/JV/export status.",
+    none: "Tool mode: Off. Trả lời trực tiếp, chỉ dùng ngữ cảnh chat khi đủ.",
+  };
+  return [modelMap[selectedModelPersona] || "", toolMap[selectedToolMode] || ""].filter(Boolean).join("\n");
+}
+
+function requestQuestionWithControls(text) {
+  const instruction = selectedPersonaInstruction();
+  return instruction ? `${instruction}\n\n${text}` : text;
+}
+
 function loadResponseMode() {
   try {
     const saved = localStorage.getItem(modeStorageKey);
-    return ["fast", "balanced", "deep"].includes(saved) ? saved : "fast";
+    return ["auto", "fast", "balanced", "deep"].includes(saved) ? saved : "auto";
   } catch {
-    return "fast";
+    return "auto";
   }
 }
 
 function applyResponseMode(mode) {
-  responseMode = ["fast", "balanced", "deep"].includes(mode) ? mode : "fast";
+  responseMode = ["auto", "fast", "balanced", "deep"].includes(mode) ? mode : "auto";
   try {
     localStorage.setItem(modeStorageKey, responseMode);
   } catch {
@@ -129,7 +239,7 @@ function applyResponseMode(mode) {
 function selectedResponseMode() {
   const activeButton = modeSelector?.querySelector("button.active[data-mode]");
   const selected = activeButton?.dataset?.mode || responseMode || "fast";
-  return ["fast", "balanced", "deep"].includes(selected) ? selected : "fast";
+  return ["auto", "fast", "balanced", "deep"].includes(selected) ? selected : "auto";
 }
 
 function effectiveModeLabel(text, attachments) {
@@ -143,7 +253,7 @@ function effectiveModeLabel(text, attachments) {
   );
   if (wantsAsset && selected !== "deep") return "Tạo asset";
   if (selected !== "deep" && !attachments.length && compact.length <= 90 && !wantsDepth) return "Nhanh gọn";
-  return { fast: "Nhanh", balanced: "Cân bằng", deep: "Sâu" }[selected] || "Nhanh";
+  return { auto: "Auto", fast: "Nhanh", balanced: "Cân bằng", deep: "Sâu" }[selected] || "Auto";
 }
 
 function loadState() {
@@ -202,6 +312,7 @@ async function refreshFromServer() {
   if (Date.now() - lastLocalWriteAt < 2500) return;
   const previousActiveThreadId = activeThreadId;
   const previousScrollTop = chat.scrollTop;
+  const wasNearBottom = isChatNearBottom();
   const serverState = await fetchServerState();
   if (!serverState || !serverState.threads.length) return;
   state = serverState;
@@ -209,7 +320,7 @@ async function refreshFromServer() {
   saveLocalState();
   renderThreads();
   if (activeThreadId === previousActiveThreadId) {
-    renderActiveThread({ preserveScrollTop: previousScrollTop });
+    renderActiveThread({ preserveScrollTop: previousScrollTop, stickToBottom: wasNearBottom });
   } else {
     renderActiveThread();
   }
@@ -241,7 +352,7 @@ function mergeStates(serverState, localState) {
 
 function normalizeThread(thread) {
   return {
-    id: thread.id || crypto.randomUUID(),
+    id: thread.id || createClientId(),
     title: thread.title || "Chat mới",
     messages: Array.isArray(thread.messages) ? thread.messages.map(normalizeMessage) : [],
     pinned: Boolean(thread.pinned),
@@ -261,6 +372,12 @@ function normalizeMessage(message) {
 function normalizeTimestamp(value) {
   const number = Number(value || 0);
   return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function createClientId() {
+  if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+  const randomPart = Math.random().toString(36).slice(2, 12);
+  return `thread_${Date.now().toString(36)}_${randomPart}`;
 }
 
 function saveState() {
@@ -338,7 +455,7 @@ function getActiveThread() {
 
 function createThread(title = "Chat mới", options = {}) {
   const thread = {
-    id: crypto.randomUUID(),
+    id: createClientId(),
     title,
     messages: [],
     pinned: false,
@@ -351,7 +468,7 @@ function createThread(title = "Chat mới", options = {}) {
   if (!options.skipRender) {
     renderThreads();
     renderActiveThread();
-    prompt.focus();
+    focusPrompt();
   }
 }
 
@@ -488,7 +605,7 @@ function duplicateThread(threadId) {
   if (!thread) return;
   const copy = {
     ...thread,
-    id: crypto.randomUUID(),
+    id: createClientId(),
     title: `${thread.title} - bản sao`.slice(0, 80),
     messages: thread.messages.map((message) => ({ ...message })),
     pinned: false,
@@ -560,23 +677,29 @@ function formatVietnamDateTime(value) {
 
 function renderActiveThread(options = {}) {
   const preserveScrollTop = Number.isFinite(options.preserveScrollTop) ? options.preserveScrollTop : null;
+  const stickToBottom = options.stickToBottom === true;
   const thread = getActiveThread();
   chat.innerHTML = "";
   if (!thread || !thread.messages.length) {
     renderWelcome();
+    updateSessionMetrics();
     requestAnimationFrame(updateScrollBottomButton);
     return;
   }
   for (const [index, message] of thread.messages.entries()) {
     appendMessageToDom(message.role, message.content, index, false);
   }
-  if (preserveScrollTop !== null) {
+  if (stickToBottom) {
+    requestAnimationFrame(scrollChatToBottom);
+  } else if (preserveScrollTop !== null) {
     requestAnimationFrame(() => {
       chat.scrollTop = preserveScrollTop;
+      updateScrollBottomButton();
     });
   } else {
     requestAnimationFrame(scrollChatToBottom);
   }
+  updateSessionMetrics();
   requestAnimationFrame(updateScrollBottomButton);
 }
 
@@ -585,16 +708,33 @@ function renderWelcome() {
   starter.className = "welcome";
   starter.innerHTML = `
     <div class="welcome-mark">M</div>
-    <h1>Launch Command Center.</h1>
-    <p>Chọn module bên dưới để phân tích PLR, nâng raw AI content thành product kit, viết sales page/funnel, tạo JV pack, hoặc lập kế hoạch SaaS/membership.</p>
+    <h1>Hôm nay build offer nào?</h1>
+    <p>Chọn một prompt mẫu hoặc nhập trực tiếp để phân tích PLR, tạo product kit, sales page, funnel, JV pack và kế hoạch SaaS.</p>
+    <div class="starter-grid">
+      <button type="button" data-starter-prompt="Phân tích 3 ý tưởng sản phẩm PLR + SaaS dễ bán trên WarriorPlus nhất dựa trên brain hiện tại. Với mỗi ý tưởng: buyer pain, deliverables, FE/OTO, SaaS angle, risk, next action.">Ý tưởng có thể bán</button>
+      <button type="button" data-starter-prompt="Audit active project hiện tại. Chấm điểm launch readiness, liệt kê missing assets, rủi ro license/compliance, và 10 việc cần làm tiếp theo theo thứ tự ưu tiên.">Audit launch</button>
+      <button type="button" data-starter-prompt="Tạo full launch pack cho AI PLR Rebrand Kit: product assets, sales page, WarriorPlus listing, JV pack, email funnel, traffic content, delivery page, export checklist.">Full launch pack</button>
+      <button type="button" data-starter-prompt="Nâng nội dung thô/PLR này thành product kit bán được. Hãy tạo workflow, checklist, examples, prompts, planner, compliance note, pricing, bump/OTO và ZIP structure. Nội dung: ">Nâng content thô</button>
+    </div>
   `;
   chat.appendChild(starter);
   updateScrollBottomButton();
 }
 
+function updateSessionMetrics() {
+  const thread = getActiveThread();
+  const count = thread?.messages?.length || 0;
+  if (messageCount) messageCount.textContent = `${count} tin nhắn`;
+  if (activeModeLabel) {
+    const labels = { auto: "Auto", quick: "Nhanh gọn", fast: "Nhanh", asset: "Tạo asset", balanced: "Cân bằng", deep: "Sâu" };
+    const modelLabels = { agent: "Agent chủ", planner: "Planner sâu", creator: "Dựng nội dung", critic: "Phản biện" };
+    activeModeLabel.textContent = `${modelLabels[selectedModelPersona] || "Agent"} · ${labels[selectedResponseMode()] || "Nhanh"}`;
+  }
+}
+
 async function loadStatus() {
   try {
-    const response = await fetch("/api/status");
+    const response = await fetch(apiUrl("/api/status"));
     const data = await response.json();
     if (!data.ok) return;
     brainStatus = data;
@@ -687,6 +827,15 @@ function renderAttachments() {
     chip.className = `attachment-chip ${attachment.type === "error" ? "error" : ""}`;
     const label = document.createElement("span");
     label.textContent = `${attachment.name} · ${attachment.notice || attachment.type}`;
+    if (attachment.url) {
+      const open = document.createElement("button");
+      open.type = "button";
+      open.className = "attachment-open-btn";
+      open.textContent = "Mở";
+      open.title = "Mở file gốc";
+      open.addEventListener("click", () => window.open(apiUrl(attachment.url), "_blank", "noopener"));
+      chip.appendChild(open);
+    }
     const remove = document.createElement("button");
     remove.type = "button";
     remove.textContent = "×";
@@ -708,14 +857,13 @@ async function uploadFiles(files) {
   pendingAttachments.push(loading);
   renderAttachments();
   try {
-    const payloadFiles = [];
-    for (const file of selected.slice(0, 12)) {
-      payloadFiles.push({ name: file.name, type: file.type, dataBase64: await readFileBase64(file) });
+    const formData = new FormData();
+    for (const file of selected.slice(0, 10)) {
+      formData.append("files", file, file.name);
     }
-    const response = await fetch("/api/upload", {
+    const response = await fetch(workspaceApiUrl("/api/upload"), {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ files: payloadFiles }),
+      body: formData,
     });
     const data = await response.json();
     pendingAttachments = pendingAttachments.filter((item) => item !== loading);
@@ -733,19 +881,8 @@ async function uploadFiles(files) {
   renderAttachments();
 }
 
-function readFileBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = String(reader.result || "");
-      resolve(result.includes(",") ? result.split(",").pop() : result);
-    };
-    reader.onerror = () => reject(reader.error || new Error("Không đọc được file."));
-    reader.readAsDataURL(file);
-  });
-}
-
 function appendMessageToDom(role, content, messageIndex = null, shouldScroll = true) {
+  const wasNearBottom = isChatNearBottom();
   const displayContent = role === "assistant" ? stripSourceFooter(content) : content;
   const thread = getActiveThread();
   const savedMessage = thread && Number.isInteger(messageIndex) ? thread.messages[messageIndex] : null;
@@ -754,16 +891,46 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
 
   const header = document.createElement("div");
   header.className = "msg-actions";
+  if (role === "user" && Number.isInteger(messageIndex)) {
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit-msg-btn";
+    editBtn.type = "button";
+    editBtn.title = "Sửa và gửi lại";
+    editBtn.textContent = "✎";
+    editBtn.addEventListener("click", () => editUserMessage(messageIndex));
+    header.appendChild(editBtn);
+  }
+  if (role === "assistant" && Number.isInteger(messageIndex)) {
+    const canvasBtn = document.createElement("button");
+    canvasBtn.className = "artifact-msg-btn";
+    canvasBtn.type = "button";
+    canvasBtn.title = "Mở canvas kết quả";
+    canvasBtn.textContent = "▣";
+    canvasBtn.addEventListener("click", () => openArtifactPanel(currentMessageContent(messageIndex, displayContent)));
+    header.appendChild(canvasBtn);
+
+    const retryBtn = document.createElement("button");
+    retryBtn.className = "retry-msg-btn";
+    retryBtn.type = "button";
+    retryBtn.title = "Tạo lại câu trả lời";
+    retryBtn.textContent = "↻";
+    retryBtn.addEventListener("click", () => regenerateAssistantMessage(messageIndex));
+    header.appendChild(retryBtn);
+  }
   const copyBtn = document.createElement("button");
   copyBtn.className = "copy-btn";
   copyBtn.type = "button";
   copyBtn.title = role === "assistant" ? "Copy toàn bộ trả lời" : "Copy câu hỏi";
   copyBtn.textContent = "⧉";
   copyBtn.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(currentMessageContent(messageIndex, displayContent));
-    copyBtn.textContent = "✓";
-    showToast("Đã copy.");
-    setTimeout(() => (copyBtn.textContent = "⧉"), 900);
+    try {
+      await copyText(currentMessageContent(messageIndex, displayContent));
+      copyBtn.textContent = "✓";
+      showToast("Đã copy.");
+      setTimeout(() => (copyBtn.textContent = "⧉"), 900);
+    } catch (error) {
+      showToast(friendlyFetchError(error));
+    }
   });
   header.appendChild(copyBtn);
 
@@ -802,7 +969,7 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
   body.innerHTML = renderMarkdown(escapeHtml(displayContent));
   el.appendChild(body);
   chat.appendChild(el);
-  if (shouldScroll) {
+  if (shouldScroll && wasNearBottom) {
     scrollChatToBottom();
   } else {
     updateScrollBottomButton();
@@ -826,6 +993,15 @@ function showFileMenu(anchor, content) {
   }
   const menu = document.createElement("div");
   menu.className = "file-menu";
+  const compactButton = document.createElement("button");
+  compactButton.type = "button";
+  compactButton.textContent = "Prompt gọn MD";
+  compactButton.addEventListener("click", async (event) => {
+    event.stopPropagation();
+    await createFileFromContent(compactPromptContent(content), "md", "prompt-gon");
+    closeFileMenus();
+  });
+  menu.appendChild(compactButton);
   const formats = [
     ["md", "Markdown"],
     ["txt", "Text"],
@@ -853,12 +1029,101 @@ function closeFileMenus() {
   document.querySelectorAll(".file-menu").forEach((menu) => menu.remove());
 }
 
-async function createFileFromContent(content, format) {
+function openArtifactPanel(content) {
+  activeArtifactContent = stripSourceFooter(content || "");
+  if (!activeArtifactContent.trim()) {
+    showToast("Chưa có nội dung để mở canvas.");
+    return;
+  }
+  const title = inferArtifactTitle(activeArtifactContent);
+  artifactTitle.textContent = title;
+  artifactBody.innerHTML = renderMarkdown(escapeHtml(activeArtifactContent));
+  artifactPanel.hidden = false;
+  artifactPanel.classList.add("show");
+}
+
+function closeArtifactPanel() {
+  artifactPanel.classList.remove("show");
+  artifactPanel.hidden = true;
+}
+
+function inferArtifactTitle(content) {
+  const firstHeading = String(content || "").split("\n").find((line) => /^#{1,3}\s+\S/.test(line.trim()));
+  if (firstHeading) return firstHeading.replace(/^#{1,3}\s+/, "").trim().slice(0, 80);
+  const firstLine = String(content || "").split("\n").find((line) => line.trim());
+  return (firstLine || "Nội dung trả lời").replace(/[*`#]/g, "").trim().slice(0, 80) || "Nội dung trả lời";
+}
+
+async function copyArtifact() {
+  if (!activeArtifactContent.trim()) return;
+  await copyText(activeArtifactContent);
+  showToast("Đã copy canvas.");
+}
+
+function downloadArtifactMarkdown() {
+  if (!activeArtifactContent.trim()) return;
+  const blob = new Blob([activeArtifactContent], { type: "text/markdown;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${safeDownloadName(artifactTitle.textContent || "agent-canvas")}.md`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast("Đã tải Markdown.");
+}
+
+async function copyText(text) {
+  const value = String(text || "");
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+  } catch {
+    // Fallback below handles HTTP/insecure clipboard restrictions.
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const ok = document.execCommand("copy");
+  textarea.remove();
+  if (!ok) throw new Error("Trình duyệt chặn copy tự động.");
+  return true;
+}
+
+function compactPromptContent(content) {
+  const clean = stripSourceFooter(String(content || ""))
+    .replace(/\r\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  const lines = clean.split("\n");
+  const kept = [];
+  let inPromptBlock = false;
+  for (const line of lines) {
+    const normalized = line.trim().toLowerCase();
+    if (/^(#{1,4}\s*)?(prompt|prompts|master prompt|system prompt|user prompt|copy prompt|file prompt|prompt sử dụng|prompt su dung)\b/.test(normalized)) {
+      inPromptBlock = true;
+    }
+    if (inPromptBlock) kept.push(line);
+    if (inPromptBlock && kept.length > 20 && /^#{1,3}\s+\S/.test(line.trim()) && !/prompt/i.test(line)) {
+      kept.pop();
+      break;
+    }
+  }
+  const body = (kept.join("\n").trim() || clean).slice(0, 60000);
+  return `# Prompt gon\n\n${body}\n`;
+}
+
+async function createFileFromContent(content, format, titleOverride = "") {
   const thread = getActiveThread();
-  const title = safeDownloadName(thread?.title || "agent-output");
+  const title = safeDownloadName(titleOverride || thread?.title || "agent-output");
   showToast(`Đang tạo file ${format.toUpperCase()}...`);
   try {
-    const response = await fetch("/api/create_file", {
+    const response = await fetch(apiUrl("/api/create_file"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ content, format, title }),
@@ -903,19 +1168,69 @@ function deleteMessage(messageIndex) {
   showToast("Đã xóa mẩu chat.");
 }
 
+function editUserMessage(messageIndex) {
+  const thread = getActiveThread();
+  const message = thread?.messages?.[messageIndex];
+  if (!message || message.role !== "user") return;
+  prompt.value = stripAttachmentSummary(message.content || "");
+  pendingAttachments = [];
+  thread.messages = thread.messages.slice(0, messageIndex);
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  autoResize();
+  focusPrompt();
+  showToast("Đã đưa câu hỏi về ô nhập.");
+}
+
+function regenerateAssistantMessage(messageIndex) {
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex)) return;
+  const previousUserIndex = findPreviousUserMessageIndex(thread, messageIndex);
+  if (previousUserIndex < 0) {
+    showToast("Không tìm thấy câu hỏi để tạo lại.");
+    return;
+  }
+  const userText = stripAttachmentSummary(thread.messages[previousUserIndex].content || "");
+  thread.messages = thread.messages.slice(0, previousUserIndex);
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  prompt.value = userText;
+  autoResize();
+  sendMessage();
+}
+
+function findPreviousUserMessageIndex(thread, fromIndex) {
+  for (let index = fromIndex - 1; index >= 0; index -= 1) {
+    if (thread.messages[index]?.role === "user") return index;
+  }
+  return -1;
+}
+
+function stripAttachmentSummary(text) {
+  return String(text || "").split("\n\nFile 1:")[0].trim();
+}
+
 function appendThinking(label = null) {
+  const wasNearBottom = isChatNearBottom();
   const el = document.createElement("div");
   el.className = "msg assistant thinking";
-  const labels = { fast: "Nhanh", balanced: "Cân bằng", deep: "Sâu" };
-  el.innerHTML = `<span class="dot-pulse"></span><span>Đang trả lời chế độ ${label || labels[responseMode] || "Nhanh"}...</span>`;
+  const labels = { auto: "Auto", quick: "Nhanh gọn", fast: "Nhanh", asset: "Tạo asset", balanced: "Cân bằng", deep: "Sâu" };
+  el.innerHTML = `<span class="dot-pulse"></span><span>Đang trả lời chế độ ${label || labels[responseMode] || "Auto"}...</span>`;
   chat.appendChild(el);
-  scrollChatToBottom();
-  updateScrollBottomButton();
+  if (wasNearBottom) {
+    scrollChatToBottom();
+  } else {
+    updateScrollBottomButton();
+  }
   return () => el.remove();
 }
 
 async function fetchStreamingAnswer(payload, onDelta) {
-  const response = await fetch("/api/chat_stream", {
+  const response = await fetch(apiUrl("/api/chat_stream"), {
     method: "POST",
     signal: activeController.signal,
     headers: { "Content-Type": "application/json" },
@@ -937,9 +1252,152 @@ async function fetchStreamingAnswer(payload, onDelta) {
       const event = parseSseBlock(block);
       if (!event) continue;
       if (event.type === "delta" && event.data?.text) onDelta(event.data.text);
+      if (event.type === "meta" && event.data?.mode) {
+        responseMode = event.data.mode;
+        updateSessionMetrics();
+      }
       if (event.type === "error") throw new Error(event.data?.error || "Stream lỗi.");
     }
     if (done) break;
+  }
+}
+
+function requestCancel() {
+  const requestId = activeRequestId;
+  if (activeController) activeController.abort();
+  activeController = null;
+  isStreamingAnswer = false;
+  sendBtn.textContent = "➤";
+  sendBtn.title = "Gửi";
+  sendBtn.disabled = false;
+  sendBtn.classList.remove("is-running");
+  flushStreamRender();
+  clearStreamStallWatchdog();
+  if (requestId) {
+    fetch(apiUrl("/api/cancel"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId }),
+    }).catch(() => {});
+  }
+  markRetryAvailable("Đã hủy. Có thể gửi lại câu hỏi vừa rồi.");
+  showToast("Đã hủy lượt trả lời.");
+}
+
+function setLastRetryDraft(draft) {
+  lastRetryDraft = draft ? {
+    ...draft,
+    attachments: (draft.attachments || []).map((item) => ({ ...item })),
+    createdAt: Date.now(),
+  } : null;
+  updateRetryButton();
+}
+
+function markRetryAvailable(message = "Có thể gửi lại câu hỏi vừa rồi.") {
+  if (lastRetryDraft) {
+    lastRetryDraft.failedAt = Date.now();
+    lastRetryDraft.failureMessage = message;
+  }
+  updateRetryButton();
+}
+
+function clearRetryAvailable() {
+  if (lastRetryDraft) {
+    lastRetryDraft.failedAt = null;
+    lastRetryDraft.failureMessage = "";
+  }
+  updateRetryButton();
+}
+
+function updateRetryButton() {
+  if (!retryLastBtn) return;
+  const canRetry = Boolean(lastRetryDraft?.failedAt || lastRetryDraft?.allowManualRetry);
+  retryLastBtn.hidden = !canRetry;
+  retryLastBtn.title = lastRetryDraft?.failureMessage || "Gửi lại câu hỏi gần nhất";
+}
+
+function clearStreamStallWatchdog() {
+  if (streamStallTimer) {
+    clearTimeout(streamStallTimer);
+    streamStallTimer = null;
+  }
+}
+
+function resetStreamStallWatchdog() {
+  clearStreamStallWatchdog();
+  const requestId = activeRequestId;
+  streamStallTimer = setTimeout(() => {
+    if (!activeController || requestId !== activeRequestId) return;
+    requestCancel();
+    markRetryAvailable("Kết nối/model không trả thêm nội dung trong 120 giây. Bấm gửi lại để chạy lại.");
+    showToast("Lượt trả lời bị treo quá lâu, đã dừng.");
+  }, streamStallTimeoutMs);
+}
+
+function retryLastRequest() {
+  if (!lastRetryDraft) {
+    showToast("Chưa có câu hỏi nào để gửi lại.");
+    return;
+  }
+  if (activeController) requestCancel();
+  const thread = state.threads.find((item) => item.id === lastRetryDraft.threadId) || getActiveThread();
+  if (!thread) return;
+  activeThreadId = thread.id;
+  removeLastFailedAttempt(thread, lastRetryDraft.userContent, Boolean(lastRetryDraft.allowManualRetry));
+  prompt.value = lastRetryDraft.text || "";
+  pendingAttachments = (lastRetryDraft.attachments || []).map((item) => ({ ...item }));
+  activeModuleId = lastRetryDraft.module || "";
+  applyResponseMode(lastRetryDraft.mode || "auto");
+  clearRetryAvailable();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  renderAttachments();
+  autoResize();
+  focusPrompt();
+  sendMessage();
+}
+
+function removeLastFailedAttempt(thread, userContent, forceAssistantRemoval = false) {
+  if (!thread?.messages?.length) return;
+  while (thread.messages.length && thread.messages.at(-1)?.role === "assistant") {
+    const content = String(thread.messages.at(-1)?.content || "").trim();
+    if (forceAssistantRemoval || !content || content.includes("Kết nối bị ngắt") || content.includes("API model đang tạm lỗi") || content.includes("Model chưa trả nội dung")) {
+      thread.messages.pop();
+      forceAssistantRemoval = false;
+      continue;
+    }
+    break;
+  }
+  const last = thread.messages.at(-1);
+  if (last?.role === "user" && String(last.content || "") === String(userContent || "")) {
+    thread.messages.pop();
+  }
+  thread.updatedAt = Date.now();
+}
+
+function scheduleStreamRender(thread, assistantMessageIndex, assistantRendered, getText) {
+  if (streamRenderTimer) return;
+  streamRenderTimer = setTimeout(() => {
+    streamRenderTimer = null;
+    const clean = stripSourceFooter(getText());
+    if (clean === lastStreamRenderedText) return;
+    lastStreamRenderedText = clean;
+    thread.messages[assistantMessageIndex].content = clean;
+    const wasNearBottom = isChatNearBottom();
+    if (assistantRendered?.body) {
+      assistantRendered.body.innerHTML = renderMarkdown(escapeHtml(clean));
+    }
+    persistStreamingDraft(false);
+    if (wasNearBottom) scrollChatToBottom();
+    updateScrollBottomButton();
+  }, 140);
+}
+
+function flushStreamRender() {
+  if (streamRenderTimer) {
+    clearTimeout(streamRenderTimer);
+    streamRenderTimer = null;
   }
 }
 
@@ -961,7 +1419,7 @@ function parseSseBlock(block) {
 
 async function sendMessage() {
   if (activeController) {
-    showToast("Agent đang trả lời, đợi chút...");
+    requestCancel();
     return;
   }
 
@@ -982,6 +1440,15 @@ async function sendMessage() {
   const attachmentsForRequest = pendingAttachments.filter((item) => item.type !== "loading");
   const requestMode = selectedResponseMode();
   const requestModule = activeModuleId || "";
+  setLastRetryDraft({
+    threadId: thread.id,
+    text,
+    userContent,
+    attachments: attachmentsForRequest,
+    mode: requestMode,
+    module: requestModule,
+    allowManualRetry: false,
+  });
   responseMode = requestMode;
   applyResponseMode(requestMode);
   const thinkingLabel = effectiveModeLabel(text, attachmentsForRequest);
@@ -997,12 +1464,14 @@ async function sendMessage() {
   autoResize();
 
   activeController = new AbortController();
+  activeRequestId = createClientId();
   isStreamingAnswer = true;
   lastStreamSaveAt = 0;
   sendBtn.textContent = "■";
-  sendBtn.title = "Đang trả lời...";
-  sendBtn.disabled = true;
+  sendBtn.title = "Dừng trả lời";
+  sendBtn.disabled = false;
   sendBtn.classList.add("is-running");
+  resetStreamStallWatchdog();
   let stopThinking = appendThinking(thinkingLabel);
   let assistantMessageIndex = null;
   let assistantRendered = null;
@@ -1021,36 +1490,35 @@ async function sendMessage() {
   try {
     await fetchStreamingAnswer(
       {
-        question: text || "Hãy phân tích file người dùng vừa gửi.",
+        question: requestQuestionWithControls(text || "Hãy phân tích file người dùng vừa gửi."),
+        requestId: activeRequestId,
         history: thread.messages.slice(-10),
         attachments: attachmentsForRequest,
         mode: requestMode,
         module: requestModule,
       },
       (delta) => {
+        resetStreamStallWatchdog();
         ensureAssistantMessage();
         streamedAnswer += delta;
-        const clean = stripSourceFooter(streamedAnswer);
-        thread.messages[assistantMessageIndex].content = clean;
-        if (assistantRendered?.body) {
-          assistantRendered.body.innerHTML = renderMarkdown(escapeHtml(clean));
-        }
-        persistStreamingDraft(false);
-        if (isChatNearBottom()) scrollChatToBottom();
-        updateScrollBottomButton();
+        scheduleStreamRender(thread, assistantMessageIndex, assistantRendered, () => streamedAnswer);
       }
     );
+    flushStreamRender();
     if (stopThinking) {
       stopThinking();
       stopThinking = null;
     }
     if (assistantMessageIndex === null) {
       appendAssistantMessage(thread, "Model chưa trả nội dung.");
+      markRetryAvailable("Model chưa trả nội dung. Bấm gửi lại để chạy lại.");
     } else {
       const clean = stripSourceFooter(streamedAnswer);
       thread.messages[assistantMessageIndex].content = clean;
       if (assistantRendered?.body) assistantRendered.body.innerHTML = renderMarkdown(escapeHtml(clean));
       persistStreamingDraft(true);
+      lastRetryDraft = lastRetryDraft ? { ...lastRetryDraft, allowManualRetry: true, failedAt: null, failureMessage: "" } : null;
+      updateRetryButton();
     }
   } catch (error) {
     if (stopThinking) {
@@ -1062,17 +1530,25 @@ async function sendMessage() {
         persistStreamingDraft(true);
       }
       if (assistantMessageIndex === null) {
-        showToast("Kết nối bị ngắt, hãy gửi lại.");
+        markRetryAvailable("Kết nối bị ngắt hoặc bạn đã hủy. Bấm gửi lại để chạy lại.");
+        showToast("Kết nối bị ngắt, có thể gửi lại.");
+      } else {
+        markRetryAvailable("Câu trả lời bị ngắt giữa chừng. Bấm gửi lại để chạy lại từ câu hỏi cũ.");
       }
     } else {
       if (assistantMessageIndex !== null && streamedAnswer.trim()) {
         persistStreamingDraft(true);
       }
       appendAssistantMessage(thread, friendlyFetchError(error));
+      markRetryAvailable("Có lỗi khi trả lời. Bấm gửi lại để chạy lại.");
     }
   } finally {
+    flushStreamRender();
+    clearStreamStallWatchdog();
     isStreamingAnswer = false;
     activeController = null;
+    activeRequestId = "";
+    lastStreamRenderedText = "";
     sendBtn.textContent = "➤";
     sendBtn.title = "Gửi";
     sendBtn.disabled = false;
@@ -1080,9 +1556,10 @@ async function sendMessage() {
     persistStreamingDraft(true);
     saveState();
     renderThreads();
+    updateSessionMetrics();
     activeModuleId = "";
     loadStatus();
-    prompt.focus();
+    focusPrompt();
   }
 }
 
@@ -1104,7 +1581,7 @@ function formatAttachmentSummary(attachments) {
 function friendlyFetchError(error) {
   const message = String(error || "");
   if (message.includes("Failed to fetch")) {
-    return "Không kết nối được server local. Hãy chạy lại web server rồi refresh trang: uv run --with-requirements requirements.txt python web_app.py --host 127.0.0.1 --port 8088";
+    return `Không kết nối được server ${publicServerBaseUrl}. Hãy chạy lại web server rồi refresh trang: uv run --with-requirements requirements.txt python web_app.py --host 0.0.0.0 --port 8088`;
   }
   return message;
 }
@@ -1116,6 +1593,14 @@ function createThreadTitle(text) {
 function autoResize() {
   prompt.style.height = "auto";
   prompt.style.height = `${Math.min(prompt.scrollHeight, 180)}px`;
+}
+
+function focusPrompt() {
+  try {
+    prompt.focus({ preventScroll: true });
+  } catch {
+    prompt.focus();
+  }
 }
 
 function scrollChatToBottom() {
@@ -1353,6 +1838,24 @@ function filesFromClipboard(clipboardData) {
 
 sendBtn.addEventListener("click", sendMessage);
 newChatBtn.addEventListener("click", () => createThread("Chat mới"));
+retryLastBtn?.addEventListener("click", retryLastRequest);
+sidebarToggleBtn?.addEventListener("click", toggleSidebar);
+quickActionsToggle?.addEventListener("click", () => togglePromptLibrary());
+promptLibraryBtn?.addEventListener("click", () => togglePromptLibrary(true));
+artifactCloseBtn?.addEventListener("click", closeArtifactPanel);
+artifactCopyBtn?.addEventListener("click", copyArtifact);
+artifactDownloadBtn?.addEventListener("click", downloadArtifactMarkdown);
+modelSelect?.addEventListener("change", () => {
+  selectedModelPersona = modelSelect.value;
+  saveSelectValue(modelStorageKey, selectedModelPersona);
+  updateSessionMetrics();
+  showToast(`Chế độ AI: ${modelSelect.options[modelSelect.selectedIndex]?.text || selectedModelPersona}`);
+});
+toolModeSelect?.addEventListener("change", () => {
+  selectedToolMode = toolModeSelect.value;
+  saveSelectValue(toolModeStorageKey, selectedToolMode);
+  showToast(`Công cụ: ${toolModeSelect.options[toolModeSelect.selectedIndex]?.text || selectedToolMode}`);
+});
 scrollBottomBtn?.addEventListener("click", scrollChatToBottom);
 jumpPrevBtn?.addEventListener("click", () => jumpToMessage(-1));
 jumpNextBtn?.addEventListener("click", () => jumpToMessage(1));
@@ -1368,6 +1871,14 @@ statusBtn.addEventListener("click", () => {
 });
 threadSearch.addEventListener("input", renderThreads);
 chat.addEventListener("scroll", updateScrollBottomButton);
+chat.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-starter-prompt]");
+  if (!button) return;
+  prompt.value = button.dataset.starterPrompt || "";
+  applyResponseMode(button.textContent.toLowerCase().includes("audit") ? "deep" : "balanced");
+  autoResize();
+  focusPrompt();
+});
 quickActions.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-prompt]");
   if (!button) return;
@@ -1376,7 +1887,7 @@ quickActions.addEventListener("click", (event) => {
     activeModuleId = button.dataset.moduleId || moduleIdFromLabel(button.textContent);
     applyResponseMode("balanced");
     autoResize();
-    prompt.focus();
+    focusPrompt();
     showToast(`Module: ${button.textContent.trim()}`);
     return;
   }
@@ -1398,7 +1909,7 @@ quickActions.addEventListener("click", (event) => {
     activeModuleId = "";
   }
   autoResize();
-  prompt.focus();
+  focusPrompt();
 });
 
 function moduleIdFromLabel(value) {
@@ -1841,9 +2352,12 @@ document.addEventListener("click", () => {
   renderThreads();
 });
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape" || !openThreadMenuId) return;
-  openThreadMenuId = null;
-  renderThreads();
+  if (event.key !== "Escape") return;
+  if (!artifactPanel?.hidden) closeArtifactPanel();
+  if (openThreadMenuId) {
+    openThreadMenuId = null;
+    renderThreads();
+  }
 });
 window.addEventListener("focus", refreshFromServer);
 setInterval(refreshFromServer, 5000);
@@ -1943,4 +2457,3 @@ function repairMojibake(value) {
     return text;
   }
 }
-

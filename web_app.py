@@ -2,10 +2,16 @@ from __future__ import annotations
 
 import argparse
 import base64
+import warnings
+
+warnings.filterwarnings("ignore", "'cgi' is deprecated", DeprecationWarning)
+import cgi
 import csv
 import html
 import io
 import json
+import mimetypes
+import os
 import re
 import sys
 import threading
@@ -13,7 +19,7 @@ import unicodedata
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, quote, unquote, urlparse
 
 from agent_profiles import get_agent_profiles
 from brain import brain_summary, read_brain_text, clean_text
@@ -33,11 +39,16 @@ UPLOADS_DIR = ROOT_DIR / "uploads" / "web_chat"
 CHAT_HISTORY_DIR = ROOT_DIR / "chat_history"
 THREADS_FILE = CHAT_HISTORY_DIR / "threads.json"
 GENERATED_FILES_DIR = ROOT_DIR / "exports" / "web_generated_files"
-MAX_UPLOAD_BYTES = 25 * 1024 * 1024
-MAX_ATTACHMENT_TEXT = 60_000
+MAX_UPLOAD_BYTES = int(os.getenv("PLR_AGENT_MAX_UPLOAD_BYTES", str(512 * 1024 * 1024)))
+MAX_UPLOAD_FILES_PER_BATCH = int(os.getenv("PLR_AGENT_MAX_UPLOAD_FILES_PER_BATCH", "10"))
+MAX_UPLOAD_BATCH_BYTES = int(os.getenv("PLR_AGENT_MAX_UPLOAD_BATCH_BYTES", str(MAX_UPLOAD_BYTES * MAX_UPLOAD_FILES_PER_BATCH)))
+MAX_UPLOAD_STORAGE_BYTES = int(os.getenv("PLR_AGENT_MAX_UPLOAD_STORAGE_BYTES", str(20 * 1024 * 1024 * 1024)))
+MAX_ATTACHMENT_TEXT = int(os.getenv("PLR_AGENT_MAX_ATTACHMENT_TEXT", "200000"))
 SUPPORTED_IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".tif", ".tiff"}
 THREADS_LOCK = threading.Lock()
+CANCELLED_REQUESTS: set[str] = set()
 CHAT_MODE_LIMITS = {
+    "auto": 1,
     "quick": 0,
     "fast": 1,
     "asset": 2,
@@ -71,7 +82,7 @@ def main() -> None:
     init_launch_os_database()
 
     parser = argparse.ArgumentParser(description="Local Master Agent web UI")
-    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--host", default="0.0.0.0")
     parser.add_argument("--port", type=int, default=8088)
     args = parser.parse_args()
 
@@ -93,6 +104,17 @@ def _configure_console_encoding() -> None:
 
 def _make_handler():
     class Handler(BaseHTTPRequestHandler):
+        def end_headers(self) -> None:
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+            self.send_header("Access-Control-Allow-Headers", "Content-Type")
+            self.send_header("Cache-Control", "no-cache")
+            super().end_headers()
+
+        def do_OPTIONS(self) -> None:  # noqa: N802
+            self.send_response(HTTPStatus.NO_CONTENT)
+            self.end_headers()
+
         def do_GET(self) -> None:  # noqa: N802
             parsed = urlparse(self.path)
             if parsed.path in {"", "/"} or _is_workspace_page(parsed.path):
@@ -116,7 +138,8 @@ def _make_handler():
                         "appVersion": APP_VERSION,
                         "reasoningEffort": OPENAI_REASONING_EFFORT,
                         "answerDetail": OPENAI_ANSWER_DETAIL,
-                        "defaultMode": "fast",
+                        "defaultMode": "auto",
+                        "uploadLimits": _upload_limits_payload(),
                         "modes": [
                             {"key": "fast", "label": "Nhanh", "description": "Tra loi nhanh, van co checklist va buoc lam."},
                             {"key": "balanced", "label": "Can bang", "description": "Sau hon cho cau hoi chien luoc."},
@@ -130,6 +153,10 @@ def _make_handler():
                 )
             if parsed.path == "/api/project_status":
                 return self._send_json({"ok": True, "project": active_project_snapshot()})
+            if parsed.path == "/api/upload_limits":
+                return self._send_json({"ok": True, **_upload_limits_payload()})
+            if parsed.path == "/api/upload_file":
+                return self._handle_upload_file(parsed.query)
             if parsed.path == "/api/sources":
                 query = _query_param(parsed.query, "q")
                 if not query:
@@ -148,6 +175,8 @@ def _make_handler():
                 return self._handle_threads_save(_workspace_id_from_query(parsed.query))
             if parsed.path == "/api/create_file":
                 return self._handle_create_file()
+            if parsed.path == "/api/cancel":
+                return self._handle_cancel()
             if parsed.path not in {"/api/chat", "/api/chat_stream"}:
                 self.send_error(HTTPStatus.NOT_FOUND)
                 return
@@ -159,6 +188,7 @@ def _make_handler():
                 return self._send_json({"ok": False, "error": f"Invalid JSON: {error}"}, status=HTTPStatus.BAD_REQUEST)
 
             question = str(payload.get("question", "")).strip()
+            request_id = _sanitize_request_id(payload.get("requestId"))
             module_id = _normalize_module_id(payload.get("module"))
             module_id = module_id or _command_module_id(question)
             module_id = module_id or _infer_module_id_from_text(question)
@@ -172,8 +202,9 @@ def _make_handler():
             project_context = project_context_for_text(question)
             if project_context:
                 conversation_context = f"{conversation_context}\n\n## Project Memory\n{project_context}".strip()
-            attachment_context = _format_attachments(attachments)
-            response_mode = _effective_chat_mode(question, response_mode, bool(attachment_context), module_id)
+            has_attachment = _attachments_have_content(attachments)
+            response_mode = _effective_chat_mode(question, response_mode, has_attachment, module_id)
+            attachment_context = _format_attachments(attachments, response_mode)
             full_question = _apply_module_context(question, module_id)
             if attachment_context:
                 full_question = f"{full_question}\n\n## File nguoi dung vua gui\n{attachment_context}"
@@ -186,7 +217,7 @@ def _make_handler():
                 answer = _action_response(module_id, action)
                 return self._send_json({"ok": True, "answer": answer, "sources": [], "mode": response_mode, "action": action})
             if parsed.path == "/api/chat_stream":
-                return self._send_chat_stream(full_question, question, limit_per_brain, conversation_context, response_mode, module_id)
+                return self._send_chat_stream(full_question, question, limit_per_brain, conversation_context, response_mode, module_id, request_id)
 
             answer = answer_master_question(
                 full_question,
@@ -219,6 +250,7 @@ def _make_handler():
             conversation_context: str,
             response_mode: str,
             module_id: str,
+            request_id: str = "",
         ) -> None:
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-Type", "text/event-stream; charset=utf-8")
@@ -227,12 +259,14 @@ def _make_handler():
             self.end_headers()
 
             def emit(event: str, payload: dict) -> None:
+                if request_id and request_id in CANCELLED_REQUESTS:
+                    raise BrokenPipeError("Client cancelled request")
                 body = f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False)}\n\n".encode("utf-8")
                 self.wfile.write(body)
                 self.wfile.flush()
 
             try:
-                emit("meta", {"ok": True, "mode": response_mode})
+                emit("meta", {"ok": True, "mode": response_mode, "requestId": request_id})
                 for delta in stream_master_answer(
                     full_question,
                     limit_per_brain=limit_per_brain,
@@ -267,6 +301,9 @@ def _make_handler():
                     emit("error", {"ok": False, "error": str(error)})
                 except Exception:
                     return
+            finally:
+                if request_id:
+                    CANCELLED_REQUESTS.discard(request_id)
 
         def _send_action_stream(self, original_question: str, response_mode: str, module_id: str) -> None:
             self.send_response(HTTPStatus.OK)
@@ -293,8 +330,25 @@ def _make_handler():
                     return
 
         def _handle_upload(self) -> None:
+            length = int(self.headers.get("Content-Length", "0"))
+            if length > MAX_UPLOAD_BATCH_BYTES:
+                limit_mb = MAX_UPLOAD_BATCH_BYTES // 1024 // 1024
+                return self._send_json({"ok": False, "error": f"Upload qua lon. Gioi han {limit_mb}MB moi lan upload."}, status=HTTPStatus.REQUEST_ENTITY_TOO_LARGE)
+            if not _has_upload_capacity(length):
+                return self._send_json(
+                    {
+                        "ok": False,
+                        "error": _upload_capacity_error(length),
+                        **_upload_limits_payload(),
+                    },
+                    status=HTTPStatus.REQUEST_ENTITY_TOO_LARGE,
+                )
+
+            content_type = self.headers.get("Content-Type", "")
+            if content_type.lower().startswith("multipart/form-data"):
+                return self._handle_multipart_upload(length, content_type)
+
             try:
-                length = int(self.headers.get("Content-Length", "0"))
                 payload = json.loads(self.rfile.read(length).decode("utf-8")) if length else {}
             except Exception as error:
                 return self._send_json({"ok": False, "error": f"Invalid JSON: {error}"}, status=HTTPStatus.BAD_REQUEST)
@@ -302,16 +356,63 @@ def _make_handler():
             files = payload.get("files", [])
             if not isinstance(files, list) or not files:
                 return self._send_json({"ok": False, "error": "Missing files"}, status=HTTPStatus.BAD_REQUEST)
+            if len(files) > MAX_UPLOAD_FILES_PER_BATCH:
+                return self._send_json(
+                    {"ok": False, "error": f"Qua nhieu file. Gioi han {MAX_UPLOAD_FILES_PER_BATCH} file moi lan upload."},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
 
             UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
             attachments = []
-            for index, item in enumerate(files[:12], start=1):
+            for index, item in enumerate(files[:MAX_UPLOAD_FILES_PER_BATCH], start=1):
                 try:
                     attachments.append(_save_and_read_upload(item, index))
                 except Exception as error:
                     attachments.append(
                         {
                             "name": str(item.get("name", f"file-{index}")) if isinstance(item, dict) else f"file-{index}",
+                            "type": "error",
+                            "text": "",
+                            "notice": f"Khong doc duoc file: {error}",
+                        }
+                    )
+            return self._send_json({"ok": True, "attachments": attachments})
+
+        def _handle_multipart_upload(self, length: int, content_type: str) -> None:
+            try:
+                form = cgi.FieldStorage(
+                    fp=self.rfile,
+                    headers=self.headers,
+                    environ={
+                        "REQUEST_METHOD": "POST",
+                        "CONTENT_TYPE": content_type,
+                        "CONTENT_LENGTH": str(length),
+                    },
+                )
+            except Exception as error:
+                return self._send_json({"ok": False, "error": f"Invalid multipart upload: {error}"}, status=HTTPStatus.BAD_REQUEST)
+
+            fields = form["files"] if "files" in form else []
+            if not isinstance(fields, list):
+                fields = [fields]
+            fields = [field for field in fields if getattr(field, "filename", None)]
+            if not fields:
+                return self._send_json({"ok": False, "error": "Missing files"}, status=HTTPStatus.BAD_REQUEST)
+            if len(fields) > MAX_UPLOAD_FILES_PER_BATCH:
+                return self._send_json(
+                    {"ok": False, "error": f"Qua nhieu file. Gioi han {MAX_UPLOAD_FILES_PER_BATCH} file moi lan upload."},
+                    status=HTTPStatus.BAD_REQUEST,
+                )
+
+            UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
+            attachments = []
+            for index, field in enumerate(fields[:MAX_UPLOAD_FILES_PER_BATCH], start=1):
+                try:
+                    attachments.append(_save_and_read_upload_stream(field.filename, field.file, index))
+                except Exception as error:
+                    attachments.append(
+                        {
+                            "name": str(getattr(field, "filename", f"file-{index}")),
                             "type": "error",
                             "text": "",
                             "notice": f"Khong doc duoc file: {error}",
@@ -351,6 +452,47 @@ def _make_handler():
                 return self._send_json({"ok": False, "error": f"Khong tao duoc file: {error}"}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
 
             return self._send_json({"ok": True, **created})
+
+        def _handle_upload_file(self, query: str) -> None:
+            params = parse_qs(query)
+            raw_name = unquote((params.get("name") or [""])[0]).strip()
+            if not raw_name:
+                self.send_error(HTTPStatus.BAD_REQUEST, "Missing file name")
+                return
+            try:
+                target = (UPLOADS_DIR / raw_name).resolve()
+                target.relative_to(UPLOADS_DIR.resolve())
+            except (OSError, ValueError):
+                self.send_error(HTTPStatus.FORBIDDEN)
+                return
+            if not target.is_file():
+                self.send_error(HTTPStatus.NOT_FOUND)
+                return
+
+            content_type = mimetypes.guess_type(target.name)[0] or "application/octet-stream"
+            size = target.stat().st_size
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(size))
+            self.send_header("Content-Disposition", f'inline; filename="{_safe_filename(target.name)}"')
+            self.end_headers()
+            with target.open("rb") as source:
+                while True:
+                    chunk = source.read(1024 * 1024)
+                    if not chunk:
+                        break
+                    self.wfile.write(chunk)
+
+        def _handle_cancel(self) -> None:
+            try:
+                length = int(self.headers.get("Content-Length", "0"))
+                payload = json.loads(self.rfile.read(length).decode("utf-8")) if length else {}
+            except Exception:
+                payload = {}
+            request_id = _sanitize_request_id(payload.get("requestId"))
+            if request_id:
+                CANCELLED_REQUESTS.add(request_id)
+            return self._send_json({"ok": True, "cancelled": bool(request_id)})
 
         def log_message(self, format: str, *args) -> None:  # noqa: A003
             return
@@ -459,10 +601,13 @@ def _is_workspace_page(path: str) -> bool:
 
 
 def _normalize_chat_mode(value: object) -> str:
-    mode = str(value or "fast").strip().lower()
+    mode = str(value or "auto").strip().lower()
     if mode in CHAT_MODE_LIMITS:
         return mode
-    return "fast"
+    return "auto"
+
+def _sanitize_request_id(value: object) -> str:
+    return re.sub(r"[^a-zA-Z0-9_-]+", "", str(value or ""))[:80]
 
 def _normalize_module_id(value: object) -> str:
     raw = str(value or "").strip().lower()
@@ -1337,10 +1482,14 @@ def _apply_module_context(question: str, module_id: str) -> str:
     return f"[MODULE: {module_id}]\n{question}"
 
 def _effective_chat_mode(question: str, requested_mode: str, has_attachment: bool, module_id: str = "") -> str:
+    if requested_mode == "auto":
+        requested_mode = "fast"
     if module_id and requested_mode != "deep":
         return "asset"
-    if requested_mode == "deep" or has_attachment:
+    if requested_mode == "deep":
         return requested_mode
+    if has_attachment and requested_mode in {"quick", "fast"}:
+        requested_mode = "fast"
     compact = " ".join(question.split())
     lower = compact.lower()
     plain = _ascii_fold(lower)
@@ -1398,10 +1547,14 @@ def _ascii_fold(text: str) -> str:
     return folded.replace("\u0111", "d").replace("\u0110", "D")
 
 def _effective_chat_mode(question: str, requested_mode: str, has_attachment: bool, module_id: str = "") -> str:
+    if requested_mode == "auto":
+        requested_mode = "fast"
     if module_id and requested_mode != "deep":
         return "asset"
-    if requested_mode == "deep" or has_attachment:
+    if requested_mode == "deep":
         return requested_mode
+    if has_attachment and requested_mode in {"quick", "fast"}:
+        requested_mode = "fast"
     compact = " ".join(question.split())
     lower = compact.lower()
     plain = _ascii_fold(lower)
@@ -1464,10 +1617,14 @@ def _ascii_fold(text: str) -> str:
     )
 
 def _effective_chat_mode(question: str, requested_mode: str, has_attachment: bool, module_id: str = "") -> str:
+    if requested_mode == "auto":
+        requested_mode = "fast"
     if module_id and requested_mode != "deep":
         return "asset"
-    if requested_mode == "deep" or has_attachment:
+    if requested_mode == "deep":
         return requested_mode
+    if has_attachment and requested_mode in {"quick", "fast"}:
+        requested_mode = "fast"
     compact = " ".join(question.split())
     lower = compact.lower()
     plain = _ascii_fold(lower).lower()
@@ -1910,25 +2067,66 @@ def _format_history(history: object) -> str:
     return "\n".join(parts)
 
 
-def _format_attachments(attachments: object) -> str:
+def _attachments_have_content(attachments: object) -> bool:
+    if not isinstance(attachments, list):
+        return False
+    for item in attachments:
+        if isinstance(item, dict) and (str(item.get("text", "")).strip() or str(item.get("notice", "")).strip()):
+            return True
+    return False
+
+def _attachment_text_budget(response_mode: str, file_count: int) -> int:
+    total_budget = {
+        "quick": 6000,
+        "fast": 16000,
+        "auto": 22000,
+        "asset": 42000,
+        "balanced": 60000,
+        "deep": 90000,
+    }.get(response_mode, 22000)
+    return max(2500, min(MAX_ATTACHMENT_TEXT, total_budget // max(1, file_count)))
+
+def _middle_clip_text(text: str, limit: int) -> str:
+    cleaned = str(text or "").strip()
+    if len(cleaned) <= limit:
+        return cleaned
+    head = max(1000, int(limit * 0.46))
+    tail = max(1000, int(limit * 0.34))
+    middle = max(800, limit - head - tail)
+    center = max(head, len(cleaned) // 2 - middle // 2)
+    omitted_1 = center - head
+    omitted_2 = len(cleaned) - (center + middle) - tail
+    return (
+        cleaned[:head]
+        + f"\n\n[... đã lược bớt {max(0, omitted_1)} ký tự ở đoạn giữa đầu để tránh prompt quá nặng ...]\n\n"
+        + cleaned[center : center + middle]
+        + f"\n\n[... đã lược bớt {max(0, omitted_2)} ký tự trước đoạn cuối ...]\n\n"
+        + cleaned[-tail:]
+    )
+
+def _format_attachments(attachments: object, response_mode: str = "auto") -> str:
     if not isinstance(attachments, list):
         return ""
     sections = []
-    for index, item in enumerate(attachments[:12], start=1):
-        if not isinstance(item, dict):
-            continue
+    usable = [item for item in attachments[:MAX_UPLOAD_FILES_PER_BATCH] if isinstance(item, dict)]
+    text_limit = _attachment_text_budget(response_mode, len(usable))
+    for index, item in enumerate(usable, start=1):
         name = str(item.get("name", f"file-{index}"))
         file_type = str(item.get("type", "unknown"))
         notice = str(item.get("notice", "")).strip()
         text = str(item.get("text", "")).strip()
         if not text and not notice:
             continue
+        clipped = _middle_clip_text(text, text_limit) if text else ""
+        omitted_note = ""
+        if text and len(text) > len(clipped):
+            omitted_note = f"\nOriginal length: {len(text)} chars. Included representative extract: {len(clipped)} chars."
         sections.append(
             f"""### File {index}: {name}
 Type: {file_type}
-Note: {notice or "Da doc duoc noi dung."}
+Note: {notice or "Da doc duoc noi dung."}{omitted_note}
 
-{text[:MAX_ATTACHMENT_TEXT]}
+{clipped}
 """
         )
     return "\n".join(sections)
@@ -1942,11 +2140,35 @@ def _save_and_read_upload(item: dict, index: int) -> dict:
         raise ValueError("Missing file data")
     raw = base64.b64decode(data_base64, validate=False)
     if len(raw) > MAX_UPLOAD_BYTES:
-        raise ValueError("File qua lon. Gioi han 25MB moi file.")
+        raise ValueError(f"File qua lon. Gioi han {MAX_UPLOAD_BYTES // 1024 // 1024}MB moi file.")
 
     target = _unique_upload_path(name)
     target.write_bytes(raw)
+    return _read_saved_upload(name, target)
+
+def _save_and_read_upload_stream(name: str, file_obj, index: int) -> dict:
+    safe_name = _safe_filename(name or f"upload-{index}")
+    target = _unique_upload_path(safe_name)
+    total = 0
+    with target.open("wb") as output:
+        while True:
+            chunk = file_obj.read(1024 * 1024)
+            if not chunk:
+                break
+            total += len(chunk)
+            if total > MAX_UPLOAD_BYTES:
+                output.close()
+                try:
+                    target.unlink()
+                except OSError:
+                    pass
+                raise ValueError(f"File qua lon. Gioi han {MAX_UPLOAD_BYTES // 1024 // 1024}MB moi file.")
+            output.write(chunk)
+    return _read_saved_upload(safe_name, target)
+
+def _read_saved_upload(name: str, target: Path) -> dict:
     suffix = target.suffix.lower()
+    file_url = _upload_file_url(target)
 
     if suffix in SUPPORTED_IMAGE_EXTENSIONS:
         ocr_text = _read_image_text(target)
@@ -1954,6 +2176,7 @@ def _save_and_read_upload(item: dict, index: int) -> dict:
             "name": name,
             "type": "image",
             "path": str(target),
+            "url": file_url,
             "text": ocr_text,
             "notice": (
                 "Da OCR anh." if ocr_text else
@@ -1968,6 +2191,7 @@ def _save_and_read_upload(item: dict, index: int) -> dict:
             "name": name,
             "type": suffix.lstrip(".") or "file",
             "path": str(target),
+            "url": file_url,
             "text": "",
             "notice": f"Da luu file nhung chua trich xuat duoc text: {error}",
         }
@@ -1976,9 +2200,73 @@ def _save_and_read_upload(item: dict, index: int) -> dict:
         "name": name,
         "type": suffix.lstrip(".") or "file",
         "path": str(target),
+        "url": file_url,
         "text": text,
-        "notice": "Da trich xuat text." if text else "File khong co text doc duoc.",
+        "notice": _upload_notice_for_text(suffix, text),
     }
+
+def _upload_file_url(target: Path) -> str:
+    try:
+        rel = target.resolve().relative_to(UPLOADS_DIR.resolve())
+    except (OSError, ValueError):
+        return ""
+    return f"/api/upload_file?name={quote(str(rel).replace(os.sep, '/'))}"
+
+def _upload_notice_for_text(suffix: str, text: str) -> str:
+    if not text:
+        if suffix == ".pdf":
+            return "File PDF khong co text doc duoc va OCR khong trich xuat duoc noi dung."
+        return "File khong co text doc duoc."
+    if suffix == ".pdf" and text.startswith("OCR fallback:"):
+        return "Da OCR PDF scan va trich xuat text."
+    if suffix == ".zip":
+        return "Da doc cau truc ZIP va trich xuat text tu file ho tro ben trong."
+    return "Da trich xuat text."
+
+def _upload_limits_payload() -> dict:
+    used = _uploads_used_bytes()
+    return {
+        "maxFileBytes": MAX_UPLOAD_BYTES,
+        "maxFilesPerUpload": MAX_UPLOAD_FILES_PER_BATCH,
+        "maxBatchBytes": MAX_UPLOAD_BATCH_BYTES,
+        "maxStorageBytes": MAX_UPLOAD_STORAGE_BYTES,
+        "usedStorageBytes": used,
+        "remainingStorageBytes": max(0, MAX_UPLOAD_STORAGE_BYTES - used),
+        "attachmentPreviewChars": MAX_ATTACHMENT_TEXT,
+    }
+
+def _uploads_used_bytes() -> int:
+    if not UPLOADS_DIR.exists():
+        return 0
+    total = 0
+    for path in UPLOADS_DIR.rglob("*"):
+        if not path.is_file():
+            continue
+        try:
+            total += path.stat().st_size
+        except OSError:
+            continue
+    return total
+
+def _has_upload_capacity(incoming_bytes: int) -> bool:
+    return _uploads_used_bytes() + max(0, int(incoming_bytes or 0)) <= MAX_UPLOAD_STORAGE_BYTES
+
+def _format_bytes(value: int) -> str:
+    size = float(max(0, int(value or 0)))
+    for unit in ("B", "KB", "MB", "GB", "TB"):
+        if size < 1024 or unit == "TB":
+            return f"{size:.1f} {unit}" if unit != "B" else f"{int(size)} B"
+        size /= 1024
+    return f"{size:.1f} TB"
+
+def _upload_capacity_error(incoming_bytes: int) -> str:
+    used = _uploads_used_bytes()
+    remaining = max(0, MAX_UPLOAD_STORAGE_BYTES - used)
+    return (
+        f"Kho upload khong du dung luong. Con {_format_bytes(remaining)}, "
+        f"file/lua upload can khoang {_format_bytes(incoming_bytes)}. "
+        f"Gioi han kho hien tai {_format_bytes(MAX_UPLOAD_STORAGE_BYTES)}."
+    )
 
 def _read_image_text(path: Path) -> str:
     try:
