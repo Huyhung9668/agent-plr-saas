@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from config import DATABASE_DIR, ROOT_DIR
+from config import DATABASE_DIR, FILE_BACKUP_DIR, ROOT_DIR
 
 INPUT_ROOT = ROOT_DIR / "input_files"
 AGENT_BRAINS_ROOT = DATABASE_DIR / "agent_brains"
@@ -73,6 +73,22 @@ def get_agent_profiles() -> list[AgentProfile]:
                 SubAgentProfile("copywriter", "Copywriter", "Draft sales page sections, bullets, CTAs, FAQ, and guarantee copy."),
                 SubAgentProfile("compliance_editor", "Compliance Editor", "Remove fake scarcity, income guarantees, unsafe claims, and license assumptions."),
                 SubAgentProfile("conversion_editor", "Conversion Editor", "Improve flow, clarity, offer stack, objection handling, and CTA strength."),
+            ),
+        ),
+        AgentProfile(
+            key="case_study",
+            name="Case Study Brain Agent",
+            input_dir=FILE_BACKUP_DIR,
+            brain_dir=AGENT_BRAINS_ROOT / "case_study",
+            db_path=AGENT_BRAINS_ROOT / "case_study" / "case_study_brain.sqlite",
+            mission="Use old files as searchable case-study memory for PLR, SaaS, WarriorPlus, KDP, kids printables, sales pages, funnels, JV packs, and launch proof patterns.",
+            subagents=(
+                SubAgentProfile("product_research", "Product Research Miner", "Find market patterns, product angles, buyer pains, and useful product structures from old files."),
+                SubAgentProfile("sales_page", "Sales Page Pattern Miner", "Extract sales page structures, hooks, offer stacks, objections, and proof substitutes."),
+                SubAgentProfile("email_swipes", "Email Swipe Pattern Miner", "Find email sequences, subject lines, launch swipes, and follow-up patterns."),
+                SubAgentProfile("warriorplus_jv", "WarriorPlus/JV Pattern Miner", "Find JV page, affiliate, commission, review access, and launch operation patterns."),
+                SubAgentProfile("funnel_oto", "Funnel/OTO Pattern Miner", "Find FE, bump, OTO, backend, downsell, and bundle structures."),
+                SubAgentProfile("kdp_kids_printables", "KDP/Kids Printable Miner", "Find KDP printable, kids worksheet, Canva, planner, and educational bundle patterns."),
             ),
         ),
     ]

@@ -212,7 +212,8 @@ function selectedPersonaInstruction() {
   };
   const toolMap = {
     auto: "Tool mode: Auto. Tự dùng brain, project memory và file đính kèm khi hữu ích.",
-    files: "Tool mode: Files/RAG. Ưu tiên nội dung file đính kèm và brain/source đã index.",
+    files: "Tool mode: Files/RAG. Ưu tiên nội dung file đính kèm, Case Study Brain từ dữ liệu cũ, và brain/source đã index.",
+    case: "Tool mode: Case Study Brain. Ưu tiên kho dữ liệu cũ G:\\file_backup để rút pattern, case study, sales page, funnel, JV, KDP/kids printable; không copy nguyên văn.",
     launch: "Tool mode: Launch OS. Ưu tiên active project, launch readiness, asset checklist, funnel/JV/export status.",
     none: "Tool mode: Off. Trả lời trực tiếp, chỉ dùng ngữ cảnh chat khi đủ.",
   };
@@ -755,9 +756,12 @@ async function loadStatus() {
     }, { docs: 0, chunks: 0 });
     const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
     const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
-  const appVersion = data.appVersion || "1.04";
+  const appVersion = data.appVersion || "1.08";
     for (const badge of appVersionBadges) badge.textContent = `v${appVersion}`;
-    brainSummary.textContent = `v${appVersion} · ${data.apiReady ? "API 5.5 sẵn sàng" : "API chưa sẵn sàng"} · ${thinking} · ${detail} · ${formatNumber(totals.docs)} tài liệu · ${formatNumber(totals.chunks)} chunks`;
+    const caseDocs = Number(data.caseStudyBrain?.documents || 0);
+    const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
+    const caseLabel = caseDocs ? ` · Case ${formatNumber(caseDocs)} docs/${formatNumber(caseChunks)} chunks` : " · Case Brain chưa index";
+    brainSummary.textContent = `v${appVersion} · ${data.apiReady ? "API 5.5 sẵn sàng" : "API chưa sẵn sàng"} · ${thinking} · ${detail} · ${formatNumber(totals.docs)} tài liệu · ${formatNumber(totals.chunks)} chunks${caseLabel}`;
     renderStatusPanel();
   } catch {
     brainSummary.textContent = "Không đọc được trạng thái local.";
@@ -795,6 +799,23 @@ function renderStatusPanel() {
         <span>${formatNumber(savedCount)} records</span>
       </div>
       <div class="subagent-row">${brainStatus.launchOs.tables.slice(0, 10).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+    `;
+    grid.appendChild(card);
+  }
+  if (brainStatus.caseStudyBrain) {
+    const item = brainStatus.caseStudyBrain;
+    const categories = (item.categories || []).filter((category) => Number(category.count || 0) > 0).slice(0, 8);
+    const card = document.createElement("div");
+    card.className = "status-card";
+    card.innerHTML = `
+      <div class="status-card-title">Case Study Brain</div>
+      <div class="project-meta">${escapeHtml(item.training_mode || "RAG memory")} · ${item.source_exists ? "source OK" : "missing source"}</div>
+      <div class="status-card-metrics">
+        <span>${formatNumber(item.documents || 0)} docs</span>
+        <span>${formatNumber(item.chunks || 0)} chunks</span>
+        <span>${item.text_mb || 0} MB text</span>
+      </div>
+      <div class="subagent-row">${categories.map((category) => `<span>${escapeHtml(category.category)}: ${formatNumber(category.count)}</span>`).join("") || "<span>Chưa index dữ liệu cũ</span>"}</div>
     `;
     grid.appendChild(card);
   }
@@ -2176,6 +2197,11 @@ function moduleIdFromLabel(value) {
     "localize en": "translate_english",
     "storage report": "storage_report",
     "optimize storage": "optimize_storage",
+    "train 300 files": "train_case_study_brain",
+    "search case study": "case_study_search",
+    "30-step workflow": "workflow_30",
+    "ai workflow": "ai_workflow_20",
+    "kdp prompt pack": "case_study_search",
   };
   return map[label] || "";
 }
@@ -2226,6 +2252,12 @@ function installQuickActionTranslations() {
     "Localize EN": "Bản địa hóa sang thị trường tiếng Anh",
     "Storage Report": "Báo cáo dung lượng",
     "Optimize Storage": "Tối ưu dung lượng",
+    "Training / Case Study Brain": "Huấn luyện nhẹ / Kho case study",
+    "Train 300 Files": "Index thử 300 file cũ",
+    "Search Case Study": "Tìm trong kho case study",
+    "30-Step Workflow": "Quy trình hoàn thành 30 bước",
+    "AI Workflow": "Quy trình ra lệnh AI 20 bước",
+    "KDP Prompt Pack": "Ngách KDP Prompt & Template Pack",
     "Nhanh": "Trả lời nhanh",
     "Cân bằng": "Cân bằng tốc độ và độ sâu",
     "Sâu": "Phân tích sâu nhất",
@@ -2616,12 +2648,18 @@ function repairVisibleText(root) {
     return;
   }
   if (root.nodeType !== Node.ELEMENT_NODE) return;
-  for (const attr of ["title", "aria-label", "placeholder", "value"]) {
-    if (root.hasAttribute?.(attr)) {
-      const value = root.getAttribute(attr);
-      const repaired = repairMojibake(value);
-      if (repaired !== value) root.setAttribute(attr, repaired);
+  const repairElementAttributes = (element) => {
+    for (const attr of ["title", "aria-label", "placeholder", "value"]) {
+      if (element.hasAttribute?.(attr)) {
+        const value = element.getAttribute(attr);
+        const repaired = repairMojibake(value);
+        if (repaired !== value) element.setAttribute(attr, repaired);
+      }
     }
+  };
+  repairElementAttributes(root);
+  for (const element of root.querySelectorAll?.("*") || []) {
+    repairElementAttributes(element);
   }
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   let node = walker.nextNode();

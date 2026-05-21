@@ -34,6 +34,9 @@ TEST_CASES = [
     ("buyer_test_zip", "AI Email Campaign Kit for Beginners - buyer test zip"),
     ("jv_test_pack", "AI Email Campaign Kit for Beginners - jv test pack"),
     ("public_launch_audit", "AI Email Campaign Kit for Beginners - public launch audit"),
+    ("workflow_30", "Show 30-step completion workflow"),
+    ("ai_workflow_20", "Show AI workflow"),
+    ("case_study_search", "AI PLR Prompt Template Packs for KDP Printables"),
 ]
 
 REQUIRED_KEYWORDS = [
@@ -83,9 +86,12 @@ def _render(module_id: str, prompt: str) -> str:
 
 def test_agent_depth_contract() -> None:
     failures: list[str] = []
+    non_launch_contract_modules = {"workflow_30", "ai_workflow_20", "case_study_search"}
     for module_id, prompt in TEST_CASES:
         output = _render(module_id, prompt)
         for keyword in REQUIRED_KEYWORDS:
+            if module_id in non_launch_contract_modules:
+                continue
             if module_id != "agent_benchmark" and keyword in {"VERDICT", "Product Type Classifier", "Prompt-to-Product Transformer", "Offer Ladder Engine", "Minimum Sellable Product Checklist", "JV Appeal Score", "License Matrix", "Cost & Profit Calculator", "Refund Prevention", "Versioning"}:
                 continue
             if keyword.lower() not in output.lower():
@@ -94,12 +100,18 @@ def test_agent_depth_contract() -> None:
             for keyword in ANTI_GENERIC_KEYWORDS:
                 if keyword.lower() not in output.lower():
                     failures.append(f"{prompt!r} missing anti-generic marker {keyword!r}")
-        if "CREATED FILES" not in output:
+        if module_id not in non_launch_contract_modules and "CREATED FILES" not in output:
             failures.append(f"{module_id}:{prompt!r} did not report CREATED FILES")
         if module_id == "full_launch_pack":
             for keyword in ("ZIP PATH", "Email Funnel: DONE", "Support: DONE", "License: DONE", "Created Files: PASS", "Export ZIP: PASS", "Export Proof: PASS", "Placeholder Check:", "Public Launch Gate:"):
                 if keyword.lower() not in output.lower():
                     failures.append(f"{module_id}:{prompt!r} missing execution marker {keyword!r}")
+        if module_id == "workflow_30" and "30. Update / tạo OTO / bundle".lower() not in output.lower():
+            failures.append("workflow_30 missing final workflow step")
+        if module_id == "ai_workflow_20" and "20. Ra lệnh cho AI tạo bản V2 sau khi fix".lower() not in output.lower():
+            failures.append("ai_workflow_20 missing final AI workflow step")
+        if module_id == "case_study_search" and "CASE STUDY BRAIN SEARCH" not in output:
+            failures.append("case_study_search missing search header")
 
     start_here = ROOT / "outputs" / "AI_Email_Campaign_Kit" / "product_assets" / "00_Start_Here.md"
     campaign_map = ROOT / "outputs" / "AI_Email_Campaign_Kit" / "product_assets" / "01_7_Day_Campaign_Map.md"

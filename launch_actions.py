@@ -8,6 +8,14 @@ from datetime import datetime
 from pathlib import Path
 
 from config import OUTPUTS_DIR
+from case_study_brain import (
+    ai_workflow_steps,
+    case_study_summary,
+    format_case_study_context,
+    ingest_case_study_brain,
+    training_system_notes,
+    workflow_completion_steps,
+)
 from launch_os_db import ensure_project_from_text, infer_product_name
 from storage_optimizer import optimize_storage, storage_report, vacuum_active_brains
 
@@ -202,6 +210,14 @@ def create_full_launch_pack(question: str) -> dict:
     }
 
 def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
+    if module_id == "train_case_study_brain":
+        return create_case_study_training_action(question)
+    if module_id == "case_study_search":
+        return create_case_study_search_action(question)
+    if module_id == "workflow_30":
+        return create_workflow_30_action()
+    if module_id == "ai_workflow_20":
+        return create_ai_workflow_20_action()
     if module_id == "agent_benchmark":
         return create_agent_benchmark_pack(question, answer)
     if module_id == "optimize_storage":
@@ -255,6 +271,54 @@ def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
     if module_id == "export_zip":
         return _finalize_action_state(module_id, export_project_zip(question))
     return {}
+
+def create_case_study_training_action(question: str) -> dict:
+    folded = _ascii_fold(str(question or "")).lower()
+    rebuild = "rebuild" in folded or "xay lai" in folded or "xoa index" in folded
+    limit = 300
+    for token in folded.replace("=", " ").split():
+        if token.isdigit():
+            value = int(token)
+            if value > 0:
+                limit = value
+                break
+    if "full" in folded or "toan bo" in folded or "tat ca" in folded:
+        limit_value = None
+    else:
+        limit_value = limit
+    result = ingest_case_study_brain(rebuild=rebuild, max_files=limit_value)
+    return {
+        "status": result.status,
+        "source_root": result.source_root,
+        "db_path": result.db_path,
+        "max_files": result.max_files,
+        "scanned_files": result.scanned_files,
+        "ingested_documents": result.ingested_documents,
+        "skipped_files": result.skipped_files,
+        "chunks": result.chunks,
+        "errors": result.errors,
+        "manifest_path": result.manifest_path,
+        "summary": case_study_summary(),
+        "training_notes": training_system_notes(),
+    }
+
+def create_case_study_search_action(question: str) -> dict:
+    query = str(question or "").strip()
+    for prefix in ("/case_study_search", "/search_case_study", "/brain_search"):
+        if query.lower().startswith(prefix):
+            query = query[len(prefix):].strip()
+    query = query or "AI PLR Prompt Template Packs KDP Printables WarriorPlus case study"
+    return {
+        "query": query,
+        "summary": case_study_summary(),
+        "context": format_case_study_context(query, limit=8),
+    }
+
+def create_workflow_30_action() -> dict:
+    return {"title": "Quy Trinh Hoan Thanh 30 Buoc", "steps": workflow_completion_steps()}
+
+def create_ai_workflow_20_action() -> dict:
+    return {"title": "Quy Trinh Cho AI 20 Buoc", "steps": ai_workflow_steps()}
 
 
 def _finalize_action_state(module_id: str, result: dict) -> dict:

@@ -23,6 +23,7 @@ from urllib.parse import parse_qs, quote, unquote, urlparse
 
 from agent_profiles import get_agent_profiles
 from brain import brain_summary, read_brain_text, clean_text
+from case_study_brain import case_study_summary, search_case_study_brain
 from config import OPENAI_ANSWER_DETAIL, OPENAI_REASONING_EFFORT
 from launch_os_db import active_project_snapshot, init_launch_os_database, launch_os_status, mark_project_task_from_module, project_context_for_text
 from launch_actions import action_note, maybe_run_action
@@ -75,6 +76,10 @@ ACTION_ONLY_MODULES = {
     "optimize_storage",
     "storage_report",
     "agent_benchmark",
+    "train_case_study_brain",
+    "case_study_search",
+    "workflow_30",
+    "ai_workflow_20",
 }
 
 
@@ -149,6 +154,7 @@ def _make_handler():
                             {"key": "deep", "label": "Sau", "description": "Phan tich ky, cham hon."},
                         ],
                         "brains": _brain_status_cards(),
+                        "caseStudyBrain": case_study_summary(),
                         "launchOs": launch_os_status(),
                         "activeProject": active_project_snapshot(),
                         "sources": _preview_sources("WarriorPlus PLR SaaS launch kit"),
@@ -156,6 +162,11 @@ def _make_handler():
                 )
             if parsed.path == "/api/project_status":
                 return self._send_json({"ok": True, "project": active_project_snapshot()})
+            if parsed.path == "/api/case_study_brain":
+                return self._send_json({"ok": True, "caseStudyBrain": case_study_summary()})
+            if parsed.path == "/api/case_study_search":
+                query = _query_param(parsed.query, "q") or "AI PLR Prompt Template Packs KDP Printables"
+                return self._send_json({"ok": True, "query": query, "results": search_case_study_brain(query, limit=12)})
             if parsed.path == "/api/upload_limits":
                 return self._send_json({"ok": True, **_upload_limits_payload()})
             if parsed.path == "/api/upload_file":
@@ -731,6 +742,10 @@ def _normalize_module_id(value: object) -> str:
         "optimize_storage",
         "storage_report",
         "agent_benchmark",
+        "train_case_study_brain",
+        "case_study_search",
+        "workflow_30",
+        "ai_workflow_20",
     }
     return cleaned if cleaned in allowed else ""
 
@@ -786,6 +801,12 @@ def _command_module_id(question: str) -> str:
         "/storage_report": "storage_report",
         "/benchmark_agent": "agent_benchmark",
         "/compare_chatgpt": "agent_benchmark",
+        "/train_case_study_brain": "train_case_study_brain",
+        "/case_study_train": "train_case_study_brain",
+        "/case_study_search": "case_study_search",
+        "/search_case_study": "case_study_search",
+        "/workflow_30": "workflow_30",
+        "/ai_workflow_20": "ai_workflow_20",
     }
     return mapping.get(first, "")
 
@@ -851,6 +872,8 @@ def _infer_module_id_from_text(question: str) -> str:
         return "deep_create_product_assets"
     if "deep write file" in plain:
         return "deep_write_file"
+    if "case study brain" in plain or "du lieu cu" in plain or "file cu" in plain or "training agent" in plain:
+        return "case_study_search"
     if "ai email campaign kit" in plain and "30 mau email" in plain:
         return "product_assets"
     return ""
@@ -889,6 +912,81 @@ def _action_response(module_id: str, action: dict) -> str:
             lines.append(f"- `{item['name']}`: {item['size_mb']} MB / {item['files']} files")
         lines.extend(["", "Active brain DBs:"])
         lines.extend(f"- `{item}`" for item in action.get("active_brain_dbs", []))
+        return "\n".join(lines)
+    if module_id == "train_case_study_brain":
+        summary = action.get("summary") or {}
+        lines = [
+            "# CASE STUDY BRAIN TRAINING",
+            "",
+            f"Status: **{action.get('status', 'UNKNOWN')}**",
+            f"Source root: `{_display_path(action.get('source_root', ''))}`",
+            f"Brain DB: `{_display_path(action.get('db_path', ''))}`",
+            f"Manifest: `{_display_path(action.get('manifest_path', ''))}`",
+            f"Max files this run: `{action.get('max_files') if action.get('max_files') is not None else 'FULL'}`",
+            "",
+            "TRAINING RESULT:",
+            f"- Scanned files: {action.get('scanned_files', 0)}",
+            f"- Ingested documents: {action.get('ingested_documents', 0)}",
+            f"- Skipped files: {action.get('skipped_files', 0)}",
+            f"- Chunks: {action.get('chunks', 0)}",
+            f"- Errors: {action.get('errors', 0)}",
+            "",
+            "BRAIN SUMMARY:",
+            f"- Documents total: {summary.get('documents', 0)}",
+            f"- Chunks total: {summary.get('chunks', 0)}",
+            f"- Text MB: {summary.get('text_mb', 0)}",
+            f"- DB MB: {summary.get('db_size_mb', 0)}",
+            "",
+            "CATEGORY MAP:",
+        ]
+        for item in summary.get("categories", []):
+            lines.append(f"- {item.get('category')}: {item.get('count')}")
+        lines.extend(
+            [
+                "",
+                "RULE:",
+                "- Đây là RAG / searchable case-study brain, không phải train model weights.",
+                "- Agent dùng dữ liệu cũ để học pattern, cấu trúc, case study, funnel, sales page, JV/email swipe.",
+                "- Không copy y nguyên file cũ để bán lại.",
+                "",
+                "NEXT BEST ACTION:",
+                "1. Dùng `/case_study_search AI PLR Prompt Template Packs for KDP Printables`.",
+                "2. Dùng `/workflow_30` để chạy quy trình hoàn thành sản phẩm.",
+                "3. Dùng `/full_launch_pack [tên sản phẩm]` khi đã chọn ngách.",
+            ]
+        )
+        return "\n".join(lines)
+    if module_id == "case_study_search":
+        summary = action.get("summary") or {}
+        return "\n".join(
+            [
+                "# CASE STUDY BRAIN SEARCH",
+                "",
+                f"Query: `{action.get('query', '')}`",
+                f"Brain DB: `{_display_path(summary.get('db_path', ''))}`",
+                f"Documents: {summary.get('documents', 0)} · Chunks: {summary.get('chunks', 0)}",
+                "",
+                action.get("context", "Không có kết quả."),
+                "",
+                "NEXT BEST ACTION:",
+                "1. Rút pattern sản phẩm bán được, không copy nội dung.",
+                "2. Chọn 1 ngách nhỏ và tạo offer angle.",
+                "3. Chạy Product Assets hoặc Sales Page dựa trên pattern tìm được.",
+            ]
+        )
+    if module_id in {"workflow_30", "ai_workflow_20"}:
+        lines = [f"# {action.get('title', 'WORKFLOW')}", ""]
+        for index, step in enumerate(action.get("steps") or [], start=1):
+            lines.append(f"{index}. {step}")
+        lines.extend(
+            [
+                "",
+                "NEXT BEST ACTION:",
+                "1. Dùng quy trình này như checklist vận hành trong mọi launch pack.",
+                "2. Khi agent tạo sản phẩm, đối chiếu từng bước để biết thiếu gì.",
+                "3. Sau soft launch, nhập feedback để tạo bản V2.",
+            ]
+        )
         return "\n".join(lines)
     if module_id == "agent_benchmark":
         benchmark = action.get("benchmark") or {}

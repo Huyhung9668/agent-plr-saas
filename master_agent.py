@@ -7,6 +7,7 @@ from pathlib import Path
 
 from agent_profiles import AgentProfile, get_agent_profiles
 from brain import brain_summary, search_brain
+from case_study_brain import format_case_study_context
 from llm_client import chat_with_llm, has_api_key, stream_chat_with_llm
 
 MAX_EXCERPT_CHARS = 1400
@@ -327,6 +328,23 @@ Output license options: Personal, Commercial, Agency, Whitelabel, Developer; rig
 Module Contract: Scan PLR Library.
 Output scan plan and report format: category groups, license/risk fields, rebrand score, WarriorPlus fit, SaaS potential, next products to build.
 """,
+    "case_study_search": """
+Module Contract: Case Study Brain Search.
+Use old-file brain as searchable case-study memory, not model fine-tuning.
+Output:
+# CASE STUDY BRAIN
+## Search Intent
+## Relevant Patterns Found
+## Product / Sales / Funnel Lessons
+## What To Reuse As Pattern
+## What Not To Copy
+## Next Build Action
+""",
+    "train_case_study_brain": """
+Module Contract: Train Case Study Brain.
+Explain that training here means indexing old files into searchable memory/RAG.
+Output source folder, category map, status, and next search/build actions.
+""",
     "market_gap": """
 Module Contract: Market Gap Finder.
 Output competitor patterns, missing implementation assets, buyer gaps, unique angle, saturation risk, stronger kit structure.
@@ -609,14 +627,14 @@ def search_all_role_brains(question: str, *, limit_per_brain: int = 5, response_
 
 def _allowed_profile_keys(plan: RetrievalPlan) -> set[str]:
     if plan.task_type == "sales_page":
-        return {"sale_page", "build_product"}
+        return {"sale_page", "build_product", "case_study"}
     if plan.task_type == "launch_funnel":
-        return {"jv_manager", "sale_page", "build_product"}
+        return {"jv_manager", "sale_page", "build_product", "case_study"}
     if plan.task_type == "traffic_growth":
-        return {"jv_manager", "build_product"}
+        return {"jv_manager", "build_product", "case_study"}
     if plan.task_type == "product_build":
-        return {"build_product", "sale_page", "jv_manager"}
-    return {"build_product", "sale_page", "jv_manager"}
+        return {"build_product", "sale_page", "jv_manager", "case_study"}
+    return {"build_product", "sale_page", "jv_manager", "case_study"}
 
 def _is_noise_hit(item: dict) -> bool:
     text = " ".join(str(item.get("text", "")).split())
@@ -686,39 +704,46 @@ def _actionability_score(text: str) -> float:
 def _build_retrieval_plan(question: str, response_mode: str = "fast") -> RetrievalPlan:
     folded = _fold_for_match(question)
     task_type = "general"
-    profile_boost = {"build_product": 0, "jv_manager": 0, "sale_page": 0}
+    profile_boost = {"build_product": 0, "jv_manager": 0, "sale_page": 0, "case_study": 0}
     subagent_boost: dict[str, tuple[str, ...]] = {}
     notes = ["Use local brain chunks as searchable memory, not model-weight training."]
     expansions: list[str] = []
 
     if _contains_any(folded, ("sales page", "sale page", "trang ban", "landing page", "headline", "copy", "cta")):
         task_type = "sales_page"
-        profile_boost.update({"sale_page": 3, "build_product": 1, "jv_manager": 1})
+        profile_boost.update({"sale_page": 3, "build_product": 1, "jv_manager": 1, "case_study": 2})
         subagent_boost["sale_page"] = ("Hook Miner", "Copywriter", "Compliance Editor", "Conversion Editor")
         expansions.extend(["hook pain mechanism objection faq guarantee cta compliance", "sales page offer stack bonus refund"])
         notes.append("Prioritize hook, mechanism, objection handling, compliance, and conversion editing.")
     elif _contains_any(folded, ("funnel", "oto", "order bump", "jv", "affiliate", "launch", "email swipe", "warriorplus")):
         task_type = "launch_funnel"
-        profile_boost.update({"jv_manager": 3, "build_product": 2, "sale_page": 1})
+        profile_boost.update({"jv_manager": 3, "build_product": 2, "sale_page": 1, "case_study": 2})
         subagent_boost["jv_manager"] = ("JV Page Writer", "Swipe Writer", "Launch Ops", "Affiliate Researcher")
         subagent_boost["build_product"] = ("Offer Architect", "Asset Packager")
         expansions.extend(["warriorplus launch affiliate jv page email swipe commission", "front end oto order bump downsell bonus stack"])
         notes.append("Prioritize FE/OTO/bump structure, affiliate angle, launch ops, and delivery clarity.")
     elif _contains_any(folded, ("san pham", "tao san pham", "nang cap san pham", "chu de", "use case", "workflow", "product", "plr", "kit", "pack", "outline", "module", "dong goi", "zip", "license", "saas", "analyze offer", "competitor", "market research", "buyer avatar", "objection", "proof substitute", "depth checker", "warriorplus listing", "jv pack", "affiliate pack", "traffic content", "email funnel", "saas upgrade", "export product", "launch pack")):
         task_type = "product_build"
-        profile_boost.update({"build_product": 3, "sale_page": 1, "jv_manager": 1})
+        profile_boost.update({"build_product": 3, "sale_page": 1, "jv_manager": 1, "case_study": 2})
         subagent_boost["build_product"] = ("Product Researcher", "Offer Architect", "Asset Packager", "License/Risk Checker", "SaaS Tool Packager")
         expansions.extend(["product outline checklist prompt pack template bonus license", "offer architecture digital product packaging plr saas", "start here readme zip delivery order bump oto agency license", "workflow implementation assets use case examples planner checklist compliance", "competitor spy buyer avatar objection proof substitute warriorplus listing jv affiliate traffic email funnel saas upgrade"])
         notes.append("Prioritize product structure, packaging, license/risk, and sellable deliverables.")
     elif _contains_any(folded, ("traffic", "facebook", "medium", "quora", "seo", "email list", "free traffic")):
         task_type = "traffic_growth"
-        profile_boost.update({"jv_manager": 3, "build_product": 1})
+        profile_boost.update({"jv_manager": 3, "build_product": 1, "case_study": 2})
         subagent_boost["jv_manager"] = ("Traffic Channel Planner", "Email/List Growth Operator")
         expansions.extend(["free traffic facebook group medium quora linkedin seo", "lead magnet opt in email list nurture"])
         notes.append("Prioritize channel plan, lead magnet, list growth, and non-spam execution.")
 
     if (response_mode or "").lower() in {"asset", "deep"}:
         expansions.append("template checklist framework mistakes quality check")
+    if _contains_any(folded, ("case study", "du lieu cu", "file cu", "training", "train", "kdp", "kids", "printable", "prompt template")):
+        profile_boost["case_study"] = max(profile_boost.get("case_study", 0), 4)
+        expansions.extend([
+            "case study product pattern sales page funnel jv email swipe",
+            "kdp printable kids worksheet canva plr prompt template pack",
+        ])
+        notes.append("Prioritize Case Study Brain from old files as RAG memory; extract patterns, do not copy assets verbatim.")
 
     variants = [question]
     variants.extend(expansions)
@@ -889,15 +914,17 @@ Output quality must stay premium: detailed, structured, step-by-step, practical,
 {BRAIN_DIFFERENTIATION_ENGINE if _uses_product_creation_os(plan, question) else ""}
 {MASTER_AGENT_OUTPUT_DISCIPLINE if _uses_product_creation_os(plan, question) or settings.get("name") in {"Asset", "Sau"} else ""}
 {output_contract}
-Use the three trained local brains as your main evidence:
+Use the four trained local/searchable brains as your main evidence:
 - Build Product Agent: product creation, offer, product packs, licensing risk.
 - JV Manager Agent: WarriorPlus launch, affiliate, JV, email swipe, launch ops.
 - Sale Page Agent: direct response copy, sales page, hook, objection handling, compliance.
+- Case Study Brain Agent: old files from G:\\file_backup used as searchable case studies for product patterns, sales pages, funnels, JV packs, KDP/kids printables, and prompt/template packs.
 
 Each main brain also contains child-agent training folders:
 - Build Product child agents: product research, offer architecture, asset packaging, license/risk, digital curriculum, SaaS/tool packaging.
 - JV Manager child agents: affiliate research, JV page, swipe/email, launch ops, traffic channel planning, email/list growth.
 - Sale Page child agents: hook mining, copywriting, compliance editing, conversion editing.
+- Case Study child agents: product research, sales page patterns, email swipes, WarriorPlus/JV, funnel/OTO, KDP/kids printables.
 
 Current retrieval plan:
 {_retrieval_plan_summary(plan)}
@@ -1074,6 +1101,12 @@ def _requested_module_key(question: str) -> str:
         ("one-click launch pack", "launch_pack"),
         ("one click launch pack", "launch_pack"),
         ("launch pack", "launch_pack"),
+        ("case study brain", "case_study_search"),
+        ("case study search", "case_study_search"),
+        ("training agent", "case_study_search"),
+        ("train case study", "train_case_study_brain"),
+        ("30 step workflow", "workflow_30"),
+        ("ai workflow", "ai_workflow_20"),
         ("evidence mode", "evidence_mode"),
         ("knowledge used", "evidence_mode"),
     )

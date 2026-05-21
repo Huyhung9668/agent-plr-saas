@@ -25,7 +25,7 @@ def build_all_agents(*, whisper_model: str = "tiny", backup: bool = True, only: 
         summaries.append(build_one_agent(profile, whisper_model=whisper_model))
 
     if backup and only is None:
-        backup_input_dirs(get_agent_profiles())
+        backup_input_dirs([profile for profile in get_agent_profiles() if profile.input_dir.is_relative_to(ROOT_DIR)])
 
     print(json.dumps({"agents": summaries}, ensure_ascii=False, indent=2))
 
@@ -140,7 +140,8 @@ def backup_input_dirs(profiles: list[AgentProfile]) -> Path:
     for profile in profiles:
         source = profile.input_dir.resolve()
         if not str(source).lower().startswith(str(workspace).lower()):
-            raise RuntimeError(f"Refusing to move outside workspace: {source}")
+            print(f"Skipping external input folder backup: {source}")
+            continue
         if not source.exists():
             continue
         destination = backup_dir / profile.input_dir.name

@@ -39,6 +39,7 @@ EXPORTS_DIR = ROOT_DIR / "exports"
 DATABASE_DIR = ROOT_DIR / "database"
 DOWNLOAD_QUEUE_PATH = ROOT_DIR / "download_queue.md"
 NEEDS_LICENSE_DIR = PLR_DIR / "_Needs-License-Check"
+FILE_BACKUP_DIR = Path(os.getenv("PLR_AGENT_FILE_BACKUP_DIR", "G:/file_backup"))
 
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "cx/gpt-5.5")
 OPENAI_API_MODE = os.getenv("OPENAI_API_MODE", "chat").lower()

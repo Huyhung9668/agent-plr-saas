@@ -2882,3 +2882,325 @@ button {
       "files files files";
   }
 }
+
+/* v1.08 mobile shell: keep chat, tools, and composer inside one phone viewport. */
+@media (max-width: 760px) {
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .app {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    min-height: 0;
+    display: flex;
+    overflow: hidden;
+    background: var(--bg-main);
+  }
+
+  .main {
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    z-index: 80;
+    inset: 0 auto 0 0;
+    width: min(86vw, 340px);
+    max-width: min(86vw, 340px);
+    height: 100dvh;
+    max-height: 100dvh;
+    display: flex;
+    flex: 0 0 auto;
+    border-right: 1px solid var(--border);
+    border-bottom: 0;
+    box-shadow: 18px 0 38px rgba(0, 0, 0, 0.36);
+    transform: translateX(0);
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .app.sidebar-collapsed .sidebar {
+    width: min(86vw, 340px);
+    max-width: min(86vw, 340px);
+    max-height: 100dvh;
+    border-right: 1px solid var(--border);
+    transform: translateX(-104%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sidebar-top {
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+
+  .thread-preview,
+  .thread-time {
+    display: block;
+  }
+
+  .thread-time {
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  .topbar {
+    flex: 0 0 auto;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "menu title actions"
+      "controls controls controls";
+    gap: 8px;
+    align-items: center;
+    padding: max(8px, env(safe-area-inset-top)) 10px 8px;
+  }
+
+  .sidebar-toggle {
+    grid-area: menu;
+  }
+
+  .topbar-left {
+    grid-area: title;
+    min-width: 0;
+  }
+
+  .chat-title {
+    font-size: 15px;
+    line-height: 1.25;
+  }
+
+  .chat-subtitle {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .topbar-actions {
+    grid-area: actions;
+    width: auto;
+    justify-content: flex-end;
+    gap: 2px;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .topbar-actions .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .topbar-controls {
+    grid-area: controls;
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .topbar-controls select {
+    height: 34px;
+    min-width: 0;
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .status-panel {
+    flex: 0 0 auto;
+    max-height: 32dvh;
+    overflow-y: auto;
+    margin: 8px 10px 0;
+    border-radius: 8px;
+  }
+
+  .status-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .status-card {
+    padding: 10px;
+  }
+
+  .chat {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+    padding: 12px 0 8px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .welcome {
+    padding: 16px;
+  }
+
+  .welcome h1 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .starter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .msg.assistant,
+  .msg.user {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .msg.assistant {
+    padding-bottom: 18px;
+  }
+
+  .msg.user {
+    padding-bottom: 12px;
+  }
+
+  .msg.user .msg-body {
+    max-width: 92%;
+  }
+
+  .msg-actions {
+    opacity: 1;
+  }
+
+  .composer {
+    flex: 0 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg-main) 96%, #000);
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
+    grid-template-areas:
+      "head head head"
+      "quick quick quick"
+      "mode mode mode"
+      "attach prompt send"
+      "files files files";
+    gap: 7px;
+  }
+
+  .composer-head {
+    min-height: 30px;
+    gap: 6px;
+  }
+
+  .library-toggle,
+  .retry-last-btn {
+    min-height: 30px;
+    padding: 5px 9px;
+    font-size: 12px;
+  }
+
+  .session-metrics {
+    max-width: 58%;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .session-metrics span {
+    padding: 3px 7px;
+  }
+
+  .quick-actions {
+    max-height: min(168px, 20dvh);
+    gap: 8px;
+    overflow: auto;
+    padding-bottom: 2px;
+    scroll-snap-type: x proximity;
+  }
+
+  .quick-actions.collapsed {
+    max-height: 0;
+    padding: 0;
+  }
+
+  .quick-group {
+    flex: 0 0 min(82vw, 330px);
+    max-height: min(156px, 19dvh);
+    overflow-y: auto;
+    padding: 8px;
+    scroll-snap-align: start;
+  }
+
+  .quick-actions button {
+    min-height: 32px;
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+
+  .mode-selector {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 1px;
+  }
+
+  .mode-selector button {
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .attach-btn {
+    width: 38px;
+    height: 38px;
+    align-self: end;
+    margin: 0;
+  }
+
+  #prompt {
+    min-height: 42px;
+    max-height: 116px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .send-btn {
+    width: 34px;
+    height: 34px;
+    align-self: end;
+    margin: 0 0 2px;
+  }
+
+  .attachment-bar {
+    max-height: 92px;
+    overflow-y: auto;
+  }
+
+  .scroll-bottom-btn {
+    right: 14px;
+    bottom: calc(118px + env(safe-area-inset-bottom));
+  }
+
+  .artifact-panel {
+    z-index: 100;
+    top: max(8px, env(safe-area-inset-top));
+    right: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: calc(100vw - 16px);
+  }
+}

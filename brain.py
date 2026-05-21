@@ -157,6 +157,7 @@ def ingest_brain(
     chunk_chars: int = DEFAULT_CHUNK_CHARS,
     chunk_overlap: int = DEFAULT_CHUNK_OVERLAP,
     max_doc_chars: int = DEFAULT_MAX_DOC_CHARS,
+    max_files: int | None = None,
 ) -> BrainStats:
     roots = list(roots or _default_brain_roots())
     if rebuild and db_path.exists():
@@ -172,6 +173,8 @@ def ingest_brain(
             if not root.exists():
                 continue
             for path in _iter_readable_files(root):
+                if max_files is not None and scanned >= max_files:
+                    break
                 scanned += 1
                 try:
                     stat = path.stat()
@@ -275,6 +278,8 @@ def ingest_brain(
                         "INSERT INTO ingest_errors (source_path, error) VALUES (?, ?)",
                         (str(path), str(error)),
                     )
+            if max_files is not None and scanned >= max_files:
+                break
         conn.commit()
 
     return BrainStats(

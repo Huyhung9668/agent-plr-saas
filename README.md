@@ -1,6 +1,6 @@
 # Agent PLR Saas
 
-Version: 1.04
+Version: 1.08
 
 Agent local de bien kho PLR/MRR/RR thanh idea san pham so, offer, funnel, SaaS plan va product pack co the test ban tren WarriorPlus/Gumroad/Payhip.
 

@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agent chủ v1.07</title>
-  <link rel="stylesheet" href="/styles.css?v=1.07" />
+  <title>Agent chá»§ v1.08</title>
+  <link rel="stylesheet" href="/styles.css?v=1.08" />
   </head>
   <body>
     <div class="app" data-theme="dark">
@@ -13,31 +13,31 @@
           <div class="brand">
             <div class="logo">M</div>
             <div>
-              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.07</span></div>
+              <div class="title">Agent chá»§ <span class="version-badge" data-app-version>v1.08</span></div>
               <div class="subtitle">PLR, SaaS, WarriorPlus</div>
             </div>
           </div>
-          <nav id="workspaceTabs" class="workspace-tabs" aria-label="Chọn kênh chat">
+          <nav id="workspaceTabs" class="workspace-tabs" aria-label="Chá»n kÃªnh chat">
             <a href="/1" data-workspace-tab="1">1</a>
             <a href="/2" data-workspace-tab="2">2</a>
             <a href="/3" data-workspace-tab="3">3</a>
           </nav>
-          <button id="newChatBtn" class="new-chat-btn" type="button">+ Chat mới</button>
-          <label class="search-box" title="Tìm trong lịch sử chat">
-            <span>Tìm</span>
-            <input id="threadSearch" type="search" placeholder="Tìm chủ đề..." autocomplete="off" />
+          <button id="newChatBtn" class="new-chat-btn" type="button">+ Chat má»›i</button>
+          <label class="search-box" title="TÃ¬m trong lá»‹ch sá»­ chat">
+            <span>TÃ¬m</span>
+            <input id="threadSearch" type="search" placeholder="TÃ¬m chá»§ Ä‘á»..." autocomplete="off" />
           </label>
         </div>
 
         <div class="sidebar-section">
-          <div class="section-label">Gần đây</div>
+          <div class="section-label">Gáº§n Ä‘Ã¢y</div>
           <div id="threadList" class="thread-list"></div>
         </div>
         <div class="sidebar-bottom">
           <div class="user-profile">
             <div class="avatar">U</div>
             <div class="user-info">
-              <div class="user-name">Người dùng</div>
+              <div class="user-name">NgÆ°á»i dÃ¹ng</div>
               <div class="user-plan">PLR Agent</div>
             </div>
           </div>
@@ -46,58 +46,59 @@
 
       <main class="main">
         <header class="topbar">
-          <button id="sidebarToggleBtn" class="icon-btn sidebar-toggle" type="button" title="Ẩn/hiện lịch sử chat">☰</button>
+          <button id="sidebarToggleBtn" class="icon-btn sidebar-toggle" type="button" title="áº¨n/hiá»‡n lá»‹ch sá»­ chat">â˜°</button>
           <div class="topbar-left">
-            <div class="chat-title">Agent chủ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.07</span></div>
-            <div id="brainSummary" class="chat-subtitle">Đang kiểm tra 3 bộ não...</div>
+            <div class="chat-title">Agent chá»§ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.08</span></div>
+            <div id="brainSummary" class="chat-subtitle">Äang kiá»ƒm tra 3 bá»™ nÃ£o...</div>
           </div>
-          <div class="topbar-controls" aria-label="Cấu hình chat">
+          <div class="topbar-controls" aria-label="Cáº¥u hÃ¬nh chat">
             <label>
-              <span>Chế độ AI</span>
+              <span>Cháº¿ Ä‘á»™ AI</span>
               <select id="modelSelect">
-                <option value="agent">Agent chủ</option>
-                <option value="planner">Planner sâu</option>
-                <option value="creator">Dựng nội dung</option>
-                <option value="critic">Phản biện launch</option>
+                <option value="agent">Agent chá»§</option>
+                <option value="planner">Planner sÃ¢u</option>
+                <option value="creator">Dá»±ng ná»™i dung</option>
+                <option value="critic">Pháº£n biá»‡n launch</option>
               </select>
             </label>
             <label>
-              <span>Công cụ</span>
+              <span>CÃ´ng cá»¥</span>
               <select id="toolModeSelect">
-                <option value="auto">Tự động</option>
+                <option value="auto">Tá»± Ä‘á»™ng</option>
                 <option value="files">File/RAG</option>
+                <option value="case">Case Study Brain</option>
                 <option value="launch">Launch OS</option>
-                <option value="none">Tắt</option>
+                <option value="none">Táº¯t</option>
               </select>
             </label>
           </div>
           <div class="topbar-actions">
-            <button id="promptLibraryBtn" class="icon-btn" type="button" title="Mở thư viện prompt">⌘</button>
-            <button id="statusBtn" class="icon-btn" type="button" title="Trạng thái bộ não">i</button>
-            <button id="exportBtn" class="icon-btn" type="button" title="Xuất chat Markdown">↓</button>
-            <button id="themeToggleBtn" class="icon-btn" type="button" title="Đổi sáng/tối">☾</button>
-            <button id="clearBtn" class="icon-btn danger-icon" type="button" title="Xóa nội dung chat hiện tại">×</button>
+            <button id="promptLibraryBtn" class="icon-btn" type="button" title="Má»Ÿ thÆ° viá»‡n prompt">âŒ˜</button>
+            <button id="statusBtn" class="icon-btn" type="button" title="Tráº¡ng thÃ¡i bá»™ nÃ£o">i</button>
+            <button id="exportBtn" class="icon-btn" type="button" title="Xuáº¥t chat Markdown">â†“</button>
+            <button id="themeToggleBtn" class="icon-btn" type="button" title="Äá»•i sÃ¡ng/tá»‘i">â˜¾</button>
+            <button id="clearBtn" class="icon-btn danger-icon" type="button" title="XÃ³a ná»™i dung chat hiá»‡n táº¡i">Ã—</button>
           </div>
         </header>
 
         <section id="statusPanel" class="status-panel" hidden></section>
         <section id="chat" class="chat"></section>
-        <div class="chat-jump-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
-          <button id="jumpPrevBtn" type="button" title="Nhảy lên câu hỏi/câu trả lời trước" aria-label="Nhảy lên câu hỏi/câu trả lời trước">↑</button>
-          <button id="jumpNextBtn" type="button" title="Nhảy xuống câu hỏi/câu trả lời tiếp theo" aria-label="Nhảy xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+        <div class="chat-jump-nav" aria-label="Äiá»u hÆ°á»›ng cÃ¢u há»i vÃ  cÃ¢u tráº£ lá»i">
+          <button id="jumpPrevBtn" type="button" title="Nháº£y lÃªn cÃ¢u há»i/cÃ¢u tráº£ lá»i trÆ°á»›c" aria-label="Nháº£y lÃªn cÃ¢u há»i/cÃ¢u tráº£ lá»i trÆ°á»›c">â†‘</button>
+          <button id="jumpNextBtn" type="button" title="Nháº£y xuá»‘ng cÃ¢u há»i/cÃ¢u tráº£ lá»i tiáº¿p theo" aria-label="Nháº£y xuá»‘ng cÃ¢u há»i/cÃ¢u tráº£ lá»i tiáº¿p theo">â†“</button>
         </div>
-        <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nhảy xuống cuối chat" aria-label="Nhảy xuống cuối chat">↓</button>
+        <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nháº£y xuá»‘ng cuá»‘i chat" aria-label="Nháº£y xuá»‘ng cuá»‘i chat">â†“</button>
 
         <footer class="composer">
           <div class="composer-head">
             <div class="composer-tools">
-              <button id="quickActionsToggle" class="library-toggle" type="button">Thư viện prompt</button>
+              <button id="quickActionsToggle" class="library-toggle" type="button">ThÆ° viá»‡n prompt</button>
             </div>
             <div class="session-metrics">
-              <span id="messageCount">0 tin nhắn</span>
+              <span id="messageCount">0 tin nháº¯n</span>
               <span id="activeModeLabel">Nhanh</span>
             </div>
-            <button id="retryLastBtn" class="retry-last-btn" type="button" hidden>Gửi lại</button>
+            <button id="retryLastBtn" class="retry-last-btn" type="button" hidden>Gá»­i láº¡i</button>
           </div>
           <div id="quickActions" class="quick-actions collapsed">
             <div class="quick-group">
@@ -154,58 +155,67 @@
               <button type="button" data-module="true" data-prompt="Storage Report: Show local storage size, active brain databases, archive folder, biggest folders, and cleanup recommendation.">Storage Report</button>
               <button type="button" data-module="true" data-prompt="Optimize Storage: Archive raw/legacy knowledge files, remove temp database artifacts, vacuum active role-brain databases, and report reclaimed space. Keep active role brains safe.">Optimize Storage</button>
             </div>
-            <button type="button" data-prompt="Analyze Offer: Chấm điểm idea sản phẩm này theo Buyer Pain, AI Replace Risk, Workflow Value, Implementation Value, WarriorPlus Fit, Backend Potential, SaaS Potential, Risk và kết luận NÊN LÀM / CHƯA NÊN LÀM / BỎ QUA. Idea: [dán idea ở đây]">Analyze Offer</button>
-            <button type="button" data-prompt="Analyze PLR File / Folder: Phân tích PLR/source này có nên dùng không, dùng phần nào, bỏ phần nào, license/risk ra sao, rebrand thành offer gì, thêm asset nào để khác AI thô. Source/ghi chú: [dán nội dung hoặc mô tả file/folder]">Analyze PLR</button>
-            <button type="button" data-prompt="Upgrade Raw AI Content Into Product Kit: Nâng nội dung thô này thành product kit có workflow, use cases, examples, checklist, customization prompts, planner, compliance, pricing, bump/OTO và ZIP structure. Nội dung: [dán nội dung thô]">Upgrade Kit</button>
-            <button type="button" data-prompt="Build Buyer Avatar: Tạo buyer avatar chi tiết cho sản phẩm này gồm stage, platform, pain, desired result, objections, buying trigger, message angle và FAQ objection. Sản phẩm: [tên sản phẩm]">Buyer Avatar</button>
-            <button type="button" data-prompt="Create Product Assets: Tạo danh sách file asset cụ thể cho product pack này, gồm tên file, mục đích, nội dung cần có, checklist chất lượng và thứ tự build. Sản phẩm: [tên sản phẩm]">Product Assets</button>
-            <button type="button" data-prompt="Write Sales Page: Viết sales page hoàn chỉnh cho sản phẩm này, có objection 'Can I just ask AI?', proof substitutes, compliance, FAQ, CTA, không claim thu nhập. Sản phẩm: [tên sản phẩm]">Sales Page</button>
-            <button type="button" data-prompt="Create OTO/Funnel Plan: Tạo FE, order bump, OTO1, OTO2, downsell, recurring/club nếu hợp lý, affiliate angle và launch checklist. Sản phẩm: [tên sản phẩm]">OTO/Funnel</button>
-            <button type="button" data-prompt="Build WarriorPlus Listing: Tạo title, short description, long description, category, tags, price, commission, refund policy, vendor note, affiliate approval note và delivery page text. Sản phẩm: [tên sản phẩm]">W+ Listing</button>
-            <button type="button" data-prompt="Build JV/Affiliate Pack: Tạo JV page outline, JV invitation, 3 email swipes, 3 social posts, review access message, follow-up message, launch calendar, commission explanation và 10 bonus ideas. Sản phẩm: [tên sản phẩm]">JV Pack</button>
-            <button type="button" data-prompt="Generate Free Traffic Content: Tạo 10 Facebook posts, 5 group value posts, 5 Quora answers, 3 Medium outlines, 10 short video scripts, 10 comment templates theo hướng value-first không spam. Sản phẩm: [tên sản phẩm]">Traffic Content</button>
-            <button type="button" data-prompt="Build Email Funnel: Tạo lead magnet idea, opt-in page copy, thank-you page copy, 5-email welcome sequence, buyer onboarding, post-purchase email và backend promotion. Sản phẩm: [tên sản phẩm]">Email Funnel</button>
-            <button type="button" data-prompt="Plan SaaS Upgrade: Phân tích sản phẩm này có thể nâng thành SaaS/tool không, MVP features, input/output, export workflow, pricing, recurring, agency/whitelabel và roadmap. Sản phẩm: [tên sản phẩm]">SaaS Upgrade</button>
-            <button type="button" data-prompt="Export Product ZIP Plan: Tạo cấu trúc ZIP giao hàng đầy đủ với numbered files, Bonuses folder, README, license/compliance note và checklist build từng file. Sản phẩm: [tên sản phẩm]">Export ZIP</button>
-            <button type="button" data-prompt="Export Full Launch Pack: Tạo full launch pack gồm product assets, sales page, WarriorPlus listing, JV pack, email swipes, traffic content, delivery page và launch checklist. Sản phẩm: [tên sản phẩm]">Launch Pack</button>
-            <button type="button" data-prompt="Phân tích giúp tôi 3 ý tưởng sản phẩm PLR + SaaS dễ bán trên WarriorPlus nhất dựa trên brain hiện tại.">Ý tưởng sản phẩm</button>
-            <button type="button" data-prompt="Tạo cho tôi một funnel WarriorPlus gồm FE, OTO1, OTO2, bonus stack và email launch cho AI PLR Rebrand Kit.">Funnel WarriorPlus</button>
-            <button type="button" data-prompt="Viết sales page ngắn gọn, hợp lệ, không claim thu nhập cho một offer AI PLR Rebrand Kit.">Sales page</button>
+            <div class="quick-group">
+              <span class="quick-group-title">Training / Case Study Brain</span>
+              <button type="button" data-module="true" data-prompt="/train_case_study_brain 300">Train 300 Files</button>
+              <button type="button" data-module="true" data-prompt="/case_study_search AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe">Search Case Study</button>
+              <button type="button" data-module="true" data-prompt="/workflow_30">30-Step Workflow</button>
+              <button type="button" data-module="true" data-prompt="/ai_workflow_20">AI Workflow</button>
+              <button type="button" data-module="true" data-prompt="Dựa trên Case Study Brain, phân tích ngách AI PLR Prompt & Template Packs for KDP Printables: buyer, product pattern, prompt/template assets, sales angle, funnel, JV fit, AI Replace Risk, và next action.">KDP Prompt Pack</button>
+            </div>
+            <button type="button" data-prompt="Analyze Offer: Cháº¥m Ä‘iá»ƒm idea sáº£n pháº©m nÃ y theo Buyer Pain, AI Replace Risk, Workflow Value, Implementation Value, WarriorPlus Fit, Backend Potential, SaaS Potential, Risk vÃ  káº¿t luáº­n NÃŠN LÃ€M / CHÆ¯A NÃŠN LÃ€M / Bá»Ž QUA. Idea: [dÃ¡n idea á»Ÿ Ä‘Ã¢y]">Analyze Offer</button>
+            <button type="button" data-prompt="Analyze PLR File / Folder: PhÃ¢n tÃ­ch PLR/source nÃ y cÃ³ nÃªn dÃ¹ng khÃ´ng, dÃ¹ng pháº§n nÃ o, bá» pháº§n nÃ o, license/risk ra sao, rebrand thÃ nh offer gÃ¬, thÃªm asset nÃ o Ä‘á»ƒ khÃ¡c AI thÃ´. Source/ghi chÃº: [dÃ¡n ná»™i dung hoáº·c mÃ´ táº£ file/folder]">Analyze PLR</button>
+            <button type="button" data-prompt="Upgrade Raw AI Content Into Product Kit: NÃ¢ng ná»™i dung thÃ´ nÃ y thÃ nh product kit cÃ³ workflow, use cases, examples, checklist, customization prompts, planner, compliance, pricing, bump/OTO vÃ  ZIP structure. Ná»™i dung: [dÃ¡n ná»™i dung thÃ´]">Upgrade Kit</button>
+            <button type="button" data-prompt="Build Buyer Avatar: Táº¡o buyer avatar chi tiáº¿t cho sáº£n pháº©m nÃ y gá»“m stage, platform, pain, desired result, objections, buying trigger, message angle vÃ  FAQ objection. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Buyer Avatar</button>
+            <button type="button" data-prompt="Create Product Assets: Táº¡o danh sÃ¡ch file asset cá»¥ thá»ƒ cho product pack nÃ y, gá»“m tÃªn file, má»¥c Ä‘Ã­ch, ná»™i dung cáº§n cÃ³, checklist cháº¥t lÆ°á»£ng vÃ  thá»© tá»± build. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Product Assets</button>
+            <button type="button" data-prompt="Write Sales Page: Viáº¿t sales page hoÃ n chá»‰nh cho sáº£n pháº©m nÃ y, cÃ³ objection 'Can I just ask AI?', proof substitutes, compliance, FAQ, CTA, khÃ´ng claim thu nháº­p. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Sales Page</button>
+            <button type="button" data-prompt="Create OTO/Funnel Plan: Táº¡o FE, order bump, OTO1, OTO2, downsell, recurring/club náº¿u há»£p lÃ½, affiliate angle vÃ  launch checklist. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">OTO/Funnel</button>
+            <button type="button" data-prompt="Build WarriorPlus Listing: Táº¡o title, short description, long description, category, tags, price, commission, refund policy, vendor note, affiliate approval note vÃ  delivery page text. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">W+ Listing</button>
+            <button type="button" data-prompt="Build JV/Affiliate Pack: Táº¡o JV page outline, JV invitation, 3 email swipes, 3 social posts, review access message, follow-up message, launch calendar, commission explanation vÃ  10 bonus ideas. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">JV Pack</button>
+            <button type="button" data-prompt="Generate Free Traffic Content: Táº¡o 10 Facebook posts, 5 group value posts, 5 Quora answers, 3 Medium outlines, 10 short video scripts, 10 comment templates theo hÆ°á»›ng value-first khÃ´ng spam. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Traffic Content</button>
+            <button type="button" data-prompt="Build Email Funnel: Táº¡o lead magnet idea, opt-in page copy, thank-you page copy, 5-email welcome sequence, buyer onboarding, post-purchase email vÃ  backend promotion. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Email Funnel</button>
+            <button type="button" data-prompt="Plan SaaS Upgrade: PhÃ¢n tÃ­ch sáº£n pháº©m nÃ y cÃ³ thá»ƒ nÃ¢ng thÃ nh SaaS/tool khÃ´ng, MVP features, input/output, export workflow, pricing, recurring, agency/whitelabel vÃ  roadmap. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">SaaS Upgrade</button>
+            <button type="button" data-prompt="Export Product ZIP Plan: Táº¡o cáº¥u trÃºc ZIP giao hÃ ng Ä‘áº§y Ä‘á»§ vá»›i numbered files, Bonuses folder, README, license/compliance note vÃ  checklist build tá»«ng file. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Export ZIP</button>
+            <button type="button" data-prompt="Export Full Launch Pack: Táº¡o full launch pack gá»“m product assets, sales page, WarriorPlus listing, JV pack, email swipes, traffic content, delivery page vÃ  launch checklist. Sáº£n pháº©m: [tÃªn sáº£n pháº©m]">Launch Pack</button>
+            <button type="button" data-prompt="PhÃ¢n tÃ­ch giÃºp tÃ´i 3 Ã½ tÆ°á»Ÿng sáº£n pháº©m PLR + SaaS dá»… bÃ¡n trÃªn WarriorPlus nháº¥t dá»±a trÃªn brain hiá»‡n táº¡i.">Ã tÆ°á»Ÿng sáº£n pháº©m</button>
+            <button type="button" data-prompt="Táº¡o cho tÃ´i má»™t funnel WarriorPlus gá»“m FE, OTO1, OTO2, bonus stack vÃ  email launch cho AI PLR Rebrand Kit.">Funnel WarriorPlus</button>
+            <button type="button" data-prompt="Viáº¿t sales page ngáº¯n gá»n, há»£p lá»‡, khÃ´ng claim thu nháº­p cho má»™t offer AI PLR Rebrand Kit.">Sales page</button>
           </div>
-          <div id="modeSelector" class="mode-selector" aria-label="Chế độ trả lời">
-            <button type="button" data-mode="auto" class="active" title="Tự chọn nhanh/sâu theo câu hỏi và file">Auto</button>
-            <button type="button" data-mode="fast" title="Nhanh nhất, vẫn có cấu trúc cao cấp">Nhanh</button>
-            <button type="button" data-mode="balanced" title="Sâu hơn, tốc độ vừa phải">Cân bằng</button>
-            <button type="button" data-mode="deep" title="Phân tích kỹ nhất, chậm hơn">Sâu</button>
+          <div id="modeSelector" class="mode-selector" aria-label="Cháº¿ Ä‘á»™ tráº£ lá»i">
+            <button type="button" data-mode="auto" class="active" title="Tá»± chá»n nhanh/sÃ¢u theo cÃ¢u há»i vÃ  file">Auto</button>
+            <button type="button" data-mode="fast" title="Nhanh nháº¥t, váº«n cÃ³ cáº¥u trÃºc cao cáº¥p">Nhanh</button>
+            <button type="button" data-mode="balanced" title="SÃ¢u hÆ¡n, tá»‘c Ä‘á»™ vá»«a pháº£i">CÃ¢n báº±ng</button>
+            <button type="button" data-mode="deep" title="PhÃ¢n tÃ­ch ká»¹ nháº¥t, cháº­m hÆ¡n">SÃ¢u</button>
           </div>
           <input id="fileInput" class="file-input" type="file" multiple />
-          <div class="prompt-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
-            <button id="promptJumpPrevBtn" type="button" title="Lên câu hỏi/câu trả lời trước">↑</button>
-            <button id="promptJumpNextBtn" type="button" title="Xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+          <div class="prompt-nav" aria-label="Äiá»u hÆ°á»›ng cÃ¢u há»i vÃ  cÃ¢u tráº£ lá»i">
+            <button id="promptJumpPrevBtn" type="button" title="LÃªn cÃ¢u há»i/cÃ¢u tráº£ lá»i trÆ°á»›c">â†‘</button>
+            <button id="promptJumpNextBtn" type="button" title="Xuá»‘ng cÃ¢u há»i/cÃ¢u tráº£ lá»i tiáº¿p theo">â†“</button>
           </div>
-          <button id="attachBtn" class="attach-btn" type="button" title="Đính kèm file">+</button>
-          <textarea id="prompt" rows="1" placeholder="Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây..."></textarea>
-          <button id="sendBtn" class="send-btn" title="Gửi">➤</button>
+          <button id="attachBtn" class="attach-btn" type="button" title="ÄÃ­nh kÃ¨m file">+</button>
+          <textarea id="prompt" rows="1" placeholder="Nháº­p cÃ¢u há»i, dÃ¡n áº£nh, hoáº·c kÃ©o file vÃ o Ä‘Ã¢y..."></textarea>
+          <button id="sendBtn" class="send-btn" title="Gá»­i">âž¤</button>
           <div id="attachmentBar" class="attachment-bar"></div>
         </footer>
       </main>
     </div>
-    <aside id="artifactPanel" class="artifact-panel" aria-label="Canvas kết quả" hidden>
+    <aside id="artifactPanel" class="artifact-panel" aria-label="Canvas káº¿t quáº£" hidden>
       <div class="artifact-head">
         <div>
-          <div class="artifact-label">Canvas kết quả</div>
-          <div id="artifactTitle" class="artifact-title">Nội dung trả lời</div>
+          <div class="artifact-label">Canvas káº¿t quáº£</div>
+          <div id="artifactTitle" class="artifact-title">Ná»™i dung tráº£ lá»i</div>
         </div>
         <div class="artifact-actions">
-          <button id="artifactCopyBtn" class="icon-btn" type="button" title="Copy canvas">⧉</button>
-          <button id="artifactDownloadBtn" class="icon-btn" type="button" title="Tải Markdown">↓</button>
-          <button id="artifactCloseBtn" class="icon-btn" type="button" title="Đóng canvas">×</button>
+          <button id="artifactCopyBtn" class="icon-btn" type="button" title="Copy canvas">â§‰</button>
+          <button id="artifactDownloadBtn" class="icon-btn" type="button" title="Táº£i Markdown">â†“</button>
+          <button id="artifactCloseBtn" class="icon-btn" type="button" title="ÄÃ³ng canvas">Ã—</button>
         </div>
       </div>
       <div id="artifactBody" class="artifact-body"></div>
     </aside>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="/utils/renderFileCard.js?v=1.07"></script>
-  <script src="/app.js?v=1.07"></script>
+  <script src="/utils/renderFileCard.js?v=1.08"></script>
+  <script src="/app.js?v=1.08"></script>
   </body>
 </html>
+
