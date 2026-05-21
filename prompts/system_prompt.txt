@@ -15,3 +15,8 @@ Rules:
 8. Never answer raw prompt/template/email requests as a simple list. Productize them into workflow, checklist, planner, examples, sales angle, funnel, JV pack, SaaS upgrade, and next actions.
 9. Default output contract for product/asset requests: VERDICT, SCORECARD, WHY THIS IS NOT RAW AI, Productized Output, PACKAGE UPGRADE, Sales Page Angle, Funnel, JV Manager Pack, SaaS Upgrade, Agent Status, Next Actions.
 10. If the answer still looks like generic AI content, warn: "Output chua dat chuan agent. Can nang cap thanh launch asset."
+11. Khi tạo file hoặc nội dung dài để người dùng tải về, bắt đầu bằng format:
+FILE: <ten-file.ext>
+DESC: <mô tả ngắn 1 dòng>
+---
+<nội dung file>

@@ -80,6 +80,9 @@ let streamRenderTimer = null;
 let lastStreamRenderedText = "";
 let streamStallTimer = null;
 let lastRetryDraft = null;
+let userScrollLocked = false;
+let programmaticScrollUntil = 0;
+const streamingTextStates = new WeakMap();
 
 applyTheme(loadTheme());
 applyResponseMode(responseMode);
@@ -171,7 +174,14 @@ function saveSelectValue(key, value) {
 }
 
 function applyShellPreferences() {
-  const sidebarCollapsed = loadSelectValue(sidebarStorageKey, "0") === "1";
+  let storedSidebarState = null;
+  try {
+    storedSidebarState = localStorage.getItem(sidebarStorageKey);
+  } catch {
+    storedSidebarState = null;
+  }
+  const mobileDefaultCollapsed = window.matchMedia?.("(max-width: 760px)")?.matches;
+  const sidebarCollapsed = storedSidebarState === null ? mobileDefaultCollapsed : storedSidebarState === "1";
   const libraryOpen = loadSelectValue(promptLibraryStorageKey, "0") === "1";
   app.classList.toggle("sidebar-collapsed", sidebarCollapsed);
   quickActions?.classList.toggle("collapsed", !libraryOpen);
@@ -826,15 +836,12 @@ function renderAttachments() {
     const chip = document.createElement("div");
     chip.className = `attachment-chip ${attachment.type === "error" ? "error" : ""}`;
     const label = document.createElement("span");
-    label.textContent = `${attachment.name} · ${attachment.notice || attachment.type}`;
+    label.textContent = attachment.name || "file";
+    label.title = attachment.notice || attachment.type || attachment.name || "file";
+    chip.appendChild(label);
     if (attachment.url) {
-      const open = document.createElement("button");
-      open.type = "button";
-      open.className = "attachment-open-btn";
-      open.textContent = "Mở";
-      open.title = "Mở file gốc";
-      open.addEventListener("click", () => window.open(apiUrl(attachment.url), "_blank", "noopener"));
-      chip.appendChild(open);
+      chip.appendChild(createIconLink("↗", apiUrl(attachment.url), "Mở đọc file", "attachment-open-btn"));
+      chip.appendChild(createIconLink("↓", apiUrl(attachment.url), "Tải file về máy", "attachment-download-btn", attachment.name || "file"));
     }
     const remove = document.createElement("button");
     remove.type = "button";
@@ -844,7 +851,6 @@ function renderAttachments() {
       pendingAttachments.splice(index, 1);
       renderAttachments();
     });
-    chip.appendChild(label);
     chip.appendChild(remove);
     attachmentBar.appendChild(chip);
   }
@@ -882,10 +888,14 @@ async function uploadFiles(files) {
 }
 
 function appendMessageToDom(role, content, messageIndex = null, shouldScroll = true) {
-  const wasNearBottom = isChatNearBottom();
-  const displayContent = role === "assistant" ? stripSourceFooter(content) : content;
+  const scrollIntent = captureChatScroll();
   const thread = getActiveThread();
   const savedMessage = thread && Number.isInteger(messageIndex) ? thread.messages[messageIndex] : null;
+  const hasSavedAttachments = Array.isArray(savedMessage?.attachments) && savedMessage.attachments.length > 0;
+  let displayContent = role === "assistant" ? stripSourceFooter(content) : (hasSavedAttachments ? stripAttachmentSummary(content) : content);
+  if (role === "assistant" && savedMessage?.fileOutputCollapsed && Array.isArray(savedMessage.files) && savedMessage.files.length) {
+    displayContent = `**${inferArtifactTitle(displayContent)}**`;
+  }
   const el = document.createElement("div");
   el.className = `msg ${role}`;
 
@@ -942,7 +952,7 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
     fileBtn.textContent = "⇩";
     fileBtn.addEventListener("click", (event) => {
       event.stopPropagation();
-      showFileMenu(fileBtn, currentMessageContent(messageIndex, displayContent));
+      showFileMenu(fileBtn, currentMessageContent(messageIndex, displayContent), messageIndex);
     });
     header.appendChild(fileBtn);
   }
@@ -957,8 +967,6 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
     header.appendChild(deleteBtn);
   }
 
-  el.appendChild(header);
-
   const meta = document.createElement("div");
   meta.className = "msg-meta";
   meta.textContent = `${role === "assistant" ? "Agent" : "Bạn"} · VN ${formatVietnamDateTime(messageTime(thread, savedMessage))}`;
@@ -966,12 +974,16 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
 
   const body = document.createElement("div");
   body.className = "msg-body";
-  body.innerHTML = renderMarkdown(escapeHtml(displayContent));
+  renderMessageBody(body, displayContent, messageIndex);
   el.appendChild(body);
+  const fileChips = renderMessageFiles(savedMessage, messageIndex, displayContent);
+  if (fileChips) el.appendChild(fileChips);
+  el.appendChild(header);
   chat.appendChild(el);
-  if (shouldScroll && wasNearBottom) {
+  if (shouldScroll && shouldStickToBottom(scrollIntent)) {
     scrollChatToBottom();
   } else {
+    restoreChatScroll(scrollIntent);
     updateScrollBottomButton();
   }
   return { el, body };
@@ -985,7 +997,43 @@ function currentMessageContent(messageIndex, fallback) {
   return stripSourceFooter(fallback || "");
 }
 
-function showFileMenu(anchor, content) {
+function renderMessageBody(target, content, messageIndex = null) {
+  stopStreamingText(target);
+  const parser = window.parseMessageFileParts;
+  const createCard = window.createFileCard;
+  if (typeof parser !== "function" || typeof createCard !== "function") {
+    target.innerHTML = renderMarkdown(escapeHtml(content));
+    return;
+  }
+
+  const parts = parser(content, Number.isInteger(messageIndex) ? messageIndex + 1 : Date.now());
+  const hasFile = parts.some((part) => part.type === "file");
+  if (!hasFile) {
+    target.innerHTML = renderMarkdown(escapeHtml(content));
+    return;
+  }
+
+  target.innerHTML = "";
+  for (const part of parts) {
+    if (part.type === "file") {
+      target.appendChild(createCard(part.filename, part.content, part.description));
+      continue;
+    }
+    if (!String(part.content || "").trim()) continue;
+    const textWrap = document.createElement("div");
+    textWrap.innerHTML = renderMarkdown(escapeHtml(part.content));
+    target.appendChild(textWrap);
+  }
+}
+
+function stopStreamingText(target) {
+  const state = streamingTextStates.get(target);
+  if (!state) return;
+  if (state.timer) clearTimeout(state.timer);
+  streamingTextStates.delete(target);
+}
+
+function showFileMenu(anchor, content, messageIndex = null) {
   closeFileMenus();
   if (!content.trim()) {
     showToast("Chưa có nội dung để tạo file.");
@@ -998,7 +1046,7 @@ function showFileMenu(anchor, content) {
   compactButton.textContent = "Prompt gọn MD";
   compactButton.addEventListener("click", async (event) => {
     event.stopPropagation();
-    await createFileFromContent(compactPromptContent(content), "md", "prompt-gon");
+    await createFileFromContent(compactPromptContent(content), "md", "prompt-gon", messageIndex);
     closeFileMenus();
   });
   menu.appendChild(compactButton);
@@ -1017,7 +1065,7 @@ function showFileMenu(anchor, content) {
     button.textContent = label;
     button.addEventListener("click", async (event) => {
       event.stopPropagation();
-      await createFileFromContent(content, format);
+      await createFileFromContent(content, format, "", messageIndex);
       closeFileMenus();
     });
     menu.appendChild(button);
@@ -1027,6 +1075,70 @@ function showFileMenu(anchor, content) {
 
 function closeFileMenus() {
   document.querySelectorAll(".file-menu").forEach((menu) => menu.remove());
+}
+
+function createIconLink(text, href, title, className, downloadName = "") {
+  const link = document.createElement("a");
+  link.className = className;
+  link.href = href;
+  link.title = title;
+  link.setAttribute("aria-label", title);
+  link.textContent = text;
+  if (downloadName) link.download = downloadName;
+  if (!downloadName) link.target = "_blank";
+  if (!downloadName) link.rel = "noopener";
+  return link;
+}
+
+function renderMessageFiles(message, messageIndex, fallbackContent = "") {
+  const attachments = Array.isArray(message?.attachments) ? message.attachments : [];
+  const generatedFiles = Array.isArray(message?.files) ? message.files : [];
+  if (!attachments.length && !generatedFiles.length) return null;
+
+  const wrap = document.createElement("div");
+  wrap.className = "message-file-list";
+  for (const attachment of attachments) {
+    if (!attachment?.name) continue;
+    wrap.appendChild(renderFileChip({
+      name: attachment.name,
+      url: attachment.url,
+      openTitle: "Mở đọc file gốc",
+      downloadTitle: "Tải file gốc",
+    }));
+  }
+  for (const file of generatedFiles) {
+    if (!file?.fileName) continue;
+    const chip = renderFileChip({
+      name: file.fileName,
+      url: file.url,
+      openTitle: "Mở đọc nội dung",
+      downloadTitle: "Tải file về máy",
+    });
+    chip.querySelector("[data-open-file]")?.addEventListener("click", (event) => {
+      event.preventDefault();
+      openArtifactPanel(currentMessageContent(messageIndex, fallbackContent));
+    });
+    wrap.appendChild(chip);
+  }
+  return wrap.childElementCount ? wrap : null;
+}
+
+function renderFileChip({ name, url, openTitle, downloadTitle }) {
+  const chip = document.createElement("div");
+  chip.className = "message-file-chip";
+  const fileName = document.createElement("span");
+  fileName.className = "message-file-name";
+  fileName.textContent = name;
+  fileName.title = name;
+  chip.appendChild(fileName);
+
+  if (url) {
+    const open = createIconLink("↗", apiUrl(`${url}${url.includes("?") ? "&" : "?"}view=1`), openTitle, "message-file-icon");
+    open.dataset.openFile = "true";
+    chip.appendChild(open);
+    chip.appendChild(createIconLink("↓", apiUrl(url), downloadTitle, "message-file-icon", name));
+  }
+  return chip;
 }
 
 function openArtifactPanel(content) {
@@ -1118,7 +1230,7 @@ function compactPromptContent(content) {
   return `# Prompt gon\n\n${body}\n`;
 }
 
-async function createFileFromContent(content, format, titleOverride = "") {
+async function createFileFromContent(content, format, titleOverride = "", messageIndex = null) {
   const thread = getActiveThread();
   const title = safeDownloadName(titleOverride || thread?.title || "agent-output");
   showToast(`Đang tạo file ${format.toUpperCase()}...`);
@@ -1130,11 +1242,29 @@ async function createFileFromContent(content, format, titleOverride = "") {
     });
     const data = await response.json();
     if (!data.ok) throw new Error(data.error || "Không tạo được file.");
-    downloadBase64File(data.dataBase64, data.fileName, data.mime);
-    showToast(`Đã tạo ${data.fileName}`);
+    attachGeneratedFileToMessage(messageIndex, data);
+    showToast(`Đã tạo ${data.fileName}. Bấm icon ↓ để tải.`);
   } catch (error) {
     showToast(friendlyFetchError(error));
   }
+}
+
+function attachGeneratedFileToMessage(messageIndex, file) {
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return;
+  const message = thread.messages[messageIndex];
+  message.files = Array.isArray(message.files) ? message.files : [];
+  message.files.push({
+    fileName: file.fileName,
+    format: file.format,
+    mime: file.mime,
+    url: file.url,
+    createdAt: Date.now(),
+  });
+  message.fileOutputCollapsed = true;
+  thread.updatedAt = Date.now();
+  saveState();
+  renderActiveThread({ stickToBottom: true });
 }
 
 function downloadBase64File(dataBase64, fileName, mime) {
@@ -1215,15 +1345,20 @@ function stripAttachmentSummary(text) {
 }
 
 function appendThinking(label = null) {
-  const wasNearBottom = isChatNearBottom();
+  const scrollIntent = captureChatScroll();
   const el = document.createElement("div");
   el.className = "msg assistant thinking";
-  const labels = { auto: "Auto", quick: "Nhanh gọn", fast: "Nhanh", asset: "Tạo asset", balanced: "Cân bằng", deep: "Sâu" };
-  el.innerHTML = `<span class="dot-pulse"></span><span>Đang trả lời chế độ ${label || labels[responseMode] || "Auto"}...</span>`;
+  el.innerHTML = `
+    <div class="typing-indicator" aria-label="Agent đang nhập">
+      <div class="ai-avatar">M</div>
+      <div class="typing-dots"><span></span><span></span><span></span></div>
+    </div>
+  `;
   chat.appendChild(el);
-  if (wasNearBottom) {
+  if (shouldStickToBottom(scrollIntent)) {
     scrollChatToBottom();
   } else {
+    restoreChatScroll(scrollIntent);
     updateScrollBottomButton();
   }
   return () => el.remove();
@@ -1380,18 +1515,53 @@ function scheduleStreamRender(thread, assistantMessageIndex, assistantRendered, 
   if (streamRenderTimer) return;
   streamRenderTimer = setTimeout(() => {
     streamRenderTimer = null;
+    const scrollIntent = captureChatScroll();
     const clean = stripSourceFooter(getText());
     if (clean === lastStreamRenderedText) return;
     lastStreamRenderedText = clean;
     thread.messages[assistantMessageIndex].content = clean;
-    const wasNearBottom = isChatNearBottom();
     if (assistantRendered?.body) {
-      assistantRendered.body.innerHTML = renderMarkdown(escapeHtml(clean));
+      renderStreamingText(assistantRendered.body, clean);
     }
     persistStreamingDraft(false);
-    if (wasNearBottom) scrollChatToBottom();
+    if (shouldStickToBottom(scrollIntent)) {
+      scrollChatToBottom();
+    } else {
+      restoreChatScroll(scrollIntent);
+    }
     updateScrollBottomButton();
   }, 140);
+}
+
+function renderStreamingText(target, text) {
+  let state = streamingTextStates.get(target);
+  if (!state) {
+    target.innerHTML = "";
+    const paragraph = document.createElement("p");
+    paragraph.className = "streaming-text";
+    target.appendChild(paragraph);
+    state = { full: "", shown: "", paragraph, timer: null };
+    streamingTextStates.set(target, state);
+  }
+  state.full = text;
+  if (state.timer) return;
+  const tick = () => {
+    const scrollIntent = captureChatScroll();
+    if (state.shown.length < state.full.length) {
+      const remaining = state.full.length - state.shown.length;
+      const batch = Math.min(remaining, Math.floor(Math.random() * 3) + 1);
+      state.shown = state.full.slice(0, state.shown.length + batch);
+    }
+    state.paragraph.innerHTML = `${escapeHtml(state.shown).replace(/\n/g, "<br>")}<span class="stream-cursor"></span>`;
+    if (shouldStickToBottom(scrollIntent)) {
+      scrollChatToBottom();
+    } else {
+      restoreChatScroll(scrollIntent);
+    }
+    const delay = Math.max(10, 30 - Math.floor(state.full.length / 50));
+    state.timer = state.shown.length < state.full.length ? setTimeout(tick, delay) : null;
+  };
+  tick();
 }
 
 function flushStreamRender() {
@@ -1452,11 +1622,17 @@ async function sendMessage() {
   responseMode = requestMode;
   applyResponseMode(requestMode);
   const thinkingLabel = effectiveModeLabel(text, attachmentsForRequest);
-  thread.messages.push({ role: "user", content: userContent, createdAt: Date.now() });
+  thread.messages.push({
+    role: "user",
+    content: userContent,
+    createdAt: Date.now(),
+    attachments: attachmentsForRequest.map((item) => ({ ...item, text: "" })),
+  });
   const userMessageIndex = thread.messages.length - 1;
   thread.updatedAt = Date.now();
   saveState();
   renderThreads();
+  releaseChatScrollLock();
   appendMessageToDom("user", userContent, userMessageIndex);
   prompt.value = "";
   pendingAttachments = [];
@@ -1515,7 +1691,16 @@ async function sendMessage() {
     } else {
       const clean = stripSourceFooter(streamedAnswer);
       thread.messages[assistantMessageIndex].content = clean;
-      if (assistantRendered?.body) assistantRendered.body.innerHTML = renderMarkdown(escapeHtml(clean));
+      if (assistantRendered?.body) {
+        const scrollIntent = captureChatScroll();
+        renderMessageBody(assistantRendered.body, clean, assistantMessageIndex);
+        if (shouldStickToBottom(scrollIntent)) {
+          scrollChatToBottom();
+        } else {
+          restoreChatScroll(scrollIntent);
+          updateScrollBottomButton();
+        }
+      }
       persistStreamingDraft(true);
       lastRetryDraft = lastRetryDraft ? { ...lastRetryDraft, allowManualRetry: true, failedAt: null, failureMessage: "" } : null;
       updateRetryButton();
@@ -1603,7 +1788,45 @@ function focusPrompt() {
   }
 }
 
+function captureChatScroll() {
+  return {
+    top: chat.scrollTop,
+    height: chat.scrollHeight,
+    nearBottom: isChatNearBottom(),
+    locked: userScrollLocked,
+  };
+}
+
+function shouldStickToBottom(intent) {
+  return !userScrollLocked && !intent?.locked && intent?.nearBottom;
+}
+
+function restoreChatScroll(intent) {
+  if (!intent) return;
+  setChatScrollTop(intent.top);
+}
+
+function setChatScrollTop(top) {
+  programmaticScrollUntil = Date.now() + 180;
+  chat.scrollTop = Math.max(0, top);
+}
+
+function releaseChatScrollLock() {
+  userScrollLocked = false;
+}
+
+function handleChatScroll() {
+  if (Date.now() < programmaticScrollUntil) {
+    updateScrollBottomButton();
+    return;
+  }
+  userScrollLocked = !isChatNearBottom();
+  updateScrollBottomButton();
+}
+
 function scrollChatToBottom() {
+  releaseChatScrollLock();
+  programmaticScrollUntil = Date.now() + 180;
   chat.scrollTo({ top: chat.scrollHeight, behavior: "auto" });
   updateScrollBottomButton();
 }
@@ -1870,7 +2093,7 @@ statusBtn.addEventListener("click", () => {
   if (!brainStatus) loadStatus();
 });
 threadSearch.addEventListener("input", renderThreads);
-chat.addEventListener("scroll", updateScrollBottomButton);
+chat.addEventListener("scroll", handleChatScroll, { passive: true });
 chat.addEventListener("click", (event) => {
   const button = event.target.closest("button[data-starter-prompt]");
   if (!button) return;

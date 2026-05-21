@@ -4,6 +4,7 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
+from brain import clean_text, read_brain_text
 from config import EXTRACTED_DIR, MAX_TEXT_CHARS, SUPPORTED_EXTENSIONS
 
 
@@ -29,16 +30,20 @@ def scan_plr_folder(root: Path) -> list[Path]:
 
 def read_plr_file(path: Path) -> PLRFile:
     suffix = path.suffix.lower()
-    if suffix == ".pdf":
-        text = _read_pdf(path)
-    elif suffix == ".docx":
-        text = _read_docx(path)
-    elif suffix == ".zip":
-        text = _read_zip(path)
-    elif suffix in {".rar", ".7z"}:
+    if suffix in {".rar", ".7z"}:
         text = _read_external_archive(path)
     else:
-        text = _read_text(path)
+        try:
+            text = clean_text(read_brain_text(path))
+        except Exception:
+            if suffix == ".zip":
+                text = _read_zip(path)
+            elif suffix == ".pdf":
+                text = _read_pdf(path)
+            elif suffix == ".docx":
+                text = _read_docx(path)
+            else:
+                text = _read_text(path)
 
     text = text[:MAX_TEXT_CHARS]
     license_hint = _detect_license(path.name + "\n" + text)

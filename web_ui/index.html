@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="app" data-theme="dark">
-      <aside class="sidebar">
+      <aside class="sidebar" id="sidebar">
         <div class="sidebar-top">
           <div class="brand">
             <div class="logo">M</div>
@@ -32,6 +32,15 @@
         <div class="sidebar-section">
           <div class="section-label">Gần đây</div>
           <div id="threadList" class="thread-list"></div>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="user-profile">
+            <div class="avatar">U</div>
+            <div class="user-info">
+              <div class="user-name">Người dùng</div>
+              <div class="user-plan">PLR Agent</div>
+            </div>
+          </div>
         </div>
       </aside>
 
@@ -81,7 +90,9 @@
 
         <footer class="composer">
           <div class="composer-head">
-            <button id="quickActionsToggle" class="library-toggle" type="button">Thư viện prompt</button>
+            <div class="composer-tools">
+              <button id="quickActionsToggle" class="library-toggle" type="button">Thư viện prompt</button>
+            </div>
             <div class="session-metrics">
               <span id="messageCount">0 tin nhắn</span>
               <span id="activeModeLabel">Nhanh</span>
@@ -194,6 +205,7 @@
       <div id="artifactBody" class="artifact-body"></div>
     </aside>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/utils/renderFileCard.js?v=1.07"></script>
   <script src="/app.js?v=1.07"></script>
   </body>
 </html>

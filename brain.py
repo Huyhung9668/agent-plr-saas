@@ -5,6 +5,8 @@ import hashlib
 import json
 import re
 import sqlite3
+import shutil
+import tempfile
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path
@@ -38,6 +40,15 @@ READABLE_EXTENSIONS = {
     ".url",
     ".rtf",
     ".pptx",
+    ".zip",
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".webp",
+    ".gif",
+    ".bmp",
+    ".tif",
+    ".tiff",
     ".map",
 }
 
@@ -59,6 +70,17 @@ NOISE_NAME_PARTS = {
 DEFAULT_CHUNK_CHARS = 3500
 DEFAULT_CHUNK_OVERLAP = 350
 DEFAULT_MAX_DOC_CHARS = 250_000
+READ_TEXT_MAX_BYTES = 64 * 1024 * 1024
+PDF_OCR_MIN_TEXT_CHARS = 80
+PDF_OCR_MAX_PAGES = 80
+PDF_OCR_RENDER_SCALE = 2
+ZIP_MAX_MEMBERS = 1000
+ZIP_MAX_MEMBER_BYTES = 512 * 1024 * 1024
+ZIP_MAX_TOTAL_BYTES = 2 * 1024 * 1024 * 1024
+ZIP_MAX_TEXT_CHARS = 500_000
+ZIP_MAX_DEPTH = 1
+ZIP_TEXT_EXTENSIONS = {".txt", ".md", ".csv", ".json", ".html", ".htm", ".xml", ".rtf", ".svg", ".ini", ".url", ".js", ".css", ".scss", ".less", ".php", ".map"}
+IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".tif", ".tiff"}
 
 
 @dataclass
@@ -73,6 +95,7 @@ class BrainStats:
 
 def init_brain_database(db_path: Path = BRAIN_DB_PATH) -> Path:
     DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+    db_path.parent.mkdir(parents=True, exist_ok=True)
     with sqlite3.connect(db_path) as conn:
         conn.execute("PRAGMA journal_mode=WAL")
         conn.execute(
@@ -339,6 +362,10 @@ def read_brain_text(path: Path) -> str:
         return _read_rtf(path)
     if suffix == ".json":
         return _read_json(path)
+    if suffix == ".zip":
+        return _read_zip(path)
+    if suffix in IMAGE_EXTENSIONS:
+        return _read_image_text(path)
     return _read_text(path)
 
 
@@ -390,7 +417,12 @@ def _default_brain_roots() -> list[Path]:
 def _read_text(path: Path) -> str:
     for encoding in ("utf-8", "utf-16", "latin-1"):
         try:
-            return path.read_text(encoding=encoding, errors="ignore")
+            with path.open("rb") as file:
+                raw = file.read(READ_TEXT_MAX_BYTES)
+            text = raw.decode(encoding, errors="ignore")
+            if path.stat().st_size > READ_TEXT_MAX_BYTES:
+                text += f"\n\n[Stopped after first {READ_TEXT_MAX_BYTES // 1024 // 1024}MB of this text file.]"
+            return text
         except UnicodeError:
             continue
     return ""
@@ -402,8 +434,57 @@ def _read_pdf(path: Path) -> str:
     chunks = []
     with fitz.open(path) as doc:
         for page in doc:
-            chunks.append(page.get_text())
-    return "\n".join(chunks)
+            chunks.append(page.get_text("text"))
+        text = clean_text("\n".join(chunks))
+        if len(text) >= PDF_OCR_MIN_TEXT_CHARS:
+            return text
+        ocr_text = _read_pdf_with_ocr(doc)
+    if ocr_text:
+        prefix = "OCR fallback: PDF has little/no embedded text, so text was extracted from rendered pages."
+        return f"{prefix}\n\n{ocr_text}"
+    return text
+
+def _read_pdf_with_ocr(doc) -> str:
+    import fitz
+
+    lines = []
+    with tempfile.TemporaryDirectory(prefix="agent_pdf_ocr_") as temp_dir:
+        temp_root = Path(temp_dir)
+        for page_number, page in enumerate(doc, start=1):
+            if page_number > PDF_OCR_MAX_PAGES:
+                lines.append(f"[OCR stopped after first {PDF_OCR_MAX_PAGES} pages.]")
+                break
+            pixmap = page.get_pixmap(matrix=fitz.Matrix(PDF_OCR_RENDER_SCALE, PDF_OCR_RENDER_SCALE), alpha=False)
+            image_path = temp_root / f"page-{page_number:04d}.png"
+            pixmap.save(str(image_path))
+            page_text = _read_image_text(image_path)
+            if page_text:
+                lines.append(f"--- Page {page_number} OCR ---\n{page_text}")
+    return clean_text("\n\n".join(lines))
+
+def _read_image_text(path: Path) -> str:
+    try:
+        from rapidocr_onnxruntime import RapidOCR
+
+        result, _ = RapidOCR()(str(path))
+        lines = []
+        if result:
+            for item in result:
+                if len(item) >= 2 and item[1]:
+                    lines.append(str(item[1]).strip())
+        text = "\n".join(line for line in lines if line)
+        if text:
+            return clean_text(text)
+    except Exception:
+        pass
+
+    try:
+        from PIL import Image
+        import pytesseract
+
+        return clean_text(pytesseract.image_to_string(Image.open(path)))
+    except Exception:
+        return ""
 
 
 def _read_docx(path: Path) -> str:
@@ -463,6 +544,77 @@ def _read_json(path: Path) -> str:
         return json.dumps(json.loads(text), ensure_ascii=False, indent=2)
     except json.JSONDecodeError:
         return text
+
+def _read_zip(path: Path, *, depth: int = 0) -> str:
+    lines = [f"ZIP archive: {path.name}", "Files inside:"]
+    readable_count = 0
+    extracted_bytes = 0
+    text_chars = 0
+    with zipfile.ZipFile(path) as archive:
+        members = [member for member in archive.infolist() if not member.is_dir()]
+        if len(members) > ZIP_MAX_MEMBERS:
+            lines.append(f"[Only first {ZIP_MAX_MEMBERS} files are inspected from {len(members)} files.]")
+        with tempfile.TemporaryDirectory(prefix="agent_zip_extract_") as temp_dir:
+            temp_root = Path(temp_dir)
+            for member in members[:ZIP_MAX_MEMBERS]:
+                if text_chars >= ZIP_MAX_TEXT_CHARS:
+                    lines.append(f"[Stopped ZIP text extraction after {ZIP_MAX_TEXT_CHARS} characters.]")
+                    break
+                if member.is_dir():
+                    continue
+                member_name = member.filename
+                if not _safe_zip_member_name(member_name):
+                    lines.append(f"- {member_name}\n  [Skipped: unsafe path inside ZIP.]")
+                    continue
+                suffix = Path(member_name).suffix.lower()
+                lines.append(f"- {member_name}")
+                if suffix not in READABLE_EXTENSIONS:
+                    continue
+                if member.file_size > ZIP_MAX_MEMBER_BYTES:
+                    lines.append("  [Skipped: file inside ZIP is too large for inline extraction.]")
+                    continue
+                if extracted_bytes + member.file_size > ZIP_MAX_TOTAL_BYTES:
+                    lines.append("  [Skipped: ZIP extraction byte budget reached.]")
+                    continue
+                if suffix == ".zip" and depth >= ZIP_MAX_DEPTH:
+                    lines.append("  [Skipped: nested ZIP depth limit reached.]")
+                    continue
+                try:
+                    extracted_path = _extract_zip_member(archive, member, temp_root)
+                except (OSError, RuntimeError, zipfile.BadZipFile, KeyError):
+                    lines.append("  [Skipped: could not extract this file.]")
+                    continue
+                extracted_bytes += member.file_size
+                try:
+                    if suffix == ".zip":
+                        text = _read_zip(extracted_path, depth=depth + 1)
+                    else:
+                        text = read_brain_text(extracted_path)
+                except Exception as error:
+                    lines.append(f"  [Skipped: could not read text: {error}]")
+                    continue
+                text = clean_text(text)
+                if text:
+                    readable_count += 1
+                    remaining = max(0, ZIP_MAX_TEXT_CHARS - text_chars)
+                    snippet = text[: min(12_000, remaining)]
+                    text_chars += len(snippet)
+                    lines.append(f"\n--- Extracted text: {member_name} ---\n{snippet}\n")
+    if readable_count == 0:
+        lines.append("No readable text found in this ZIP. Supported inside ZIP: PDF, DOCX, XLSX, PPTX, images with OCR, and text-like files.")
+    return "\n".join(lines)
+
+def _safe_zip_member_name(name: str) -> bool:
+    path = Path(name)
+    return not path.is_absolute() and ".." not in path.parts
+
+def _extract_zip_member(archive: zipfile.ZipFile, member: zipfile.ZipInfo, temp_root: Path) -> Path:
+    target = temp_root / Path(member.filename).name
+    if not target.suffix:
+        target = target.with_suffix(".txt")
+    with archive.open(member) as source, target.open("wb") as output:
+        shutil.copyfileobj(source, output, length=1024 * 1024)
+    return target
 
 
 def _read_xlsx(path: Path) -> str:

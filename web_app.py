@@ -39,6 +39,7 @@ UPLOADS_DIR = ROOT_DIR / "uploads" / "web_chat"
 CHAT_HISTORY_DIR = ROOT_DIR / "chat_history"
 THREADS_FILE = CHAT_HISTORY_DIR / "threads.json"
 GENERATED_FILES_DIR = ROOT_DIR / "exports" / "web_generated_files"
+PROMPTS_DIR = ROOT_DIR / "prompts"
 MAX_UPLOAD_BYTES = int(os.getenv("PLR_AGENT_MAX_UPLOAD_BYTES", str(512 * 1024 * 1024)))
 MAX_UPLOAD_FILES_PER_BATCH = int(os.getenv("PLR_AGENT_MAX_UPLOAD_FILES_PER_BATCH", "10"))
 MAX_UPLOAD_BATCH_BYTES = int(os.getenv("PLR_AGENT_MAX_UPLOAD_BATCH_BYTES", str(MAX_UPLOAD_BYTES * MAX_UPLOAD_FILES_PER_BATCH)))
@@ -123,6 +124,8 @@ def _make_handler():
                 return self._serve_file(STYLE_FILE, "text/css; charset=utf-8")
             if parsed.path == "/app.js":
                 return self._serve_file(SCRIPT_FILE, "application/javascript; charset=utf-8")
+            if parsed.path == "/utils/renderFileCard.js":
+                return self._serve_file(WEB_DIR / "utils" / "renderFileCard.js", "application/javascript; charset=utf-8")
             if parsed.path == "/favicon.ico":
                 self.send_response(HTTPStatus.NO_CONTENT)
                 self.end_headers()
@@ -157,6 +160,10 @@ def _make_handler():
                 return self._send_json({"ok": True, **_upload_limits_payload()})
             if parsed.path == "/api/upload_file":
                 return self._handle_upload_file(parsed.query)
+            if parsed.path == "/api/generated_file":
+                return self._handle_generated_file(parsed.query)
+            if parsed.path == "/api/prompt_file":
+                return self._handle_prompt_file(parsed.query)
             if parsed.path == "/api/sources":
                 query = _query_param(parsed.query, "q")
                 if not query:
@@ -482,6 +489,57 @@ def _make_handler():
                     if not chunk:
                         break
                     self.wfile.write(chunk)
+
+        def _handle_prompt_file(self, query: str) -> None:
+            params = parse_qs(query)
+            raw_name = unquote((params.get("name") or [""])[0]).strip()
+            if not raw_name:
+                self.send_error(HTTPStatus.BAD_REQUEST, "Missing prompt file name")
+                return
+            try:
+                target = (PROMPTS_DIR / raw_name).resolve()
+                target.relative_to(PROMPTS_DIR.resolve())
+            except (OSError, ValueError):
+                self.send_error(HTTPStatus.FORBIDDEN)
+                return
+            if not target.is_file():
+                self.send_error(HTTPStatus.NOT_FOUND)
+                return
+
+            content_type = mimetypes.guess_type(target.name)[0] or "text/markdown"
+            data = target.read_bytes()
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", f"{content_type}; charset=utf-8")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Content-Disposition", f'attachment; filename="{_safe_filename(target.name)}"')
+            self.end_headers()
+            self.wfile.write(data)
+
+        def _handle_generated_file(self, query: str) -> None:
+            params = parse_qs(query)
+            raw_name = unquote((params.get("name") or [""])[0]).strip()
+            disposition = "inline" if (params.get("view") or [""])[0] == "1" else "attachment"
+            if not raw_name:
+                self.send_error(HTTPStatus.BAD_REQUEST, "Missing generated file name")
+                return
+            try:
+                target = (GENERATED_FILES_DIR / raw_name).resolve()
+                target.relative_to(GENERATED_FILES_DIR.resolve())
+            except (OSError, ValueError):
+                self.send_error(HTTPStatus.FORBIDDEN)
+                return
+            if not target.is_file():
+                self.send_error(HTTPStatus.NOT_FOUND)
+                return
+
+            content_type = mimetypes.guess_type(target.name)[0] or "application/octet-stream"
+            data = target.read_bytes()
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", content_type)
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Content-Disposition", f'{disposition}; filename="{_safe_filename(target.name)}"')
+            self.end_headers()
+            self.wfile.write(data)
 
         def _handle_cancel(self) -> None:
             try:
@@ -1769,6 +1827,7 @@ def _create_export_file(content: str, requested_format: str, title: str) -> dict
         "format": file_format,
         "mime": mime,
         "path": str(target),
+        "url": f"/api/generated_file?name={quote(target.name)}",
         "dataBase64": base64.b64encode(data).decode("ascii"),
     }
 
