@@ -8,6 +8,7 @@ from pathlib import Path
 from agent_profiles import AgentProfile, get_agent_profiles
 from brain import brain_summary, search_brain
 from case_study_brain import format_case_study_context
+from niche_brain import format_niche_context
 from llm_client import chat_with_llm, has_api_key, stream_chat_with_llm
 
 MAX_EXCERPT_CHARS = 1400
@@ -340,6 +341,85 @@ Output:
 ## What Not To Copy
 ## Next Build Action
 """,
+    "ai_print_deep": """
+Module Contract: AI Printables Deep Agent.
+Use the AI Printables niche brain from Udemy transcripts as searchable memory/RAG.
+Niche focus: AI-assisted PLR products, KDP covers, coloring books, journals, posters, social media assets, Etsy/Canva printable bundles, kids worksheets, puzzle books, and rebrandable AI product systems.
+Output:
+# AI PRINTABLES AGENT
+## Verdict
+NEN LAM / CHUA NEN LAM / BO QUA.
+## Niche Pattern Used
+## Best Micro-Offer
+## Buyer
+## Productized Pack
+## AI Workflow
+## File / ZIP Structure
+## FE / Bump / OTO
+## Sales Angle
+## License / Risk
+## 7-Day Build Plan
+## Next Action
+""",
+    "ai_print_build": """
+Module Contract: AI Printables Product Builder.
+This is an action module, not a strategy essay. It must create real files and export a ZIP for the chosen AI Printables offer.
+Required output:
+# AI PRINTABLES BUILDER PACK CREATED
+## Product
+## Folder
+## ZIP Path
+## Created Files
+Must include product assets, sales page, funnel, WarriorPlus listing, JV pack, delivery page, onboarding emails, buyer test, prompt output test, refund risk audit, AI replace risk audit, project memory/versioning, export log, and ZIP proof.
+Quality gate rule:
+- Created Files can PASS only when files exist on disk.
+- Export ZIP can PASS only when a real ZIP path exists.
+- Public Launch Gate must FAIL until placeholders, payment/delivery test, review access, and real buyer/JV feedback are cleared.
+""",
+    "ai_print_evidence": """
+Module Contract: AI Printables Evidence Mode.
+Use the AI Printables brain as searchable RAG memory. Output DATA USED: query, chunks used, top documents, patterns found, confidence, and evidence rule. Do not invent sales, vendors, prices, or proof.
+""",
+    "ai_print_market": """
+Module Contract: AI Printables Market Pattern Extractor.
+Extract source-backed market patterns: top niches, common price range, deliverables, funnel structure, buyer pains, repeated weaknesses, and opportunity gap. If evidence is missing, say UNKNOWN.
+""",
+    "ai_print_competitor": """
+Module Contract: AI Printables Competitor Matrix.
+Build a matrix from retrieved documents/chunks: Vendor, Product, Niche, Price, Sales, Angle, Deliverables, Strength, Weakness, Improvement opportunity. Do not fabricate numbers.
+""",
+    "ai_print_gap": """
+Module Contract: AI Printables Offer Gap Detector.
+Compare the intended offer against market patterns. Output what is too common, what is missing, recommended positioning, must-include files, and hard quality-gate rules.
+""",
+    "product_blueprint": """
+Module Contract: Product Blueprint Generator.
+Create a detailed product blueprint with buyer, pain, safe promise, mechanism, FE/Bump/OTO, license, refund risk, AI replace risk, folder structure, file-by-file purpose, required sections, and quality target per file.
+""",
+    "deep_file_writer": """
+Module Contract: Deep File Writer.
+Create real files with complete contents. Do not only describe filenames. Core product files must include purpose, instructions, examples, checklists, and quality gates. If files/ZIP are missing, do not mark launch ready.
+""",
+    "prompt_output_test": """
+Module Contract: Prompt Output Test Engine.
+Test 3-5 prompts and report expected output, actual output summary, usability, generic risk, errors, improved prompt, and score.
+""",
+    "ai_replace_risk": """
+Module Contract: AI Replace Risk Auditor.
+Find where buyers may say ChatGPT can do this. Require workflow, examples, checklists, fix prompts, sales material, license clarity, and sample filled pack if risk is high.
+""",
+    "license_compliance_check": """
+Module Contract: License Compliance Engine.
+Check copyright, trademark, AI image rights, Canva/font rights, PLR/MRR rights, commercial use, income claims, fake scarcity, medical/therapy claims, and children safety claims.
+""",
+    "warriorplus_launch_builder": """
+Module Contract: WarriorPlus Launch Builder.
+Create WarriorPlus listing, funnel, JV pack, delivery page, support note, affiliate rules, and promo assets as real files where possible.
+""",
+    "export_pack": """
+Module Contract: Export Proof System.
+Create real ZIP plus ZIP_PATH.txt, EXPORT_LOG.md, FILE_MANIFEST.md, and placeholder/public launch gate evidence. ZIP does not equal public launch readiness.
+""",
     "train_case_study_brain": """
 Module Contract: Train Case Study Brain.
 Explain that training here means indexing old files into searchable memory/RAG.
@@ -452,6 +532,122 @@ Use Active Project Memory. If core assets are missing, list missing assets first
 Module Contract: RAG Citation / Evidence Mode.
 Output the practical answer plus a compact Knowledge Used section listing the most relevant internal brain titles/source names. Do not dump long excerpts.
 """,
+    "market_pattern_extract": """
+Module Contract: Market Pattern Extractor.
+Use RAG brain to extract market patterns from local data. Do not answer like generic ChatGPT.
+
+Output:
+# MARKET PATTERN REPORT
+## DATA USED
+- Query used:
+- Number of retrieved chunks:
+- Top relevant documents:
+- Patterns found:
+- Evidence confidence: Low / Medium / Medium-High / High
+- What is inferred:
+- What is not proven:
+## Top Niches Found
+## Product Naming Patterns
+## Common FE Price Range
+## Common Deliverables
+## Common Funnel Structure
+## Common Buyer Pains
+## Common Sales Angles
+## Common Weaknesses
+## Opportunity Gaps
+## Recommended Product Direction
+""",
+    "competitor_matrix": """
+Module Contract: Competitor Matrix Builder.
+Build a competitor/source matrix from brain data. Do not fabricate missing fields; write UNKNOWN or Brain data missing.
+
+Output:
+# COMPETITOR MATRIX
+## DATA USED
+- Brain sources:
+- Chunks retrieved:
+- Confidence:
+## Competitor Table
+Vendor | Product | Niche | FE Price | Positioning | Deliverables | Strength | Weakness | AI Replace Risk | Opportunity | How We Beat It
+## Pattern Summary
+## Our Positioning Recommendation
+""",
+    "offer_gap_v2": """
+Module Contract: Offer Gap Detector v2.
+Compare the intended offer with real market patterns.
+
+Output:
+# OFFER GAP ANALYSIS
+## Market Already Has
+## Oversaturated Angles
+## Where Buyers Are Still Stuck
+## What New Product Must Be Different At
+## Should We Build This?
+NEN LAM / CHUA NEN LAM / BO QUA
+## Strongest Angle If We Build
+## Anti-Saturation Rewrite
+""",
+    "ai_replace_risk_v2": """
+Module Contract: AI Replace Risk Auditor v2.
+Find where buyers may think "ChatGPT can do this." If risk is High, require a concrete fix plan and do not mark PASS.
+
+Output:
+# AI REPLACE RISK AUDIT
+## Overall Risk Level
+## High-Risk Sections
+## Why Buyer May Skip Buying
+## What Must Be Added To Justify Purchase
+## Files To Rewrite
+## After Fix - Estimated Risk Level
+## Rewrite Required
+""",
+    "public_launch_audit": """
+Module Contract: Public Launch Gate Audit.
+Check true launch readiness. Never PASS files that do not exist.
+
+Hard rules:
+- Missing real file = MISSING.
+- Critical placeholders = FAIL.
+- Buyer Test under 8/10 = FAIL.
+- AI Replace Risk High = FAIL.
+- Refund Risk High = FAIL.
+- Missing ZIP = FAIL.
+
+Output:
+# PUBLIC LAUNCH GATE AUDIT
+## Asset Checklist
+## Test Results
+## Placeholder Scan
+## PUBLIC LAUNCH GATE: PASS / FAIL
+## If FAIL - Fix List In Order
+""",
+    "final_scorecard": """
+Module Contract: Final Scorecard Generator.
+Summarize session/product readiness with hard gates.
+
+Output:
+# FINAL SCORECARD
+| Category | Score | Status |
+|---|---|---|
+| Evidence Used | /10 | |
+| Market Pattern Depth | /10 | |
+| Competitor Analysis | /10 | |
+| Offer Clarity | /10 | |
+| Product Depth | /10 | |
+| Created Files | /10 | |
+| Buyer Test | /10 | |
+| Prompt Output Test | /10 | |
+| AI Replace Risk | Low/Medium/High | |
+| Refund Risk | Low/Medium/High | |
+| Compliance | /10 | |
+| Sales Readiness | /10 | |
+| Export ZIP | PASS/PARTIAL/FAIL | |
+| Public Launch Gate | PASS/FAIL | |
+## Rules Applied
+## FINAL DECISION
+Research Only / Build Ready / Soft Launch Only / Public Launch Ready
+## Next 3 Actions
+""",
 }
 
 MODE_SETTINGS = {
@@ -563,7 +759,7 @@ def answer_master_question(
         return _finalize_answer(answer, response_mode=response_mode, question=question)
     except Exception as error:
         fallback = _fallback_answer(question, hits)
-        return f"API model đang tạm lỗi: {error}\n\n{fallback}"
+        return fallback
 
 
 def stream_master_answer(
@@ -609,7 +805,7 @@ def stream_master_answer(
             yield footer
     except Exception as error:
         fallback = _fallback_answer(question, hits)
-        yield f"API model đang tạm lỗi: {error}\n\n{fallback}"
+        yield fallback
 
 def search_all_role_brains(question: str, *, limit_per_brain: int = 5, response_mode: str = "fast") -> list[BrainHit]:
     plan = _build_retrieval_plan(question, response_mode)
@@ -646,14 +842,20 @@ def search_all_role_brains(question: str, *, limit_per_brain: int = 5, response_
 
 def _allowed_profile_keys(plan: RetrievalPlan) -> set[str]:
     if plan.task_type == "sales_page":
-        return {"sale_page", "build_product", "case_study"}
+        return {"sale_page", "build_product", "case_study", "ai_printables"}
     if plan.task_type == "launch_funnel":
-        return {"jv_manager", "sale_page", "build_product", "case_study"}
+        return {"jv_manager", "sale_page", "build_product", "case_study", "ai_printables"}
     if plan.task_type == "traffic_growth":
-        return {"jv_manager", "build_product", "case_study"}
+        return {"jv_manager", "build_product", "case_study", "ai_printables"}
     if plan.task_type == "product_build":
-        return {"build_product", "sale_page", "jv_manager", "case_study"}
-    return {"build_product", "sale_page", "jv_manager", "case_study"}
+        return {"build_product", "sale_page", "jv_manager", "case_study", "ai_printables"}
+    if plan.task_type == "ai_printables":
+        return {"ai_printables", "build_product", "sale_page", "jv_manager", "case_study"}
+    if plan.task_type == "market_research":
+        return {"ai_printables", "case_study", "build_product", "sale_page", "jv_manager"}
+    if plan.task_type == "quality_audit":
+        return {"build_product", "sale_page", "ai_printables", "case_study", "jv_manager"}
+    return {"build_product", "sale_page", "jv_manager", "case_study", "ai_printables"}
 
 def _is_noise_hit(item: dict) -> bool:
     text = " ".join(str(item.get("text", "")).split())
@@ -723,12 +925,61 @@ def _actionability_score(text: str) -> float:
 def _build_retrieval_plan(question: str, response_mode: str = "fast") -> RetrievalPlan:
     folded = _fold_for_match(question)
     task_type = "general"
-    profile_boost = {"build_product": 0, "jv_manager": 0, "sale_page": 0, "case_study": 0}
+    profile_boost = {"build_product": 0, "jv_manager": 0, "sale_page": 0, "case_study": 0, "ai_printables": 0}
     subagent_boost: dict[str, tuple[str, ...]] = {}
     notes = ["Use local brain chunks as searchable memory, not model-weight training."]
     expansions: list[str] = []
 
-    if _contains_any(folded, ("sales page", "sale page", "trang ban", "landing page", "headline", "copy", "cta")):
+    if _contains_any(folded, (
+        "market pattern", "competitor matrix", "market_pattern_extract",
+        "competitor_matrix", "offer gap v2", "offer_gap_v2",
+        "pattern market", "rac market", "market gap", "so sanh doi thu",
+        "doi thu canh tranh", "competitor", "niche pattern",
+    )):
+        task_type = "market_research"
+        profile_boost.update({
+            "ai_printables": 5, "case_study": 5,
+            "build_product": 3, "sale_page": 2, "jv_manager": 1,
+        })
+        subagent_boost["ai_printables"] = ("Niche Miner", "Product System Builder")
+        subagent_boost["case_study"] = ("Product Researcher",)
+        expansions.extend([
+            "market pattern niche competitor price sales angle deliverables weakness gap",
+            "AI PLR KDP printable WarriorPlus product naming price range FE OTO",
+            "buyer pain common weakness opportunity saturation market trend",
+            "top selling product builder studio system factory codex pack naming",
+        ])
+        notes.append("Prioritize AI Printables + Case Study Brain for market patterns. Extract real data, do not infer from general knowledge.")
+    elif _contains_any(folded, (
+        "buyer test", "ai replace risk", "ai_replace_risk", "buyer_test",
+        "prompt output test", "prompt_output_test", "refund risk audit",
+        "deep file writer", "deep_file_writer", "public launch audit",
+        "launch gate", "final scorecard", "final_scorecard",
+    )):
+        task_type = "quality_audit"
+        profile_boost.update({
+            "build_product": 4, "sale_page": 3,
+            "ai_printables": 2, "case_study": 2, "jv_manager": 1,
+        })
+        subagent_boost["build_product"] = ("Asset Packager", "License/Risk Checker")
+        expansions.extend([
+            "product quality audit buyer test refund risk AI replace risk",
+            "launch readiness checklist file completeness placeholder check",
+            "buyer experience first impression stuck point generic content fix",
+        ])
+        notes.append("Prioritize Build Product brain for quality audit. Be strict - do not self-PASS incomplete work.")
+    elif _contains_any(folded, ("ai printables", "ai printable", "ai_print", "etsy printable", "kdp cover", "kdp covers", "coloring book", "coloring page", "journal interior", "kids worksheet", "puzzle book", "canva printable", "poster", "social media assets", "pet portrait")):
+        task_type = "ai_printables"
+        profile_boost.update({"ai_printables": 5, "build_product": 3, "sale_page": 2, "jv_manager": 1, "case_study": 2})
+        subagent_boost["ai_printables"] = ("Niche Miner", "Product System Builder", "Asset Prompt Builder", "Launch Packager")
+        expansions.extend([
+            "AI-assisted PLR products KDP covers coloring book journal poster social media assets Etsy printable Canva",
+            "AI Etsy Printable Bundle Builder AI Kids Worksheet Factory AI KDP Puzzle Book Launch Kit",
+            "AI Coloring Page Niche Pack AI Journal Interior System AI Canva Printable Product Kit",
+            "rebrandable product pack prompt workflow license FE bump OTO WarriorPlus Gumroad Etsy",
+        ])
+        notes.append("Prioritize AI Printables niche brain from Udemy transcripts; use it as RAG memory and productize into sellable packs.")
+    elif _contains_any(folded, ("sales page", "sale page", "trang ban", "landing page", "headline", "copy", "cta")):
         task_type = "sales_page"
         profile_boost.update({"sale_page": 3, "build_product": 1, "jv_manager": 1, "case_study": 2})
         subagent_boost["sale_page"] = ("Hook Miner", "Copywriter", "Compliance Editor", "Conversion Editor")
@@ -758,6 +1009,7 @@ def _build_retrieval_plan(question: str, response_mode: str = "fast") -> Retriev
         expansions.append("template checklist framework mistakes quality check")
     if _contains_any(folded, ("case study", "du lieu cu", "file cu", "training", "train", "kdp", "kids", "printable", "prompt template")):
         profile_boost["case_study"] = max(profile_boost.get("case_study", 0), 4)
+        profile_boost["ai_printables"] = max(profile_boost.get("ai_printables", 0), 3)
         expansions.extend([
             "case study product pattern sales page funnel jv email swipe",
             "kdp printable kids worksheet canva plr prompt template pack",
@@ -933,17 +1185,19 @@ Output quality must stay premium: detailed, structured, step-by-step, practical,
 {BRAIN_DIFFERENTIATION_ENGINE if _uses_product_creation_os(plan, question) else ""}
 {MASTER_AGENT_OUTPUT_DISCIPLINE if _uses_product_creation_os(plan, question) or settings.get("name") in {"Asset", "Sau"} else ""}
 {output_contract}
-Use the four trained local/searchable brains as your main evidence:
+Use the five trained local/searchable brains as your main evidence:
 - Build Product Agent: product creation, offer, product packs, licensing risk.
 - JV Manager Agent: WarriorPlus launch, affiliate, JV, email swipe, launch ops.
 - Sale Page Agent: direct response copy, sales page, hook, objection handling, compliance.
 - Case Study Brain Agent: old files from G:\\file_backup used as searchable case studies for product patterns, sales pages, funnels, JV packs, KDP/kids printables, and prompt/template packs.
+- AI Printables Agent: Udemy transcript brain for AI-assisted PLR products, KDP covers, coloring books, journals, posters, social media assets, Etsy/Canva printable bundles, and rebrandable AI product systems.
 
 Each main brain also contains child-agent training folders:
 - Build Product child agents: product research, offer architecture, asset packaging, license/risk, digital curriculum, SaaS/tool packaging.
 - JV Manager child agents: affiliate research, JV page, swipe/email, launch ops, traffic channel planning, email/list growth.
 - Sale Page child agents: hook mining, copywriting, compliance editing, conversion editing.
 - Case Study child agents: product research, sales page patterns, email swipes, WarriorPlus/JV, funnel/OTO, KDP/kids printables.
+- AI Printables child agents: niche mining, product system building, asset prompt building, launch packaging.
 
 Current retrieval plan:
 {_retrieval_plan_summary(plan)}
@@ -972,7 +1226,10 @@ Rules:
 18. For full product strategy requests, include these modules when relevant: market/competitor patterns, buyer avatar, objections, proof substitutes, license/risk, product depth score, specific asset files, WarriorPlus listing, JV pack, free traffic content, email list builder, SaaS upgrade, and final NEN LAM / CHUA NEN LAM / BO QUA decision.
 19. Always make the answer different from ordinary AI by adding local-brain strategy: what to build, what to skip, how to package, how to launch, what risk to remove, and what file assets to create.
 20. Include the buyer-facing answer to "AI can do this, why buy?" whenever the product contains prompts, templates, swipes, headlines, captions, ebook text, or AI-generated content.
-15. For any generated asset, include a compact final section named "Tự kiểm chất lượng" with 5-7 checklist lines. Do not include hidden reasoning or source dumps.
+21. When answering market_pattern_extract, competitor_matrix, offer_gap_v2, buyer_test, or ai_replace_risk_v2, start with a DATA USED block: query used, number of retrieved chunks, top relevant documents, patterns found, confidence level, what is inferred, and what is not proven. If this block is missing, the output is invalid.
+22. After any full product build session, or when the user asks "da xong chua", "san sang launch chua", "tong ket", or similar, end with a final_scorecard-style Final Decision.
+23. Workflow Orchestrator: if the user asks about niche/market, combine market_pattern_extract + competitor_matrix + offer_gap_v2 thinking. If the user asks to create a product, use product_blueprint then deep_file_writer. If the user asks whether it can sell or is ready, use buyer_test + refund_risk + public_launch_audit. If the user asks export, use export_zip + placeholder check + public_launch_audit.
+24. For any generated asset, include a compact final section named "Tự kiểm chất lượng" with 5-7 checklist lines. Do not include hidden reasoning or source dumps.
 
 User question:
 {question}
@@ -1028,6 +1285,16 @@ def _requested_module_key(question: str) -> str:
     if explicit:
         return explicit.group(1).strip().replace("-", "_").replace(" ", "_")
     mapping = (
+        ("market_pattern_extract", "market_pattern_extract"),
+        ("/market_pattern_extract", "market_pattern_extract"),
+        ("competitor_matrix", "competitor_matrix"),
+        ("/competitor_matrix", "competitor_matrix"),
+        ("offer_gap_v2", "offer_gap_v2"),
+        ("/offer_gap_v2", "offer_gap_v2"),
+        ("ai_replace_risk", "ai_replace_risk_v2"),
+        ("/ai_replace_risk", "ai_replace_risk_v2"),
+        ("final_scorecard", "final_scorecard"),
+        ("/final_scorecard", "final_scorecard"),
         ("analyze plr file", "analyze_plr"),
         ("analyze plr folder", "analyze_plr"),
         ("analyze plr", "analyze_plr"),
@@ -1093,6 +1360,27 @@ def _requested_module_key(question: str) -> str:
         ("before/after", "before_after"),
         ("offer gap detector", "offer_gap"),
         ("offer gap", "offer_gap"),
+        ("market pattern", "market_pattern_extract"),
+        ("market_pattern_extract", "market_pattern_extract"),
+        ("/market_pattern_extract", "market_pattern_extract"),
+        ("competitor matrix", "competitor_matrix"),
+        ("/competitor_matrix", "competitor_matrix"),
+        ("offer gap v2", "offer_gap_v2"),
+        ("/offer_gap_v2", "offer_gap_v2"),
+        ("deep file writer", "deep_file_writer"),
+        ("/deep_file_writer", "deep_file_writer"),
+        ("prompt output test", "prompt_output_test"),
+        ("/prompt_output_test", "prompt_output_test"),
+        ("buyer test", "buyer_test"),
+        ("/buyer_test", "buyer_test"),
+        ("ai replace risk", "ai_replace_risk_v2"),
+        ("/ai_replace_risk", "ai_replace_risk_v2"),
+        ("public launch audit", "public_launch_audit"),
+        ("/public_launch_audit", "public_launch_audit"),
+        ("final scorecard", "final_scorecard"),
+        ("/final_scorecard", "final_scorecard"),
+        ("launch gate", "public_launch_audit"),
+        ("launch audit", "public_launch_audit"),
         ("pricing commission calculator", "pricing_commission"),
         ("pricing", "pricing_commission"),
         ("commission calculator", "pricing_commission"),
@@ -1125,6 +1413,14 @@ def _requested_module_key(question: str) -> str:
         ("case study patterns", "case_study_patterns"),
         ("extract patterns", "case_study_patterns"),
         ("pattern extractor", "case_study_patterns"),
+        ("ai printables deep agent", "ai_print_deep"),
+        ("ai printables agent", "ai_print_deep"),
+        ("ai print deep", "ai_print_deep"),
+        ("ai printable", "ai_print_deep"),
+        ("etsy printable", "ai_print_deep"),
+        ("kdp cover", "ai_print_deep"),
+        ("coloring book", "ai_print_deep"),
+        ("journal interior", "ai_print_deep"),
         ("training agent", "case_study_search"),
         ("train case study", "train_case_study_brain"),
         ("full case study train", "train_full_case_study_brain"),

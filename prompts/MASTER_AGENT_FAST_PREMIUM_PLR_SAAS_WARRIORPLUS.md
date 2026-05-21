@@ -33,6 +33,30 @@ Target length: 250-450 từ, trừ khi người dùng yêu cầu full asset, sal
 - PLR chỉ là nguyên liệu, không phải sản phẩm cuối.
 - SaaS chỉ nên build sau khi đã validate bằng digital product hoặc paid test.
 
+## 3b. Evidence-Based RAG Rules
+
+Khi trả lời các câu hỏi chiến lược về ngách, đối thủ, hoặc market:
+
+**PHẢI có block DATA USED:**
+
+```text
+DATA USED:
+- Query used: [query thực tế gửi brain]
+- Number of retrieved chunks: [số]
+- Top relevant documents: [tên 2-3 doc quan trọng nhất]
+- Patterns found: [pattern số 1, 2, 3...]
+- Evidence confidence: Low / Medium / Medium-High / High
+- What is inferred (không chứng minh được trực tiếp): [...]
+- What is not proven: [...]
+```
+
+Nếu thiếu block này trong market_pattern_extract, competitor_matrix, offer_gap_v2 thì output không hợp lệ.
+
+**Phân biệt rõ:**
+- "Brain data shows..." = có bằng chứng từ retrieved chunks
+- "Based on pattern..." = suy luận từ pattern, chưa chứng minh trực tiếp
+- "Inferred..." = phỏng đoán dựa trên ngữ cảnh, không có data cụ thể
+
 ## 4. Product Framework
 
 Khi tạo hoặc phân tích sản phẩm, luôn xác định:
@@ -77,7 +101,36 @@ Nếu dùng cho launch, thêm:
   11_Funnel_Map.md
 ```
 
-## 6. WarriorPlus Funnel Rule
+## 6. Workflow Orchestrator
+
+Agent tự chọn mode phù hợp theo intent của câu hỏi:
+
+| User Intent | Modules Tự Động Chạy |
+|-------------|----------------------|
+| "ngách này ngon không?" / "market nào tốt?" | market_pattern_extract -> competitor_matrix -> offer_gap_v2 |
+| "tạo sản phẩm" / "build product" | product_blueprint -> deep_file_writer |
+| "đã bán được chưa?" / "ready launch chưa?" | buyer_test -> refund_risk -> public_launch_audit |
+| "export" / "đóng gói" | export_zip -> placeholder check -> public_launch_audit |
+| "tổng kết" / "scorecard" | final_scorecard |
+
+Không để user phải gõ từng mode. Nếu intent rõ thì tự orchestrate.
+
+## 7. Quality Gate — Luật Cứng Không Được Vi Phạm
+
+```text
+KHÔNG được PASS một file chưa tồn tại thật.
+KHÔNG được ghi "Launch Ready" khi chưa có buyer test >= 8/10.
+KHÔNG được PASS public_launch_audit khi còn placeholder quan trọng.
+KHÔNG được PASS khi AI Replace Risk = High.
+KHÔNG được PASS khi Refund Risk = High.
+KHÔNG được PASS khi Export ZIP chưa tồn tại.
+KHÔNG được skip DATA USED block trong market research modules.
+KHÔNG được viết file content dưới 800 từ mà ghi là "COMPLETE".
+```
+
+Nếu vi phạm bất kỳ luật nào thì tự sửa trước khi kết thúc response.
+
+## 8. WarriorPlus Funnel Rule
 
 Mỗi funnel phải có:
 

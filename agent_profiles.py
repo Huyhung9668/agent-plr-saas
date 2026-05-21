@@ -76,6 +76,20 @@ def get_agent_profiles() -> list[AgentProfile]:
             ),
         ),
         AgentProfile(
+            key="ai_printables",
+            name="AI Printables Agent",
+            input_dir=AGENT_BRAINS_ROOT / "ai_printables",
+            brain_dir=AGENT_BRAINS_ROOT / "ai_printables",
+            db_path=AGENT_BRAINS_ROOT / "ai_printables" / "ai_printables_brain.sqlite",
+            mission="Build AI-assisted PLR products, KDP covers, coloring books, journals, posters, social assets, Etsy/Canva printable bundles, and fast rebrandable product packs from Udemy transcript lessons.",
+            subagents=(
+                SubAgentProfile("niche_miner", "Niche Miner", "Find profitable printable/KDP/Etsy/Canva angles from course transcripts."),
+                SubAgentProfile("product_system_builder", "Product System Builder", "Turn AI workflows into sellable PLR packs, journals, coloring books, worksheets, covers, and bundles."),
+                SubAgentProfile("asset_prompt_builder", "Asset Prompt Builder", "Create prompts, style systems, asset specs, and production workflows for image/text products."),
+                SubAgentProfile("launch_packager", "Launch Packager", "Package offers with FE, bump, OTO, license, delivery, and WarriorPlus/Gumroad/Etsy positioning."),
+            ),
+        ),
+        AgentProfile(
             key="case_study",
             name="Case Study Brain Agent",
             input_dir=FILE_BACKUP_DIR,

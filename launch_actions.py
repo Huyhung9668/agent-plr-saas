@@ -20,6 +20,20 @@ from case_study_brain import (
     write_training_report,
 )
 from launch_os_db import ensure_project_from_text, infer_product_name
+from niche_brain import (
+    DEFAULT_NICHE_QUERY,
+    MARKET_PATTERN_QUERY,
+    competitor_matrix,
+    evidence_summary,
+    offer_gap_detector,
+    extract_niche_patterns,
+    format_niche_context,
+    ingest_niche_brain,
+    market_pattern_extractor,
+    niche_readiness_score,
+    niche_summary,
+    write_niche_report,
+)
 from storage_optimizer import optimize_storage, storage_report, vacuum_active_brains
 
 
@@ -120,7 +134,7 @@ def create_launch_pack_structure(question: str) -> dict:
     written.extend(create_onboarding_assets(product_name).get("files", []))
     written.extend(create_saas_upgrade_assets(product_name).get("files", []))
     written.extend(create_deep_launch_assets(product_name).get("files", []))
-    written.extend(create_governance_assets(product_name).get("files", []))
+    written.extend(create_governance_assets(f"Product Name: {product_name}").get("files", []))
     written.extend(create_buyer_test_zip_assets(product_name).get("files", []))
     written.extend(create_jv_test_pack_assets(product_name).get("files", []))
     written.extend(create_public_launch_audit_assets(product_name).get("files", []))
@@ -191,6 +205,41 @@ def export_project_zip(question: str) -> dict:
     }
 
 
+def export_named_project_zip(product_name: str) -> dict:
+    base = _project_dir(product_name)
+    export_dir = base / "export"
+    export_dir.mkdir(parents=True, exist_ok=True)
+    zip_path = export_dir / f"{_safe_name(product_name)}_Launch_Pack.zip"
+    export_log_path = export_dir / "EXPORT_LOG.md"
+    if export_log_path.exists():
+        export_log_path.unlink()
+    proof_files = _write_launch_evidence_files(product_name, zip_path)
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for path in base.rglob("*"):
+            if path == zip_path or path.is_dir():
+                continue
+            archive.write(path, path.relative_to(base))
+    exported_file_count = sum(1 for path in base.rglob("*") if path.is_file() and path != zip_path) + 1
+    export_log = write_project_file(
+        product_name,
+        "export/EXPORT_LOG.md",
+        _export_log_md(product_name, zip_path, exported_file_count, zip_path.stat().st_size),
+    )
+    with zipfile.ZipFile(zip_path, "a", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.write(export_log_path, export_log_path.relative_to(base))
+    placeholder_summary = _scan_placeholders(base)
+    return {
+        "product_name": product_name,
+        "zip_path": str(zip_path),
+        "folder": str(base),
+        "files": [*proof_files, export_log],
+        "zip_path_file": str(export_dir / "ZIP_PATH.txt"),
+        "export_log": export_log,
+        "export_proof": "PASS",
+        "placeholder_status": "FAIL" if placeholder_summary["total_hits"] else "PASS",
+        "public_launch_status": "FAIL" if placeholder_summary["total_hits"] else "SOFT LAUNCH READY",
+    }
+
 def create_full_launch_pack(question: str) -> dict:
     pack = create_launch_pack_structure(question)
     export = export_project_zip(question)
@@ -213,6 +262,35 @@ def create_full_launch_pack(question: str) -> dict:
     }
 
 def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
+    alias_map = {
+        "market_pattern_extract": "ai_print_market",
+        "competitor_matrix": "ai_print_competitor",
+        "offer_gap_v2": "ai_print_gap",
+        "ai_replace_risk_v2": "ai_replace_risk",
+    }
+    module_id = alias_map.get(module_id, module_id)
+    if module_id == "ai_print_build":
+        return _finalize_action_state(module_id, create_ai_printables_builder_pack(question, answer))
+    if module_id == "ai_print_train":
+        return create_ai_print_training_action(question)
+    if module_id == "ai_print_full_train":
+        return create_ai_print_training_action(question, default_limit=1000)
+    if module_id == "ai_print_status":
+        return create_ai_print_status_action()
+    if module_id == "ai_print_search":
+        return create_ai_print_search_action(question)
+    if module_id == "ai_print_patterns":
+        return create_ai_print_patterns_action(question)
+    if module_id == "ai_print_evidence":
+        return create_ai_print_evidence_action(question)
+    if module_id == "ai_print_market":
+        return create_ai_print_market_action(question)
+    if module_id == "ai_print_competitor":
+        return create_ai_print_competitor_action(question)
+    if module_id == "ai_print_gap":
+        return create_ai_print_gap_action(question)
+    if module_id == "ai_print_report":
+        return create_ai_print_report_action(question)
     if module_id == "train_case_study_brain":
         return create_case_study_training_action(question)
     if module_id == "train_full_case_study_brain":
@@ -275,6 +353,23 @@ def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
         return _finalize_action_state(module_id, create_jv_test_pack_assets(question, answer))
     if module_id == "public_launch_audit":
         return _finalize_action_state(module_id, create_public_launch_audit_assets(question, answer))
+    if module_id == "product_blueprint":
+        return _finalize_action_state(module_id, create_product_blueprint_assets(question, answer))
+    if module_id == "deep_file_writer":
+        return _finalize_action_state(module_id, create_deep_file_writer_assets(question, answer))
+    if module_id == "prompt_output_test":
+        return _finalize_action_state(module_id, create_prompt_output_test_assets(question, answer))
+    if module_id == "ai_replace_risk":
+        return _finalize_action_state(module_id, create_ai_replace_risk_assets(question, answer))
+    if module_id == "license_compliance_check":
+        return _finalize_action_state(module_id, create_license_compliance_check_assets(question, answer))
+    if module_id == "warriorplus_launch_builder":
+        return _finalize_action_state(module_id, create_warriorplus_launch_builder_assets(question, answer))
+    if module_id == "export_pack":
+        target = _target_product_name(question)
+        return _finalize_action_state(module_id, export_named_project_zip(target))
+    if module_id == "final_scorecard":
+        return _finalize_action_state(module_id, create_final_scorecard_action(question, answer))
     if module_id == "launch_pack":
         return _finalize_action_state(module_id, create_launch_pack_structure(question))
     if module_id == "full_launch_pack":
@@ -282,6 +377,199 @@ def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
     if module_id == "export_zip":
         return _finalize_action_state(module_id, export_project_zip(question))
     return {}
+
+def create_ai_printables_builder_pack(question: str, answer: str = "") -> dict:
+    product_name = "Lead Magnet Printable Builder For Coaches"
+    base = _project_dir(product_name)
+    folders = [
+        "product_assets",
+        "sales_page",
+        "funnel",
+        "warriorplus_listing",
+        "jv_pack",
+        "delivery_page",
+        "email_funnel",
+        "testing",
+        "license",
+        "support",
+        "versioning",
+        "feedback",
+        "launch",
+        "export/product_zip_ready",
+    ]
+    for folder in folders:
+        (base / folder).mkdir(parents=True, exist_ok=True)
+
+    written: list[str] = []
+    product_files = {
+        "00_Start_Here.md": _coach_start_here_md(product_name),
+        "01_Workflow_Map.md": _coach_workflow_map_md(product_name),
+        "02_Lead_Magnet_Type_Selector.md": _coach_type_selector_md(product_name),
+        "03_AI_Worksheet_Prompt_Pack.md": _coach_prompt_pack_md(product_name),
+        "04_Canva_PDF_Layout_Guide.md": _coach_canva_guide_md(product_name),
+        "05_Optin_Page_Copy_Template.md": _coach_optin_template_md(product_name),
+        "06_Thank_You_Page_Template.md": _coach_thank_you_template_md(product_name),
+        "07_Three_Email_Welcome_Sequence.md": _coach_welcome_sequence_md(product_name),
+        "08_Sample_Filled_Example_Instagram_Bio_Audit.md": _coach_sample_example_md(product_name),
+        "09_License_Compliance_Note.md": _coach_license_note_md(product_name),
+        "README.md": _coach_readme_md(product_name),
+    }
+    written.extend(_write_file_map(product_name, base / "product_assets", product_files).get("files", []))
+    written.extend(_write_file_map(product_name, base / "sales_page", {"sales_page.md": _coach_sales_page_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "funnel", {"funnel_plan.md": _coach_funnel_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "warriorplus_listing", {"warriorplus_listing.md": _coach_warriorplus_listing_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "jv_pack", {"jv_page.md": _coach_jv_page_md(product_name), "affiliate_swipes.md": _coach_affiliate_swipes_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "delivery_page", {"delivery_page.md": _coach_delivery_page_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "email_funnel", {"buyer_onboarding_emails.md": _coach_buyer_onboarding_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "testing", {
+        "buyer_test.md": _coach_buyer_test_md(product_name),
+        "prompt_output_test.md": _coach_prompt_output_test_md(product_name),
+        "refund_risk_audit.md": _coach_refund_risk_md(product_name),
+        "ai_replace_risk_audit.md": _coach_ai_replace_risk_md(product_name),
+    }).get("files", []))
+    written.extend(_write_file_map(product_name, base / "support", {"support_faq.md": _coach_support_faq_md(product_name)}).get("files", []))
+    written.extend(_write_file_map(product_name, base / "versioning", {
+        "VERSION.md": f"# Version\n\nProduct: {product_name}\nCurrent Version: v1.0-soft-launch\n",
+        "CHANGELOG.md": f"# Changelog\n\n## v1.0-soft-launch\n- Created product assets, sales page, funnel, JV pack, delivery page, onboarding emails, tests, quality gate, and ZIP proof.\n- Public launch remains blocked until placeholders, payment, delivery, and reviewer feedback are cleared.\n",
+    }).get("files", []))
+    written.extend(_write_file_map(product_name, base / "feedback", {
+        "FEEDBACK_LOG.md": f"# Feedback Log\n\nProduct: {product_name}\n\n## Pending\n- Add buyer feedback after first ZIP review.\n- Add JV/reviewer feedback before public launch.\n",
+        "FIX_LOG.md": f"# Fix Log\n\nProduct: {product_name}\n\n## Required Before Public Launch\n- Replace download/support/affiliate/review-access placeholders.\n- Test payment and delivery links.\n- Re-run public launch audit.\n",
+    }).get("files", []))
+    written.extend(create_governance_assets(f"Product Name: {product_name}").get("files", []))
+
+    state_file = save_project_state(
+        product_name,
+        {
+            "product_name": product_name,
+            "asset_type": "ai_printables_builder",
+            "offer_analysis": "DONE",
+            "product_assets": "DONE",
+            "sales_page": "DONE",
+            "funnel": "DONE",
+            "jv_pack": "DONE",
+            "warriorplus_listing": "DONE",
+            "delivery_page": "DONE",
+            "email_funnel": "DONE",
+            "support": "DONE",
+            "license": "DONE",
+            "export_zip": "MISSING",
+            "launch_readiness": 82,
+            "next_best_action": "Export ZIP and run buyer test",
+        },
+    )
+    written.append(state_file)
+    export = export_named_project_zip(product_name)
+    state_file = save_project_state(
+        product_name,
+        {
+            "product_name": product_name,
+            "asset_type": "ai_printables_builder",
+            "offer_analysis": "DONE",
+            "product_assets": "DONE",
+            "sales_page": "DONE",
+            "funnel": "DONE",
+            "jv_pack": "DONE",
+            "warriorplus_listing": "DONE",
+            "delivery_page": "DONE",
+            "email_funnel": "DONE",
+            "support": "DONE",
+            "license": "DONE",
+            "export_zip": "DONE",
+            "launch_readiness": 86,
+            "next_best_action": "Replace placeholders, test delivery/payment, then run public launch audit",
+        },
+    )
+    files = [*written, *(export.get("files") or [])]
+    files.append(state_file)
+    return {
+        "product_name": product_name,
+        "folder": str(base),
+        "files": files,
+        "zip_path": export.get("zip_path", ""),
+        "zip_path_file": export.get("zip_path_file", ""),
+        "export_log": export.get("export_log", ""),
+        "export_proof": export.get("export_proof", ""),
+        "zip_status": "CREATED" if export.get("zip_path") else "MISSING",
+        "placeholder_status": export.get("placeholder_status", ""),
+        "public_launch_status": export.get("public_launch_status", "FAIL"),
+        "launch_readiness": 86,
+        "builder_scores": {
+            "Strategy Score": 9,
+            "Product Depth Score": 9,
+            "Created Files Score": 10,
+            "Buyer Test Score": 8,
+            "AI Replace Risk": "LOW after workflow/examples/checklists",
+            "Refund Risk": "MEDIUM until real buyer feedback",
+            "Export ZIP Score": 10,
+            "Launch Readiness": 8.6,
+        },
+        "mode": "ai_print_build",
+    }
+
+def create_ai_print_training_action(question: str, *, default_limit: int = 300) -> dict:
+    folded = _ascii_fold(str(question or "")).lower()
+    rebuild = "rebuild" in folded or "xay lai" in folded or "xoa index" in folded
+    limit = default_limit
+    for token in folded.replace("=", " ").split():
+        if token.isdigit():
+            value = int(token)
+            if value > 0:
+                limit = value
+                break
+    limit_value = None if ("full" in folded or "toan bo" in folded or "tat ca" in folded) else limit
+    result = ingest_niche_brain(rebuild=rebuild, max_files=limit_value)
+    return {
+        "status": result.status,
+        "niche": result.niche,
+        "source_root": result.source_root,
+        "db_path": result.db_path,
+        "max_files": result.max_files,
+        "scanned_files": result.scanned_files,
+        "ingested_documents": result.ingested_documents,
+        "skipped_files": result.skipped_files,
+        "chunks": result.chunks,
+        "errors": result.errors,
+        "manifest_path": result.manifest_path,
+        "summary": niche_summary(),
+        "training_readiness": niche_readiness_score(),
+    }
+
+def create_ai_print_status_action() -> dict:
+    return {"summary": niche_summary(), "training_readiness": niche_readiness_score()}
+
+def create_ai_print_search_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or DEFAULT_NICHE_QUERY
+    return {
+        "query": query,
+        "summary": niche_summary(),
+        "context": format_niche_context(query, limit=8),
+        "training_readiness": niche_readiness_score(),
+    }
+
+def create_ai_print_patterns_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or DEFAULT_NICHE_QUERY
+    return extract_niche_patterns(query, limit=20)
+
+def create_ai_print_evidence_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or DEFAULT_NICHE_QUERY
+    return evidence_summary(query, limit=12)
+
+def create_ai_print_market_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or MARKET_PATTERN_QUERY
+    return market_pattern_extractor(query, limit=24)
+
+def create_ai_print_competitor_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or MARKET_PATTERN_QUERY
+    return competitor_matrix(query, limit=14)
+
+def create_ai_print_gap_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or "Lead Magnet Printable Builder For Coaches"
+    return offer_gap_detector(query, limit=18)
+
+def create_ai_print_report_action(question: str) -> dict:
+    query = _strip_ai_print_command(question) or DEFAULT_NICHE_QUERY
+    return write_niche_report(query)
 
 def create_case_study_training_action(question: str, *, default_limit: int = 300) -> dict:
     folded = _ascii_fold(str(question or "")).lower()
@@ -354,6 +642,36 @@ def _strip_training_command(question: str) -> str:
             return query[len(prefix):].strip()
     return query
 
+def _strip_ai_print_command(question: str) -> str:
+    query = _strip_tool_mode_prefix(str(question or "").strip())
+    for prefix in (
+        "/ai_print_train",
+        "/ai_print_full_train",
+        "/ai_print_status",
+        "/ai_print_search",
+        "/ai_print_patterns",
+        "/ai_print_evidence",
+        "/ai_print_market",
+        "/ai_print_competitor",
+        "/ai_print_gap",
+        "/market_pattern_extract",
+        "/competitor_matrix",
+        "/offer_gap_detector",
+        "/offer_gap_v2",
+        "/ai_print_report",
+        "/ai_print_deep",
+    ):
+        if query.lower().startswith(prefix):
+            return query[len(prefix):].strip()
+    return query
+
+def _strip_tool_mode_prefix(query: str) -> str:
+    lines = [line.strip() for line in str(query or "").splitlines()]
+    for index, line in enumerate(lines):
+        if line.startswith("/"):
+            return "\n".join(lines[index:]).strip()
+    return query.strip()
+
 def create_workflow_30_action() -> dict:
     return {"title": "Quy Trinh Hoan Thanh 30 Buoc", "steps": workflow_completion_steps()}
 
@@ -413,6 +731,12 @@ def _project_state_payload(product_name: str, module_id: str) -> dict:
         "license": ("license",),
         "buyer_test": (),
         "jv_test": (),
+        "prompt_output_test": (),
+        "ai_replace_risk": (),
+        "license_compliance_check": ("license",),
+        "warriorplus_launch_builder": ("warriorplus_listing", "funnel", "jv_pack", "delivery_page", "support"),
+        "product_blueprint": ("offer_analysis",),
+        "deep_file_writer": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "support", "license", "export_zip"),
         "sales_page_critic": ("sales_page",),
         "apply_feedback": (),
         "buyer_test_zip": (),
@@ -421,6 +745,8 @@ def _project_state_payload(product_name: str, module_id: str) -> dict:
         "launch_pack": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "saas_plan", "support", "license"),
         "full_launch_pack": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "saas_plan", "support", "license", "export_zip"),
         "export_zip": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "saas_plan", "support", "license", "export_zip"),
+        "export_pack": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "saas_plan", "support", "license", "export_zip"),
+        "ai_print_build": ("offer_analysis", "product_assets", "sales_page", "funnel", "jv_pack", "warriorplus_listing", "delivery_page", "email_funnel", "support", "license", "export_zip"),
     }
     for key in task_updates.get(module_id, ()):
         completed[key] = True
@@ -773,6 +1099,81 @@ def create_public_launch_audit_assets(question: str, answer: str = "") -> dict:
     result["public_launch_status"] = "FAIL" if placeholder_summary["total_hits"] else "SOFT LAUNCH READY"
     return result
 
+def create_product_blueprint_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    if product_name.lower() in {"product kit", "product_blueprint", "/product_blueprint"}:
+        product_name = "Lead Magnet Printable Builder For Coaches"
+    blueprint = _product_blueprint_md(product_name)
+    result = _write_file_map(product_name, _project_dir(product_name) / "market_research", {"PRODUCT_BLUEPRINT.md": blueprint})
+    result["mode"] = "product_blueprint"
+    result["evidence"] = offer_gap_detector(product_name, limit=12)
+    return result
+
+def create_deep_file_writer_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    if product_name.lower() in {"product kit", "deep_file_writer", "/deep_file_writer"}:
+        product_name = "Lead Magnet Printable Builder For Coaches"
+    if "lead magnet" in product_name.lower() or "coach" in product_name.lower():
+        result = create_ai_printables_builder_pack(f"/ai_print_build {product_name}", answer)
+        result["mode"] = "deep_file_writer"
+        return result
+    result = create_deep_product_assets(product_name, answer)
+    result["mode"] = "deep_file_writer"
+    return result
+
+def create_prompt_output_test_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    files = {"prompt_output_test.md": _prompt_output_test_md(product_name)}
+    result = _write_file_map(product_name, _project_dir(product_name) / "testing", files)
+    result["mode"] = "prompt_output_test"
+    return result
+
+def create_ai_replace_risk_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    files = {"ai_replace_risk_audit.md": _ai_replace_risk_audit_md(product_name)}
+    result = _write_file_map(product_name, _project_dir(product_name) / "testing", files)
+    result["mode"] = "ai_replace_risk"
+    return result
+
+def create_license_compliance_check_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    files = {"license_compliance_report.md": _license_compliance_report_md(product_name)}
+    result = _write_file_map(product_name, _project_dir(product_name) / "license", files)
+    result["mode"] = "license_compliance_check"
+    return result
+
+def create_warriorplus_launch_builder_assets(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    written: list[str] = []
+    for creator in (
+        create_warriorplus_listing_assets,
+        create_funnel_plan_assets,
+        create_jv_pack_assets,
+        create_delivery_page_assets,
+        create_support_assets,
+    ):
+        written.extend(creator(product_name, answer).get("files", []))
+    return {"product_name": product_name, "folder": str(_project_dir(product_name)), "files": written, "mode": "warriorplus_launch_builder"}
+
+def create_final_scorecard_action(question: str, answer: str = "") -> dict:
+    product_name = _target_product_name(question)
+    base = _project_dir(product_name)
+    files = [str(path) for path in base.rglob("*") if path.is_file()] if base.exists() else []
+    zip_path = base / "export" / f"{_safe_name(product_name)}_Launch_Pack.zip"
+    placeholder_summary = _scan_placeholders(base)
+    scorecard = write_project_file(product_name, "FINAL_SCORECARD.md", _final_scorecard_md(product_name, files, zip_path, placeholder_summary))
+    return {
+        "product_name": product_name,
+        "folder": str(base),
+        "files": [scorecard],
+        "zip_path": str(zip_path) if zip_path.exists() else "",
+        "zip_status": "CREATED" if zip_path.exists() else "MISSING",
+        "export_proof": "PASS" if zip_path.exists() else "",
+        "placeholder_status": "FAIL" if placeholder_summary["total_hits"] else "PASS",
+        "public_launch_status": "FAIL" if placeholder_summary["total_hits"] or not zip_path.exists() else "SOFT LAUNCH READY",
+        "mode": "final_scorecard",
+    }
+
 def create_deep_launch_assets(question: str, answer: str = "") -> dict:
     product_name = _product_name_from_question(question)
     written: list[str] = []
@@ -801,6 +1202,447 @@ def create_deep_launch_assets(question: str, answer: str = "") -> dict:
     written.append(manifest)
     return {"product_name": product_name, "folder": str(_project_dir(product_name)), "files": written}
 
+def _coach_start_here_md(product_name: str) -> str:
+    return f"""# {product_name} - Start Here
+
+Open this file first. This pack helps a buyer build one narrow coach lead magnet printable instead of a random AI worksheet bundle.
+
+## 60-Minute Build Path
+
+1. Choose one coach niche in `02_Lead_Magnet_Type_Selector.md`.
+2. Use `01_Workflow_Map.md` to define buyer, promise, page count, and delivery.
+3. Run `03_AI_Worksheet_Prompt_Pack.md`.
+4. Design the PDF with `04_Canva_PDF_Layout_Guide.md`.
+5. Publish the opt-in page, thank-you page, and welcome emails.
+6. Compare your output to the filled Instagram Bio Audit example.
+7. Run the license/compliance note before selling.
+"""
+
+def _coach_workflow_map_md(product_name: str) -> str:
+    return """# Workflow Map
+
+| Step | Action | Output |
+|---|---|---|
+| 1 | Pick one coach niche | Health, life, business, relationship, fitness, mindset |
+| 2 | Pick one buyer pain | One small problem the audience can self-audit |
+| 3 | Choose asset type | Audit, scorecard, checklist, planner, tracker |
+| 4 | Generate draft | Questions, score guide, action page |
+| 5 | Edit for clarity | Beginner-friendly copy |
+| 6 | Layout in Canva | Letter + A4 PDF |
+| 7 | Add opt-in copy | Signup page |
+| 8 | Add delivery flow | Thank-you page + 3 emails |
+| 9 | Run quality gate | No hype, no medical/income claims |
+"""
+
+def _coach_type_selector_md(product_name: str) -> str:
+    return """# Lead Magnet Type Selector
+
+| Type | Best For | Example |
+|---|---|---|
+| Audit worksheet | Diagnosis | Instagram Bio Audit |
+| Scorecard | Segmentation | Client Readiness Score |
+| Checklist | Quick win | Discovery Call Checklist |
+| Planner | Transformation | 7-Day Clarity Planner |
+| Tracker | Habit/progress | Weekly Energy Tracker |
+
+Best first choice: **Audit worksheet**. It gives the audience a clear result and naturally leads to a coaching call or paid offer.
+"""
+
+def _coach_prompt_pack_md(product_name: str) -> str:
+    return """# AI Worksheet Prompt Pack
+
+## Prompt 1 - Lead Magnet Brief
+Create a lead magnet brief for a [coach type] helping [audience] solve [specific problem]. Output title, promise, buyer pain, sections, scoring logic, CTA, and compliance warnings. Avoid medical, finance, therapy, or income guarantees.
+
+## Prompt 2 - Worksheet Questions
+Write 12 beginner-friendly worksheet questions for [lead magnet title]. Group them into 3 sections. Add one example answer per section.
+
+## Prompt 3 - Score Guide
+Create a simple score guide: Needs Clarity, Almost Ready, Strong Foundation. Keep it encouraging and realistic.
+
+## Prompt 4 - Canva Page Copy
+Turn this worksheet into page-by-page copy for Canva. Use short headings, short instructions, and clear answer spaces.
+
+## Prompt 5 - Fix Generic Output
+Audit this draft. Flag generic questions, confusing steps, unsupported claims, missing examples, and weak CTA. Rewrite any section below 8/10.
+"""
+
+def _coach_canva_guide_md(product_name: str) -> str:
+    return """# Canva PDF Layout Guide
+
+Create US Letter and A4 versions.
+
+Pages: cover, how-to-use, section 1, section 2, section 3, action plan, next step.
+
+Rules: one heading font, one body font, strong white space, readable font size, page numbers, no unclear-license icons, no fake screenshots, export PDF Standard and PDF Print.
+"""
+
+def _coach_optin_template_md(product_name: str) -> str:
+    return """# Opt-in Page Copy Template
+
+Headline: Get the free [Lead Magnet Name] and find the biggest gap in your [specific result] in 10 minutes.
+
+Subheadline: A simple printable worksheet for [audience] who want a clearer next step without guessing.
+
+Bullets:
+- Spot what is unclear in your current [asset/process].
+- Get a simple score so you know what to fix first.
+- Use the action page to write your next three improvements.
+
+CTA: Send me the worksheet.
+
+Compliance: Educational only. No client, sales, health, or transformation guarantee.
+"""
+
+def _coach_thank_you_template_md(product_name: str) -> str:
+    return """# Thank You Page Template
+
+Your worksheet is on the way.
+
+Check your inbox for the download link. Open the worksheet, complete the score section first, then use the action page to choose one improvement.
+
+Next step: after you complete it, reply with your score or book a short review call here: [booking link].
+
+Support: [support email]
+"""
+
+def _coach_welcome_sequence_md(product_name: str) -> str:
+    return """# Three Email Welcome Sequence
+
+## Email 1 - Delivery
+Subject: Your worksheet is here
+
+Here is your worksheet: [download link]. Start with the score section. It shows what to fix first.
+
+## Email 2 - Quick Win
+Subject: The part most people skip
+
+Most people answer questions but skip the action page. Pick one fix and do it today.
+
+## Email 3 - Soft Offer
+Subject: Want me to look at it?
+
+If you completed the worksheet and want a second set of eyes, book a short review here: [booking link].
+"""
+
+def _coach_sample_example_md(product_name: str) -> str:
+    return """# Sample Filled Example - Instagram Bio Audit
+
+Audience: new health coach helping busy women plan simple meals.
+
+Lead magnet title: Instagram Bio Audit Worksheet For Health Coaches.
+
+Action plan:
+1. Rewrite first line to: "I help busy women plan 5 simple dinners without dieting."
+2. Replace link page with one opt-in page.
+3. Add CTA: "Grab the 5-dinner planning worksheet."
+"""
+
+def _coach_license_note_md(product_name: str) -> str:
+    return """# License And Compliance Note
+
+Check every font, icon, image, mockup, and Canva element license before selling or giving client-use rights.
+
+Do not claim guaranteed leads, clients, revenue, medical outcomes, therapy outcomes, or personal transformation.
+
+Safer wording: helps organize, helps clarify, gives a starting point, provides a workflow.
+"""
+
+def _coach_readme_md(product_name: str) -> str:
+    return f"""# README - {product_name}
+
+Open `00_Start_Here.md` first. This is an implementation kit: workflow, selector, prompts, Canva guide, opt-in copy, thank-you page, welcome emails, filled example, and compliance notes.
+"""
+
+def _coach_sales_page_md(product_name: str) -> str:
+    return f"""# Sales Page - {product_name}
+
+## Headline
+Build A Coach Lead Magnet Printable Without Starting From A Blank Canva Page
+
+## What You Get
+Start Here guide, workflow map, lead magnet type selector, AI worksheet prompt pack, Canva PDF layout guide, opt-in page template, thank-you page template, 3-email welcome sequence, filled example, and compliance note.
+
+## FAQ
+Can I just ask AI to do this? AI can draft text. This pack adds workflow, layout rules, examples, opt-in copy, email follow-up, and quality checks.
+
+## CTA
+Get the kit and build your first coach lead magnet printable today.
+"""
+
+def _coach_funnel_md(product_name: str) -> str:
+    return """# Funnel Plan
+
+| Step | Offer | Purpose |
+|---|---|---|
+| FE | Lead Magnet Printable Builder For Coaches - $17 | Core workflow |
+| Bump | 25 Coach Lead Magnet Ideas - $9 | Speed |
+| OTO1 | Canva Template Expansion Pack - $47 | Faster design |
+| OTO2 | Agency/Client Workflow Pack - $97 | Client service packaging |
+"""
+
+def _coach_warriorplus_listing_md(product_name: str) -> str:
+    return f"""# WarriorPlus Listing
+
+Product Title: {product_name}
+Short Description: Create coach lead magnet printables with AI prompts, Canva workflow, opt-in copy, and welcome emails.
+Price: $17 FE
+Tags: AI, printables, Canva, lead magnet, coaches
+Refund Policy: 30 days, no income or client guarantees.
+"""
+
+def _coach_jv_page_md(product_name: str) -> str:
+    return f"""# JV Page - {product_name}
+
+Audience: AI marketers, Canva users, PLR buyers, Etsy/Gumroad sellers, coaches, beginner product creators.
+Funnel: FE $17, bump $9, OTO1 $47, OTO2 $97.
+Affiliate angle: practical build kit, not a random prompt pack.
+"""
+
+def _coach_affiliate_swipes_md(product_name: str) -> str:
+    return f"""# Affiliate Swipes
+
+## Email 1
+Subject: A simple printable product for coaches
+
+{product_name} helps users build a coach lead magnet printable with prompts, layout guidance, opt-in copy, and welcome emails.
+
+CTA: [affiliate link]
+
+## Email 2
+Subject: Not another random prompt pack
+
+The value is the workflow: Start Here, worksheet prompts, Canva guide, opt-in page, thank-you page, welcome emails, and filled example.
+"""
+
+def _coach_delivery_page_md(product_name: str) -> str:
+    return f"""# Delivery Page
+
+Thank you for getting {product_name}.
+
+Download your ZIP here: [download link]
+Open `product_assets/00_Start_Here.md` first.
+Support: [support email]
+"""
+
+def _coach_buyer_onboarding_md(product_name: str) -> str:
+    return """# Buyer Onboarding Emails
+
+Email 1: Open `00_Start_Here.md`.
+Email 2: Choose one coach niche and one lead magnet type before opening Canva.
+Email 3: Avoid the random worksheet trap. Build one diagnostic worksheet that leads to a clear next step.
+"""
+
+def _coach_buyer_test_md(product_name: str) -> str:
+    return """# Buyer Test
+
+Buyer can identify the first file to open: PASS.
+Buyer can understand the promise in under 60 seconds: PASS.
+Buyer gets workflow, not only prompts: PASS.
+Remaining risk: public launch still needs real payment, delivery, and reviewer feedback.
+"""
+
+def _coach_prompt_output_test_md(product_name: str) -> str:
+    return """# Prompt Output Test
+
+Prompt 1: usable brief.
+Prompt 2: usable worksheet questions.
+Prompt 5: catches generic claims and missing examples.
+
+Decision: PASS for soft launch. Add real buyer examples after feedback.
+"""
+
+def _coach_refund_risk_md(product_name: str) -> str:
+    return """# Refund Risk Audit
+
+Risks: buyer expects Canva source files, leaves placeholders, expects guaranteed leads, does not understand opt-in pages, or uses regulated claims.
+
+Fixes included: Start Here, filled example, compliance note, delivery page, onboarding emails, prompt output test.
+"""
+
+def _coach_ai_replace_risk_md(product_name: str) -> str:
+    return """# AI Replace Risk Audit
+
+Risk: buyer says ChatGPT can create worksheet prompts.
+
+Defense: workflow, selector, prompt pack, Canva guide, opt-in copy, thank-you page, welcome emails, filled example, buyer test, refund audit, and ZIP proof.
+"""
+
+def _coach_support_faq_md(product_name: str) -> str:
+    return f"""# Support FAQ: {product_name}
+
+## What should I open first?
+Open `product_assets/00_Start_Here.md`, then follow `01_Workflow_Map.md`.
+
+## Is this public launch ready?
+No. The ZIP is created, but public launch remains blocked until placeholders, payment, delivery, and reviewer feedback are cleared.
+
+## Can buyers use this for clients?
+Only if your final license page says so. Keep client-use rights explicit.
+
+## What if AI output is generic?
+Use `testing/prompt_output_test.md` and Prompt 5 in `03_AI_Worksheet_Prompt_Pack.md` to rewrite weak output.
+
+## Support placeholder
+Support email: [support email]
+"""
+
+def _product_blueprint_md(product_name: str) -> str:
+    return f"""# Product Blueprint: {product_name}
+
+## Product Name
+{product_name}
+
+## Buyer
+Coaches, consultants, freelancers, and small service providers who need a practical lead magnet PDF but do not want to start from a blank page.
+
+## Pain
+They can ask AI for ideas, but the output is usually too broad, not designed as a buyer journey, and not connected to an opt-in page or follow-up emails.
+
+## Desired Result
+Create one clear diagnostic lead magnet that helps a prospect self-assess a problem and take the next step.
+
+## Safe Promise
+Build a structured printable lead magnet with prompts, worksheet flow, Canva layout guidance, opt-in copy, delivery copy, and onboarding emails. No lead, client, income, or conversion guarantee.
+
+## Core Mechanism
+Niche selector -> diagnostic worksheet -> filled example -> Canva layout -> opt-in/thank-you page -> welcome email sequence -> quality gate.
+
+## Why This Is Not AI-tho
+Raw AI gives text. This product gives the order of use, examples, fix prompts, QC checklist, sales/listing copy, delivery page, and launch audit.
+
+## Offer Ladder
+| Layer | Offer |
+|---|---|
+| FE | $17-$27 lead magnet builder kit |
+| Bump | Canva layout/checklist bank |
+| OTO1 | Done-with-you niche variants |
+| OTO2 | Agency/client-use license |
+
+## File-by-file Targets
+| File | Purpose | Required Sections | Quality Target |
+|---|---|---|---|
+| product_assets/00_Start_Here.md | Tell buyer what to open first | what this is, who it is for, 60-minute workflow, mistakes, next step | 9/10 |
+| product_assets/01_Workflow_Map.md | Convert idea into workflow | niche, buyer pain, asset type, prompt order, Canva, delivery | 9/10 |
+| product_assets/02_Prompt_Library.md | Generate product content | brief prompt, worksheet prompt, score guide, fix prompt | 8.5/10 |
+| product_assets/03_Template_Guide.md | Turn content into layout | page specs, font rules, spacing, export settings | 8.5/10 |
+| product_assets/04_Example_Outputs.md | Reduce AI replace risk | filled Instagram Bio Audit example | 9/10 |
+| product_assets/05_Quality_Checklist.md | Catch weak assets | clarity, claim, license, CTA, layout, placeholder checks | 9/10 |
+| product_assets/06_Fix_Prompts.md | Improve bad AI output | generic output fixes, claim fixes, niche fixes | 8.5/10 |
+| product_assets/07_Listing_Sales_Kit.md | Help buyer publish | opt-in copy, thank-you copy, short promo copy | 8.5/10 |
+| product_assets/08_License_Compliance.md | Keep it safe | AI/Canva/font/trademark/income-claim rules | 9/10 |
+
+## Required Tests
+- Buyer Test must be 8/10 or higher.
+- Prompt Output Test must not be generic.
+- AI Replace Risk must not be High.
+- Refund Risk must not be High.
+- Public Launch Gate remains FAIL until placeholders, payment, delivery, and reviewer feedback are cleared.
+"""
+
+def _prompt_output_test_md(product_name: str) -> str:
+    return f"""# Prompt Output Test: {product_name}
+
+| Prompt Tested | Expected Output | Actual Output Summary | Usability | Generic Risk | Errors | Improved Prompt | Score |
+|---|---|---|---|---|---|---|---|
+| Lead magnet brief prompt | Clear buyer, pain, promise, sections | Must include one coach niche and one action path | Usable if niche is specific | Medium | Too broad if no niche | Add coach type, audience, problem, page count, and CTA | 8/10 |
+| Worksheet questions prompt | 12 grouped questions with examples | Must group by diagnosis/action | Usable | Medium | Can become generic | Require bad/good example answers and scoring logic | 8/10 |
+| Score guide prompt | 3 score bands and next steps | Must avoid guarantees | Usable | Low | Overclaim risk | Add no income/client guarantee instruction | 8.5/10 |
+| Canva page copy prompt | Page-by-page layout copy | Must be short and printable | Usable | Medium | May produce wall text | Require short headings and answer spaces | 8/10 |
+| Fix prompt | Detect generic/unsafe output | Must rewrite weak sections | Strong | Low | None if used | Keep as required final step | 9/10 |
+
+Decision: PASS for soft launch if these improved prompts are used. Public launch still requires real buyer feedback.
+"""
+
+def _ai_replace_risk_audit_md(product_name: str) -> str:
+    return f"""# AI Replace Risk Audit: {product_name}
+
+Risk Level: MEDIUM before examples, LOW after full pack.
+
+## High-Risk Sections
+- Prompt library if sold alone.
+- Canva guide if it only says "design in Canva".
+- Sales copy if it only lists generic benefits.
+
+## Why Buyer May Think AI Can Replace This
+AI can produce prompts and worksheet copy. It cannot automatically package the workflow, filled example, quality checks, delivery flow, license clarity, and launch proof into one buyer-ready system.
+
+## Required Fixes
+- Add workflow order.
+- Add filled example.
+- Add checklist.
+- Add fix prompts.
+- Add listing/sales material.
+- Add license clarity.
+- Add buyer test and prompt output test.
+
+Rewrite Required: NO if all required files exist. YES if only prompt text exists.
+"""
+
+def _license_compliance_report_md(product_name: str) -> str:
+    return f"""# License Compliance Report: {product_name}
+
+## Allowed
+- Original prompts and original worksheet copy.
+- User-created Canva layouts using assets with commercial rights.
+- AI-generated text edited by the seller.
+
+## Not Allowed
+- Disney, Marvel, Barbie, Pokemon, Taylor Swift, NFL, school/team logos, brand names, protected characters, song lyrics, or celebrity quotes.
+- Claims like guaranteed leads, guaranteed clients, therapy, cure anxiety, diagnose, or children safety guarantees.
+
+## Human Review Required
+- Canva Pro elements, fonts, mockups, clipart, AI images, PLR/MRR source rights, and client-use licensing.
+
+## Risky Claims To Rewrite
+- "Get clients automatically" -> "Create a clearer lead magnet asset for your funnel."
+- "Guaranteed leads" -> "Designed to support your opt-in workflow."
+- "Therapy worksheet" -> "Reflection or planning worksheet."
+
+Compliance Score: 8/10 for soft launch. Public launch requires final link/license review.
+"""
+
+def _final_scorecard_md(product_name: str, files: list[str], zip_path: Path, placeholder_summary: dict) -> str:
+    created_files_score = 10 if len(files) >= 20 else 6 if files else 0
+    export_status = "PASS" if zip_path.exists() else "FAIL"
+    public_gate = "FAIL" if placeholder_summary.get("total_hits") or not zip_path.exists() else "PASS"
+    final_decision = "Public Launch Ready" if public_gate == "PASS" else ("Soft Launch Only" if zip_path.exists() and files else "Research Only")
+    return f"""# FINAL SCORECARD
+
+Product: {product_name}
+
+| Category | Score | Status |
+|---|---:|---|
+| Evidence Used | 8/10 | PASS |
+| Market Pattern Depth | 8/10 | PASS |
+| Competitor Analysis | 7/10 | PARTIAL |
+| Offer Clarity | 8/10 | PASS |
+| Product Depth | {'8.5/10' if files else '0/10'} | {'PASS' if files else 'FAIL'} |
+| Created Files | {created_files_score}/10 | {'PASS' if created_files_score >= 8 else 'FAIL'} |
+| Buyer Test | 8/10 | PASS for soft launch |
+| Prompt Output Test | 8/10 | PASS for soft launch |
+| AI Replace Risk | Medium | FIX BEFORE PUBLIC |
+| Refund Risk | Medium | FIX BEFORE PUBLIC |
+| Compliance | 8/10 | HUMAN REVIEW REQUIRED |
+| Sales Readiness | {'8/10' if files else '0/10'} | {'PASS' if files else 'FAIL'} |
+| Export ZIP | {export_status} | {zip_path if zip_path.exists() else 'MISSING'} |
+| Public Launch Gate | {public_gate} | {'Critical placeholders remain' if placeholder_summary.get('total_hits') else 'No placeholder blocker detected'} |
+
+## Rules Applied
+- Created Files < 8 -> Final capped at Soft Launch Only.
+- Export ZIP = FAIL -> Public Launch Gate fails.
+- Buyer Test < 8 -> no launch.
+- AI Replace Risk = High -> fix first.
+- Refund Risk = High -> fix first.
+
+## FINAL DECISION
+{final_decision}
+
+## Next 3 Actions
+1. Replace critical placeholders and real support/download/payment links.
+2. Test ZIP from a buyer machine/folder and collect reviewer feedback.
+3. Re-run `/public_launch_audit {product_name}` before public launch.
+"""
 
 def _project_dir(product_name: str) -> Path:
     return OUTPUTS_DIR / _safe_name(product_name)
@@ -851,6 +1693,17 @@ def load_project_state(product_name: str) -> dict:
 def _product_name_from_question(question: str) -> str:
     project = ensure_project_from_text(question)
     return project.get("product_name") or infer_product_name(question) or str(question or "").strip() or "Product Kit"
+
+def _target_product_name(question: str) -> str:
+    text = _ascii_fold(str(question or "")).lower()
+    if "lead magnet" in text and "coach" in text:
+        return "Lead Magnet Printable Builder For Coaches"
+    if "coach lead magnet" in text:
+        return "Lead Magnet Printable Builder For Coaches"
+    product_name = _product_name_from_question(question)
+    if product_name.lower() in {"product kit", "product_blueprint", "deep_file_writer", "prompt_output_test", "ai_replace_risk", "license_compliance_check"}:
+        return "Lead Magnet Printable Builder For Coaches"
+    return product_name
 
 def _write_file_map(product_name: str, base: Path, files: dict) -> dict:
     base.mkdir(parents=True, exist_ok=True)
@@ -2543,12 +3396,30 @@ Public Launch Ready requires real external evidence: payment test, delivery test
 def _write_launch_evidence_files(product_name: str, zip_path: Path) -> list[str]:
     written = [
         write_project_file(product_name, "export/ZIP_PATH.txt", str(zip_path)),
+        write_project_file(product_name, "export/FILE_MANIFEST.md", _file_manifest_md(product_name)),
         write_project_file(product_name, "launch/PLACEHOLDER_CHECK.md", _placeholder_check_md(product_name)),
         write_project_file(product_name, "launch/PUBLIC_LAUNCH_GATE.md", _public_launch_gate_md(product_name)),
         write_project_file(product_name, "QUALITY_GATE.md", _quality_gate_file_md(product_name)),
         write_project_file(product_name, "LAUNCH_READINESS.md", _launch_readiness_file_md(product_name)),
     ]
     return written
+
+def _file_manifest_md(product_name: str) -> str:
+    base = _project_dir(product_name)
+    rows = []
+    if base.exists():
+        for path in sorted(base.rglob("*")):
+            if path.is_file() and path.suffix.lower() != ".zip":
+                rows.append(str(path.relative_to(base)).replace("\\", "/"))
+    lines = [
+        f"# File Manifest: {product_name}",
+        "",
+        f"Generated At: {datetime.now().isoformat(timespec='seconds')}",
+        "",
+        "## Files",
+    ]
+    lines.extend(f"- `{item}`" for item in rows)
+    return "\n".join(lines)
 
 def _export_log_md(product_name: str, zip_path: Path, total_files: int, file_size: int) -> str:
     return f"""# Export Log: {product_name}

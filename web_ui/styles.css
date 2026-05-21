@@ -397,6 +397,80 @@ body {
   color: var(--text-primary);
 }
 
+.project-state-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.project-state-bar .icon-btn {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  font-size: 11px;
+}
+
+.ps-name,
+.ps-next {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ps-readiness {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.ps-sep {
+  opacity: 0.4;
+}
+
+.sc-pass {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+.sc-fail {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.sc-high {
+  color: #ef4444;
+}
+
+.sc-medium {
+  color: #f59e0b;
+}
+
+.sc-low {
+  color: #22c55e;
+}
+
+.evidence-block {
+  background: var(--surface-2);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  font-size: 12px;
+  border-left: 3px solid var(--accent-2);
+}
+
+.evidence-block summary {
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
 .chat {
   flex: 1;
   min-height: 0;
@@ -814,6 +888,18 @@ body {
   }
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes replyPulse {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
@@ -1848,6 +1934,35 @@ button {
 .retry-last-btn:hover {
   background: var(--accent);
   color: #fff;
+}
+
+.reply-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  border: 1px solid rgba(204, 120, 92, 0.48);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 18%, var(--surface-2));
+  color: var(--text);
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: 820;
+  white-space: nowrap;
+}
+
+.reply-status[hidden] {
+  display: none;
+}
+
+.reply-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffb38f;
+  box-shadow: 0 0 0 4px rgba(204, 120, 92, 0.14);
+  animation: replyPulse 1.1s ease-in-out infinite;
 }
 
 .quick-actions {
@@ -2888,6 +3003,98 @@ button {
   }
 }
 
+.prompt-chip-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 100%;
+  order: 8;
+}
+
+.prompt-chip-bar[hidden] {
+  display: none;
+}
+
+.prompt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: min(520px, 100%);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  color: var(--text-primary);
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.prompt-chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.prompt-chip strong {
+  color: var(--text-muted);
+}
+
+.prompt-search-wrap {
+  min-width: 180px;
+}
+
+.prompt-search {
+  width: 100%;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  padding: 5px 9px;
+  font-size: 12px;
+}
+
+.quick-actions button[data-prompt] {
+  position: relative;
+  padding-right: 28px;
+}
+
+.prompt-pin {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  opacity: 0;
+  font-size: 11px;
+  line-height: 1;
+  transition: opacity 0.12s ease;
+}
+
+.quick-actions button[data-prompt]:hover .prompt-pin,
+.prompt-pinned-group .prompt-pin {
+  opacity: 1;
+}
+
+.prompt-dynamic-group[hidden],
+.quick-group[hidden],
+.quick-actions button[hidden] {
+  display: none;
+}
+
+.prompt-preview-tooltip {
+  position: fixed;
+  z-index: 1000;
+  max-width: 340px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
 /* v1.09 mobile shell: keep chat, tools, and composer inside one phone viewport. */
 @media (max-width: 760px) {
   html,
@@ -3240,5 +3447,182 @@ button {
     bottom: max(8px, env(safe-area-inset-bottom));
     width: calc(100vw - 16px);
   }
+}
+
+/* v1.09 readability pass: calmer text, clearer prompt modules. */
+html,
+body,
+button,
+input,
+textarea,
+select {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+select option {
+  background: #252525;
+  color: #ececec;
+}
+
+select option:disabled {
+  color: #7d7d7d;
+}
+
+.quick-actions {
+  max-height: min(260px, 34dvh);
+}
+
+.quick-group {
+  background: #262626;
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.quick-group-title {
+  color: #d8d8d8;
+  font-size: 11px;
+  font-weight: 760;
+  text-transform: none;
+}
+
+.quick-group[data-help]::after {
+  content: attr(data-help);
+  flex: 0 0 100%;
+  order: 1;
+  margin-top: 2px;
+  color: #a9a9a9;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.quick-actions .quick-group[data-help]::after {
+  display: none;
+}
+
+.quick-actions button {
+  min-height: 36px;
+  border-color: rgba(255, 255, 255, 0.14);
+  background: #303030;
+  color: #eeeeee;
+  font-weight: 580;
+  line-height: 1.2;
+  text-shadow: none;
+}
+
+.quick-actions button:hover {
+  border-color: rgba(204, 120, 92, 0.55);
+  background: #3a332f;
+  color: #ffffff;
+}
+
+.case-brain-group {
+  order: -2;
+  flex-basis: min(520px, 88vw);
+  gap: 8px;
+}
+
+.case-brain-group .quick-group-title {
+  color: #f0d2c5;
+}
+
+.case-brain-group button {
+  background: #2e2e2e;
+}
+
+.case-brain-group button:first-of-type,
+.case-brain-group button:nth-of-type(2) {
+  border-color: rgba(204, 120, 92, 0.38);
+}
+
+.session-metrics span,
+.mode-selector button {
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .quick-actions {
+    max-height: min(190px, 24dvh);
+  }
+
+  .quick-group,
+  .case-brain-group {
+    flex-basis: min(86vw, 360px);
+    max-height: min(180px, 23dvh);
+  }
+
+  .quick-actions button {
+    white-space: normal;
+    text-align: left;
+  }
+}
+
+/* v1.09.1 chat reading width: wider than the narrow column, not full screen. */
+@media (min-width: 761px) {
+  .welcome,
+  .msg.assistant,
+  .msg.user {
+    width: min(1040px, calc(100% - 96px));
+    max-width: 1040px;
+  }
+
+  .msg.assistant {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .msg.user {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .msg.user .msg-body {
+    max-width: min(760px, 78%);
+  }
+}
+
+/* v1.09.3 prompt library: no sideways clipping; keep Case Study Brain obvious. */
+.quick-actions {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.quick-group {
+  flex: 1 1 min(320px, 100%);
+  max-width: 100%;
+}
+
+.case-brain-group {
+  order: -2;
+  flex: 1 1 100%;
+}
+
+.case-brain-group button {
+  flex: 1 1 118px;
+}
+
+.ai-print-group {
+  order: -3;
+  flex: 1 1 100%;
+  border-color: rgba(20, 184, 166, 0.34);
+  background: rgba(18, 36, 32, 0.84);
+}
+
+.ai-print-group .quick-group-title {
+  color: #b7f7df;
+}
+
+.ai-print-group button {
+  flex: 1 1 112px;
+  background: #263b35;
+}
+
+.ai-print-group button:nth-of-type(3) {
+  border-color: rgba(45, 212, 191, 0.68);
+  background: #0f766e;
+  color: #ffffff;
+  font-weight: 800;
 }
 
