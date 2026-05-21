@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
+from collections import Counter
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
@@ -12,6 +14,8 @@ from config import DATABASE_DIR, FILE_BACKUP_DIR, ROOT_DIR
 CASE_STUDY_BRAIN_DIR = DATABASE_DIR / "agent_brains" / "case_study"
 CASE_STUDY_DB_PATH = CASE_STUDY_BRAIN_DIR / "case_study_brain.sqlite"
 TRAINING_MANIFEST_PATH = CASE_STUDY_BRAIN_DIR / "case_study_training_manifest.json"
+PATTERN_LIBRARY_PATH = CASE_STUDY_BRAIN_DIR / "case_study_pattern_library.json"
+TRAINING_REPORT_PATH = CASE_STUDY_BRAIN_DIR / "CASE_STUDY_TRAINING_REPORT.md"
 
 CATEGORY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("01_Product_Research", ("research", "market", "niche", "competitor", "idea", "etsy", "udemy")),
@@ -100,7 +104,121 @@ def search_case_study_brain(query: str, *, limit: int = 8) -> list[dict]:
     hits = search_brain(query, limit=limit, db_path=CASE_STUDY_DB_PATH)
     for hit in hits:
         hit["category"] = classify_source(str(hit.get("source_path", "")), str(hit.get("title", "")))
+        hit["pattern_score"] = score_case_study_hit(hit)
+        hit["patterns"] = detect_patterns(str(hit.get("text", "")), str(hit.get("title", "")))
     return hits
+
+
+def score_case_study_hit(hit: dict) -> int:
+    text = f"{hit.get('title', '')} {hit.get('source_path', '')} {hit.get('text', '')[:3000]}".lower()
+    score = 20
+    marker_groups = {
+        "product": ("product", "bundle", "pack", "template", "worksheet", "planner", "printable"),
+        "sales": ("headline", "sales page", "offer", "cta", "guarantee", "faq", "bonus"),
+        "launch": ("funnel", "oto", "order bump", "affiliate", "jv", "commission", "launch"),
+        "execution": ("step", "checklist", "workflow", "example", "case study", "prompt", "swipe"),
+        "risk": ("license", "rights", "plr", "mrr", "refund", "disclaimer", "compliance"),
+    }
+    for markers in marker_groups.values():
+        if any(marker in text for marker in markers):
+            score += 12
+    if re.search(r"\n\s*(?:\d+\.|-|\*)\s+", str(hit.get("text", ""))):
+        score += 8
+    if "|" in str(hit.get("text", "")) and "---" in str(hit.get("text", "")):
+        score += 5
+    return max(0, min(100, score))
+
+
+def detect_patterns(text: str, title: str = "") -> list[str]:
+    haystack = f"{title}\n{text[:5000]}".lower()
+    patterns: list[str] = []
+    checks = (
+        ("Product Pack", ("bundle", "pack", "template", "planner", "worksheet", "printable")),
+        ("Sales Page", ("headline", "sales page", "cta", "faq", "bonus", "guarantee")),
+        ("Funnel / OTO", ("funnel", "oto", "order bump", "downsell", "upsell", "backend")),
+        ("JV / Affiliate", ("jv", "affiliate", "commission", "swipe", "review access")),
+        ("Prompt / Template", ("prompt", "template", "chatgpt", "ai", "fill in", "placeholder")),
+        ("KDP / Printable", ("kdp", "printable", "canva", "interior", "coloring", "worksheet")),
+        ("Kids / Education", ("kids", "children", "preschool", "learning", "coloring", "activity")),
+        ("Compliance / License", ("license", "plr", "mrr", "rights", "refund", "disclaimer")),
+    )
+    for name, markers in checks:
+        if any(marker in haystack for marker in markers):
+            patterns.append(name)
+    return patterns or ["General Research"]
+
+
+def extract_case_study_patterns(query: str, *, limit: int = 16) -> dict:
+    hits = search_case_study_brain(query, limit=limit)
+    pattern_counter: Counter[str] = Counter()
+    category_counter: Counter[str] = Counter()
+    top_hits = []
+    for hit in hits:
+        category_counter[str(hit.get("category", "00_Unsorted"))] += 1
+        for pattern in hit.get("patterns", []):
+            pattern_counter[pattern] += 1
+        top_hits.append(
+            {
+                "title": hit.get("title", ""),
+                "source_path": hit.get("source_path", ""),
+                "category": hit.get("category", ""),
+                "score": hit.get("pattern_score", 0),
+                "patterns": hit.get("patterns", []),
+                "excerpt": " ".join(str(hit.get("text", "")).split())[:900],
+            }
+        )
+    output = {
+        "query": query,
+        "summary": case_study_summary(),
+        "top_patterns": pattern_counter.most_common(12),
+        "top_categories": category_counter.most_common(12),
+        "top_hits": sorted(top_hits, key=lambda item: int(item["score"]), reverse=True),
+        "training_readiness": training_readiness_score(),
+        "reuse_rules": training_system_notes(),
+    }
+    PATTERN_LIBRARY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    PATTERN_LIBRARY_PATH.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    return output
+
+
+def training_readiness_score() -> dict:
+    summary = case_study_summary()
+    documents = int(summary.get("documents") or 0)
+    chunks = int(summary.get("chunks") or 0)
+    categories = [item for item in summary.get("categories", []) if int(item.get("count") or 0) > 0 and item.get("category") != "00_Unsorted"]
+    category_coverage = len(categories)
+    score = 0
+    score += min(35, documents // 20)
+    score += min(30, chunks // 80)
+    score += min(25, category_coverage * 3)
+    score += 10 if summary.get("source_exists") else 0
+    score = max(0, min(100, score))
+    if score >= 80:
+        decision = "TRAINING READY"
+    elif score >= 45:
+        decision = "PARTIAL TRAINING READY"
+    elif score > 0:
+        decision = "SEED TRAINING ONLY"
+    else:
+        decision = "MISSING TRAINING DATA"
+    return {
+        "score": score,
+        "decision": decision,
+        "documents": documents,
+        "chunks": chunks,
+        "category_coverage": category_coverage,
+        "recommendation": training_recommendation(score),
+    }
+
+
+def training_recommendation(score: int) -> str:
+    if score >= 80:
+        return "Use Case Study Brain in production answers, with citations and anti-copy checks."
+    if score >= 45:
+        return "Use for research/pattern extraction, then index more files before relying on niche-specific conclusions."
+    if score > 0:
+        return "This is only a seed brain. Run /train_full_case_study_brain 1000 or more."
+    return "No usable data yet. Check PLR_AGENT_FILE_BACKUP_DIR and run training."
 
 
 def category_counts() -> list[dict]:
@@ -142,6 +260,68 @@ def format_case_study_context(query: str, *, limit: int = 6) -> str:
             ]
         )
     return "\n".join(lines)
+
+
+def write_training_report(query: str = "AI PLR Prompt Template Packs for KDP Printables") -> dict:
+    patterns = extract_case_study_patterns(query, limit=20)
+    readiness = patterns["training_readiness"]
+    lines = [
+        "# Case Study Brain Training Report",
+        "",
+        f"Created At: {datetime.now().isoformat(timespec='seconds')}",
+        f"Source Root: `{FILE_BACKUP_DIR}`",
+        f"Brain DB: `{CASE_STUDY_DB_PATH}`",
+        f"Pattern Library: `{PATTERN_LIBRARY_PATH}`",
+        "",
+        "## Training Readiness",
+        "",
+        f"Score: {readiness['score']}/100",
+        f"Decision: {readiness['decision']}",
+        f"Documents: {readiness['documents']}",
+        f"Chunks: {readiness['chunks']}",
+        f"Category Coverage: {readiness['category_coverage']}/10",
+        f"Recommendation: {readiness['recommendation']}",
+        "",
+        "## Top Patterns",
+        "",
+    ]
+    for name, count in patterns["top_patterns"]:
+        lines.append(f"- {name}: {count}")
+    lines.extend(["", "## Top Categories", ""])
+    for name, count in patterns["top_categories"]:
+        lines.append(f"- {name}: {count}")
+    lines.extend(["", "## Best Case Study Hits", ""])
+    for index, hit in enumerate(patterns["top_hits"][:10], start=1):
+        lines.extend(
+            [
+                f"### {index}. {hit['title']}",
+                "",
+                f"- Score: {hit['score']}/100",
+                f"- Category: {hit['category']}",
+                f"- Patterns: {', '.join(hit['patterns'])}",
+                f"- Source: `{hit['source_path']}`",
+                f"- Extract: {hit['excerpt']}",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## Rules",
+            "",
+            "- Use old files as case-study memory, not model weights.",
+            "- Reuse structure, sequence, quality gates, and packaging patterns.",
+            "- Do not copy old product text verbatim into new sellable assets.",
+            "- Always run license/compliance checks before resale or client-use claims.",
+        ]
+    )
+    TRAINING_REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    TRAINING_REPORT_PATH.write_text("\n".join(lines), encoding="utf-8")
+    return {
+        "report_path": str(TRAINING_REPORT_PATH),
+        "pattern_library_path": str(PATTERN_LIBRARY_PATH),
+        "training_readiness": readiness,
+        "patterns": patterns,
+    }
 
 
 def training_system_notes() -> list[str]:

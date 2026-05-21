@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color-scheme: dark;
   --bg: #0b0c0f;
   --surface: #111318;
@@ -124,6 +124,11 @@ body {
   display: grid;
   gap: 10px;
   padding: 14px 8px 8px;
+}
+
+.sidebar-close-btn,
+.sidebar-backdrop {
+  display: none;
 }
 
 .brand {
@@ -2883,7 +2888,7 @@ button {
   }
 }
 
-/* v1.08 mobile shell: keep chat, tools, and composer inside one phone viewport. */
+/* v1.09 mobile shell: keep chat, tools, and composer inside one phone viewport. */
 @media (max-width: 760px) {
   html,
   body {
@@ -2931,6 +2936,17 @@ button {
     transition: transform 0.22s ease, opacity 0.22s ease;
   }
 
+  .sidebar-backdrop {
+    position: fixed;
+    z-index: 70;
+    inset: 0;
+    display: block;
+    border: 0;
+    background: rgba(0, 0, 0, 0.44);
+    opacity: 1;
+    transition: opacity 0.22s ease;
+  }
+
   .app.sidebar-collapsed .sidebar {
     width: min(86vw, 340px);
     max-width: min(86vw, 340px);
@@ -2941,8 +2957,29 @@ button {
     pointer-events: none;
   }
 
+  .app.sidebar-collapsed .sidebar-backdrop {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .sidebar-top {
+    position: relative;
     padding-top: max(12px, env(safe-area-inset-top));
+  }
+
+  .sidebar-close-btn {
+    position: absolute;
+    top: max(10px, env(safe-area-inset-top));
+    right: 10px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    color: var(--text-primary);
   }
 
   .thread-preview,
@@ -3204,3 +3241,4 @@ button {
     width: calc(100vw - 16px);
   }
 }
+

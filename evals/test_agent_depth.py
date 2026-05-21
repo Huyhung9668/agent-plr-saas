@@ -37,6 +37,9 @@ TEST_CASES = [
     ("workflow_30", "Show 30-step completion workflow"),
     ("ai_workflow_20", "Show AI workflow"),
     ("case_study_search", "AI PLR Prompt Template Packs for KDP Printables"),
+    ("case_study_patterns", "AI PLR Prompt Template Packs for KDP Printables"),
+    ("training_status", "Show training status"),
+    ("export_training_report", "AI PLR Prompt Template Packs for KDP Printables"),
 ]
 
 REQUIRED_KEYWORDS = [
@@ -86,7 +89,7 @@ def _render(module_id: str, prompt: str) -> str:
 
 def test_agent_depth_contract() -> None:
     failures: list[str] = []
-    non_launch_contract_modules = {"workflow_30", "ai_workflow_20", "case_study_search"}
+    non_launch_contract_modules = {"workflow_30", "ai_workflow_20", "case_study_search", "case_study_patterns", "training_status", "export_training_report"}
     for module_id, prompt in TEST_CASES:
         output = _render(module_id, prompt)
         for keyword in REQUIRED_KEYWORDS:
@@ -112,6 +115,12 @@ def test_agent_depth_contract() -> None:
             failures.append("ai_workflow_20 missing final AI workflow step")
         if module_id == "case_study_search" and "CASE STUDY BRAIN SEARCH" not in output:
             failures.append("case_study_search missing search header")
+        if module_id == "case_study_patterns" and "CASE STUDY PATTERN EXTRACTOR" not in output:
+            failures.append("case_study_patterns missing pattern extractor header")
+        if module_id == "training_status" and "TRAINING STATUS" not in output:
+            failures.append("training_status missing status header")
+        if module_id == "export_training_report" and "TRAINING REPORT EXPORTED" not in output:
+            failures.append("export_training_report missing report header")
 
     start_here = ROOT / "outputs" / "AI_Email_Campaign_Kit" / "product_assets" / "00_Start_Here.md"
     campaign_map = ROOT / "outputs" / "AI_Email_Campaign_Kit" / "product_assets" / "01_7_Day_Campaign_Map.md"

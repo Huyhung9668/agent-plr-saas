@@ -345,6 +345,25 @@ Module Contract: Train Case Study Brain.
 Explain that training here means indexing old files into searchable memory/RAG.
 Output source folder, category map, status, and next search/build actions.
 """,
+    "case_study_patterns": """
+Module Contract: Case Study Pattern Extractor.
+Extract reusable patterns from old-file brain:
+# CASE STUDY PATTERN EXTRACTOR
+## Query
+## Top Product Patterns
+## Sales Page / Funnel / JV Lessons
+## What To Reuse
+## What Not To Copy
+## Build Recommendation
+""",
+    "training_status": """
+Module Contract: Training Status.
+Report Case Study Brain documents, chunks, category coverage, readiness score, and next indexing action.
+""",
+    "export_training_report": """
+Module Contract: Export Training Report.
+Create a training report and pattern library from Case Study Brain, then show paths and readiness.
+""",
     "market_gap": """
 Module Contract: Market Gap Finder.
 Output competitor patterns, missing implementation assets, buyer gaps, unique angle, saturation risk, stronger kit structure.
@@ -1103,8 +1122,14 @@ def _requested_module_key(question: str) -> str:
         ("launch pack", "launch_pack"),
         ("case study brain", "case_study_search"),
         ("case study search", "case_study_search"),
+        ("case study patterns", "case_study_patterns"),
+        ("extract patterns", "case_study_patterns"),
+        ("pattern extractor", "case_study_patterns"),
         ("training agent", "case_study_search"),
         ("train case study", "train_case_study_brain"),
+        ("full case study train", "train_full_case_study_brain"),
+        ("training status", "training_status"),
+        ("training report", "export_training_report"),
         ("30 step workflow", "workflow_30"),
         ("ai workflow", "ai_workflow_20"),
         ("evidence mode", "evidence_mode"),

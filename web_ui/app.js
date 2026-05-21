@@ -19,6 +19,8 @@ const statusBtn = document.getElementById("statusBtn");
 const exportBtn = document.getElementById("exportBtn");
 const promptLibraryBtn = document.getElementById("promptLibraryBtn");
 const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
+const sidebarBackdrop = document.getElementById("sidebarBackdrop");
 const quickActionsToggle = document.getElementById("quickActionsToggle");
 const modelSelect = document.getElementById("modelSelect");
 const toolModeSelect = document.getElementById("toolModeSelect");
@@ -184,6 +186,7 @@ function applyShellPreferences() {
   const sidebarCollapsed = storedSidebarState === null ? mobileDefaultCollapsed : storedSidebarState === "1";
   const libraryOpen = loadSelectValue(promptLibraryStorageKey, "0") === "1";
   app.classList.toggle("sidebar-collapsed", sidebarCollapsed);
+  updateSidebarA11y();
   quickActions?.classList.toggle("collapsed", !libraryOpen);
   if (quickActionsToggle) quickActionsToggle.textContent = libraryOpen ? "Ẩn thư viện prompt" : "Thư viện prompt";
   if (modelSelect) modelSelect.value = selectedModelPersona;
@@ -192,8 +195,20 @@ function applyShellPreferences() {
 
 function toggleSidebar() {
   const collapsed = !app.classList.contains("sidebar-collapsed");
-  app.classList.toggle("sidebar-collapsed", collapsed);
+  setSidebarCollapsed(collapsed);
+}
+
+function setSidebarCollapsed(collapsed) {
+  app.classList.toggle("sidebar-collapsed", Boolean(collapsed));
   saveSelectValue(sidebarStorageKey, collapsed ? "1" : "0");
+  updateSidebarA11y();
+}
+
+function updateSidebarA11y() {
+  const collapsed = app.classList.contains("sidebar-collapsed");
+  sidebarToggleBtn?.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  sidebarCloseBtn?.setAttribute("aria-hidden", collapsed ? "true" : "false");
+  sidebarBackdrop?.setAttribute("aria-hidden", collapsed ? "true" : "false");
 }
 
 function togglePromptLibrary(forceOpen = null) {
@@ -756,7 +771,7 @@ async function loadStatus() {
     }, { docs: 0, chunks: 0 });
     const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
     const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
-  const appVersion = data.appVersion || "1.08";
+  const appVersion = data.appVersion || "1.09";
     for (const badge of appVersionBadges) badge.textContent = `v${appVersion}`;
     const caseDocs = Number(data.caseStudyBrain?.documents || 0);
     const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
@@ -2084,6 +2099,8 @@ sendBtn.addEventListener("click", sendMessage);
 newChatBtn.addEventListener("click", () => createThread("Chat mới"));
 retryLastBtn?.addEventListener("click", retryLastRequest);
 sidebarToggleBtn?.addEventListener("click", toggleSidebar);
+sidebarCloseBtn?.addEventListener("click", () => setSidebarCollapsed(true));
+sidebarBackdrop?.addEventListener("click", () => setSidebarCollapsed(true));
 quickActionsToggle?.addEventListener("click", () => togglePromptLibrary());
 promptLibraryBtn?.addEventListener("click", () => togglePromptLibrary(true));
 artifactCloseBtn?.addEventListener("click", closeArtifactPanel);
@@ -2198,7 +2215,11 @@ function moduleIdFromLabel(value) {
     "storage report": "storage_report",
     "optimize storage": "optimize_storage",
     "train 300 files": "train_case_study_brain",
+    "train full 1000": "train_full_case_study_brain",
     "search case study": "case_study_search",
+    "extract patterns": "case_study_patterns",
+    "training status": "training_status",
+    "training report": "export_training_report",
     "30-step workflow": "workflow_30",
     "ai workflow": "ai_workflow_20",
     "kdp prompt pack": "case_study_search",
@@ -2254,7 +2275,11 @@ function installQuickActionTranslations() {
     "Optimize Storage": "Tối ưu dung lượng",
     "Training / Case Study Brain": "Huấn luyện nhẹ / Kho case study",
     "Train 300 Files": "Index thử 300 file cũ",
+    "Train Full 1000": "Index sâu 1000 file cũ",
     "Search Case Study": "Tìm trong kho case study",
+    "Extract Patterns": "Rút pattern từ case study",
+    "Training Status": "Trạng thái training brain",
+    "Training Report": "Xuất báo cáo training",
     "30-Step Workflow": "Quy trình hoàn thành 30 bước",
     "AI Workflow": "Quy trình ra lệnh AI 20 bước",
     "KDP Prompt Pack": "Ngách KDP Prompt & Template Pack",
@@ -2608,6 +2633,10 @@ document.addEventListener("click", () => {
 });
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
+  if (!app.classList.contains("sidebar-collapsed") && window.matchMedia?.("(max-width: 760px)")?.matches) {
+    setSidebarCollapsed(true);
+    return;
+  }
   if (!artifactPanel?.hidden) closeArtifactPanel();
   if (openThreadMenuId) {
     openThreadMenuId = null;
@@ -2718,3 +2747,4 @@ function repairMojibake(value) {
     return text;
   }
 }
+

@@ -3,17 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agent chá»§ v1.08</title>
-  <link rel="stylesheet" href="/styles.css?v=1.08" />
+  <title>Agent chá»§ v1.09</title>
+  <link rel="stylesheet" href="/styles.css?v=1.09" />
   </head>
   <body>
     <div class="app" data-theme="dark">
       <aside class="sidebar" id="sidebar">
         <div class="sidebar-top">
+          <button id="sidebarCloseBtn" class="icon-btn sidebar-close-btn" type="button" title="Đóng lịch sử chat" aria-label="Đóng lịch sử chat">×</button>
           <div class="brand">
             <div class="logo">M</div>
             <div>
-              <div class="title">Agent chá»§ <span class="version-badge" data-app-version>v1.08</span></div>
+              <div class="title">Agent chá»§ <span class="version-badge" data-app-version>v1.09</span></div>
               <div class="subtitle">PLR, SaaS, WarriorPlus</div>
             </div>
           </div>
@@ -43,12 +44,13 @@
           </div>
         </div>
       </aside>
+      <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Đóng lịch sử chat"></button>
 
       <main class="main">
         <header class="topbar">
           <button id="sidebarToggleBtn" class="icon-btn sidebar-toggle" type="button" title="áº¨n/hiá»‡n lá»‹ch sá»­ chat">â˜°</button>
           <div class="topbar-left">
-            <div class="chat-title">Agent chá»§ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.08</span></div>
+            <div class="chat-title">Agent chá»§ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.09</span></div>
             <div id="brainSummary" class="chat-subtitle">Äang kiá»ƒm tra 3 bá»™ nÃ£o...</div>
           </div>
           <div class="topbar-controls" aria-label="Cáº¥u hÃ¬nh chat">
@@ -158,7 +160,11 @@
             <div class="quick-group">
               <span class="quick-group-title">Training / Case Study Brain</span>
               <button type="button" data-module="true" data-prompt="/train_case_study_brain 300">Train 300 Files</button>
+              <button type="button" data-module="true" data-prompt="/train_full_case_study_brain 1000">Train Full 1000</button>
               <button type="button" data-module="true" data-prompt="/case_study_search AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe">Search Case Study</button>
+              <button type="button" data-module="true" data-prompt="/case_study_patterns AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe">Extract Patterns</button>
+              <button type="button" data-module="true" data-prompt="/training_status">Training Status</button>
+              <button type="button" data-module="true" data-prompt="/export_training_report AI PLR Prompt Template Packs for KDP Printables">Training Report</button>
               <button type="button" data-module="true" data-prompt="/workflow_30">30-Step Workflow</button>
               <button type="button" data-module="true" data-prompt="/ai_workflow_20">AI Workflow</button>
               <button type="button" data-module="true" data-prompt="Dựa trên Case Study Brain, phân tích ngách AI PLR Prompt & Template Packs for KDP Printables: buyer, product pattern, prompt/template assets, sales angle, funnel, JV fit, AI Replace Risk, và next action.">KDP Prompt Pack</button>
@@ -214,8 +220,10 @@
       <div id="artifactBody" class="artifact-body"></div>
     </aside>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="/utils/renderFileCard.js?v=1.08"></script>
-  <script src="/app.js?v=1.08"></script>
+  <script src="/utils/renderFileCard.js?v=1.09"></script>
+  <script src="/app.js?v=1.09"></script>
   </body>
 </html>
+
+
 

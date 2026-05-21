@@ -77,7 +77,11 @@ ACTION_ONLY_MODULES = {
     "storage_report",
     "agent_benchmark",
     "train_case_study_brain",
+    "train_full_case_study_brain",
     "case_study_search",
+    "case_study_patterns",
+    "training_status",
+    "export_training_report",
     "workflow_30",
     "ai_workflow_20",
 }
@@ -743,7 +747,11 @@ def _normalize_module_id(value: object) -> str:
         "storage_report",
         "agent_benchmark",
         "train_case_study_brain",
+        "train_full_case_study_brain",
         "case_study_search",
+        "case_study_patterns",
+        "training_status",
+        "export_training_report",
         "workflow_30",
         "ai_workflow_20",
     }
@@ -802,9 +810,15 @@ def _command_module_id(question: str) -> str:
         "/benchmark_agent": "agent_benchmark",
         "/compare_chatgpt": "agent_benchmark",
         "/train_case_study_brain": "train_case_study_brain",
+        "/train_full_case_study_brain": "train_full_case_study_brain",
         "/case_study_train": "train_case_study_brain",
         "/case_study_search": "case_study_search",
         "/search_case_study": "case_study_search",
+        "/case_study_patterns": "case_study_patterns",
+        "/extract_patterns": "case_study_patterns",
+        "/training_status": "training_status",
+        "/export_training_report": "export_training_report",
+        "/training_report": "export_training_report",
         "/workflow_30": "workflow_30",
         "/ai_workflow_20": "ai_workflow_20",
     }
@@ -913,8 +927,9 @@ def _action_response(module_id: str, action: dict) -> str:
         lines.extend(["", "Active brain DBs:"])
         lines.extend(f"- `{item}`" for item in action.get("active_brain_dbs", []))
         return "\n".join(lines)
-    if module_id == "train_case_study_brain":
+    if module_id in {"train_case_study_brain", "train_full_case_study_brain"}:
         summary = action.get("summary") or {}
+        readiness = action.get("training_readiness") or {}
         lines = [
             "# CASE STUDY BRAIN TRAINING",
             "",
@@ -937,6 +952,12 @@ def _action_response(module_id: str, action: dict) -> str:
             f"- Text MB: {summary.get('text_mb', 0)}",
             f"- DB MB: {summary.get('db_size_mb', 0)}",
             "",
+            "TRAINING READINESS:",
+            f"- Score: {readiness.get('score', 0)}/100",
+            f"- Decision: {readiness.get('decision', 'UNKNOWN')}",
+            f"- Category Coverage: {readiness.get('category_coverage', 0)}/10",
+            f"- Recommendation: {readiness.get('recommendation', '')}",
+            "",
             "CATEGORY MAP:",
         ]
         for item in summary.get("categories", []):
@@ -950,8 +971,8 @@ def _action_response(module_id: str, action: dict) -> str:
                 "- Không copy y nguyên file cũ để bán lại.",
                 "",
                 "NEXT BEST ACTION:",
-                "1. Dùng `/case_study_search AI PLR Prompt Template Packs for KDP Printables`.",
-                "2. Dùng `/workflow_30` để chạy quy trình hoàn thành sản phẩm.",
+                "1. Dùng `/case_study_patterns AI PLR Prompt Template Packs for KDP Printables`.",
+                "2. Dùng `/export_training_report AI PLR Prompt Template Packs for KDP Printables`.",
                 "3. Dùng `/full_launch_pack [tên sản phẩm]` khi đã chọn ngách.",
             ]
         )
@@ -972,6 +993,92 @@ def _action_response(module_id: str, action: dict) -> str:
                 "1. Rút pattern sản phẩm bán được, không copy nội dung.",
                 "2. Chọn 1 ngách nhỏ và tạo offer angle.",
                 "3. Chạy Product Assets hoặc Sales Page dựa trên pattern tìm được.",
+            ]
+        )
+    if module_id == "case_study_patterns":
+        readiness = action.get("training_readiness") or {}
+        lines = [
+            "# CASE STUDY PATTERN EXTRACTOR",
+            "",
+            f"Query: `{action.get('query', '')}`",
+            "",
+            "TRAINING READINESS:",
+            f"- Score: {readiness.get('score', 0)}/100",
+            f"- Decision: {readiness.get('decision', 'UNKNOWN')}",
+            f"- Recommendation: {readiness.get('recommendation', '')}",
+            "",
+            "TOP PATTERNS:",
+        ]
+        for name, count in action.get("top_patterns", []):
+            lines.append(f"- {name}: {count}")
+        lines.extend(["", "TOP CATEGORIES:"])
+        for name, count in action.get("top_categories", []):
+            lines.append(f"- {name}: {count}")
+        lines.extend(["", "BEST CASE STUDY HITS:"])
+        for index, hit in enumerate((action.get("top_hits") or [])[:8], start=1):
+            lines.extend(
+                [
+                    f"{index}. **{hit.get('title', '')}**",
+                    f"   - Score: {hit.get('score', 0)}/100",
+                    f"   - Category: {hit.get('category', '')}",
+                    f"   - Patterns: {', '.join(hit.get('patterns', []))}",
+                    f"   - Source: `{_display_path(hit.get('source_path', ''))}`",
+                ]
+            )
+        lines.extend(
+            [
+                "",
+                "REUSE RULE:",
+                "- Dùng pattern, cấu trúc, checklist, offer ladder; không copy nguyên văn nội dung cũ.",
+                "",
+                "NEXT BEST ACTION:",
+                "1. Chọn 1 pattern mạnh nhất.",
+                "2. Tạo offer angle mới từ pattern đó.",
+                "3. Chạy `/deep_create_product_assets [tên sản phẩm]`.",
+            ]
+        )
+        return "\n".join(lines)
+    if module_id == "training_status":
+        summary = action.get("summary") or {}
+        readiness = action.get("training_readiness") or {}
+        lines = [
+            "# TRAINING STATUS",
+            "",
+            f"Source: `{_display_path(summary.get('source_root', ''))}`",
+            f"Source Exists: {summary.get('source_exists')}",
+            f"Documents: {summary.get('documents', 0)}",
+            f"Chunks: {summary.get('chunks', 0)}",
+            f"Text MB: {summary.get('text_mb', 0)}",
+            f"DB: `{_display_path(summary.get('db_path', ''))}`",
+            "",
+            "READINESS:",
+            f"- Score: {readiness.get('score', 0)}/100",
+            f"- Decision: {readiness.get('decision', 'UNKNOWN')}",
+            f"- Category Coverage: {readiness.get('category_coverage', 0)}/10",
+            f"- Recommendation: {readiness.get('recommendation', '')}",
+            "",
+            "CATEGORIES:",
+        ]
+        for item in summary.get("categories", []):
+            lines.append(f"- {item.get('category')}: {item.get('count')}")
+        return "\n".join(lines)
+    if module_id == "export_training_report":
+        readiness = action.get("training_readiness") or {}
+        return "\n".join(
+            [
+                "# TRAINING REPORT EXPORTED",
+                "",
+                f"Report: `{_display_path(action.get('report_path', ''))}`",
+                f"Pattern Library: `{_display_path(action.get('pattern_library_path', ''))}`",
+                "",
+                "READINESS:",
+                f"- Score: {readiness.get('score', 0)}/100",
+                f"- Decision: {readiness.get('decision', 'UNKNOWN')}",
+                "",
+                "NEXT BEST ACTION:",
+                "1. Mở report để xem pattern mạnh.",
+                "2. Dùng pattern extractor trước khi tạo sản phẩm mới.",
+                "3. Index thêm dữ liệu nếu score dưới 80/100.",
             ]
         )
     if module_id in {"workflow_30", "ai_workflow_20"}:

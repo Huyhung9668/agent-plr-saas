@@ -11,10 +11,13 @@ from config import OUTPUTS_DIR
 from case_study_brain import (
     ai_workflow_steps,
     case_study_summary,
+    extract_case_study_patterns,
     format_case_study_context,
     ingest_case_study_brain,
     training_system_notes,
+    training_readiness_score,
     workflow_completion_steps,
+    write_training_report,
 )
 from launch_os_db import ensure_project_from_text, infer_product_name
 from storage_optimizer import optimize_storage, storage_report, vacuum_active_brains
@@ -212,8 +215,16 @@ def create_full_launch_pack(question: str) -> dict:
 def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
     if module_id == "train_case_study_brain":
         return create_case_study_training_action(question)
+    if module_id == "train_full_case_study_brain":
+        return create_case_study_training_action(question, default_limit=1000)
     if module_id == "case_study_search":
         return create_case_study_search_action(question)
+    if module_id == "case_study_patterns":
+        return create_case_study_patterns_action(question)
+    if module_id == "training_status":
+        return create_training_status_action()
+    if module_id == "export_training_report":
+        return create_export_training_report_action(question)
     if module_id == "workflow_30":
         return create_workflow_30_action()
     if module_id == "ai_workflow_20":
@@ -272,10 +283,10 @@ def maybe_run_action(module_id: str, question: str, answer: str = "") -> dict:
         return _finalize_action_state(module_id, export_project_zip(question))
     return {}
 
-def create_case_study_training_action(question: str) -> dict:
+def create_case_study_training_action(question: str, *, default_limit: int = 300) -> dict:
     folded = _ascii_fold(str(question or "")).lower()
     rebuild = "rebuild" in folded or "xay lai" in folded or "xoa index" in folded
-    limit = 300
+    limit = default_limit
     for token in folded.replace("=", " ").split():
         if token.isdigit():
             value = int(token)
@@ -300,6 +311,7 @@ def create_case_study_training_action(question: str) -> dict:
         "manifest_path": result.manifest_path,
         "summary": case_study_summary(),
         "training_notes": training_system_notes(),
+        "training_readiness": training_readiness_score(),
     }
 
 def create_case_study_search_action(question: str) -> dict:
@@ -312,7 +324,35 @@ def create_case_study_search_action(question: str) -> dict:
         "query": query,
         "summary": case_study_summary(),
         "context": format_case_study_context(query, limit=8),
+        "training_readiness": training_readiness_score(),
     }
+
+def create_case_study_patterns_action(question: str) -> dict:
+    query = _strip_training_command(question) or "AI PLR Prompt Template Packs for KDP Printables"
+    return extract_case_study_patterns(query, limit=18)
+
+def create_training_status_action() -> dict:
+    return {"summary": case_study_summary(), "training_readiness": training_readiness_score()}
+
+def create_export_training_report_action(question: str) -> dict:
+    query = _strip_training_command(question) or "AI PLR Prompt Template Packs for KDP Printables"
+    return write_training_report(query)
+
+def _strip_training_command(question: str) -> str:
+    query = str(question or "").strip()
+    for prefix in (
+        "/case_study_patterns",
+        "/extract_patterns",
+        "/training_status",
+        "/export_training_report",
+        "/training_report",
+        "/case_study_search",
+        "/search_case_study",
+        "/brain_search",
+    ):
+        if query.lower().startswith(prefix):
+            return query[len(prefix):].strip()
+    return query
 
 def create_workflow_30_action() -> dict:
     return {"title": "Quy Trinh Hoan Thanh 30 Buoc", "steps": workflow_completion_steps()}
