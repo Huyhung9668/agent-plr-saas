@@ -1,0 +1,3 @@
+Product title: Printable Prompt-to-Product Sprint. Short pitch: “Turn AI printable ideas into a structured product pack with prompts, workflow, examples, quality checks, listing copy and license review notes.” Buyer-facing objection answer: “Can I just ask AI?” Yes, AI can generate raw ideas. This kit helps you sequence the work, test output, avoid common rights/compliance mistakes, and package files so the buyer can actually use them. Suggested FE: $17, inference only. Order bump: extra sample packs and Canva layout checklist. OTO: expanded niche vault and DFY worksheet examples, only if created fresh and license-safe.
+
+---

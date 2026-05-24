@@ -1,0 +1,10 @@
+{
+  "required": [
+    "Gate",
+    "PASS/FAIL",
+    "Evidence",
+    "Missing",
+    "Fix required",
+    "Next Action"
+  ]
+}

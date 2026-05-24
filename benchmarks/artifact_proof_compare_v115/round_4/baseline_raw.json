@@ -1,0 +1,342 @@
+{
+  "ok": true,
+  "answer": "# AI PRINTABLES PATTERN EXTRACTOR\n\nQuery: `Codex 5.5 baseline artifact proof benchmark.\nDo not use project agent, skill, brain, input_files, or RAG folders. Use only general model knowledge.\nCreate a compact but real WarriorPlus-ready AI Printables/KDP/PLR product pack.\n\nRules:\n- Do not claim live sales, payment, delivery, JV approval, buyers, or Public Launch Ready.\n- Use UNKNOWN when source proof is missing.\n- Must include DATA USED, METHOD USED, PRODUCT NAME.\n- Must include real usable content for these files:\n  00_Start_Here.md\n  01_Workflow_Map.md\n  02_Prompt_Library.md\n  03_Template_Guide.md\n  04_Example_Outputs.md\n  05_Quality_Checklist.md\n  06_Fix_Prompts.md\n  07_Listing_Sales_Kit.md\n  08_License_Compliance.md\n  sales_page.md\n  warriorplus_listing.md\n  jv_pack.md\n  delivery_page.md\n  support_faq.md\n  refund_policy.md\n- Include buyer test, AI replace risk, refund risk, license/compliance, launch audit.\n- Include exact limitation line: Not Public Launch Ready without live payment/delivery/JV/buyer proof.\nKeep under 2600 words.\n\nRound 4: choose a fresh product angle.`\n\nREADINESS:\n- Score: 100/100\n- Decision: NICHE AGENT READY\n- Recommendation: Use this agent for deep AI printable/KDP/Etsy/Canva product planning with source-backed patterns.\n\nTOP PATTERNS:\n- Prompt / Workflow System: 20\n- Launch / Marketing Pattern: 7\n- AI Canva Printable Product Kit: 4\n- AI Etsy Printable Bundle Builder: 2\n- AI Coloring Page Niche Pack: 2\n- AI KDP Puzzle Book Launch Kit: 1\n\nBEST HITS:\n1. **293   Writing With Flair  How To Become   Viết với sự tinh tế  Làm thế nào để   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 00_Unsorted\n   - Patterns: AI KDP Puzzle Book Launch Kit, Prompt / Workflow System\n   - Source: `G:/Documents/udemy-transcript-downloader/output/TUT TRICK/293 - Writing With Flair- How To Become - Viết với sự tinh tế- Làm thế nào để - VI - CHON-LOC-TUT-TRICK.pdf`\n2. **182   40 Digital Marketing Courses In 1   40 khóa học tiếp thị kỹ thuật số   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 07_Marketing_Launch\n   - Patterns: Prompt / Workflow System, Launch / Marketing Pattern\n   - Source: `G:/Documents/udemy-transcript-downloader/output/TUT TRICK/182 - 40 Digital Marketing Courses In 1 - 40 khóa học tiếp thị kỹ thuật số - VI - CHON-LOC-TUT-TRICK.pdf`\n3. **092   Learn ChatGPT for Marketing in   Tìm hiểu ChatGPT dành cho tiếp thị   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 07_Marketing_Launch\n   - Patterns: Prompt / Workflow System, Launch / Marketing Pattern\n   - Source: `G:/Documents/udemy-transcript-downloader/output/092 - Learn ChatGPT for Marketing in - Tìm hiểu ChatGPT dành cho tiếp thị - VI - CHON-LOC-TUT-TRICK.pdf`\n4. **092   Learn ChatGPT for Marketing in   Tìm hiểu ChatGPT dành cho tiếp thị   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 07_Marketing_Launch\n   - Patterns: Prompt / Workflow System, Launch / Marketing Pattern\n   - Source: `G:/Documents/udemy-transcript-downloader/output/TUT TRICK/092 - Learn ChatGPT for Marketing in - Tìm hiểu ChatGPT dành cho tiếp thị - VI - CHON-LOC-TUT-TRICK.pdf`\n5. **098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 00_Unsorted\n   - Patterns: AI Etsy Printable Bundle Builder, AI Coloring Page Niche Pack, AI Canva Printable Product Kit, Prompt / Workflow System\n   - Source: `G:/Documents/udemy-transcript-downloader/output/098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf`\n6. **098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 00_Unsorted\n   - Patterns: AI Etsy Printable Bundle Builder, AI Coloring Page Niche Pack, AI Canva Printable Product Kit, Prompt / Workflow System\n   - Source: `G:/Documents/udemy-transcript-downloader/output/TUT TRICK/098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf`\n7. **115   The Complete AI Guide  Learn   Hướng dẫn AI hoàn chỉnh  Tìm hiểu   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 00_Unsorted\n   - Patterns: Prompt / Workflow System, Launch / Marketing Pattern\n   - Source: `G:/Documents/udemy-transcript-downloader/output/115 - The Complete AI Guide- Learn - Hướng dẫn AI hoàn chỉnh- Tìm hiểu - VI - CHON-LOC-TUT-TRICK.pdf`\n8. **115   The Complete AI Guide  Learn   Hướng dẫn AI hoàn chỉnh  Tìm hiểu   VI   CHON LOC TUT TRICK**\n   - Score: 67/100\n   - Category: 00_Unsorted\n   - Patterns: Prompt / Workflow System, Launch / Marketing Pattern\n   - Source: `G:/Documents/udemy-transcript-downloader/output/TUT TRICK/115 - The Complete AI Guide- Learn - Hướng dẫn AI hoàn chỉnh- Tìm hiểu - VI - CHON-LOC-TUT-TRICK.pdf`\n\nNEXT BEST ACTION:\n1. Chọn 1 pattern mạnh nhất.\n2. Chạy `/ai_print_deep [tên offer]`.\n3. Sau đó chạy Product Assets hoặc Full Launch Pack.",
+  "sources": [],
+  "mode": "balanced",
+  "action": {
+    "query": "Codex 5.5 baseline artifact proof benchmark.\nDo not use project agent, skill, brain, input_files, or RAG folders. Use only general model knowledge.\nCreate a compact but real WarriorPlus-ready AI Printables/KDP/PLR product pack.\n\nRules:\n- Do not claim live sales, payment, delivery, JV approval, buyers, or Public Launch Ready.\n- Use UNKNOWN when source proof is missing.\n- Must include DATA USED, METHOD USED, PRODUCT NAME.\n- Must include real usable content for these files:\n  00_Start_Here.md\n  01_Workflow_Map.md\n  02_Prompt_Library.md\n  03_Template_Guide.md\n  04_Example_Outputs.md\n  05_Quality_Checklist.md\n  06_Fix_Prompts.md\n  07_Listing_Sales_Kit.md\n  08_License_Compliance.md\n  sales_page.md\n  warriorplus_listing.md\n  jv_pack.md\n  delivery_page.md\n  support_faq.md\n  refund_policy.md\n- Include buyer test, AI replace risk, refund risk, license/compliance, launch audit.\n- Include exact limitation line: Not Public Launch Ready without live payment/delivery/JV/buyer proof.\nKeep under 2600 words.\n\nRound 4: choose a fresh product angle.",
+    "summary": {
+      "db_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_brain.sqlite",
+      "db_size_mb": 446.95,
+      "documents": 11016,
+      "chunks": 39817,
+      "text_chars": 119470850,
+      "text_mb": 113.94,
+      "errors": 0,
+      "by_extension": [
+        {
+          "extension": ".pdf",
+          "count": 11016
+        }
+      ],
+      "niche": "AI Printables",
+      "source_root": "G:\\Documents\\udemy-transcript-downloader\\output",
+      "source_exists": true,
+      "source_required": false,
+      "safe_to_delete_source": true,
+      "manifest_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_training_manifest.json",
+      "categories": [
+        {
+          "category": "01_KDP_Kindle",
+          "count": 491
+        },
+        {
+          "category": "02_Etsy_Printables",
+          "count": 181
+        },
+        {
+          "category": "03_Canva_Bulk_Assets",
+          "count": 1017
+        },
+        {
+          "category": "04_AI_Image_Prompts",
+          "count": 990
+        },
+        {
+          "category": "05_Coloring_Drawing",
+          "count": 945
+        },
+        {
+          "category": "06_Journals_Planners",
+          "count": 27
+        },
+        {
+          "category": "07_Marketing_Launch",
+          "count": 3029
+        },
+        {
+          "category": "08_Automation_Workflow",
+          "count": 612
+        },
+        {
+          "category": "00_Unsorted",
+          "count": 3724
+        }
+      ],
+      "training_mode": "RAG / searchable niche brain from Udemy transcripts, not model-weight fine-tuning"
+    },
+    "top_patterns": [
+      [
+        "Prompt / Workflow System",
+        20
+      ],
+      [
+        "Launch / Marketing Pattern",
+        7
+      ],
+      [
+        "AI Canva Printable Product Kit",
+        4
+      ],
+      [
+        "AI Etsy Printable Bundle Builder",
+        2
+      ],
+      [
+        "AI Coloring Page Niche Pack",
+        2
+      ],
+      [
+        "AI KDP Puzzle Book Launch Kit",
+        1
+      ]
+    ],
+    "top_categories": [
+      [
+        "00_Unsorted",
+        13
+      ],
+      [
+        "07_Marketing_Launch",
+        5
+      ],
+      [
+        "04_AI_Image_Prompts",
+        2
+      ]
+    ],
+    "top_hits": [
+      {
+        "title": "293   Writing With Flair  How To Become   Viết với sự tinh tế  Làm thế nào để   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\293 - Writing With Flair- How To Become - Viết với sự tinh tế- Làm thế nào để - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "AI KDP Puzzle Book Launch Kit",
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "c phần: định giá, doanh thu và ưu đãi; ý triển khai quan trọng; định giá, doanh thu và ưu đãi. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. TUT TRICK thực chiến Udemy Transcript Downloader Trang 4/30 Làm theo 1-2-3: 1. Xác định bài \"Fancy, Flowery & Official Language (Exercises) - Ngôn ngữ lạ mắt, hoa mỹ và chính thức (Bài tập)\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: định giá, doanh thu và ưu đãi; ý triển khai quan trọng; định giá, doanh thu và ưu đãi. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Fancy, Flowery & Official Language (Exercises) - Ngôn ngữ lạ mắt, hoa mỹ và chính thức (Bài tập)\" nên đọc lên vẫn rời rạc và khó áp dụn"
+      },
+      {
+        "title": "182   40 Digital Marketing Courses In 1   40 khóa học tiếp thị kỹ thuật số   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\182 - 40 Digital Marketing Courses In 1 - 40 khóa học tiếp thị kỹ thuật số - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "07_Marketing_Launch",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "ên xử lý các phần: quảng cáo google/youtube; ý triển khai quan trọng; ý triển khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"Decrease your advertising costs by expanding potential audience-inventory - Giảm chi phí quảng cáo của bạn bằng cách mở rộng đối tượng-khoảng không quảng cáo\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: quảng cáo google/youtube; ý triển khai quan trọng; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Decrease your advertising costs by expanding potential audience- inventory - Giảm chi phí quảng cáo của bạn bằng cách mở rộng đối tượng-khoảng kh"
+      },
+      {
+        "title": "092   Learn ChatGPT for Marketing in   Tìm hiểu ChatGPT dành cho tiếp thị   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\092 - Learn ChatGPT for Marketing in - Tìm hiểu ChatGPT dành cho tiếp thị - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "07_Marketing_Launch",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "u ý. 9.1 How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị Bài này nói về gì: 1. Dùng ChatGPT tìm từ khóa và ý tưởng nội dung: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: dùng chatgpt tìm từ khóa và ý tưởng nội dung; cách viết prompt và lọc kết quả ai; biến kết quả chatgpt thành tài sản nội dung. 3. Đầu "
+      },
+      {
+        "title": "092   Learn ChatGPT for Marketing in   Tìm hiểu ChatGPT dành cho tiếp thị   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\092 - Learn ChatGPT for Marketing in - Tìm hiểu ChatGPT dành cho tiếp thị - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "07_Marketing_Launch",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "u ý. 9.1 How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị Bài này nói về gì: 1. Dùng ChatGPT tìm từ khóa và ý tưởng nội dung: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"How NOT to use ChatGPT for Marketing Copywriting - Cách KHÔNG sử dụng ChatGPT để viết quảng cáo tiếp thị\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: dùng chatgpt tìm từ khóa và ý tưởng nội dung; cách viết prompt và lọc kết quả ai; biến kết quả chatgpt thành tài sản nội dung. 3. Đầu "
+      },
+      {
+        "title": "098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "AI Etsy Printable Bundle Builder",
+          "AI Coloring Page Niche Pack",
+          "AI Canva Printable Product Kit",
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "trong bài \"Use ChatGPT with Canvas to Create Documents More Effectively - Sử dụng ChatGPT với Canvas để tạo tài liệu hiệu quả hơn\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. 2.4 Use ChatGPT for Project Management Image & Chart Generation - Sử dụng ChatGPT để tạo biểu đồ và hình ảnh quản lý dự án Bài này nói về gì: 1. Dùng ChatGPT tìm từ khóa và ý tưởng nội dung: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"Use ChatGPT for Project Management Image & Chart Generation - Sử dụng ChatGPT để tạo biểu đồ và hình ảnh quản lý dự án\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"Use ChatGPT for Project Management Image &"
+      },
+      {
+        "title": "098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "AI Etsy Printable Bundle Builder",
+          "AI Coloring Page Niche Pack",
+          "AI Canva Printable Product Kit",
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "trong bài \"Use ChatGPT with Canvas to Create Documents More Effectively - Sử dụng ChatGPT với Canvas để tạo tài liệu hiệu quả hơn\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. 2.4 Use ChatGPT for Project Management Image & Chart Generation - Sử dụng ChatGPT để tạo biểu đồ và hình ảnh quản lý dự án Bài này nói về gì: 1. Dùng ChatGPT tìm từ khóa và ý tưởng nội dung: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"Use ChatGPT for Project Management Image & Chart Generation - Sử dụng ChatGPT để tạo biểu đồ và hình ảnh quản lý dự án\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"Use ChatGPT for Project Management Image &"
+      },
+      {
+        "title": "115   The Complete AI Guide  Learn   Hướng dẫn AI hoàn chỉnh  Tìm hiểu   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\115 - The Complete AI Guide- Learn - Hướng dẫn AI hoàn chỉnh- Tìm hiểu - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"Gamma- Create an AI-Generated Business Presentation - Gamma- Tạo bản trình bày doanh nghiệp do AI tạo\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: gamma- create an ai-generated business presentation - gamma- tạo bản trình bày doanh nghiệp do ai tạo; công cụ, nền tảng và workflow; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Gamma- Create an AI-Generated Business Presentation - Gamma- Tạo bản trình bày doanh nghiệp do AI tạo\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, v"
+      },
+      {
+        "title": "115   The Complete AI Guide  Learn   Hướng dẫn AI hoàn chỉnh  Tìm hiểu   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\115 - The Complete AI Guide- Learn - Hướng dẫn AI hoàn chỉnh- Tìm hiểu - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"Gamma- Create an AI-Generated Business Presentation - Gamma- Tạo bản trình bày doanh nghiệp do AI tạo\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: gamma- create an ai-generated business presentation - gamma- tạo bản trình bày doanh nghiệp do ai tạo; công cụ, nền tảng và workflow; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Gamma- Create an AI-Generated Business Presentation - Gamma- Tạo bản trình bày doanh nghiệp do AI tạo\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, v"
+      },
+      {
+        "title": "213   Claude AI Pro   The Ultimate Course   Claude AI Pro   Khóa học cơ bản   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\213 - Claude AI Pro - The Ultimate Course - Claude AI Pro - Khóa học cơ bản - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "ist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"Claude Cowork- Your Desktop AI Agent - Claude Cowork- Tác nhân AI trên máy tính để bàn của bạn\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: claude cowork- your desktop ai agent - claude cowork- tác nhân ai trên máy tính để bàn của bạn; ý triển khai quan trọng; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Claude Cowork- Your Desktop AI Agent - Claude Cowork- Tác nhân AI trên máy tính để bàn của bạn\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. TUT TRICK thực chiến Udemy Transcript Downloader Trang 14/17 5.6 Project Managemen"
+      },
+      {
+        "title": "009   Mastering Salesforce AI  Agentforce   Làm chủ Salesforce AI  Lực lượng   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\009 - Mastering Salesforce AI- Agentforce - Làm chủ Salesforce AI- Lực lượng - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "07_Marketing_Launch",
+        "score": 67,
+        "patterns": [
+          "Prompt / Workflow System",
+          "Launch / Marketing Pattern"
+        ],
+        "excerpt": "ng LWC and Testing the Agent Response - Tạo loại Lightning tùy chỉnh bằng LWC và kiểm tra phản hồi của tác nhân: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp,... 2. Bài \"Creating Custom Lightning type using LWC and Testing the Agent Response - Tạo loại Lightning tùy chỉnh bằng LWC và kiểm tra phản hồi của tác nhân\" được chuyển thành 8 phần nội dung chính, mỗi TUT TRICK thực chiến Udemy Transcript Downloader Trang 34/54 phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"Creating Custom Lightning type using LWC and Testing the Agent Response - Tạo loại Lightning tùy chỉnh bằng LWC và kiểm tra phản hồi của tác nhân\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: creating custom lightning type using lwc and testing the agent response - tạo loại lightning tù"
+      },
+      {
+        "title": "257   Motivation  You Can Become a   Động lực  Bạn có thể trở thành một   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\257 - Motivation- You Can Become a - Động lực- Bạn có thể trở thành một - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 54,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "hần 1)\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. 42.1 You Are a Media Company, Not a Speaker - Bạn là một công ty truyền thông, không phải một diễn giả Bài này nói về gì: 1. Định giá, doanh thu và ưu đãi: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"You Are a Media Company, Not a Speaker - Bạn là một công ty truyền thông, không phải một diễn giả\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"You Are a Media Company, Not a Speaker - Bạn là một công ty truyền thông, không phải một diễn giả\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: định giá, doanh thu và ưu đãi; ý triển khai quan"
+      },
+      {
+        "title": "257   Motivation  You Can Become a   Động lực  Bạn có thể trở thành một   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\257 - Motivation- You Can Become a - Động lực- Bạn có thể trở thành một - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 54,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "ên tiếng trong cuộc họp khi bạn không phải là người cấp cao nhất trong phòng: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp,... 2. Bài \"How to Speak Up in a Meeting When You Are Not the Most Senior Person in the Room - Cách lên tiếng trong cuộc họp khi bạn không phải là người cấp cao nhất trong phòng\" được chuyển thành 6 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"How to Speak Up in a Meeting When You Are Not the Most Senior Person in the Room - Cách lên tiếng trong cuộc họp khi bạn không phải là người cấp cao nhất trong phòng\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: how to speak up in a meeting when you are not the most senior person in the room - cách lên tiếng trong cuộc họp khi bạn không phải là người cấp cao nh"
+      },
+      {
+        "title": "261   Passive Income Powerhouse  Learn to   Nguồn thu nhập thụ động  Học cách   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\261 - Passive Income Powerhouse- Learn to - Nguồn thu nhập thụ động- Học cách - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 54,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": ". Bắt đầu từ: BẠN có thể tạo ra giá trị gì; Bất động sản là công cụ mang lại thu nhập thụ động; Cách đầu tư vào bất động sản, ngay cả khi bạn không có 500 nghìn đô la. 3. Kết quả cần có: một checklist triển khai ngắn và một tài sản cụ thể sau khi học. 6. Tầm quan trọng của đa dạng hóa 1. Mục tiêu: rút ra một bước triển khai có thể dùng ngay cho sản phẩm số của bạn. 2. Việc nên làm: chọn một bài trong phần này, biến nội dung thành checklist 3 bước rồi làm ngay trong dự án của bạn. Bắt đầu từ: Tại sao chúng tôi luôn đa dạng hóa; Cân nhắc đa dạng hóa. 3. Kết quả cần có: một checklist triển khai ngắn và một tài sản cụ thể sau khi học. 7. Những lời chỉ trích và quan ngại chung 1. Mục tiêu: rút ra một bước triển khai có thể dùng ngay cho sản phẩm số của bạn. 2. Việc nên làm: chọn một bài trong phần này, biến nội dung thành checklist 3 bước rồi làm ngay trong dự án của bạn. Bắt đầu từ: \"Tôi khô"
+      },
+      {
+        "title": "205   Build Simple AI Tools for Your Team   Xây dựng các công cụ AI đơn giản   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\205 - Build Simple AI Tools for Your Team - Xây dựng các công cụ AI đơn giản - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 54,
+        "patterns": [
+          "AI Canva Printable Product Kit",
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "và workflow. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"How to identify what micro-apps to build - Cách xác định những ứng dụng vi mô nào cần xây dựng\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. 3.8 Demo- Using a template to create an email agent on Lindy.ai - Demo- Sử dụng mẫu để tạo tác nhân email trên Lindy.ai Bài này nói về gì: 1. Demo- Using a template to create an email agent on Lindy.ai - Demo- Sử dụng mẫu để tạo tác nhân email trên Lindy.ai: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"Demo- Using a template to create a"
+      },
+      {
+        "title": "191   AI Governance  The Fundamentals of   Quản trị AI  Các nguyên tắc cơ bản   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\191 - AI Governance- The Fundamentals of - Quản trị AI- Các nguyên tắc cơ bản - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 54,
+        "patterns": [
+          "AI Canva Printable Product Kit",
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "c phần: practical tip- encourage cross-reviews . ai models are not just technical. - mẹo thực tế- khuyến khích đánh giá chéo. các mô hình ai không chỉ mang tính kỹ; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"Practical tip- Encourage cross-reviews . AI models are not just technical. - Mẹo thực tế- Khuyến khích đánh giá chéo. Các mô hình AI không chỉ mang tính kỹ\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: practical tip- encourage cross-reviews . ai models are not just technical. - mẹo thực tế- khuyến khích đánh giá chéo. các mô hình ai không chỉ mang tính kỹ; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện"
+      },
+      {
+        "title": "083   Generative AI for Beginners   AI sáng tạo dành cho người mới bắt   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\083 - Generative AI for Beginners - AI sáng tạo dành cho người mới bắt - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "04_AI_Image_Prompts",
+        "score": 54,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "gì: 1. Định giá, doanh thu và ưu đãi: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: định giá, doanh thu và ưu đãi; ý triển khai quan trọng; ý triển khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" cần tạo đầu ra gì sa"
+      },
+      {
+        "title": "083   Generative AI for Beginners   AI sáng tạo dành cho người mới bắt   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\083 - Generative AI for Beginners - AI sáng tạo dành cho người mới bắt - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "04_AI_Image_Prompts",
+        "score": 54,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "gì: 1. Định giá, doanh thu và ưu đãi: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Bản thực hành: 1. Mục tiêu: Xác định bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: định giá, doanh thu và ưu đãi; ý triển khai quan trọng; ý triển khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, checklist, nội dung, workflow hoặc kế hoạch test. Làm theo 1-2-3: 1. Xác định bài \"When You Should Not Use Generative AI - Khi nào bạn không nên sử dụng AI sáng tạo\" cần tạo đầu ra gì sa"
+      },
+      {
+        "title": "25.14 Analytics and what to do if you are not   Phân tích và phải làm gì nếu bạn không nhận",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\182 - 40 Digital Marketing Courses In 1 - 40 khóa học tiếp thị kỹ thuật số - VI - CHON-LOC\\25.14 Analytics and what to do if you are not - Phân tích và phải làm gì nếu bạn không nhận.pdf",
+        "category": "07_Marketing_Launch",
+        "score": 46,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "BÀI PHÂN TÍCH NỘI DUNG THỰC TẾ 25.14 Analytics and what to do if you are not - Phân tích và phải làm gì nếu bạn không nhận Analytics and what to do if you are not - Phân tích và phải làm gì nếu bạn không nhận: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. Tóm tắt nhanh Bài \"Analytics and what to do if you are not - Phân tích và phải làm gì nếu bạn không nhận\" được chuyển thành 8 phần nội dung chính, mỗi phần có giải thích, quy trình, ví dụ và mục tiêu áp dụng. Trọng tâm thuộc nhóm triển khai bài học thực chiến; vì vậy điều quan trọng là tạo được đầu ra thực tế thay vì chỉ đọc lại lời giảng. Bài học tiếng Việt Udemy PDF tiếng Việt Trang 1/9 Nội dung chính theo từng phần Phần 1: Analytics and what to do if you are not - Phân tích và phải làm gì nếu bạn không nhận Có hướng dùng ChatGPT để tạo "
+      },
+      {
+        "title": "098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 41,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "1. Xác định bài \"Use Custom GPTs for Project Management - Sử dụng GPT tùy chỉnh để quản lý dự án\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: use custom gpts for project management - sử dụng gpt tùy chỉnh để quản lý dự án; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Use Custom GPTs for Project Management - Sử dụng GPT tùy chỉnh để quản lý dự án\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. TUT TRICK thực chiến Udemy Transcript Downloader Trang 7/7"
+      },
+      {
+        "title": "098   Project Management with ChatGPT   Quản lý dự án với ChatGPT (Truyền   VI   CHON LOC TUT TRICK",
+        "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\098 - Project Management with ChatGPT - Quản lý dự án với ChatGPT (Truyền - VI - CHON-LOC-TUT-TRICK.pdf",
+        "category": "00_Unsorted",
+        "score": 41,
+        "patterns": [
+          "Prompt / Workflow System"
+        ],
+        "excerpt": "1. Xác định bài \"Use Custom GPTs for Project Management - Sử dụng GPT tùy chỉnh để quản lý dự án\" cần tạo đầu ra gì sau khi học. 2. Ưu tiên xử lý các phần: use custom gpts for project management - sử dụng gpt tùy chỉnh để quản lý dự án; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5. Ghi lại lỗi, lưu ý và chỉ số cần theo dõi sau khi áp dụng. Lỗi cần tránh: 1. Giữ nguyên văn nói trong bài \"Use Custom GPTs for Project Management - Sử dụng GPT tùy chỉnh để quản lý dự án\" nên đọc lên vẫn rời rạc và khó áp dụng. 2. Không tách nội dung thành giải thích, quy trình, ví dụ, mục tiêu và lưu ý. TUT TRICK thực chiến Udemy Transcript Downloader Trang 7/7"
+      }
+    ],
+    "training_readiness": {
+      "score": 100,
+      "decision": "NICHE AGENT READY",
+      "documents": 11016,
+      "chunks": 39817,
+      "category_coverage": 8,
+      "recommendation": "Use this agent for deep AI printable/KDP/Etsy/Canva product planning with source-backed patterns."
+    },
+    "reuse_rules": [
+      "Use Udemy transcripts as searchable niche memory/RAG, not model weights.",
+      "Focus on AI-assisted PLR products + KDP covers + coloring books + journals + posters/social media assets.",
+      "Turn lessons into rebrandable systems, packs, prompts, workflow checklists, and launch assets.",
+      "Do not copy course text verbatim into products for sale.",
+      "Every answer should include productization, AI-replacement defense, license/risk caution, and next build action."
+    ]
+  }
+}

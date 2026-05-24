@@ -1,0 +1,34 @@
+{
+  "project_slug": "Lead_Magnet_Printable_Builder_For_Coaches",
+  "project_name": "Lead Magnet Printable Builder For Coaches",
+  "completed": {
+    "offer_analysis": true,
+    "product_assets": true,
+    "sales_page": true,
+    "funnel": true,
+    "jv_pack": true,
+    "warriorplus_listing": true,
+    "delivery_page": true,
+    "email_funnel": true,
+    "saas_plan": false,
+    "support": true,
+    "license": true,
+    "export_zip": true
+  },
+  "offer_analysis": "DONE",
+  "product_assets": "DONE",
+  "sales_page": "DONE",
+  "funnel": "DONE",
+  "jv_pack": "DONE",
+  "warriorplus_listing": "DONE",
+  "delivery_page": "DONE",
+  "email_funnel": "DONE",
+  "saas_plan": "MISSING",
+  "support": "DONE",
+  "license": "DONE",
+  "export_zip": "DONE",
+  "launch_readiness": 94,
+  "next_actions": [
+    "saas_upgrade"
+  ]
+}

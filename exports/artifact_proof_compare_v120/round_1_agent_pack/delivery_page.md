@@ -1,0 +1,3 @@
+Welcome to Printable Prompt Profit Kit by Example Studio. Download access: example.com/download. Recommended order: read `00_Start_Here.md`, then follow `01_Workflow_Map.md` day by day. Do not begin with the prompt library until you have chosen a buyer and product format. Your package includes product assets, sales/listing support files, compliance guidance, support FAQ, and refund policy. Save a clean copy before editing. If you use Canva, AI image tools, PLR, MRR, RR, or stock assets, verify the license before commercial use. Support contact: support@example.com. Response target: 2–3 business days.
+
+---

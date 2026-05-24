@@ -1,0 +1,478 @@
+ETSY - 30 BÀI BÁN HÀNG DẠNG CASE STUDY THAM KHẢO CHUYÊN SÂU
+Chủ đề: PLR + SaaS + Digital Product Launch + Sales Funnel + Email Marketing + WarriorPlus-style Launch Pack
+Ngày tạo: 2026-05-18
+
+Nguồn tìm kiếm:
+- Dùng Chrome vào https://www.etsy.com/
+- Tìm trực tiếp trong ô search Etsy với 2 truy vấn:
+  1. case study digital product launch PLR MRR email marketing funnel
+  2. case study template digital marketing sales funnel digital product
+
+Ghi chú:
+- Etsy không trả nhiều sản phẩm có đúng chữ "case study" trong tiêu đề.
+- Vì vậy file này chọn 30 listing có thể dùng như "case study bán hàng" để phân tích offer, funnel, template, PLR/MRR, delivery, mockup, pricing, niche angle.
+- Không copy nội dung listing. Chỉ dùng để học pattern và nâng agent.
+- PLR/MRR phải kiểm license thật trước khi dùng làm input thương mại.
+
+TIÊU CHÍ ĐÁNH GIÁ
+1. Có phù hợp công việc của bạn không: PLR, SaaS, launch pack, WarriorPlus, funnel, email, digital product.
+2. Có thể học được cấu trúc offer không.
+3. Có thể nâng agent thành file/playbook/tool mới không.
+4. Có rủi ro license, overclaim, passive income, MRR/PLR không.
+5. Có đủ chiều sâu để thành sản phẩm nâng cao hay chỉ là template thô.
+
+================================================================================
+
+01. Digital Marketing Course Bundle MRR PLR Resell Rights
+Link: https://www.etsy.com/listing/1847348681/digital-marketing-course-bundle-mrr-plr
+Loại: MRR/PLR course bundle, digital marketing, Instagram, online business.
+Điểm phù hợp: 8.2/10
+Đánh giá:
+Đây là case study tốt cho mô hình "course bundle + resell rights". Nó bán cảm giác người mua có thể sở hữu một gói đào tạo sẵn để bán lại. Phù hợp với agent ở phần product packaging và offer stack.
+Điểm học được:
+- Course bundle thường mạnh hơn ebook đơn lẻ.
+- MRR/PLR làm buyer thấy có quyền kinh doanh.
+- Cần mockup và danh sách module rõ.
+Rủi ro:
+- Claim "make money online" cần kiểm soát.
+- License chain phải kiểm thật.
+Ứng dụng cho agent:
+- Thêm Product Bundle Builder: course + workbook + checklist + sales page + license matrix.
+
+02. MRR/PLR Resell Therapy Worksheets Canva Templates
+Link: https://www.etsy.com/listing/4499967253/plr-resell-therapy-worksheets-canva
+Loại: Canva workbook/worksheet có quyền resell.
+Điểm phù hợp: 7.6/10
+Đánh giá:
+Không cùng niche WarriorPlus trực tiếp, nhưng rất đáng học về cách bán worksheet/workbook. Đây là kiểu product asset có chiều sâu hơn raw prompt.
+Điểm học được:
+- 100+ tài nguyên chuyên đề tạo perceived value cao.
+- Canva editable là điểm mạnh.
+- Worksheet dễ biến thành pack theo niche.
+Rủi ro:
+- Niche mental health có rủi ro compliance cao.
+Ứng dụng:
+- Agent nên có "worksheet/product asset generator" nhưng tránh claim trị liệu nếu không có chuyên môn.
+
+03. Passive Income eBook Bundle: MRR Resell Rights + Faceless Photos
+Link: https://www.etsy.com/listing/1773553780/passive-income-ebook-bundle-mrr-resell
+Loại: ebook bundle + MRR + faceless photo assets.
+Điểm phù hợp: 6.8/10
+Đánh giá:
+Case study tốt về marketing psychology, nhưng rủi ro claim cao. "Passive income" rất hấp dẫn nhưng dễ overpromise.
+Điểm học được:
+- Bundle ebook + visual assets tăng giá trị.
+- Faceless angle đang có nhu cầu.
+Rủi ro:
+- Passive income dễ gây refund/claim risk.
+- Dễ trùng với nhiều vault khác.
+Ứng dụng:
+- Agent nên flag claim "passive income" trong Quality Gate.
+
+04. Systeme.io Funnel Template, Digital Product Sales Page, Landing Page, Opt-In, Order Form, Upsell
+Link: https://www.etsy.com/listing/1819780226/systemeio-funnel-template-sales-page-opt
+Loại: sales funnel template cho digital product.
+Điểm phù hợp: 9.0/10
+Đánh giá:
+Rất sát với công việc của bạn. Đây là case study về funnel có nhiều bước: sales page, opt-in, order form, upsell. Nó cho thấy người mua không chỉ cần copy, họ cần hệ thống bán hàng.
+Điểm học được:
+- Full funnel package mạnh hơn sales page đơn.
+- Nền tảng cụ thể như Systeme.io làm offer dễ hiểu.
+- Upsell là phần bắt buộc nếu muốn tăng AOV.
+Ứng dụng:
+- Agent nên tạo `systeme_funnel_map.md` hoặc export cấu trúc import-ready sau này.
+
+05. 100 UBC Stan Store Email Marketing Templates With Master Resell Rights
+Link: https://www.etsy.com/listing/1693206397/100-ubc-stan-store-email-marketing
+Loại: email marketing templates + lead magnet strategy + MRR.
+Điểm phù hợp: 9.1/10
+Đánh giá:
+Đây là đối thủ trực tiếp của AI Email Campaign Kit. Có email templates, lead magnet strategy, done-for-you digital product. Rất đáng học để nâng email kit của bạn.
+Điểm học được:
+- Số lượng 100 templates tạo lực mua.
+- Gắn email với lead magnet strategy tốt hơn template rời.
+- MRR là angle bán lại.
+Rủi ro:
+- Nếu chỉ template thô thì dễ bị ChatGPT thay thế.
+Ứng dụng:
+- Agent nên tạo "Email Campaign + Lead Magnet Strategy Pack".
+
+06. Launch Your Business Kit - Digital Marketing MRR Course Bundle
+Link: https://www.etsy.com/listing/1879313261/launch-your-business-kit-2025-edition
+Loại: business launch kit, MRR/PLR, digital marketing.
+Điểm phù hợp: 8.8/10
+Đánh giá:
+Case study tốt về "business in a box". Tên sản phẩm rõ: Launch Your Business Kit. Nó hợp với người mới muốn bắt đầu nhanh.
+Điểm học được:
+- Kit nên có định hướng launch, không chỉ tài liệu.
+- "2025 Edition" tạo cảm giác cập nhật.
+- Bundle course + templates + rights có sức bán.
+Rủi ro:
+- Claim build wealth cần kiểm soát.
+Ứng dụng:
+- Agent có thể tạo "Launch Your First Digital Product Kit".
+
+07. Digital Marketing 12 Mini Course Bundle with PLR & MRR
+Link: https://www.etsy.com/listing/4374617674/digital-marketing-12-mini-course-bundle
+Loại: 12 mini course bundle, PLR/MRR, Canva editable.
+Điểm phù hợp: 8.4/10
+Đánh giá:
+Case study hay về cách chia sản phẩm lớn thành nhiều mini-course. Đây là hướng tốt cho OTO hoặc membership.
+Điểm học được:
+- Mini-course bundle dễ tạo perceived value.
+- Canva editable giúp buyer rebrand.
+- Có thể dùng làm backend/membership.
+Rủi ro:
+- Cần phân loại module rõ, tránh quá tải.
+Ứng dụng:
+- Agent nên tạo "Mini Course Splitter" cho PLR dài.
+
+08. AI Email Marketing Guide: PLR Digital Product with Canva Bonus
+Link: https://www.etsy.com/listing/4321956454/ai-email-marketing-guide-plr-digital
+Loại: AI email marketing guide + PLR + Canva bonus.
+Điểm phù hợp: 9.2/10
+Đánh giá:
+Rất sát AI Email Campaign Kit. Điểm mạnh là gắn AI + email marketing + Canva bonus + PLR. Nhưng agent của bạn có thể thắng nếu thêm planner, checklist, example, buyer test, ZIP proof.
+Điểm học được:
+- Canva bonus giúp tăng perceived value.
+- AI email marketing là keyword mạnh.
+- Guide cần đi cùng template/practical asset.
+Ứng dụng:
+- Nên nâng sản phẩm thành "AI Email Campaign Launch System" thay vì chỉ guide.
+
+09. Email Marketing Excellence eBook: Canva Editable, PLR & MRR
+Link: https://www.etsy.com/listing/1905373317/email-marketing-excellence-ebook-canva
+Loại: email marketing ebook, Canva editable, PLR/MRR.
+Điểm phù hợp: 8.5/10
+Đánh giá:
+Case study tốt cho ebook có editable source. Nhưng ebook đơn vẫn yếu hơn kit nếu thiếu workflow.
+Điểm học được:
+- Canva editable là lợi thế.
+- PLR/MRR giúp buyer nghĩ đến resale.
+Rủi ro:
+- Ebook dễ bị AI thay thế.
+Ứng dụng:
+- Agent nên luôn nâng ebook thành kit: guide + checklist + planner + templates + examples.
+
+10. Email Marketing Vault: PLR eBook + 90 Email Scripts
+Link: https://www.etsy.com/listing/4396426044/email-marketing-vault-112-page-plr-ebook
+Loại: email marketing vault, 112-page ebook, 90 scripts.
+Điểm phù hợp: 9.0/10
+Đánh giá:
+Đây là case study mạnh cho cấu trúc "vault". Có ebook dài + script cụ thể. Rất đáng so với AI Email Campaign Kit.
+Điểm học được:
+- Số trang và số script là proof substitute.
+- Vault nên có phân loại rõ.
+Rủi ro:
+- Nếu thiếu campaign map thì buyer vẫn rối.
+Ứng dụng:
+- Agent nên thêm "template index" và "use-case selector".
+
+11. Stan Store Beacons Sales Page Canva Template
+Link: https://www.etsy.com/listing/4419856764/stan-store-beacons-sales-page-canva
+Loại: mobile sales page / link-in-bio funnel.
+Điểm phù hợp: 8.0/10
+Đánh giá:
+Phù hợp để học sales page visual packaging. Với sản phẩm số nhỏ, mobile funnel cực quan trọng.
+Điểm học được:
+- Link-in-bio sales page là kênh bán tốt cho creator.
+- Template nên có mobile preview.
+Ứng dụng:
+- Agent nên tạo "mobile sales page version" cho Gumroad/Payhip/Stan Store.
+
+12. Faceless Digital Marketing Guides with PLR & Master Resell Rights
+Link: https://www.etsy.com/listing/1842162419/faceless-digital-marketing-guides-with
+Loại: faceless digital marketing guide pack, PLR/MRR.
+Điểm phù hợp: 7.8/10
+Đánh giá:
+Case study tốt về faceless/DFY angle. Tuy nhiên dễ thành bundle thô nếu không có workflow.
+Điểm học được:
+- Faceless angle có nhu cầu lớn.
+- Nên có guide + bonus + resale rights.
+Rủi ro:
+- "Passive income" và "sell on Etsy" cần cẩn trọng.
+Ứng dụng:
+- Agent nên tạo "faceless launch content pack" như traffic_content.
+
+13. Beacons / Stan Store Mocha Crème Sales Page Template
+Link: https://www.etsy.com/listing/1889721297/beacons-stan-store-o-mocha-creme-sales
+Loại: Canva sales page template cho digital products.
+Điểm phù hợp: 7.9/10
+Đánh giá:
+Tốt để học design/preview/positioning. Không phải case study nội dung, nhưng là case study về presentation.
+Điểm học được:
+- Luxe/minimalist design bán được.
+- Preview ảnh rất quan trọng.
+Ứng dụng:
+- Agent nên tạo mockup prompt và preview section cho sales page.
+
+14. Digital Marketing Course Bundle - UBC Ultimate Branding Course
+Link: https://www.etsy.com/listing/4444987759/digital-marketing-course-bundle-ubc
+Loại: UBC/faceless Instagram/business/resell course bundle.
+Điểm phù hợp: 8.2/10
+Đánh giá:
+Case study tốt về branded course bundle. Hợp với hướng SaaS packaging và membership backend.
+Điểm học được:
+- Branding/course bundle có giá trị cao hơn template rời.
+- Faceless business angle đang bán tốt.
+Rủi ro:
+- Cần kiểm quyền UBC/brand.
+Ứng dụng:
+- Agent nên có "brand-safe naming checker".
+
+15. Sell It AI Marketing Tool, Campaign Launch Pack Generator
+Link: https://www.etsy.com/listing/4501011828/sell-it-ai-marketing-tool-campaign
+Loại: AI marketing tool, campaign launch pack generator.
+Điểm phù hợp: 9.6/10
+Đánh giá:
+Rất sát agent của bạn. Đây là listing bán công cụ AI tạo campaign launch pack, ads, email funnel templates. Gần như cùng hướng với local agent.
+Điểm học được:
+- Tool + templates có thể định giá cao hơn ebook.
+- "Lifetime access" là angle mạnh.
+- Launch pack generator là positioning rất đúng.
+Rủi ro:
+- Cần tool thật, không chỉ promise.
+Ứng dụng:
+- Agent của bạn nên định vị: PLR + SaaS + WarriorPlus Launch Pack Generator.
+
+16. Emails That Convert - High-Converting Email Templates
+Link: https://www.etsy.com/listing/4305232420/emails-that-convert-high-converting
+Loại: email template pack cho PLR/funnel/passive income.
+Điểm phù hợp: 8.6/10
+Đánh giá:
+Case study tốt về promise email conversion. Nhưng cụm "high-converting" nên dùng cẩn thận nếu không có proof.
+Điểm học được:
+- Email templates vẫn có demand.
+- Nên đi kèm funnel context.
+Rủi ro:
+- "Convert" có thể overclaim.
+Ứng dụng:
+- Agent nên dùng "conversion-ready structure" thay vì hứa convert.
+
+17. The Selling Formula Guide | Digital Product Business Blueprint
+Link: https://www.etsy.com/listing/4303615192/digital-product-sales-guide-resell-plr
+Loại: digital product sales guide, business blueprint, email marketing, PLR.
+Điểm phù hợp: 9.1/10
+Đánh giá:
+Đây là case study rất tốt cho sản phẩm blueprint. Nó kết hợp digital product, sales formula, theme page strategy, email marketing.
+Điểm học được:
+- "Formula" và "Blueprint" là naming mạnh.
+- Kết hợp traffic + email + sales làm offer sâu hơn.
+Ứng dụng:
+- Agent nên tạo "Selling Formula Scorecard" cho mọi sản phẩm.
+
+18. Sales Funnel Guide Canva Template Bundle PLR
+Link: https://www.etsy.com/listing/4497846864/canva-sales-funnel-template-bundle-plr
+Loại: sales funnel guide, Canva template, PLR, funnel building system.
+Điểm phù hợp: 9.2/10
+Đánh giá:
+Case study rất phù hợp: guide + template + system + PLR. Đây là kiểu sản phẩm agent nên tạo nhiều hơn.
+Điểm học được:
+- Funnel guide cần template đi kèm.
+- "System" làm sản phẩm nghe cao cấp hơn.
+Rủi ro:
+- Claim passive income cần giảm.
+Ứng dụng:
+- Agent nên tạo "Funnel Building System Kit".
+
+19. Master Resell Rights Email Templates PLR Digital Product
+Link: https://www.etsy.com/listing/1719193056/master-resell-rights-email-templates-plr
+Loại: email templates + MRR/PLR.
+Điểm phù hợp: 8.4/10
+Đánh giá:
+Case study trực tiếp về email template resale. Sản phẩm có demand nhưng dễ bị commoditized.
+Điểm học được:
+- MRR/PLR email templates là thị trường lớn.
+- Cần khác biệt bằng use case và checklist.
+Ứng dụng:
+- Agent nên thêm "email use-case router" vào email kit.
+
+20. 130+ Email Marketing Articles PLR MRR Bundle
+Link: https://www.etsy.com/listing/4455501738/130-email-marketing-articles-plr-mrr
+Loại: PLR/MRR article bundle.
+Điểm phù hợp: 7.4/10
+Đánh giá:
+Tốt để học dạng content vault, nhưng không nên dùng làm output cuối. Article pack cần chuyển thành campaign/blog/email system.
+Điểm học được:
+- Article volume tạo value.
+- Resell/customize là selling point.
+Rủi ro:
+- Raw articles rất dễ bị AI thay thế.
+Ứng dụng:
+- Agent nên có "Article-to-Product Transformer".
+
+21. Digital Product Launch Checklist PLR | Planner with Email Templates
+Link: https://www.etsy.com/listing/4467804072/digital-product-launch-checklist-plr
+Loại: product launch checklist, planner, email templates, social media strategy, resell rights.
+Điểm phù hợp: 9.5/10
+Đánh giá:
+Đây là một trong những listing sát nhất với agent. Nó có checklist, planner, email templates, social media strategy, PLR/MRR. Đây là case study cực tốt cho launch pack.
+Điểm học được:
+- Launch checklist + planner + email + social = productized launch kit.
+- Dùng PLR nhưng cần cấu trúc rõ.
+Ứng dụng:
+- Agent nên tạo "Digital Product Launch Checklist Plus" làm product riêng.
+
+22. PLR Ebook Guide Private Label Rights Email Marketing Guide
+Link: https://www.etsy.com/listing/1727326633/plr-ebook-guide-private-label-rights
+Loại: PLR ebook guide, digital marketing/email marketing.
+Điểm phù hợp: 7.8/10
+Đánh giá:
+Case study cơ bản cho PLR ebook. Tốt để học license/positioning, nhưng không đủ sâu nếu không có planner/checklist.
+Điểm học được:
+- PLR ebook vẫn bán được nếu buyer muốn rebrand nhanh.
+Rủi ro:
+- Ebook thô dễ yếu.
+Ứng dụng:
+- Agent phải nâng ebook thành kit trước khi bán.
+
+23. Email List Video Course: PLR Sales Funnel Kit
+Link: https://www.etsy.com/listing/4389670686/email-list-video-course-plr-sales-funnel
+Loại: video course + PLR + sales funnel kit.
+Điểm phù hợp: 9.0/10
+Đánh giá:
+Case study mạnh vì có video course, không chỉ text. Hợp với hướng nâng OTO/membership.
+Điểm học được:
+- Video course tăng perceived value.
+- Email list + sales funnel là combo rất sát WarriorPlus.
+Ứng dụng:
+- Agent nên tạo "video script pack" để biến markdown thành video lessons.
+
+24. AI Digital Marketing System: 88 Templates, Prompts, Email Sequences, Ad Campaigns & Playbooks
+Link: https://www.etsy.com/listing/4483060508/ai-digital-marketing-system-88-marketing
+Loại: AI marketing system, templates, prompts, email, ads, playbooks.
+Điểm phù hợp: 9.7/10
+Đánh giá:
+Đây là case study cực sát agent. Nó bán "system", không chỉ template. Có prompt, email sequence, ad campaign, playbook. Đây chính là hướng nên nâng agent thành sản phẩm thương mại.
+Điểm học được:
+- Từ "system" quan trọng.
+- Kết hợp playbooks + templates + prompts + campaigns.
+- Nên có rõ output/assets.
+Ứng dụng:
+- Agent nên gọi sản phẩm: AI Launch Operating System hoặc Campaign Launch System.
+
+25. How to Launch and Market Your Shopify Website for Beginners
+Link: https://www.etsy.com/listing/4330077132/how-to-launch-and-market-your-shopify
+Loại: pre-launch strategy, listings, email marketing, social media, MRR/PLR.
+Điểm phù hợp: 8.3/10
+Đánh giá:
+Tốt để học pre-launch strategy. Dù niche Shopify, cấu trúc launch rất dùng được cho digital product.
+Điểm học được:
+- Pre-launch + listing + email + social là workflow đầy đủ.
+- Beginner angle rõ.
+Ứng dụng:
+- Agent nên thêm Pre-Launch Strategy file cho mọi launch pack.
+
+26. Done-for-You AI Email Launch Template to Sell Your Digital Product
+Link: https://www.etsy.com/listing/4336434872/done-for-you-ai-email-launch-template-to
+Loại: AI email launch template, PLR, reseller.
+Điểm phù hợp: 9.4/10
+Đánh giá:
+Rất sát AI Email Campaign Kit. Đây là case study cho template email launch bán digital product.
+Điểm học được:
+- "Done-for-you email launch" là angle cực rõ.
+- PLR reseller angle phù hợp Etsy/WarriorPlus.
+Rủi ro:
+- "From Zero to Sales" có thể overpromise.
+Ứng dụng:
+- Agent nên tạo email launch template theo từng product type: PLR kit, SaaS, prompt pack, course.
+
+27. AI Sales Funnel eBook: PLR Digital Marketing Guide + Canva Bonus
+Link: https://www.etsy.com/listing/4325395412/ai-sales-funnel-ebook-plr-digital
+Loại: AI sales funnel ebook, PLR, Canva bonus.
+Điểm phù hợp: 8.8/10
+Đánh giá:
+Case study tốt cho "AI + sales funnel". Ebook + Canva bonus là combo phổ biến, nhưng agent có thể nâng thành funnel kit.
+Điểm học được:
+- AI sales funnel là keyword mạnh.
+- Canva bonus giúp sản phẩm bớt thô.
+Ứng dụng:
+- Agent nên tạo "AI Sales Funnel Kit" có planner, sales page, email, checklist.
+
+28. Navy Coaching Systeme.io Bundle - 6 Sales Funnels & Website
+Link: https://www.etsy.com/listing/4404523488/navy-coaching-systemeio-bundle-6-sales
+Loại: 6 sales funnels + website bundle cho coaching/service providers.
+Điểm phù hợp: 8.7/10
+Đánh giá:
+Case study cao cấp về bundle funnel nhiều trang. Giá cao hơn nhiều template thường vì có 6 funnels và website.
+Điểm học được:
+- Bundle lớn + platform-specific có thể bán giá cao.
+- Niche rõ: coach/service provider.
+Ứng dụng:
+- Agent nên có "niche funnel bundle generator".
+
+29. Systeme.io Digital Product Sales Funnel Kit | Tripwire Funnel | Setup Videos | One-Click Import Email Campaign
+Link: https://www.etsy.com/listing/4415313413/systemeio-digital-product-sales-funnel
+Loại: digital product sales funnel kit, tripwire, setup videos, import, email campaign, Canva branding.
+Điểm phù hợp: 9.8/10
+Đánh giá:
+Đây là case study mạnh nhất trong nhóm funnel. Nó có tripwire, setup video, one-click import, email campaign, Canva branding. Gần như một launch pack hoàn chỉnh.
+Điểm học được:
+- Setup videos tăng trust/support.
+- One-click import là execution layer.
+- Email campaign + Canva branding làm funnel hoàn chỉnh.
+Ứng dụng:
+- Agent nên thêm "setup video script" và "import checklist" cho SaaS/funnel products.
+
+30. Freebie to Funnel Blueprint, Digital Product Sales System
+Link: https://www.etsy.com/listing/4458617014/turn-free-content-into-a-sales-funnel
+Loại: freebie-to-funnel blueprint, digital product sales system.
+Điểm phù hợp: 9.3/10
+Đánh giá:
+Case study rất tốt cho lead magnet -> funnel -> offer. Đây là phần agent nên dùng để tạo frontend/back-end ecosystem.
+Điểm học được:
+- Freebie-to-funnel là angle dễ hiểu.
+- Blueprint/sales system mạnh hơn guide đơn.
+Ứng dụng:
+- Agent nên tạo "Lead Magnet to FE Funnel Builder".
+
+================================================================================
+TỔNG KẾT CASE STUDY CHUYÊN SÂU
+
+Top 7 listing đáng học nhất:
+1. Systeme.io Digital Product Sales Funnel Kit
+2. AI Digital Marketing System
+3. Sell It AI Marketing Tool
+4. Digital Product Launch Checklist PLR
+5. Done-for-You AI Email Launch Template
+6. 100 UBC Email Marketing Templates
+7. Freebie to Funnel Blueprint
+
+Pattern chung của sản phẩm mạnh:
+- Không chỉ bán ebook.
+- Có template, checklist, planner, campaign, funnel, hoặc tool.
+- Có platform rõ: Systeme.io, GHL, Stan Store, Canva, Shopify.
+- Có quyền PLR/MRR nhưng cần license rõ.
+- Có mockup/preview tốt.
+- Có lead magnet/tripwire/upsell/email campaign.
+
+Điểm agent của bạn nên học:
+1. Thêm setup video script cho mỗi launch pack.
+2. Thêm import checklist cho Systeme.io/GHL/Gumroad/Payhip.
+3. Thêm Lead Magnet to Funnel Builder.
+4. Thêm Email Launch Template theo từng loại sản phẩm.
+5. Thêm mockup/preview screenshot checklist.
+6. Thêm case-study style sales page section: "How a beginner uses this pack".
+7. Thêm platform-specific delivery: WarriorPlus, Gumroad, Payhip, Etsy, Systeme.io.
+
+Điểm cần tránh:
+- Không copy listing Etsy.
+- Không tin PLR/MRR nếu thiếu license file.
+- Không dùng claim "passive income", "from zero to sales", "high-converting" như lời hứa chắc chắn.
+- Không bán template thô nếu agent có thể nâng thành workflow/product kit.
+
+Kết luận:
+Nếu dùng 30 case study này để nâng sản phẩm, hướng mạnh nhất là:
+"AI Digital Product Launch System" gồm:
+- Product kit
+- Sales page
+- Funnel/tripwire
+- Email campaign
+- Lead magnet
+- JV/affiliate pack
+- Mockup/preview
+- Setup video script
+- Public launch audit
+- ZIP/export proof
+
+Đây là hướng giúp agent của bạn khác ChatGPT thường và gần với sản phẩm bán thật hơn.

@@ -1,0 +1,3 @@
+Q: Can I sell the exact files as PLR? A: Not unless resale/PLR rights are explicitly granted by the vendor; current source proof is UNKNOWN. Q: Can I use it to create lead magnets for clients? A: Yes as a workflow guide, but review rights before transferring editable templates. Q: Do I need Canva? A: No. Canva is optional; a simple PDF made from Google Docs also works. Q: Will this guarantee leads or sales? A: No. It helps you create a clearer asset, not guaranteed results. Q: Can ChatGPT do this? A: It can draft content, but this kit adds sequence, checks, examples, fix prompts and delivery structure.
+
+---

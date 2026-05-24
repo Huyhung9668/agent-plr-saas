@@ -1,0 +1,3 @@
+Ví dụ mini product: “Pet Lover Coloring Calm Pack”. Buyer: người mới bán digital downloads muốn tạo bộ coloring đơn giản. Promise an toàn: giúp tạo một bộ coloring theme thú cưng có checklist kiểm lỗi trước khi đóng gói. Sample pages: “Cozy Cat Window”, “Happy Dog Garden”, “Rabbit Tea Time”. Listing angle: “A simple printable coloring mini-pack for relaxing pet-themed creative time.” Before/after: trước là prompt rời rạc “make coloring pages”; sau là pack có niche, page list, style guide, quality checklist, listing copy, README và license note. Đây là proof substitute, không phải proof doanh số.
+
+---

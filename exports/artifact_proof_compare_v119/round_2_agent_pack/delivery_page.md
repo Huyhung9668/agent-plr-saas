@@ -1,0 +1,3 @@
+Welcome to your Printable Lead Magnet Sprint Kit download area. Start with `README.md`, then open `00_Start_Here.md`. Recommended order: workflow map, prompt library, template guide, example outputs, quality checklist, fix prompts, listing/sales kit, license/compliance note. Download URL sample: example.com/download. Support: support@example.com. Suggested first action: create one 3-page worksheet for one buyer, then test it by asking: “Can a beginner complete this in 20 minutes without extra explanation?” If not, improve the instructions and example before publishing. This delivery page does not confirm live payment processing or marketplace approval. Keep your own backup of files after download.
+
+---

@@ -1,0 +1,3 @@
+Product title: Printable Lead Magnet Sprint Kit. Short description: A practical AI-assisted implementation kit for creating printable worksheets, checklists and mini planners. Category: Digital Marketing / Product Creation / AI Tools. Tags: AI printables, lead magnet, PLR, KDP, Canva, product creation. Suggested FE price: $17, inference only, not source-proven. Suggested commission: 50%–75% depending on launch strategy. Refund policy: 14-day refund if the product cannot be accessed or materially differs from the listing. Vendor note: Avoid income claims and do not promote this as guaranteed list growth. Affiliate approval note: Approve affiliates with clean traffic sources and no spam history. Delivery page: example.com/download. Support: support@example.com.
+
+---

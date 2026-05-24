@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agent chủ v1.09</title>
-  <link rel="stylesheet" href="/styles.css?v=1.09.9" />
+  <title>Agent chủ v1.14-vendor-ready-builder.7</title>
+  <link rel="stylesheet" href="/styles.css?v=1.14-vendor-ready-builder.7" />
   </head>
   <body>
     <div class="app" data-theme="dark">
@@ -14,7 +14,7 @@
           <div class="brand">
             <div class="logo">M</div>
             <div>
-              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.09</span></div>
+              <div class="title">Agent chủ <span class="version-badge" data-app-version>v1.14-vendor-ready-builder.7</span></div>
               <div class="subtitle">PLR, SaaS, WarriorPlus</div>
             </div>
           </div>
@@ -26,7 +26,7 @@
           <button id="newChatBtn" class="new-chat-btn" type="button">+ Chat mới</button>
           <label class="search-box" title="Tìm trong lịch sử chat">
             <span>Tìm</span>
-            <input id="threadSearch" type="search" placeholder="Tìm chủ đề..." autocomplete="off" />
+            <input id="threadSearch" type="search" placeholder="Tìm chÃ¡Â»Â§ Ã„â€˜Ã¡Â»Â..." autocomplete="off" />
           </label>
         </div>
 
@@ -50,8 +50,8 @@
         <header class="topbar">
           <button id="sidebarToggleBtn" class="icon-btn sidebar-toggle" type="button" title="Ẩn/hiện lịch sử chat">☰</button>
           <div class="topbar-left">
-            <div class="chat-title">Agent chủ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.09</span></div>
-            <div id="brainSummary" class="chat-subtitle">Đang kiểm tra 3 bộ não...</div>
+            <div class="chat-title">Agent chủ <span id="workspaceBadge" class="workspace-badge"></span><span class="version-badge" data-app-version>v1.14-vendor-ready-builder.7</span></div>
+            <div id="brainSummary" class="chat-subtitle">Đang kiểm tra brain...</div>
             <div id="projectStateBar" class="project-state-bar" hidden>
               <span class="ps-label">Dự án:</span>
               <span id="psProjectName" class="ps-name">—</span>
@@ -83,22 +83,25 @@
               </select>
             </label>
           </div>
-          <div class="topbar-actions">
-            <button id="promptLibraryBtn" class="icon-btn" type="button" title="Mở thư viện prompt">⌘</button>
-            <button id="statusBtn" class="icon-btn" type="button" title="Trạng thái bộ não">i</button>
-            <button id="exportBtn" class="icon-btn" type="button" title="Xuất chat Markdown">↓</button>
-            <button id="themeToggleBtn" class="icon-btn" type="button" title="Đổi sáng/tối">☾</button>
-            <button id="clearBtn" class="icon-btn danger-icon" type="button" title="Xóa nội dung chat hiện tại">×</button>
+          <div class="topbar-actions clean-actions">
+            <button id="moreMenuBtn" class="icon-btn more-menu-btn" type="button" title="More">⋯</button>
+            <div id="moreMenu" class="more-menu" hidden>
+              <button id="promptLibraryBtn" type="button">ThÆ° viá»‡n prompt</button>
+              <button id="statusBtn" type="button">Trạng thái brain</button>
+              <button id="exportBtn" type="button">Xuất chat Markdown</button>
+              <button id="themeToggleBtn" type="button">Äá»•i sÃ¡ng/tá»‘i</button>
+              <button id="clearBtn" class="danger-menu-item" type="button">Xóa chat</button>
+            </div>
           </div>
         </header>
 
         <section id="statusPanel" class="status-panel" hidden></section>
         <section id="chat" class="chat"></section>
-        <div class="chat-jump-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
-          <button id="jumpPrevBtn" type="button" title="Nhảy lên câu hỏi/câu trả lời trước" aria-label="Nhảy lên câu hỏi/câu trả lời trước">↑</button>
-          <button id="jumpNextBtn" type="button" title="Nhảy xuống câu hỏi/câu trả lời tiếp theo" aria-label="Nhảy xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+        <div class="chat-jump-nav" aria-label="Điều hướng câu hỏi">
+          <button id="jumpPrevBtn" type="button" title="Nhảy lên câu hỏi trước" aria-label="Nhảy lên câu hỏi trước">↑</button>
+          <button id="jumpNextBtn" type="button" title="Nhảy xuống câu hỏi tiếp theo" aria-label="Nhảy xuống câu hỏi tiếp theo">↓</button>
         </div>
-        <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nhảy xuống cuối chat" aria-label="Nhảy xuống cuối chat">↓</button>
+        <button id="scrollBottomBtn" class="scroll-bottom-btn" type="button" title="Nhảy xuống cuối chat" aria-label="Nhảy xuống cuối chat">⇣</button>
 
         <footer class="composer">
           <div class="composer-head">
@@ -106,7 +109,7 @@
               <button id="quickActionsToggle" class="library-toggle" type="button">Thư viện prompt</button>
             </div>
             <div class="session-metrics">
-              <span id="messageCount">0 tin nhắn</span>
+              <span id="messageCount">0 tin nhÃ¡ÂºÂ¯n</span>
               <span id="activeModeLabel">Nhanh</span>
             </div>
             <div id="replyStatus" class="reply-status" hidden>Đang trả lời...</div>
@@ -129,43 +132,67 @@
               <button type="button" data-module="true" data-prompt="Build WarriorPlus Listing: Create Product Title, Short Description, Long Description, Category, Tags, Price, Commission, Refund Policy, Vendor Note, Affiliate Approval Note, Delivery Page Text, and Support Note. Product: [product name]">W+ Listing</button>
               <button type="button" data-module="true" data-prompt="Create Affiliate Swipe Pack: Create 3 email swipes, 3 short promo emails, 5 Facebook posts, 5 X posts, 3 subject-line sets, 1 launch announcement, 1 last chance email, and 10 affiliate bonus ideas. Product: [product name]">Swipe Pack</button>
             </div>
-            <div class="quick-group case-brain-group" data-help="Bấm là chạy luôn. Dùng theo thứ tự: 1 kiểm tra kho, 2 index 300 file nếu chưa có dữ liệu, 3 tìm case, 4 rút pattern.">
+            <div class="quick-group case-brain-group" data-help="BÃ¡ÂºÂ¥m lÃƒÂ  chÃ¡ÂºÂ¡y luÃƒÂ´n. DÃƒÂ¹ng theo thÃ¡Â»Â© tÃ¡Â»Â±: 1 kiÃ¡Â»Æ’m tra kho, 2 index 300 file nÃ¡ÂºÂ¿u chÃ†Â°a cÃƒÂ³ dÃ¡Â»Â¯ liÃ¡Â»â€¡u, 3 tÃƒÂ¬m case, 4 rÃƒÂºt pattern.">
               <span class="quick-group-title">Case Study Brain</span>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="training_status" data-prompt="/training_status" title="Xem kho case đã index được bao nhiêu file/chunk">1. Kiểm tra kho</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="train_case_study_brain" data-prompt="/train_case_study_brain 300" title="Index thử 300 file cũ. Chạy bước này nếu kho chưa có dữ liệu.">2. Index 300</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="case_study_patterns" data-prompt="/case_study_patterns AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe" title="Rút công thức sản phẩm, sales page, funnel, JV từ các case tốt">3. Rút pattern</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="training_status" data-prompt="/training_status" title="Xem kho case Ã„â€˜ÃƒÂ£ index Ã„â€˜Ã†Â°Ã¡Â»Â£c bao nhiÃƒÂªu file/chunk">1. KiÃ¡Â»Æ’m tra kho</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="train_case_study_brain" data-prompt="/train_case_study_brain 300" title="Index thÃ¡Â»Â­ 300 file cÃ…Â©. ChÃ¡ÂºÂ¡y bÃ†Â°Ã¡Â»â€ºc nÃƒÂ y nÃ¡ÂºÂ¿u kho chÃ†Â°a cÃƒÂ³ dÃ¡Â»Â¯ liÃ¡Â»â€¡u.">2. Index 300</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="case_study_patterns" data-prompt="/case_study_patterns AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe" title="RÃƒÂºt cÃƒÂ´ng thÃ¡Â»Â©c sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m, sales page, funnel, JV tÃ¡Â»Â« cÃƒÂ¡c case tÃ¡Â»â€˜t">3. RÃƒÂºt pattern</button>
             </div>
-            <div class="quick-group ai-print-group" data-help="Agent ngách đã dùng brain SQLite nội bộ; thư mục transcript gốc không còn bắt buộc sau khi index full.">
+            <div class="quick-group ai-print-group" data-help="Agent ngÃƒÂ¡ch Ã„â€˜ÃƒÂ£ dÃƒÂ¹ng brain SQLite nÃ¡Â»â„¢i bÃ¡Â»â„¢; thÃ†Â° mÃ¡Â»Â¥c transcript gÃ¡Â»â€˜c khÃƒÂ´ng cÃƒÂ²n bÃ¡ÂºÂ¯t buÃ¡Â»â„¢c sau khi index full.">
               <span class="quick-group-title">AI Printables</span>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_status" data-prompt="/ai_print_status" title="Xem bộ não transcript ngách AI printable/KDP/Etsy đã index được bao nhiêu">Kho</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_patterns" data-prompt="/ai_print_patterns AI Etsy Printable Bundle Builder AI Kids Worksheet Factory AI KDP Puzzle Book Launch Kit AI Coloring Page Niche Pack AI Journal Interior System AI Canva Printable Product Kit" title="Rút pattern sản phẩm/ngách từ transcript">Pattern</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_market" data-prompt="/ai_print_market AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price" title="Rút market pattern có evidence từ brain">Market</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_competitor" data-prompt="/ai_print_competitor AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price" title="Tạo competitor/source matrix từ chunks thật">Matrix</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_gap" data-prompt="/ai_print_gap Lead Magnet Printable Builder For Coaches" title="Tìm offer gap trước khi build ZIP">Gap</button>
-              <button type="button" data-module="true" data-auto-run="true" data-deep-module="true" data-module-id="ai_print_deep" data-prompt="/ai_print_deep AI-assisted PLR products + KDP covers + coloring book + journal + poster/social media assets. Hãy chọn ngách ngon nhất, tạo productized pack, FE/bump/OTO, file tree, 7-day build plan. Offer seeds: AI Etsy Printable Bundle Builder, AI Kids Worksheet Factory, AI KDP Puzzle Book Launch Kit, AI Coloring Page Niche Pack, AI Journal Interior System, AI Canva Printable Product Kit." title="Chạy agent ngách ở chế độ chuyên sâu">Chuyên sâu</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_build" data-prompt="/ai_print_build Lead Magnet Printable Builder For Coaches" title="Tạo file sản phẩm thật, sales page, funnel, JV pack, buyer test và ZIP">Tạo ZIP</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_status" data-prompt="/ai_print_status" title="Xem bÃ¡Â»â„¢ nÃƒÂ£o transcript ngÃƒÂ¡ch AI printable/KDP/Etsy Ã„â€˜ÃƒÂ£ index Ã„â€˜Ã†Â°Ã¡Â»Â£c bao nhiÃƒÂªu">Kho</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_patterns" data-prompt="/ai_print_patterns AI Etsy Printable Bundle Builder AI Kids Worksheet Factory AI KDP Puzzle Book Launch Kit AI Coloring Page Niche Pack AI Journal Interior System AI Canva Printable Product Kit" title="RÃƒÂºt pattern sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m/ngÃƒÂ¡ch tÃ¡Â»Â« transcript">Pattern</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_market" data-prompt="/ai_print_market AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price" title="RÃƒÂºt market pattern cÃƒÂ³ evidence tÃ¡Â»Â« brain">Market</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_competitor" data-prompt="/ai_print_competitor AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price" title="TÃ¡ÂºÂ¡o competitor/source matrix tÃ¡Â»Â« chunks thÃ¡ÂºÂ­t">Matrix</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_gap" data-prompt="/ai_print_gap Lead Magnet Printable Builder For Coaches" title="Tìm offer gap trÃ†Â°Ã¡Â»â€ºc khi build ZIP">Gap</button>
+              <button type="button" data-module="true" data-auto-run="true" data-deep-module="true" data-module-id="ai_print_deep" data-prompt="/ai_print_deep AI-assisted PLR products + KDP covers + coloring book + journal + poster/social media assets. HÃƒÂ£y chÃ¡Â»Ân ngÃƒÂ¡ch ngon nhÃ¡ÂºÂ¥t, tÃ¡ÂºÂ¡o productized pack, FE/bump/OTO, file tree, 7-day build plan. Offer seeds: AI Etsy Printable Bundle Builder, AI Kids Worksheet Factory, AI KDP Puzzle Book Launch Kit, AI Coloring Page Niche Pack, AI Journal Interior System, AI Canva Printable Product Kit." title="ChÃ¡ÂºÂ¡y agent ngÃƒÂ¡ch Ã¡Â»Å¸ chÃ¡ÂºÂ¿ Ã„â€˜Ã¡Â»â„¢ chuyÃƒÂªn sÃƒÂ¢u">ChuyÃƒÂªn sÃƒÂ¢u</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_print_build" data-prompt="/ai_print_build Lead Magnet Printable Builder For Coaches" title="TÃ¡ÂºÂ¡o file sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m thÃ¡ÂºÂ­t, sales page, funnel, JV pack, buyer test vÃƒÂ  ZIP">TÃ¡ÂºÂ¡o ZIP</button>
             </div>
-            <div class="quick-group audit-group" data-help="Chạy theo thứ tự: 1 kiểm tra market, 2 test buyer, 3 audit launch, 4 export.">
+            <div class="quick-group ai-kdp-prompt-group" data-help="Tag-based skill routing for AI Printables KDP Prompt Agent.">
+              <span class="quick-group-title">AI Printables KDP Prompt</span>
+              <button type="button" data-run-mode="fast" data-prompt="#ai-printables-kdp-prompt #market-pattern&#10;RÃƒÂºt 3 market pattern chÃƒÂ­nh thÃ¡ÂºÂ­t ngÃ¡ÂºÂ¯n." title="FAST: market pattern ngÃ¡ÂºÂ¯n">Fast Market Pattern</button>
+              <button type="button" data-run-mode="fast" data-prompt="#ai-printables-kdp-prompt #buyer-test&#10;Test pack nÃƒÂ y nhÃ†Â° buyer trong 5 bullet ngÃ¡ÂºÂ¯n." title="FAST: buyer test ngÃ¡ÂºÂ¯n">Fast Buyer Test</button>
+              <button type="button" data-run-mode="balanced" data-prompt="#ai-printables-kdp-prompt #product-blueprint&#10;TÃ¡ÂºÂ¡o blueprint ngÃ¡ÂºÂ¯n cho AI Printables/KDP/PLR." title="BALANCED: blueprint nhanh">Fast Product Blueprint</button>
+              <button type="button" data-prompt="/ai_printables_kdp_prompt_status" title="KiÃ¡Â»Æ’m tra brain, skill, tag router">1. Brain Status</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #market-pattern&#10;DÃƒÂ¹ng brain AI Printables KDP Prompt Agent Ã„â€˜Ã¡Â»Æ’ rÃƒÂºt market pattern." title="RÃƒÂºt market pattern bÃ¡ÂºÂ±ng brain">2. Market Pattern</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #competitor-matrix&#10;So sÃƒÂ¡nh vendor/sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m/ngÃƒÂ¡ch/price/sales/angle/deliverables." title="So sÃƒÂ¡nh competitor matrix">3. Competitor Matrix</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #product-blueprint&#10;TÃ¡ÂºÂ¡o blueprint sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m AI Printables/KDP/PLR." title="TÃ¡ÂºÂ¡o product blueprint">4. Product Blueprint</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #deep-file-writer&#10;TÃ¡ÂºÂ¡o product assets thÃ¡ÂºÂ­t, khÃƒÂ´ng chÃ¡Â»â€° mÃƒÂ´ tÃ¡ÂºÂ£ file." title="TÃ¡ÂºÂ¡o product assets thÃ¡ÂºÂ­t">5. Deep File Writer</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #buyer-test&#10;Test nhÃ†Â° buyer mÃ¡Â»â€ºi mua giÃƒÂ¡ $17-$27." title="Buyer test">6. Buyer Test</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #export-zip&#10;Ã„ÂÃƒÂ³ng gÃƒÂ³i sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m hiÃ¡Â»â€¡n tÃ¡ÂºÂ¡i thÃƒÂ nh ZIP, tÃ¡ÂºÂ¡o manifest vÃƒÂ  placeholder check." title="Export ZIP">7. Export ZIP</button>
+              <button type="button" data-prompt="#ai-printables-kdp-prompt #public-launch-audit&#10;KiÃ¡Â»Æ’m tra sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m Ã„â€˜ÃƒÂ£ public launch Ã„â€˜Ã†Â°Ã¡Â»Â£c chÃ†Â°a." title="Public launch audit">8. Public Launch Audit</button>
+            </div>
+            <div class="quick-group audit-group" data-help="ChÃ¡ÂºÂ¡y theo thÃ¡Â»Â© tÃ¡Â»Â±: 1 kiÃ¡Â»Æ’m tra market, 2 test buyer, 3 audit launch, 4 export.">
               <span class="quick-group-title">Audit & Test</span>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="market_pattern_extract" data-prompt="/market_pattern_extract" title="Rút pattern thị trường từ brain data">1. Market Pattern</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="competitor_matrix" data-prompt="/competitor_matrix" title="Tạo bảng so sánh đối thủ từ brain">2. Competitor Matrix</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="buyer_test" data-prompt="/buyer_test Lead Magnet Printable Builder For Coaches" title="Agent đóng vai buyer test sản phẩm">3. Buyer Test</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="prompt_output_test" data-prompt="/prompt_output_test Lead Magnet Printable Builder For Coaches" title="Test chất lượng prompt trong pack">4. Prompt Test</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_replace_risk_v2" data-prompt="/ai_replace_risk Lead Magnet Printable Builder For Coaches" title="Tìm chỗ buyer nghĩ ChatGPT cũng làm được">5. AI Risk</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="public_launch_audit" data-prompt="/public_launch_audit Lead Magnet Printable Builder For Coaches" title="Kiểm tra đủ điều kiện launch public chưa">6. Launch Gate</button>
-              <button type="button" data-module="true" data-auto-run="true" data-module-id="final_scorecard" data-prompt="/final_scorecard Lead Magnet Printable Builder For Coaches" title="Tổng kết điểm và quyết định launch">7. Final Score</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="market_pattern_extract" data-prompt="/market_pattern_extract" title="RÃƒÂºt pattern thÃ¡Â»â€¹ trÃ†Â°Ã¡Â»Âng tÃ¡Â»Â« brain data">1. Market Pattern</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="competitor_matrix" data-prompt="/competitor_matrix" title="TÃ¡ÂºÂ¡o bÃ¡ÂºÂ£ng so sÃƒÂ¡nh Ã„â€˜Ã¡Â»â€˜i thÃ¡Â»Â§ tÃ¡Â»Â« brain">2. Competitor Matrix</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="buyer_test" data-prompt="/buyer_test Lead Magnet Printable Builder For Coaches" title="Agent Ã„â€˜ÃƒÂ³ng vai buyer test sÃ¡ÂºÂ£n phÃ¡ÂºÂ©m">3. Buyer Test</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="prompt_output_test" data-prompt="/prompt_output_test Lead Magnet Printable Builder For Coaches" title="Test chÃ¡ÂºÂ¥t lÃ†Â°Ã¡Â»Â£ng prompt trong pack">4. Prompt Test</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="ai_replace_risk_v2" data-prompt="/ai_replace_risk Lead Magnet Printable Builder For Coaches" title="Tìm chÃ¡Â»â€” buyer nghÃ„Â© ChatGPT cÃ…Â©ng lÃƒÂ m Ã„â€˜Ã†Â°Ã¡Â»Â£c">5. AI Risk</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="public_launch_audit" data-prompt="/public_launch_audit Lead Magnet Printable Builder For Coaches" title="KiÃ¡Â»Æ’m tra Ã„â€˜Ã¡Â»Â§ Ã„â€˜iÃ¡Â»Âu kiÃ¡Â»â€¡n launch public chÃ†Â°a">6. Launch Gate</button>
+              <button type="button" data-module="true" data-auto-run="true" data-module-id="final_scorecard" data-prompt="/final_scorecard Lead Magnet Printable Builder For Coaches" title="TÃ¡Â»â€¢ng kÃ¡ÂºÂ¿t Ã„â€˜iÃ¡Â»Æ’m vÃƒÂ  quyÃ¡ÂºÂ¿t Ã„â€˜Ã¡Â»â€¹nh launch">7. Final Score</button>
             </div>
           </div>
           <div id="modeSelector" class="mode-selector" aria-label="Chế độ trả lời">
-            <button type="button" data-mode="auto" class="active" title="Tự chọn nhanh/sâu theo câu hỏi và file">Auto</button>
-            <button type="button" data-mode="fast" title="Nhanh nhất, vẫn có cấu trúc cao cấp">Nhanh</button>
-            <button type="button" data-mode="balanced" title="Sâu hơn, tốc độ vừa phải">Cân bằng</button>
-            <button type="button" data-mode="deep" title="Phân tích kỹ nhất, chậm hơn">Sâu</button>
+            <button type="button" data-mode="fast" class="active" title="FAST: topK thấp, không benchmark/export">FAST</button>
+            <button type="button" data-mode="balanced" title="BALANCED: dùng skill + brain vừa đủ">BALANCED</button>
+            <button type="button" data-mode="deep" title="DEEP: chậm hơn, dùng nhiều RAG/audit/export">DEEP</button>
           </div>
           <input id="fileInput" class="file-input" type="file" multiple />
-          <div class="prompt-nav" aria-label="Điều hướng câu hỏi và câu trả lời">
-            <button id="promptJumpPrevBtn" type="button" title="Lên câu hỏi/câu trả lời trước">↑</button>
-            <button id="promptJumpNextBtn" type="button" title="Xuống câu hỏi/câu trả lời tiếp theo">↓</button>
+          <div id="aiKdpTagPanel" class="ai-kdp-tag-panel" aria-label="AI Printables KDP Prompt Tags">
+            <div class="ai-kdp-tag-head">
+              <span>AI Printables KDP Tags</span>
+              <div class="ai-kdp-tag-actions">
+                <button id="toggleAiKdpTagsBtn" type="button">Show tags</button>
+                <button id="clearAiKdpTagsBtn" type="button">Clear</button>
+              </div>
+            </div>
+            <div id="aiKdpSelectedTags" class="ai-kdp-selected-tags" aria-live="polite"></div>
+            <div id="aiKdpTagChips" class="ai-kdp-tag-chips" hidden></div>
+          </div>
+          <div class="prompt-nav" aria-label="Điều hướng câu hỏi">
+            <button id="promptJumpPrevBtn" type="button" title="Lên câu hỏi trước">↑</button>
+            <button id="promptJumpNextBtn" type="button" title="Xuống câu hỏi tiếp theo">↓</button>
           </div>
           <button id="attachBtn" class="attach-btn" type="button" title="Đính kèm file">+</button>
           <textarea id="prompt" rows="1" placeholder="Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây..."></textarea>
@@ -189,10 +216,25 @@
       <div id="artifactBody" class="artifact-body"></div>
     </aside>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="/utils/renderFileCard.js?v=1.09.1"></script>
-  <script src="/app.js?v=1.10.0"></script>
+  <script src="/utils/renderFileCard.js?v=1.14-vendor-ready-builder.7"></script>
+  <script src="/app.js?v=1.14-vendor-ready-builder.7"></script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

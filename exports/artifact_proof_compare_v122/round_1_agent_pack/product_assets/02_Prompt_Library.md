@@ -1,0 +1,3 @@
+Prompt 1 — Niche Filter: “Bạn là product strategist cho printable/KDP. Hãy đề xuất 10 niche nhỏ cho buyer: beginner creator. Ràng buộc: không trademark, không health claim, không income claim. Output gồm buyer, pain, printable idea, 5-page pack, risk note.” Prompt 2 — Page Builder: “Tạo nội dung cho 5 trang printable theo niche đã chọn. Mỗi trang phải có title, purpose, fields, user instruction, quality note.” Prompt 3 — Listing Draft: “Viết product listing thực tế, không hứa doanh thu. Gồm headline, short description, what’s included, who it’s for, FAQ.” Prompt 4 — Fix Prompt: “Audit output trên về clarity, duplicate, missing placeholders, risky claims, và viết lại bản an toàn hơn.”
+
+---

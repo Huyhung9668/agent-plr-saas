@@ -1,0 +1,3 @@
+Prompt 1 — Niche Finder: “Bạn là product strategist cho AI printables. Input: buyer = beginner creator; platform = Etsy/KDP/WarriorPlus; skill level = beginner; constraint = no income claims. Output 10 niche ideas, mỗi idea gồm buyer, pain, printable type, promise, risk, difficulty.” Prompt 2 — Page Builder: “Tạo outline 20 trang cho printable [theme], audience [audience], tone [tone], avoid trademark/copyright, output table: page title, purpose, layout notes.” Prompt 3 — Listing Writer: “Viết product listing an toàn cho [product], không guarantee income/ranking, gồm headline, bullets, what’s included, who it’s for, FAQ.”
+
+---

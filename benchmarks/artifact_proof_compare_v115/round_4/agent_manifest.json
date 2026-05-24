@@ -1,0 +1,91 @@
+{
+  "label": "agent",
+  "created_at": "2026-05-24 09:32:09",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 680,
+      "words": 113
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 577,
+      "words": 71
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 1012,
+      "words": 151
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 632,
+      "words": 93
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 597,
+      "words": 88
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 409,
+      "words": 50
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 643,
+      "words": 93
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 734,
+      "words": 105
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 613,
+      "words": 95
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 1395,
+      "words": 206
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 1026,
+      "words": 137
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 1138,
+      "words": 184
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 510,
+      "words": 72
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 661,
+      "words": 114
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 490,
+      "words": 59
+    },
+    {
+      "file": "README.md",
+      "chars": 3674,
+      "words": 537
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 2168,
+  "zip_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\exports\\artifact_proof_compare_v115\\round_4_agent_pack.zip",
+  "zip_exists": true,
+  "zip_size": 12237
+}

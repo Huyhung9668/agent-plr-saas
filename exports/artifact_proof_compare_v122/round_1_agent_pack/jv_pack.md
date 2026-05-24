@@ -1,0 +1,3 @@
+JV Invite: Printable Niche Launch Kit AI is a practical $17 front-end for beginners interested in AI printables, KDP, Canva-style digital products, and PLR product creation. It is not a raw prompt dump. The conversion angle is simple: buyers want a guided workflow, examples, checklist, and safer launch packaging. Affiliate swipe: “If you’ve tried asking AI for printable ideas and got messy drafts, this kit gives you a cleaner path: niche filter, 5-page pack workflow, prompts, examples, fix prompts, listing copy, and compliance notes.” Affiliate rules: no income screenshots, no guaranteed sales, no fake urgency, no claim that this is legal advice.
+
+---

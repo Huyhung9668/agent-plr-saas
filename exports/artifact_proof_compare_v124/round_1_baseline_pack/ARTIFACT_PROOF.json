@@ -1,0 +1,104 @@
+{
+  "label": "baseline",
+  "created_at": "2026-05-24 11:48:48",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 713,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 644,
+      "words": 106,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 817,
+      "words": 120,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 702,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 693,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 667,
+      "words": 102,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 656,
+      "words": 105,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 738,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 682,
+      "words": 101,
+      "extracted": true
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 828,
+      "words": 121,
+      "extracted": true
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 721,
+      "words": 107,
+      "extracted": true
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 711,
+      "words": 101,
+      "extracted": true
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 704,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 602,
+      "words": 103,
+      "extracted": true
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 2077,
+      "words": 310,
+      "extracted": true
+    },
+    {
+      "file": "README.md",
+      "chars": 835,
+      "words": 113,
+      "extracted": true
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 1909
+}

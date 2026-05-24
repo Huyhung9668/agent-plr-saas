@@ -1,0 +1,9 @@
+Use Case,Buyer Situation,Asset Needed,Example To Include,Checklist Needed,Prompt Needed,Planner Field,Compliance/Risk Note
+Welcome,New subscriber or new user,Welcome sequence,Sample welcome email/lesson/onboarding step,Expectation check,Rewrite for niche and tone,Audience + first action,Avoid overpromising result
+Nurture,Reader needs trust/value,Educational sequence,One useful tip email/post/module,Clarity check,Turn topic into short lesson,Problem + tip + CTA,Avoid medical/income/legal claims if relevant
+Promo,Buyer considering offer,Soft promo sequence,Problem-solution promo example,Offer clarity check,Adapt offer to buyer pain,Product + benefit + CTA,No guaranteed sales/conversion
+Affiliate,Promoting third-party product,Affiliate promo kit,Disclosure email and review example,Disclosure check,Write honest recommendation,Product + disclosure + bonus,Must disclose affiliate relationship
+Deadline,Real deadline or bonus ending,Urgency sequence,Final reminder example,Deadline truth check,Write non-pushy urgency email,Deadline + link + reason,No fake scarcity
+Re-engagement,Cold/inactive audience,Restart sequence,Preference email/check-in example,List hygiene check,Write restart email,Goal + simple action,Respect unsubscribe and preferences
+Implementation,Buyer wants to use product,Step-by-step worksheet,Filled worksheet example,Completion check,Turn template into action plan,Inputs + output + next step,Avoid making results sound automatic
+

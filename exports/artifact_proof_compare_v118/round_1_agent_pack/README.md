@@ -1,0 +1,3 @@
+Printable Prompt-to-Product Sprint là một compact implementation kit cho người mới làm AI printable, KDP low-content, Etsy printable hoặc PLR-style product pack. Bộ này không hứa doanh thu, không hứa ranking, không hứa buyer. Mục tiêu thực tế là giúp bạn đi từ “tôi có ý tưởng và AI prompt rời rạc” sang một product folder có cấu trúc, có workflow, có checklist kiểm chất lượng, có ví dụ mẫu, có sales/listing kit và có ghi chú license/compliance để review trước khi bán. Dùng theo thứ tự file 00 đến 08 trước, sau đó đọc sales_page, listing, JV và support files nếu muốn launch trên WarriorPlus.
+
+---

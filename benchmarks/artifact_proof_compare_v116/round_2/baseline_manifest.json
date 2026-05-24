@@ -1,0 +1,107 @@
+{
+  "label": "baseline",
+  "created_at": "2026-05-24 09:40:42",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 2642,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 2644,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 2646,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 2646,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 2647,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 2649,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 2643,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 2649,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 2650,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 2639,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 2648,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 2636,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 2642,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 2640,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 2642,
+      "words": 356,
+      "extracted": false
+    },
+    {
+      "file": "README.md",
+      "chars": 2635,
+      "words": 356,
+      "extracted": false
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 5696,
+  "zip_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\exports\\artifact_proof_compare_v116\\round_2_baseline_pack.zip",
+  "zip_exists": true,
+  "zip_size": 25313
+}

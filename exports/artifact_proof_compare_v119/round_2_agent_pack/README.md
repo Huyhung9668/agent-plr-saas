@@ -1,0 +1,3 @@
+Printable Lead Magnet Sprint Kit là bộ triển khai nhanh giúp người bán sản phẩm số tạo một lead magnet dạng printable có cấu trúc: worksheet, checklist, mini planner, email opt-in copy và delivery note. Bộ này không bán “prompt thô”; nó bán quy trình dùng prompt đúng thứ tự, kiểm tra chất lượng và đóng gói thành tài sản có thể giao cho khách hàng/người đăng ký. Người dùng nên bắt đầu từ `00_Start_Here.md`, sau đó làm theo `01_Workflow_Map.md`, dùng prompt trong `02_Prompt_Library.md`, kiểm tra bằng `05_Quality_Checklist.md`, rồi lấy copy trong `07_Listing_Sales_Kit.md` để mô tả sản phẩm. Hỗ trợ mẫu: support@example.com. Demo delivery: example.com/download.
+
+---

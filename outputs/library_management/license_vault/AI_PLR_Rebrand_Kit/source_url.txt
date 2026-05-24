@@ -1,0 +1,3 @@
+Source URL: local/generated project assets.
+
+If external PLR is added later, record the purchase URL, vendor page, license page, and download source here.

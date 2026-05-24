@@ -1,0 +1,3 @@
+Title: Printable Niche Launch Kit AI. Category: Digital Product / AI / Printables / KDP. Price: $17 FE test price. Commission suggestion: 50% for approved affiliates after reviewing their promotion style. Short description: “A compact implementation kit for creating a small AI-assisted printable niche pack with workflow, prompts, examples, listing copy, and compliance checks.” Long description: This product helps beginners move from idea to organized printable sample pack using a repeatable 7-step process. Includes markdown guides, prompt library, quality checklist, fix prompts, sales/listing support, delivery page, FAQ, and refund policy. Vendor note: no income claims, no KDP ranking promises, no fake scarcity.
+
+---

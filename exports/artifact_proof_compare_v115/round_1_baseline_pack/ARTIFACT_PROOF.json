@@ -1,0 +1,88 @@
+{
+  "label": "baseline",
+  "created_at": "2026-05-24 09:27:55",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 3684,
+      "words": 537
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 3686,
+      "words": 537
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 3688,
+      "words": 537
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 3688,
+      "words": 537
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 3689,
+      "words": 537
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 3691,
+      "words": 537
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 3685,
+      "words": 537
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 3691,
+      "words": 537
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 3692,
+      "words": 537
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 3681,
+      "words": 537
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 3690,
+      "words": 537
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 3678,
+      "words": 537
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 3684,
+      "words": 537
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 4128,
+      "words": 625
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 4111,
+      "words": 623
+    },
+    {
+      "file": "README.md",
+      "chars": 3677,
+      "words": 537
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 8766
+}

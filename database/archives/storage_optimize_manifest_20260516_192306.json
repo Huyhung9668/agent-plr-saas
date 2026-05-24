@@ -1,0 +1,305 @@
+{
+  "created_at": "2026-05-16T19:22:04",
+  "apply": true,
+  "include_legacy_db": true,
+  "candidates": [
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brain.sqlite",
+      "size_bytes": 622329856,
+      "reason": "Legacy monolithic brain DB; web_app.py uses role brain DBs.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\media_extracted_text",
+      "size_bytes": 12196031,
+      "reason": "Raw extracted/media text already ingested into role brain SQLite.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\media_brain_text",
+      "size_bytes": 9277655,
+      "reason": "Raw extracted/media text already ingested into role brain SQLite.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\media_extracted_text",
+      "size_bytes": 7405549,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\media_brain_text",
+      "size_bytes": 5339238,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\backup_media_extracted_text",
+      "size_bytes": 7670343,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\backup_media_brain_text",
+      "size_bytes": 5549191,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\media_extracted_text",
+      "size_bytes": 1442321,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\media_brain_text",
+      "size_bytes": 360175,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\backup_media_extracted_text",
+      "size_bytes": 1458668,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\backup_media_brain_text",
+      "size_bytes": 358045,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\media_extracted_text",
+      "size_bytes": 1483843,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\media_brain_text",
+      "size_bytes": 1265895,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\backup_media_extracted_text",
+      "size_bytes": 1492436,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\backup_media_brain_text",
+      "size_bytes": 1291520,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_command_center.sqlite-journal",
+      "size_bytes": 29240,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_command_center_v2.sqlite-journal",
+      "size_bytes": 29240,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os.sqlite-journal",
+      "size_bytes": 512,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_v2.sqlite-journal",
+      "size_bytes": 512,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_v2.sqlite",
+      "size_bytes": 8192,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_write.tmp",
+      "size_bytes": 2,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os.sqlite",
+      "size_bytes": 0,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os_sandbox.sqlite",
+      "size_bytes": 8192,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    }
+  ],
+  "archived": [
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brain.sqlite",
+      "size_bytes": 622329856,
+      "reason": "Legacy monolithic brain DB; web_app.py uses role brain DBs.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brain.sqlite_20260516_192204.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\media_extracted_text",
+      "size_bytes": 12196031,
+      "reason": "Raw extracted/media text already ingested into role brain SQLite.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_media_extracted_text_20260516_192236.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\media_brain_text",
+      "size_bytes": 9277655,
+      "reason": "Raw extracted/media text already ingested into role brain SQLite.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_media_brain_text_20260516_192255.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\media_extracted_text",
+      "size_bytes": 7405549,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_build_product_media_extracted_text_20260516_192255.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\media_brain_text",
+      "size_bytes": 5339238,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_build_product_media_brain_text_20260516_192257.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\backup_media_extracted_text",
+      "size_bytes": 7670343,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_build_product_backup_media_extracted_text_20260516_192257.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\backup_media_brain_text",
+      "size_bytes": 5549191,
+      "reason": "Raw/backup media text for build_product; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_build_product_backup_media_brain_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\media_extracted_text",
+      "size_bytes": 1442321,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_jv_manager_media_extracted_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\media_brain_text",
+      "size_bytes": 360175,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_jv_manager_media_brain_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\backup_media_extracted_text",
+      "size_bytes": 1458668,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_jv_manager_backup_media_extracted_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\backup_media_brain_text",
+      "size_bytes": 358045,
+      "reason": "Raw/backup media text for jv_manager; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_jv_manager_backup_media_brain_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\media_extracted_text",
+      "size_bytes": 1483843,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_sale_page_media_extracted_text_20260516_192259.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\media_brain_text",
+      "size_bytes": 1265895,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_sale_page_media_brain_text_20260516_192305.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\backup_media_extracted_text",
+      "size_bytes": 1492436,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_sale_page_backup_media_extracted_text_20260516_192305.zip"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\backup_media_brain_text",
+      "size_bytes": 1291520,
+      "reason": "Raw/backup media text for sale_page; SQLite brain remains active.",
+      "action": "archive",
+      "archive": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\archives\\database_agent_brains_sale_page_backup_media_brain_text_20260516_192306.zip"
+    }
+  ],
+  "removed": [
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_command_center.sqlite-journal",
+      "size_bytes": 29240,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_command_center_v2.sqlite-journal",
+      "size_bytes": 29240,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os.sqlite-journal",
+      "size_bytes": 512,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_v2.sqlite-journal",
+      "size_bytes": 512,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_v2.sqlite",
+      "size_bytes": 8192,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\test_write.tmp",
+      "size_bytes": 2,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os.sqlite",
+      "size_bytes": 0,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    },
+    {
+      "path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\launch_os_sandbox.sqlite",
+      "size_bytes": 8192,
+      "reason": "Temporary/test database artifact.",
+      "action": "delete"
+    }
+  ],
+  "skipped": [],
+  "before_bytes": 678996656,
+  "reclaimed_bytes": 678996656
+}

@@ -1,0 +1,3 @@
+Thank you for purchasing Printable Lead Magnet Sprint Kit. Access your files at example.com/download. Start with `00_Start_Here.md`, then follow `01_Workflow_Map.md`. Do not begin by opening every file at once. Use the prompt library only after choosing one buyer and one printable type. If you are using Canva, PLR, stock images, fonts, or AI-generated images, review the license before publishing or reselling your final asset. For support, email support@example.com with your order ID, product name, and a short description of the issue. Suggested first project: create one 3-page checklist worksheet and test it with a small audience.
+
+---

@@ -1,0 +1,722 @@
+{
+  "timestamp": "2026-05-24T07:41:03.244560",
+  "status": {
+    "ok": true,
+    "status": "Trạng thái bộ não chủ\n=====================\n\nBuild Product Agent\n- Nhiệm vụ: Build complete digital product packs from PLR/SaaS source material.\n- Database: G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\build_product\\build_product_brain.sqlite\n- Kích thước: 471.63 MB\n- Tài liệu: 20136\n- Chunk: 63219\n- Text trích xuất: 142.52 MB\n- Lỗi: 1\n\nJV Manager Agent\n- Nhiệm vụ: Prepare WarriorPlus/JV launch assets, affiliate pages, swipes, commission angles, and partner outreach.\n- Database: G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\jv_manager\\jv_manager_brain.sqlite\n- Kích thước: 27.29 MB\n- Tài liệu: 798\n- Chunk: 2939\n- Text trích xuất: 7.5 MB\n- Lỗi: 0\n\nSale Page Agent\n- Nhiệm vụ: Create compliant direct-response sales pages from source offers, PLR, examples, screenshots, and transcripts.\n- Database: G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\sale_page\\sale_page_brain.sqlite\n- Kích thước: 66.4 MB\n- Tài liệu: 3879\n- Chunk: 9414\n- Text trích xuất: 19.18 MB\n- Lỗi: 0\n\nAI Printables Agent\n- Nhiệm vụ: Build AI-assisted PLR products, KDP covers, coloring books, journals, posters, social assets, Etsy/Canva printable bundles, and fast rebrandable product packs from Udemy transcript lessons.\n- Database: G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_brain.sqlite\n- Kích thước: 446.95 MB\n- Tài liệu: 11016\n- Chunk: 39817\n- Text trích xuất: 113.94 MB\n- Lỗi: 0\n\nCase Study Brain Agent\n- Nhiệm vụ: Use old files as searchable case-study memory for PLR, SaaS, WarriorPlus, KDP, kids printables, sales pages, funnels, JV packs, and launch proof patterns.\n- Database: G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\case_study\\case_study_brain.sqlite\n- Kích thước: 5.42 MB\n- Tài liệu: 115\n- Chunk: 598\n- Text trích xuất: 1.64 MB\n- Lỗi: 361",
+    "apiReady": true,
+    "apiMessage": "Kết nối OK: http://103.82.26.216:20128/v1",
+    "appVersion": "1.11",
+    "reasoningEffort": "low",
+    "answerDetail": "high",
+    "defaultMode": "auto",
+    "uploadLimits": {
+      "maxFileBytes": 536870912,
+      "maxFilesPerUpload": 10,
+      "maxBatchBytes": 5368709120,
+      "maxStorageBytes": 21474836480,
+      "usedStorageBytes": 2015110,
+      "remainingStorageBytes": 21472821370,
+      "attachmentPreviewChars": 200000
+    },
+    "modes": [
+      {
+        "key": "fast",
+        "label": "Nhanh",
+        "description": "Tra loi nhanh, van co checklist va buoc lam."
+      },
+      {
+        "key": "balanced",
+        "label": "Can bang",
+        "description": "Sau hon cho cau hoi chien luoc."
+      },
+      {
+        "key": "deep",
+        "label": "Sau",
+        "description": "Phan tich ky, cham hon."
+      }
+    ],
+    "brains": [
+      {
+        "key": "build_product",
+        "name": "Build Product Agent",
+        "mission": "Build complete digital product packs from PLR/SaaS source material.",
+        "documents": 20136,
+        "chunks": 63219,
+        "textMb": 142.52,
+        "dbMb": 471.63,
+        "errors": 1,
+        "subagents": [
+          {
+            "key": "product_researcher",
+            "name": "Product Researcher",
+            "job": "Find source angles, niches, buyer pains, and product opportunities."
+          },
+          {
+            "key": "offer_architect",
+            "name": "Offer Architect",
+            "job": "Create product promise, outline, modules, bonuses, and OTO structure."
+          },
+          {
+            "key": "asset_packager",
+            "name": "Asset Packager",
+            "job": "Turn outputs into clean deliverables, checklists, prompts, templates, and ZIP structure."
+          },
+          {
+            "key": "license_risk_checker",
+            "name": "License/Risk Checker",
+            "job": "Flag unclear rights, risky claims, and regulated-topic concerns."
+          },
+          {
+            "key": "digital_product_curriculum_builder",
+            "name": "Digital Product Curriculum Builder",
+            "job": "Turn lesson libraries, challenges, and workflows into paid digital product training."
+          },
+          {
+            "key": "saas_tool_packager",
+            "name": "SaaS Tool Packager",
+            "job": "Package SaaS, AI agents, apps, frontend/backend demos, and tool workflows into sellable offers."
+          }
+        ]
+      },
+      {
+        "key": "jv_manager",
+        "name": "JV Manager Agent",
+        "mission": "Prepare WarriorPlus/JV launch assets, affiliate pages, swipes, commission angles, and partner outreach.",
+        "documents": 798,
+        "chunks": 2939,
+        "textMb": 7.5,
+        "dbMb": 27.29,
+        "errors": 0,
+        "subagents": [
+          {
+            "key": "affiliate_researcher",
+            "name": "Affiliate Researcher",
+            "job": "Extract affiliate angles, buyer avatars, and promotion hooks."
+          },
+          {
+            "key": "jv_page_writer",
+            "name": "JV Page Writer",
+            "job": "Create JV page copy, affiliate instructions, contest notes, and promo assets."
+          },
+          {
+            "key": "swipe_writer",
+            "name": "Swipe Writer",
+            "job": "Write prelaunch, launch day, follow-up, and bonus-angle email swipes."
+          },
+          {
+            "key": "launch_ops",
+            "name": "Launch Ops",
+            "job": "Build launch checklist, delivery notes, refund terms, and approval workflow."
+          },
+          {
+            "key": "traffic_channel_planner",
+            "name": "Traffic Channel Planner",
+            "job": "Plan Facebook, Medium, Quora, SEO, LinkedIn, and free-traffic promotion systems."
+          },
+          {
+            "key": "email_list_growth_operator",
+            "name": "Email/List Growth Operator",
+            "job": "Build lead magnets, opt-in flows, buyer list nurture, and follow-up systems."
+          }
+        ]
+      },
+      {
+        "key": "sale_page",
+        "name": "Sale Page Agent",
+        "mission": "Create compliant direct-response sales pages from source offers, PLR, examples, screenshots, and transcripts.",
+        "documents": 3879,
+        "chunks": 9414,
+        "textMb": 19.18,
+        "dbMb": 66.4,
+        "errors": 0,
+        "subagents": [
+          {
+            "key": "hook_miner",
+            "name": "Hook Miner",
+            "job": "Find headlines, pain points, mechanisms, objections, and proof substitutes."
+          },
+          {
+            "key": "copywriter",
+            "name": "Copywriter",
+            "job": "Draft sales page sections, bullets, CTAs, FAQ, and guarantee copy."
+          },
+          {
+            "key": "compliance_editor",
+            "name": "Compliance Editor",
+            "job": "Remove fake scarcity, income guarantees, unsafe claims, and license assumptions."
+          },
+          {
+            "key": "conversion_editor",
+            "name": "Conversion Editor",
+            "job": "Improve flow, clarity, offer stack, objection handling, and CTA strength."
+          }
+        ]
+      },
+      {
+        "key": "ai_printables",
+        "name": "AI Printables Agent",
+        "mission": "Build AI-assisted PLR products, KDP covers, coloring books, journals, posters, social assets, Etsy/Canva printable bundles, and fast rebrandable product packs from Udemy transcript lessons.",
+        "documents": 11016,
+        "chunks": 39817,
+        "textMb": 113.94,
+        "dbMb": 446.95,
+        "errors": 0,
+        "subagents": [
+          {
+            "key": "niche_miner",
+            "name": "Niche Miner",
+            "job": "Find profitable printable/KDP/Etsy/Canva angles from course transcripts."
+          },
+          {
+            "key": "product_system_builder",
+            "name": "Product System Builder",
+            "job": "Turn AI workflows into sellable PLR packs, journals, coloring books, worksheets, covers, and bundles."
+          },
+          {
+            "key": "asset_prompt_builder",
+            "name": "Asset Prompt Builder",
+            "job": "Create prompts, style systems, asset specs, and production workflows for image/text products."
+          },
+          {
+            "key": "launch_packager",
+            "name": "Launch Packager",
+            "job": "Package offers with FE, bump, OTO, license, delivery, and WarriorPlus/Gumroad/Etsy positioning."
+          }
+        ]
+      },
+      {
+        "key": "case_study",
+        "name": "Case Study Brain Agent",
+        "mission": "Use old files as searchable case-study memory for PLR, SaaS, WarriorPlus, KDP, kids printables, sales pages, funnels, JV packs, and launch proof patterns.",
+        "documents": 115,
+        "chunks": 598,
+        "textMb": 1.64,
+        "dbMb": 5.42,
+        "errors": 361,
+        "subagents": [
+          {
+            "key": "product_research",
+            "name": "Product Research Miner",
+            "job": "Find market patterns, product angles, buyer pains, and useful product structures from old files."
+          },
+          {
+            "key": "sales_page",
+            "name": "Sales Page Pattern Miner",
+            "job": "Extract sales page structures, hooks, offer stacks, objections, and proof substitutes."
+          },
+          {
+            "key": "email_swipes",
+            "name": "Email Swipe Pattern Miner",
+            "job": "Find email sequences, subject lines, launch swipes, and follow-up patterns."
+          },
+          {
+            "key": "warriorplus_jv",
+            "name": "WarriorPlus/JV Pattern Miner",
+            "job": "Find JV page, affiliate, commission, review access, and launch operation patterns."
+          },
+          {
+            "key": "funnel_oto",
+            "name": "Funnel/OTO Pattern Miner",
+            "job": "Find FE, bump, OTO, backend, downsell, and bundle structures."
+          },
+          {
+            "key": "kdp_kids_printables",
+            "name": "KDP/Kids Printable Miner",
+            "job": "Find KDP printable, kids worksheet, Canva, planner, and educational bundle patterns."
+          }
+        ]
+      }
+    ],
+    "caseStudyBrain": {
+      "db_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\case_study\\case_study_brain.sqlite",
+      "db_size_mb": 5.42,
+      "documents": 115,
+      "chunks": 598,
+      "text_chars": 1714802,
+      "text_mb": 1.64,
+      "errors": 361,
+      "by_extension": [
+        {
+          "extension": ".txt",
+          "count": 47
+        },
+        {
+          "extension": ".zip",
+          "count": 20
+        },
+        {
+          "extension": ".css",
+          "count": 16
+        },
+        {
+          "extension": ".js",
+          "count": 15
+        },
+        {
+          "extension": ".xlsx",
+          "count": 8
+        },
+        {
+          "extension": ".csv",
+          "count": 3
+        },
+        {
+          "extension": ".rtf",
+          "count": 2
+        },
+        {
+          "extension": ".pptx",
+          "count": 2
+        },
+        {
+          "extension": ".json",
+          "count": 2
+        }
+      ],
+      "source_root": "G:\\file_backup",
+      "source_exists": true,
+      "manifest_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\case_study\\case_study_training_manifest.json",
+      "categories": [
+        {
+          "category": "01_Product_Research",
+          "count": 47
+        },
+        {
+          "category": "02_Sales_Page",
+          "count": 0
+        },
+        {
+          "category": "03_Email_Swipes",
+          "count": 8
+        },
+        {
+          "category": "04_WarriorPlus_JV",
+          "count": 2
+        },
+        {
+          "category": "05_Funnel_OTO",
+          "count": 1
+        },
+        {
+          "category": "06_PLR_License",
+          "count": 6
+        },
+        {
+          "category": "07_SaaS_Ideas",
+          "count": 7
+        },
+        {
+          "category": "08_KDP_Printables",
+          "count": 0
+        },
+        {
+          "category": "09_Kids_Printables",
+          "count": 0
+        },
+        {
+          "category": "10_Case_Studies",
+          "count": 0
+        },
+        {
+          "category": "00_Unsorted",
+          "count": 44
+        }
+      ],
+      "training_mode": "RAG / searchable case-study memory, not model-weight fine-tuning"
+    },
+    "aiPrintablesBrain": {
+      "db_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_brain.sqlite",
+      "db_size_mb": 446.95,
+      "documents": 11016,
+      "chunks": 39817,
+      "text_chars": 119470850,
+      "text_mb": 113.94,
+      "errors": 0,
+      "by_extension": [
+        {
+          "extension": ".pdf",
+          "count": 11016
+        }
+      ],
+      "niche": "AI Printables",
+      "source_root": "G:\\Documents\\udemy-transcript-downloader\\output",
+      "source_exists": true,
+      "source_required": false,
+      "safe_to_delete_source": true,
+      "manifest_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_training_manifest.json",
+      "categories": [
+        {
+          "category": "01_KDP_Kindle",
+          "count": 491
+        },
+        {
+          "category": "02_Etsy_Printables",
+          "count": 181
+        },
+        {
+          "category": "03_Canva_Bulk_Assets",
+          "count": 1017
+        },
+        {
+          "category": "04_AI_Image_Prompts",
+          "count": 990
+        },
+        {
+          "category": "05_Coloring_Drawing",
+          "count": 945
+        },
+        {
+          "category": "06_Journals_Planners",
+          "count": 27
+        },
+        {
+          "category": "07_Marketing_Launch",
+          "count": 3029
+        },
+        {
+          "category": "08_Automation_Workflow",
+          "count": 612
+        },
+        {
+          "category": "00_Unsorted",
+          "count": 3724
+        }
+      ],
+      "training_mode": "RAG / searchable niche brain from Udemy transcripts, not model-weight fine-tuning"
+    },
+    "aiPrintablesKdpPromptAgent": {
+      "agent": "AI Printables KDP Prompt Agent",
+      "agentKey": "ai_printables_kdp_prompt",
+      "agentFolder": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\agents\\AI_Printables_KDP_Prompt_Agent",
+      "brainFound": true,
+      "skills": "16/16",
+      "skillCount": 16,
+      "tagsReady": true,
+      "routerReady": true,
+      "tagRouterFound": true,
+      "skillFolderFound": true
+    },
+    "launchOs": {
+      "path": "C:\\Users\\Admin\\.codex\\memories\\agent_plr_saas_launch_command_center.sqlite",
+      "tables": [
+        "products",
+        "plr_files",
+        "market_research",
+        "buyer_avatars",
+        "sales_pages",
+        "funnels",
+        "jv_prospects",
+        "affiliate_swipes",
+        "saas_plans",
+        "exports"
+      ],
+      "counts": {
+        "products": 10,
+        "plr_files": 0,
+        "market_research": 0,
+        "buyer_avatars": 0,
+        "sales_pages": 0,
+        "funnels": 0,
+        "jv_prospects": 0,
+        "affiliate_swipes": 0,
+        "saas_plans": 0,
+        "exports": 0
+      },
+      "activeProject": {
+        "id": 10,
+        "product_name": "AI Coloring Page Niche Pack",
+        "niche": "",
+        "buyer": "",
+        "promise": "",
+        "format": "Digital product kit",
+        "price": "",
+        "status": "research"
+      }
+    },
+    "activeProject": {
+      "id": 10,
+      "product_name": "AI Coloring Page Niche Pack",
+      "niche": "",
+      "buyer": "",
+      "promise": "",
+      "format": "Digital product kit",
+      "price": "",
+      "status": "research",
+      "tasks": {
+        "buyer_avatar": {
+          "status": "missing",
+          "notes": ""
+        },
+        "delivery_page": {
+          "status": "missing",
+          "notes": ""
+        },
+        "export_zip": {
+          "status": "missing",
+          "notes": ""
+        },
+        "funnel": {
+          "status": "missing",
+          "notes": ""
+        },
+        "jv_pack": {
+          "status": "missing",
+          "notes": ""
+        },
+        "offer_analyzed": {
+          "status": "missing",
+          "notes": ""
+        },
+        "onboarding": {
+          "status": "missing",
+          "notes": ""
+        },
+        "product_assets": {
+          "status": "missing",
+          "notes": ""
+        },
+        "product_package": {
+          "status": "missing",
+          "notes": ""
+        },
+        "saas_plan": {
+          "status": "missing",
+          "notes": ""
+        },
+        "sales_page": {
+          "status": "missing",
+          "notes": ""
+        },
+        "warriorplus_listing": {
+          "status": "missing",
+          "notes": ""
+        }
+      },
+      "assets": [
+        {
+          "name": "Start Here",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Workflow / Campaign Map",
+          "status": "missing",
+          "task": "product_package"
+        },
+        {
+          "name": "Templates / Core Asset",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Customization Prompts",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Checklist",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Planner Sheet",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Example / Case Study",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "License / Compliance Note",
+          "status": "missing",
+          "task": "product_assets"
+        },
+        {
+          "name": "Sales Page",
+          "status": "missing",
+          "task": "sales_page"
+        },
+        {
+          "name": "Funnel Plan",
+          "status": "missing",
+          "task": "funnel"
+        },
+        {
+          "name": "WarriorPlus Listing",
+          "status": "missing",
+          "task": "warriorplus_listing"
+        },
+        {
+          "name": "JV Page / Swipes",
+          "status": "missing",
+          "task": "jv_pack"
+        },
+        {
+          "name": "Delivery Page",
+          "status": "missing",
+          "task": "delivery_page"
+        },
+        {
+          "name": "Onboarding Emails",
+          "status": "missing",
+          "task": "onboarding"
+        },
+        {
+          "name": "ZIP Export",
+          "status": "missing",
+          "task": "export_zip"
+        }
+      ],
+      "missing_assets": [
+        "Start Here",
+        "Workflow / Campaign Map",
+        "Templates / Core Asset",
+        "Customization Prompts",
+        "Checklist",
+        "Planner Sheet",
+        "Example / Case Study",
+        "License / Compliance Note",
+        "Sales Page",
+        "Funnel Plan",
+        "WarriorPlus Listing",
+        "JV Page / Swipes",
+        "Delivery Page",
+        "Onboarding Emails",
+        "ZIP Export"
+      ],
+      "launch_readiness": 0.0,
+      "next_actions": [
+        "Generate Product Assets",
+        "Write Sales Page",
+        "Create Funnel Plan"
+      ]
+    },
+    "sources": [
+      {
+        "brain": "JV Manager Agent",
+        "title": "Bai 03   Làm sản phẩm số và xây funnel bán hàng trê  short",
+        "source_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\02_JV_MANAGER\\child_agent_training\\launch_ops\\01_Tu_Duy_Vendor_San_Pham_So_WarriorPlus\\Bai_03 - Làm sản phẩm số và xây funnel bán hàng trê__short.pdf",
+        "excerpt": "u là có khoảng 100 kết nối ban đầu, trong đó 20 người phù hợp và 3-5 người bắt đầu trò chuyện được. Bước 5: Chuẩn bị sản phẩm đầu tiên Cần có tối thiểu: Tên sản phẩm. Sales page..."
+      },
+      {
+        "brain": "JV Manager Agent",
+        "title": "Bai 01   Làm sản phẩm số và xây funnel bán hàng trê  short",
+        "source_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\02_JV_MANAGER\\child_agent_training\\launch_ops\\01_Tu_Duy_Vendor_San_Pham_So_WarriorPlus\\Bai_01 - Làm sản phẩm số và xây funnel bán hàng trê__short.pdf",
+        "excerpt": "t ngách chính. 5/15/26, 10:35 PM Bai phan tich video - video1174687513-NiRcjOBsqHU file:///G:/Documents/Auto%20Youtube/File_K%E1%BA%BFt_Qu%E1%BA%A3/Bai_Phan_Tich_Cuoi_Cung/video..."
+      },
+      {
+        "brain": "JV Manager Agent",
+        "title": "Bai 01   Làm sản phẩm số và xây funnel bán hàng trê  short",
+        "source_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\02_JV_MANAGER\\child_agent_training\\launch_ops\\01_Tu_Duy_Vendor_San_Pham_So_WarriorPlus\\Bai_01 - Làm sản phẩm số và xây funnel bán hàng trê__short.pdf",
+        "excerpt": "i phan tich video - video1174687513-NiRcjOBsqHU file:///G:/Documents/Auto%20Youtube/File_K%E1%BA%BFt_Qu%E1%BA%A3/Bai_Phan_Tich_Cuoi_Cung/video1174687513-NiRcjOBsqHU.h… 15/28 Bướ..."
+      },
+      {
+        "brain": "Build Product Agent",
+        "title": "Bai 11   Làm sản phẩm số và xây funnel bán hàng trê  short",
+        "source_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\01_BUILD_PRODUCT\\child_agent_training\\offer_architect\\03_Sales_Page_Offer_Bonus_Thanh_Toan\\Bai_11 - Làm sản phẩm số và xây funnel bán hàng trê__short.pdf",
+        "excerpt": "dùng ảnh tiền quá mức. 5/15/26, 5:33 PM Bai phan tich video - Zoom-Nghiên-Cứu-Tạo-sản-phẩm-dịch-vụ-hosting-teamplate-website-autoblog-z7MdThPLRQs file:///G:/Documents/Auto%20You..."
+      },
+      {
+        "brain": "JV Manager Agent",
+        "title": "TUT 008   Thiết kế phễu bán hàng và sales page cho  short",
+        "source_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\02_JV_MANAGER\\child_agent_training\\launch_ops\\01_Tu_Duy_Vendor_San_Pham_So_WarriorPlus\\TUT_008 - Thiết kế phễu bán hàng và sales page cho__short.pdf",
+        "excerpt": "TUT/TRICK - Thiết kế phễu bán hàng và sales page cho sản phẩm số Tạo lúc 16/05/2026 10:35 · Kết quả phân tích AI cuối cùng Thiết kế phễu bán hàng và sales page cho sản phẩm số N..."
+      }
+    ]
+  },
+  "skill_tags": {
+    "ok": true,
+    "version": "1.11",
+    "agent": "AI Printables KDP Prompt Agent",
+    "tags": [
+      {
+        "tag": "#ai-printables-kdp-prompt",
+        "agent": "AI_Printables_KDP_Prompt_Agent",
+        "description": "Select AI Printables KDP Prompt Agent"
+      },
+      {
+        "tag": "#market-pattern",
+        "skill": "skills/01_market_pattern_ai_printables.md",
+        "description": "R?t pattern th? tr??ng AI Printables/KDP/PLR"
+      },
+      {
+        "tag": "#competitor-matrix",
+        "skill": "skills/02_competitor_matrix_ai_printables.md",
+        "description": "So s?nh vendor/s?n ph?m/ng?ch/price/sales/angle/deliverables"
+      },
+      {
+        "tag": "#offer-gap",
+        "skill": "skills/03_offer_gap_ai_printables.md",
+        "description": "T?m offer gap v? c?ch tr?nh prompt pack th?"
+      },
+      {
+        "tag": "#product-blueprint",
+        "skill": "skills/04_product_blueprint_ai_printables.md",
+        "description": "T?o blueprint s?n ph?m AI Printables/KDP/PLR"
+      },
+      {
+        "tag": "#deep-file-writer",
+        "skill": "skills/05_deep_file_writer_ai_printables.md",
+        "description": "T?o product assets th?t"
+      },
+      {
+        "tag": "#prompt-output-test",
+        "skill": "skills/06_prompt_output_test_ai_printables.md",
+        "description": "Test ch?t l??ng prompt output"
+      },
+      {
+        "tag": "#buyer-test",
+        "skill": "skills/07_buyer_test_ai_printables.md",
+        "description": "Test nh? buyer m?i mua"
+      },
+      {
+        "tag": "#ai-replace-risk",
+        "skill": "skills/08_ai_replace_risk_ai_printables.md",
+        "description": "Ch?m r?i ro ChatGPT c?ng l?m ???c"
+      },
+      {
+        "tag": "#refund-risk",
+        "skill": "skills/09_refund_risk_ai_printables.md",
+        "description": "Ch?m r?i ro refund"
+      },
+      {
+        "tag": "#license-check",
+        "skill": "skills/10_license_compliance_ai_printables.md",
+        "description": "Ki?m tra license/compliance"
+      },
+      {
+        "tag": "#sales-page",
+        "skill": "skills/11_sales_page_ai_printables.md",
+        "description": "Vi?t sales page"
+      },
+      {
+        "tag": "#warriorplus-listing",
+        "skill": "skills/12_warriorplus_listing_ai_printables.md",
+        "description": "T?o WarriorPlus listing"
+      },
+      {
+        "tag": "#jv-pack",
+        "skill": "skills/13_jv_pack_ai_printables.md",
+        "description": "T?o JV pack/affiliate swipes"
+      },
+      {
+        "tag": "#delivery-support",
+        "skill": "skills/14_delivery_support_ai_printables.md",
+        "description": "T?o delivery/support/onboarding"
+      },
+      {
+        "tag": "#export-zip",
+        "skill": "skills/15_export_zip_ai_printables.md",
+        "description": "??ng g?i ZIP v? manifest"
+      },
+      {
+        "tag": "#public-launch-audit",
+        "skill": "skills/16_public_launch_audit_ai_printables.md",
+        "description": "Audit public launch"
+      }
+    ]
+  },
+  "routes": []
+}

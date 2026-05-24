@@ -1,0 +1,3 @@
+Product angle: “Stop giving away generic PDFs. Build a practical printable lead magnet with a workflow, prompts, examples, and checks.” Short description: Printable Lead Magnet Sprint Kit helps creators and beginner vendors turn one idea into a structured printable freebie, bonus, or starter asset. Buyer-facing bullets: create checklist, worksheet, mini workbook, or tracker concepts; use tested prompt structures; follow a 7-step workflow; improve output with fix prompts; package with opt-in and CTA copy. Objection answer: “Can I just ask AI?” Yes, but this kit gives the sequence, examples, compliance checks, and packaging path that raw AI usually misses.
+
+---

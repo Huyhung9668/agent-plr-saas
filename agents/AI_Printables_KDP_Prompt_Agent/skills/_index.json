@@ -1,0 +1,424 @@
+{
+  "agent_name": "AI Printables KDP Prompt Agent",
+  "version": "v1.0",
+  "skill_folder": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\agents\\AI_Printables_KDP_Prompt_Agent\\skills",
+  "brain_folder": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\agents\\AI_Printables_KDP_Prompt_Agent\\brain",
+  "global_tags": [
+    "#ai-printables",
+    "#kdp",
+    "#plr",
+    "#warriorplus",
+    "#prompt-pack",
+    "#canva-printable",
+    "#coloring-book",
+    "#journal",
+    "#kids-worksheet",
+    "#etsy-printable",
+    "#market-pattern",
+    "#competitor-matrix",
+    "#offer-gap",
+    "#product-blueprint",
+    "#deep-file-writer",
+    "#prompt-output-test",
+    "#buyer-test",
+    "#ai-replace-risk",
+    "#refund-risk",
+    "#license-check",
+    "#sales-page",
+    "#warriorplus-listing",
+    "#jv-pack",
+    "#delivery-support",
+    "#export-zip",
+    "#public-launch-audit"
+  ],
+  "skills": [
+    {
+      "file": "01_market_pattern_ai_printables.md",
+      "name": "Market Pattern AI Printables",
+      "short_description": "Read compressed brain/source map to extract market patterns for AI Printables/KDP/PLR.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#market-pattern"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/MARKET_PATTERNS.md",
+        "brain/COMPETITOR_PATTERNS.md",
+        "brain/OFFER_ANGLES.md"
+      ]
+    },
+    {
+      "file": "02_competitor_matrix_ai_printables.md",
+      "name": "Competitor Matrix AI Printables",
+      "short_description": "Compare source products/vendors/niches/angles/deliverables and how to beat them.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#competitor-matrix"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/COMPETITOR_PATTERNS.md",
+        "brain/MARKET_PATTERNS.md"
+      ]
+    },
+    {
+      "file": "03_offer_gap_ai_printables.md",
+      "name": "Offer Gap AI Printables",
+      "short_description": "Find gaps that turn raw prompt packs into implementation kits.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#offer-gap"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/OFFER_ANGLES.md",
+        "brain/QUALITY_RULES.md"
+      ]
+    },
+    {
+      "file": "04_product_blueprint_ai_printables.md",
+      "name": "Product Blueprint AI Printables",
+      "short_description": "Create complete product blueprint, FE/bump/OTO, file tree, and quality targets.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#product-blueprint"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/PRODUCT_STRUCTURES.md",
+        "brain/MARKET_PATTERNS.md",
+        "brain/OFFER_ANGLES.md"
+      ]
+    },
+    {
+      "file": "05_deep_file_writer_ai_printables.md",
+      "name": "Deep File Writer AI Printables",
+      "short_description": "Write real product asset files, not descriptions.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#deep-file-writer"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/PRODUCT_STRUCTURES.md",
+        "brain/QUALITY_RULES.md",
+        "brain/PROMPT_LIBRARY_PATTERNS.md"
+      ]
+    },
+    {
+      "file": "06_prompt_output_test_ai_printables.md",
+      "name": "Prompt Output Test AI Printables",
+      "short_description": "Test whether prompts produce usable printable/KDP outputs.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#prompt-output-test"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/PROMPT_LIBRARY_PATTERNS.md",
+        "brain/QUALITY_RULES.md"
+      ]
+    },
+    {
+      "file": "07_buyer_test_ai_printables.md",
+      "name": "Buyer Test AI Printables",
+      "short_description": "Simulate buyer experience for a $17?$27 product pack.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#buyer-test"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/QUALITY_RULES.md",
+        "quality_gates/PRODUCT_QUALITY_GATE.md"
+      ]
+    },
+    {
+      "file": "08_ai_replace_risk_ai_printables.md",
+      "name": "AI Replace Risk AI Printables",
+      "short_description": "Audit whether buyer thinks ChatGPT can replace the product.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#ai-replace-risk"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/QUALITY_RULES.md",
+        "quality_gates/AI_REPLACE_RISK_GATE.md"
+      ]
+    },
+    {
+      "file": "09_refund_risk_ai_printables.md",
+      "name": "Refund Risk AI Printables",
+      "short_description": "Find refund reasons and fix plan.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#refund-risk"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/QUALITY_RULES.md",
+        "quality_gates/REFUND_RISK_GATE.md"
+      ]
+    },
+    {
+      "file": "10_license_compliance_ai_printables.md",
+      "name": "License Compliance AI Printables",
+      "short_description": "Check copyright, trademark, Canva, AI, PLR, KDP, Etsy, WarriorPlus claims.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#license-check"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/LICENSE_COMPLIANCE_RULES.md"
+      ]
+    },
+    {
+      "file": "11_sales_page_ai_printables.md",
+      "name": "Sales Page AI Printables",
+      "short_description": "Write compliant sales page for the product.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#sales-page"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/SALES_PATTERNS.md",
+        "brain/LICENSE_COMPLIANCE_RULES.md"
+      ]
+    },
+    {
+      "file": "12_warriorplus_listing_ai_printables.md",
+      "name": "WarriorPlus Listing AI Printables",
+      "short_description": "Create WarriorPlus listing fields and affiliate approval rules.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#warriorplus-listing"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/WARRIORPLUS_PATTERNS.md",
+        "brain/LICENSE_COMPLIANCE_RULES.md"
+      ]
+    },
+    {
+      "file": "13_jv_pack_ai_printables.md",
+      "name": "JV Pack AI Printables",
+      "short_description": "Create JV invite, affiliate swipes, social posts, promo rules.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#jv-pack"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/WARRIORPLUS_PATTERNS.md",
+        "brain/SALES_PATTERNS.md",
+        "brain/LICENSE_COMPLIANCE_RULES.md"
+      ]
+    },
+    {
+      "file": "14_delivery_support_ai_printables.md",
+      "name": "Delivery Support AI Printables",
+      "short_description": "Create delivery page, onboarding, support FAQ, refund policy.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#delivery-support"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/PRODUCT_STRUCTURES.md",
+        "brain/QUALITY_RULES.md"
+      ]
+    },
+    {
+      "file": "15_export_zip_ai_printables.md",
+      "name": "Export ZIP AI Printables",
+      "short_description": "Package real product files into ZIP with manifest and placeholder check.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#export-zip"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/PRODUCT_STRUCTURES.md",
+        "quality_gates/PUBLIC_LAUNCH_GATE.md"
+      ]
+    },
+    {
+      "file": "16_public_launch_audit_ai_printables.md",
+      "name": "Public Launch Audit AI Printables",
+      "short_description": "Audit whether product is ready for public launch.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#public-launch-audit"
+      ],
+      "brain_to_load": [
+        "brain/AI_PRINTABLES_KDP_BRAIN.json",
+        "brain/AI_PRINTABLES_KDP_BRAIN.md",
+        "brain/QUALITY_RULES.md",
+        "quality_gates/PUBLIC_LAUNCH_GATE.md",
+        "brain/LICENSE_COMPLIANCE_RULES.md"
+      ]
+    }
+  ]
+}

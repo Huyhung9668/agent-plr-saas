@@ -1,0 +1,3 @@
+Fix Prompt 1 — Too Generic: “Bản worksheet này quá chung. Hãy sửa cho buyer cụ thể: freelance designer mới có 1–3 case studies. Thêm câu hỏi thực tế, ví dụ đã điền và checklist cuối.” Fix Prompt 2 — Compliance: “Tìm claim rủi ro trong nội dung này. Thay income, ranking, health, legal hoặc guaranteed outcome claims bằng operational outcomes an toàn.” Fix Prompt 3 — Usability: “Người mới dùng file này có thể bị kẹt ở đâu? Thêm hướng dẫn, ví dụ, lựa chọn mẫu và CTA tiếp theo.” Fix Prompt 4 — Productization: “Biến worksheet này thành product pack gồm README, worksheet, example, opt-in copy, delivery email và support FAQ.” Fix Prompt 5 — Sales Angle: “Viết angle bán tập trung vào tiết kiệm thời gian, không hứa kết quả.”
+
+---

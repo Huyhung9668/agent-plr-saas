@@ -1,0 +1,145 @@
+{
+  "agent_name": "AI Printables KDP Prompt Agent",
+  "version": "v1.0",
+  "niche": [
+    "AI Printables",
+    "KDP",
+    "PLR",
+    "WarriorPlus",
+    "Prompt Pack",
+    "Canva Printable",
+    "Coloring Book",
+    "Journal",
+    "Kids Worksheet"
+  ],
+  "core_positioning": "Implementation-kit agent for AI printable/KDP/PLR product packs with WarriorPlus launch support, using compressed source evidence plus quality gates.",
+  "buyer_types": [
+    "Beginner digital product seller",
+    "KDP/POD/Etsy creator",
+    "PLR buyer/vendor",
+    "WarriorPlus vendor/affiliate",
+    "Canva/template creator",
+    "Coach needing lead magnets"
+  ],
+  "product_types": [
+    "AI Coloring Page Niche Pack Builder",
+    "AI Kids Worksheet Factory",
+    "AI Journal Interior System",
+    "AI Etsy Printable Bundle Builder",
+    "AI Canva Printable Product Kit",
+    "Coach Lead Magnet Printable Kit",
+    "KDP Puzzle Book Launch Kit",
+    "KDP Cover / Interior Prompt Pack",
+    "Seasonal Printable Launch Planner"
+  ],
+  "winning_patterns": [
+    "Package prompt/template assets into implementation kits, not raw prompt dumps.",
+    "Winning printable/KDP offers combine niche selection, prompt library, template guide, examples, quality checklist, fix prompts, listing/sales kit, and license clarity.",
+    "High-value angles found in filenames/ZIP metadata: coloring books, digital planners, Canva/PLR template bundles, Notion/Excel digital products, KDP/POD/Etsy creation tools, checklist vaults, hidden digital download ideas, seasonal planners.",
+    "ZIP evidence shows buyers receive mixed media training/tools/templates; product packs should reduce overwhelm with Start Here and workflow map."
+  ],
+  "common_deliverables": [
+    "00_Start_Here.md",
+    "01_Workflow_Map.md",
+    "02_Prompt_Library.md",
+    "03_Template_Guide.md",
+    "04_Example_Outputs.md",
+    "05_Quality_Checklist.md",
+    "06_Fix_Prompts.md",
+    "07_Listing_Sales_Kit.md",
+    "08_License_Compliance.md",
+    "README.md"
+  ],
+  "price_ranges": [
+    "SOURCE_UNKNOWN",
+    "Inference: FE $17-$27",
+    "Inference: bump $7-$17",
+    "Inference: OTO $37-$97"
+  ],
+  "funnel_patterns": [
+    "FE implementation kit",
+    "Order bump templates/examples",
+    "OTO niche vault/DFY assets",
+    "Delivery/support/license stack"
+  ],
+  "ai_replace_risk_rules": [
+    "Only prompts/templates => HIGH",
+    "Add workflow/examples/checklist/fix prompts/sales kit/license clarity"
+  ],
+  "refund_risk_rules": [
+    "Missing Start Here => FAIL",
+    "Missing examples/checklist/license/support prevents LOW",
+    "Overclaims increase risk"
+  ],
+  "license_rules": [
+    "Check copyright",
+    "Check trademark",
+    "Check AI image rights",
+    "Check Canva/font rights",
+    "Check PLR/MRR rights",
+    "No income guarantee",
+    "No fake scarcity",
+    "No therapy/cure/kids outcome guarantees"
+  ],
+  "quality_gates": [
+    "PRODUCT_QUALITY_GATE",
+    "AI_REPLACE_RISK_GATE",
+    "REFUND_RISK_GATE",
+    "PUBLIC_LAUNCH_GATE"
+  ],
+  "skill_tags": [
+    "#ai-printables",
+    "#kdp",
+    "#plr",
+    "#warriorplus",
+    "#prompt-pack",
+    "#canva-printable",
+    "#coloring-book",
+    "#journal",
+    "#kids-worksheet",
+    "#etsy-printable",
+    "#market-pattern",
+    "#competitor-matrix",
+    "#offer-gap",
+    "#product-blueprint",
+    "#deep-file-writer",
+    "#prompt-output-test",
+    "#buyer-test",
+    "#ai-replace-risk",
+    "#refund-risk",
+    "#license-check",
+    "#sales-page",
+    "#warriorplus-listing",
+    "#jv-pack",
+    "#delivery-support",
+    "#export-zip",
+    "#public-launch-audit"
+  ],
+  "default_workflow": [
+    "Load brain",
+    "Route by tag/intent",
+    "Load matching skill",
+    "Use DATA USED",
+    "Create/test/audit real assets",
+    "Return Next Action"
+  ],
+  "do_not_do": [
+    "Do not delete source files before backup/test",
+    "Do not b?a unsupported metrics",
+    "Do not mark ideas as created files",
+    "Do not pass launch without ZIP/tests/compliance"
+  ],
+  "launch_readiness_rules": [
+    "Product assets created",
+    "Sales page created",
+    "WarriorPlus listing created",
+    "JV pack created",
+    "Delivery/support/license created",
+    "ZIP exported/tested",
+    "No important placeholders",
+    "Buyer test >=8",
+    "Prompt test passed",
+    "Refund and AI replace not HIGH",
+    "Compliance passed"
+  ]
+}

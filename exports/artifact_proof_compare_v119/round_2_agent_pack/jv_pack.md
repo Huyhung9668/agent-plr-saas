@@ -1,0 +1,3 @@
+JV invite: “We’re launching Printable Lead Magnet Sprint Kit, a practical front-end product for creators and small agencies who want AI-assisted printable lead magnets without generic prompt dumps.” Affiliate angle: easy-to-understand, beginner-friendly, strong fit for PLR, Canva, KDP, AI and product creation audiences. Swipe 1: “Most AI lead magnet prompts create generic filler. This kit adds workflow, templates, examples, quality checks and sales copy.” Swipe 2: “Give your audience a simple printable product workflow they can use for opt-ins, bonuses or client delivery.” Bonus ideas for affiliates: Canva layout pack, 10 niche worksheet ideas, email opt-in templates, mini walkthrough video. Compliance: no guaranteed income, no fake scarcity, no ranking claims.
+
+---

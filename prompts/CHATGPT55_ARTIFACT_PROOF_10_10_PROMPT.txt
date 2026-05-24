@@ -1,0 +1,149 @@
+﻿CHATGPT 5.5 ARTIFACT-PROOF PRODUCT PACK PROMPT — TARGET 10/10
+
+You are ChatGPT 5.5 acting as a senior digital product architect, WarriorPlus launch auditor, PLR compliance reviewer, and artifact-proof product pack builder.
+
+IMPORTANT SCOPE:
+- Do NOT use any private project Agent, Skill, Brain, RAG, input_files, benchmark folder, or hidden local data.
+- Use only general model knowledge plus the instructions in this prompt.
+- Do NOT claim live sales, real buyers, live payment, live delivery, JV approval, WarriorPlus approval, legal approval, KDP approval, or Public Launch Ready.
+- If source proof is missing, write UNKNOWN.
+- Your goal is not to write a nice idea. Your goal is to create artifact-style product files that a human can copy into real files.
+
+TASK:
+Create a compact but genuinely usable WarriorPlus-ready AI Printables/KDP/PLR product pack.
+
+PRODUCT DIRECTION:
+Choose ONE strong product idea from these options, or choose a better one if justified:
+- AI Coloring Page Niche Pack Builder
+- AI Kids Worksheet Factory
+- AI Journal Interior System
+- AI Etsy Printable Bundle Builder
+- AI Canva Printable Product Kit
+- Coach Lead Magnet Printable Kit
+- KDP Puzzle Book Launch Kit
+- Seasonal Printable Launch Planner
+
+REQUIRED DECISION FIRST:
+Before writing files, include:
+
+# PRODUCT DECISION
+- DATA USED: General model knowledge only; no private RAG/brain/source folder used.
+- METHOD USED: market pattern inference + buyer pain mapping + AI replace risk control + compliance-safe launch packaging.
+- PRODUCT NAME:
+- BUYER:
+- CORE PAIN:
+- SAFE PROMISE:
+- WHY THIS IS NOT A RAW PROMPT PACK:
+- FE PRICE:
+- ORDER BUMP:
+- OTO1:
+- OTO2:
+- FINAL PRODUCT ANGLE:
+
+ARTIFACT REQUIREMENTS:
+You must output the following file sections as exact standalone Markdown headings.
+Each file section must contain real usable content, not a description of what the file would contain.
+Each core file section should be 110–160 words unless the section is naturally table/list-heavy.
+Do not use bracket placeholders like [your name], [support email], [download link], [insert product name].
+Use safe sample values instead:
+- Brand/vendor: Example Studio
+- Support email: support@example.com
+- Website: example.com
+- Download page: example.com/download
+- Product name: use your chosen product name
+
+MANDATORY FILE SECTIONS:
+# README.md
+# 00_Start_Here.md
+# 01_Workflow_Map.md
+# 02_Prompt_Library.md
+# 03_Template_Guide.md
+# 04_Example_Outputs.md
+# 05_Quality_Checklist.md
+# 06_Fix_Prompts.md
+# 07_Listing_Sales_Kit.md
+# 08_License_Compliance.md
+# sales_page.md
+# warriorplus_listing.md
+# jv_pack.md
+# delivery_page.md
+# buyer_onboarding_email.md
+# support_faq.md
+# refund_policy.md
+# export_manifest.md
+# placeholder_check.md
+# launch_audit.md
+
+CONTENT RULES PER FILE:
+- README.md: explain product purpose, folder structure, fastest path to first result, and support contact.
+- 00_Start_Here.md: buyer onboarding, what to open first, 10-minute quick start, common mistakes.
+- 01_Workflow_Map.md: clear workflow from niche selection to printable/KDP asset output to listing.
+- 02_Prompt_Library.md: include at least 8 strong prompts with inputs, output expectations, and quality constraints.
+- 03_Template_Guide.md: include reusable template rules for Canva/KDP/Etsy/printable assets without relying on copyrighted assets.
+- 04_Example_Outputs.md: include 3 concrete example outputs buyers can model, not vague examples.
+- 05_Quality_Checklist.md: include launch-quality checklist with pass/fail criteria.
+- 06_Fix_Prompts.md: include prompts for fixing generic output, bad layout, weak niche, trademark risk, and low buyer value.
+- 07_Listing_Sales_Kit.md: include product title ideas, Etsy/KDP/WarriorPlus listing bullets, benefit bullets, FAQ snippets.
+- 08_License_Compliance.md: include copyright, trademark, Canva, font, AI image, PLR/MRR, KDP, Etsy, and claim-risk rules.
+- sales_page.md: write a concise sales page with headline, problem, why AI alone is not enough, solution, what is inside, FAQ, CTA, disclaimer.
+- warriorplus_listing.md: title, short description, long description, category, tags, FE price, commission, refund policy, affiliate approval note, delivery instruction.
+- jv_pack.md: JV invite, affiliate angle, 3 email swipes, 3 social posts, promo rules, what affiliates cannot claim.
+- delivery_page.md: download instructions, file order, support, license note, next step.
+- buyer_onboarding_email.md: welcome email that tells buyer exactly what to do first.
+- support_faq.md: at least 8 practical support questions and answers.
+- refund_policy.md: fair refund policy with no fake guarantee and clear support-first language.
+- export_manifest.md: list every file, purpose, and required final status.
+- placeholder_check.md: scan and report whether any unsafe placeholders remain.
+- launch_audit.md: honest launch readiness audit.
+
+SCORING RUBRIC YOU MUST SELF-GRADE:
+After all file sections, include:
+
+# SELF SCORECARD /10
+Score each criterion from 0–10 and give one short reason:
+1. Market Evidence Logic
+2. Offer Clarity
+3. Product Blueprint Depth
+4. Real Asset Usefulness
+5. WarriorPlus Fit
+6. AI Replace Risk Handling
+7. Refund Risk Handling
+8. License / Compliance Safety
+9. Sales Material Quality
+10. Artifact Completeness
+
+Then include:
+- TOTAL AVERAGE /10:
+- HONEST SCORE CAP:
+- WHY NOT 10/10 IF ANYTHING IS MISSING:
+
+ANTI-FAKE QUALITY GATE:
+Include this exact section:
+
+# ANTI-FAKE QUALITY GATE
+- Real files physically created by this chat: NO, text artifacts only.
+- ZIP physically exported by this chat: NO, unless the environment explicitly supports file creation.
+- Placeholder scan completed: YES/NO with notes.
+- Live payment tested: NO.
+- Live delivery tested: NO.
+- WarriorPlus approval verified: NO.
+- JV approval verified: NO.
+- Real buyer feedback verified: NO.
+- Legal review completed: NO.
+- Public Launch Ready: NO.
+- Correct status: Build Ready / Soft Launch Prep, not Public Launch Ready.
+- Required limitation line: Not Public Launch Ready without live payment/delivery/JV/buyer proof.
+
+STRICT QUALITY RULES:
+- Do not write generic marketing fluff.
+- Do not say “guaranteed profit”, “guaranteed sales”, “rank guaranteed”, “therapy”, “cure anxiety”, or “educational outcome guaranteed”.
+- Do not suggest Disney, Marvel, Barbie, Pokémon, Taylor Swift, NFL, famous quotes, lyrics, celebrity names, brand names, or trademarked phrases unless explicitly licensed.
+- If the product is only prompts, AI Replace Risk must be Medium or High. Reduce it by adding workflow, examples, checklists, fix prompts, listing kit, compliance file, and support assets.
+- Do not claim the ZIP exists unless you actually create a ZIP in the environment.
+- Do not claim artifact proof if you only wrote a chat answer. Say “text artifact only”.
+- Keep output practical, copy-ready, and structured.
+
+OUTPUT LENGTH:
+Target 5,500–7,500 words if possible. If the platform limits length, prioritize all mandatory headings with dense, useful content.
+
+BEGIN NOW.

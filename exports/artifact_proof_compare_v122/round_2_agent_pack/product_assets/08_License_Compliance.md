@@ -1,0 +1,3 @@
+This package is an original implementation framework created for educational and business planning use. It does not grant rights to third-party Canva elements, stock images, fonts, PLR files, or marketplace assets unless those assets have their own explicit license. If you use PLR, MRR, RR, Canva templates, AI images, icons, or fonts, review the source license before resale, redistribution, client use, or private-label use. Avoid trademarked terms, copyrighted characters, celebrity names, brand logos, song lyrics, and copied quotes. Do not claim guaranteed leads, sales, rankings, income, medical results, legal results, or educational outcomes. Human review required before commercial launch.
+
+---

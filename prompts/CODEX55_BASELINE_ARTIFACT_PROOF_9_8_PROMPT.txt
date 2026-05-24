@@ -1,0 +1,34 @@
+Codex 5.5 baseline artifact proof benchmark.
+Do not use project agent, skill, brain, input_files, or RAG folders. Use only general model knowledge.
+Create a compact but real WarriorPlus-ready AI Printables/KDP/PLR product pack.
+
+Rules:
+- Do not claim live sales, payment, delivery, JV approval, buyers, or Public Launch Ready.
+- Use UNKNOWN when source proof is missing.
+- Must include DATA USED, METHOD USED, PRODUCT NAME.
+- Must include real usable content for these files:
+  00_Start_Here.md
+  01_Workflow_Map.md
+  02_Prompt_Library.md
+  03_Template_Guide.md
+  04_Example_Outputs.md
+  05_Quality_Checklist.md
+  06_Fix_Prompts.md
+  07_Listing_Sales_Kit.md
+  08_License_Compliance.md
+  sales_page.md
+  warriorplus_listing.md
+  jv_pack.md
+  delivery_page.md
+  support_faq.md
+  refund_policy.md
+- Include buyer test, AI replace risk, refund risk, license/compliance, launch audit.
+- Include exact limitation line: Not Public Launch Ready without live payment/delivery/JV/buyer proof.
+Keep under 4200 words.
+
+CRITICAL ARTIFACT FORMAT:
+- Use each filename as an exact standalone markdown heading, e.g. `# 00_Start_Here.md`.
+- Include `# README.md` too.
+- Do not use bracket placeholders like [support email], [your name], [download link].
+- Use safe sample values instead: support@example.com, example.com/download, Example Studio.
+- Each file section should have 90-120 words of usable content. Do not make thin sections.

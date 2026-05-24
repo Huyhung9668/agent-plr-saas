@@ -1,0 +1,139 @@
+{
+  "agent": "AI Printables KDP Prompt Agent",
+  "version": "v1.0",
+  "rules": [
+    {
+      "if_user_asks": [
+        "ng?ch n?y ngon kh?ng",
+        "5 ? t??ng ng?ch",
+        "ng?ch n?o b?n t?t",
+        "ph?n t?ch th? tr??ng"
+      ],
+      "call": [
+        "market_pattern",
+        "competitor_matrix",
+        "offer_gap"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "t?o s?n ph?m",
+        "t?o pack",
+        "l?n c?u tr?c",
+        "blueprint"
+      ],
+      "call": [
+        "product_blueprint"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "vi?t file th?t",
+        "t?o product assets",
+        "t?o prompt pack",
+        "t?o checklist"
+      ],
+      "call": [
+        "deep_file_writer"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "test nh? buyer",
+        "ng??i mua c? hi?u kh?ng",
+        "??ng ti?n kh?ng"
+      ],
+      "call": [
+        "buyer_test"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "ChatGPT c?ng l?m ???c kh?ng",
+        "AI replace risk"
+      ],
+      "call": [
+        "ai_replace_risk"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "refund",
+        "ho?n ti?n",
+        "buyer th?t v?ng"
+      ],
+      "call": [
+        "refund_risk"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "license",
+        "commercial use",
+        "copyright",
+        "trademark"
+      ],
+      "call": [
+        "license_check"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "sales page",
+        "copy b?n h?ng"
+      ],
+      "call": [
+        "sales_page"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "WarriorPlus listing",
+        "FE price",
+        "commission"
+      ],
+      "call": [
+        "warriorplus_listing"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "JV",
+        "affiliate"
+      ],
+      "call": [
+        "jv_pack"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "delivery",
+        "support",
+        "onboarding"
+      ],
+      "call": [
+        "delivery_support"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "export",
+        "zip",
+        "??ng g?i"
+      ],
+      "call": [
+        "export_zip"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "launch ???c ch?a",
+        "audit",
+        "quality gate"
+      ],
+      "call": [
+        "public_launch_audit"
+      ]
+    }
+  ]
+}

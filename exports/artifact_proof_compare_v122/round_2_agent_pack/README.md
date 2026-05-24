@@ -1,0 +1,3 @@
+Printable Lead Magnet Sprint Kit is a compact implementation system for creating simple printable lead magnets such as checklists, worksheets, planners, and mini workbooks. It is designed for coaches, creators, PLR sellers, and beginner digital product vendors who need a usable asset structure instead of a pile of random prompts. Start with `00_Start_Here.md`, then follow the workflow map before using the prompt library. Use the examples as structure models, not copied claims. This package includes sales/listing support, quality checks, license/compliance notes, delivery copy, support FAQ, and refund policy language. Support contact sample: support@example.com. Demo delivery URL: example.com/download.
+
+---

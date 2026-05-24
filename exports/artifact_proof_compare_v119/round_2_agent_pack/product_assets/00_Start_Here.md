@@ -1,0 +1,3 @@
+Chào mừng bạn đến với Printable Lead Magnet Sprint Kit. Mục tiêu của kit này là giúp bạn tạo một lead magnet printable đơn giản nhưng có giá trị: ví dụ “Client Content Planner”, “Fitness Habit Tracker”, “Email Promo Checklist” hoặc “Local Business Audit Sheet”. Hãy chọn một nhóm người mua cụ thể trước khi viết prompt. Đừng tạo tài liệu cho “mọi người”. Công thức an toàn: giúp một nhóm cụ thể hoàn thành một việc nhỏ, rõ ràng, không hứa kết quả tài chính hay chuyên môn. Quy trình khuyến nghị: chọn niche, viết promise, tạo worksheet, kiểm tra, xuất PDF, viết opt-in copy, giao file. Dùng AI để tạo bản nháp, nhưng luôn biên tập lại theo giọng thương hiệu của bạn.
+
+---

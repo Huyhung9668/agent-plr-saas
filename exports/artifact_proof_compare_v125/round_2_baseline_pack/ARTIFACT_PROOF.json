@@ -1,0 +1,104 @@
+{
+  "label": "baseline",
+  "created_at": "2026-05-24 11:58:04",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 696,
+      "words": 100,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 612,
+      "words": 98,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 664,
+      "words": 105,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 626,
+      "words": 102,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 754,
+      "words": 98,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 635,
+      "words": 99,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 672,
+      "words": 105,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 708,
+      "words": 98,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 687,
+      "words": 102,
+      "extracted": true
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 725,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 714,
+      "words": 100,
+      "extracted": true
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 701,
+      "words": 104,
+      "extracted": true
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 677,
+      "words": 91,
+      "extracted": true
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 565,
+      "words": 103,
+      "extracted": true
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 1985,
+      "words": 302,
+      "extracted": true
+    },
+    {
+      "file": "README.md",
+      "chars": 771,
+      "words": 117,
+      "extracted": true
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 1828
+}

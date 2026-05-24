@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "answer": "## DATA USED\n\n| Loại dữ liệu | Nguồn dùng | Ghi chú |\n|---|---|---|\n| Brain chính | `brain/AI_PRINTABLES_KDP_BRAIN.json` | Dùng để xác định niche, buyer types, product types, quality gates |\n| Brain mô tả | `brain/AI_PRINTABLES_KDP_BRAIN.md` | Dùng cho workflow, launch readiness, compliance rules |\n| Market pattern | `brain/MARKET_PATTERNS.md` | Dùng cho top niches, naming patterns, buyer pains, weaknesses, opportunity gaps |\n| Competitor pattern | `brain/COMPETITOR_PATTERNS.md` | Dùng cho pattern matrix: coloring, Canva PLR, KDP/POD/Etsy tools, checklist vault |\n| Offer angle | `brain/OFFER_ANGLES.md` | Dùng cho góc bán: từ prompt pack thành implementation kit |\n| Local retrieved chunks | 6 chunks từ AI Printables Agent | Chủ yếu hỗ trợ hướng: AI output chỉ là bản nháp, cần workflow/checklist/business filtering |\n| Exact pricing evidence | UNKNOWN | Source không có giá FE/bump/OTO đáng tin cậy; giá chỉ là inference |\n| Exact competitor sales/result | UNKNOWN | Không có bằng chứng doanh số, ranking, conversion |\n\n## SKILLS USED\n\n| Skill | Mục đích dùng |\n|---|---|\n| `skills/01_market_pattern_ai_printables.md` | Skill chính cho market pattern AI Printables/KDP/PLR |\n| Market Pattern Extract | Rút pattern niche, deliverables, buyer pains, weakness, gap |\n| Competitor Pattern Scan | So sánh tín hiệu từ ZIP/PDF: bundle lớn, tool pack, Canva PLR, coloring book, checklist vault |\n| Offer Gap Thinking | Tìm khoảng trống: biến bundle/prompt rời rạc thành implementation kit |\n| License/Risk Awareness | Đánh dấu UNKNOWN khi chưa có license/pricing/results rõ ràng |\n| Anti-AI-Thô Filter | Không xem prompt pack là đủ; cần workflow, examples, checklist, fix prompts, listing kit |\n\n## NEXT ACTION\n\nChạy tiếp **Market Pattern Report ngắn cho “AI Journal Interior System”** theo format: top niches, buyer pains, offer gap, product recommendation, FE/bump/OTO inference, và next build package.\n\n**Tu kiem chat luong**\n- Loi hua ro rang, thuc te, khong cam ket thu nhap.\n- Doi tuong mua va van de dau duoc neu cu the.\n- Offer co deliverables, bonus, FAQ, CTA va ngon ngu hoan tien/an toan.\n- Sales page co hook, pain, mechanism, offer stack, objections, FAQ va CTA.\n- Funnel/JV co FE, OTO/bump, goc affiliate va tai san launch can giao.\n- Neu co PLR/license: khong tu gan quyen, luon yeu cau kiem tra license.\n- Noi dung co the dung ngay, chi can thay ten san pham, gia va link mua.",
+  "sources": [
+    {
+      "brain": "AI Printables Agent",
+      "title": "226   Digital Transformation   Product   Chuyển đổi số   Vận hành sản phẩm   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\226 - Digital Transformation - Product - Chuyển đổi số - Vận hành sản phẩm - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": "\"Go to Market - Đi chợ\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: go to market - đi chợ; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Đầu ra: Một bản nháp có thể dùng được: trang, prompt, che..."
+    },
+    {
+      "brain": "AI Printables Agent",
+      "title": "093   Master Generative AI & Generative   Làm chủ các công cụ AI sáng tạo và   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\093 - Master Generative AI & Generative - Làm chủ các công cụ AI sáng tạo và - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": ": 1. Mục tiêu: Xác định bài \"Lighting, artists, camera angle and camera types - Ánh sáng, nghệ sĩ, góc máy và loại máy ảnh\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: lighting, artists, camera angle and cam..."
+    },
+    {
+      "brain": "AI Printables Agent",
+      "title": "093   Master Generative AI & Generative   Làm chủ các công cụ AI sáng tạo và   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\093 - Master Generative AI & Generative - Làm chủ các công cụ AI sáng tạo và - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": ": 1. Mục tiêu: Xác định bài \"Lighting, artists, camera angle and camera types - Ánh sáng, nghệ sĩ, góc máy và loại máy ảnh\" cần tạo đầu ra gì sau khi học. 2. Thao tác chính: Ưu tiên xử lý các phần: lighting, artists, camera angle and cam..."
+    },
+    {
+      "brain": "AI Printables Agent",
+      "title": "180   200 Days of GenAI Mastery  Elevate   200 ngày làm chủ GenAI  Nâng cao   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\180 - 200 Days of GenAI Mastery- Elevate - 200 ngày làm chủ GenAI- Nâng cao - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": "ng ChatGPT tìm từ khóa và ý tưởng nội dung: Có hướng dùng ChatGPT để tạo danh sách từ khóa, ý tưởng hoặc nội dung ban đầu. Kết quả AI chỉ là bản nháp, cần lọc lại theo mục tiêu kinh doanh. 2. Bài \"ChatGPT for Brand Revitalization Campaig..."
+    },
+    {
+      "brain": "AI Printables Agent",
+      "title": "180   200 Days of GenAI Mastery  Elevate   200 ngày làm chủ GenAI  Nâng cao   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\180 - 200 Days of GenAI Mastery- Elevate - 200 ngày làm chủ GenAI- Nâng cao - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": "y mô hoạt động kinh doanh với quy trình làm việc dựa trên ai; định giá, doanh thu và ưu đãi; ý triển khai quan trọng. 3. Viết lại mỗi phần thành checklist thao tác, không giữ câu văn nói. 4. Tạo một bản nháp thật trong dự án hiện tại. 5...."
+    },
+    {
+      "brain": "AI Printables Agent",
+      "title": "254   Mega Digital Marketing Course A Z   Khóa học tiếp thị kỹ thuật số Mega   VI   CHON LOC TUT TRICK",
+      "source_path": "G:\\Documents\\udemy-transcript-downloader\\output\\TUT TRICK\\254 - Mega Digital Marketing Course A-Z - Khóa học tiếp thị kỹ thuật số Mega - VI - CHON-LOC-TUT-TRICK.pdf",
+      "excerpt": "ân khúc thị trường: Phân khúc thị trường phức tạp hơn một chút so với phần trước. Đó là lý do tại sao tôi chia nó thành hai phần. 2. Bài \"Market Segmentation Beginner - Người mới bắt đầu phân khúc thị trường\" được chuyển thành 8 phần nội..."
+    }
+  ],
+  "mode": "fast"
+}

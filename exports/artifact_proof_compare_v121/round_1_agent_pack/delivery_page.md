@@ -1,0 +1,3 @@
+Welcome to Printable Niche Sprint Kit by Example Studio. Access your files at example.com/download. Recommended order: open README, read 00_Start_Here, follow 01_Workflow_Map, then use 02_Prompt_Library and 03_Template_Guide. After creating your draft, compare it with 04_Example_Outputs, run 05_Quality_Checklist, repair issues with 06_Fix_Prompts, and write your listing using 07_Listing_Sales_Kit. Read 08_License_Compliance before selling or redistributing anything. Support: support@example.com. Please include your order email, product name, and a short description of the issue. This product does not include live coaching, payment setup, or marketplace approval.
+
+---

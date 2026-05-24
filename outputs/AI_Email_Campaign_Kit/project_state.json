@@ -1,0 +1,36 @@
+{
+  "project_slug": "AI_Email_Campaign_Kit",
+  "project_name": "AI Email Campaign Kit",
+  "completed": {
+    "offer_analysis": true,
+    "product_assets": true,
+    "sales_page": true,
+    "funnel": true,
+    "jv_pack": true,
+    "warriorplus_listing": true,
+    "delivery_page": true,
+    "email_funnel": true,
+    "saas_plan": true,
+    "support": true,
+    "license": true,
+    "export_zip": true
+  },
+  "offer_analysis": "DONE",
+  "product_assets": "DONE",
+  "sales_page": "DONE",
+  "funnel": "DONE",
+  "jv_pack": "DONE",
+  "warriorplus_listing": "DONE",
+  "delivery_page": "DONE",
+  "email_funnel": "DONE",
+  "saas_plan": "DONE",
+  "support": "DONE",
+  "license": "DONE",
+  "export_zip": "DONE",
+  "launch_readiness": 100,
+  "next_actions": [
+    "launch_readiness_review",
+    "soft_launch_plan",
+    "jv_outreach"
+  ]
+}

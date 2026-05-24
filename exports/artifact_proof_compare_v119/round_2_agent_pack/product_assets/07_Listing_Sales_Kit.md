@@ -1,0 +1,3 @@
+Short listing copy: “Create simple, useful printable lead magnets without starting from a blank page.” Long description: Printable Lead Magnet Sprint Kit gives creators, coaches and small agencies a guided workflow for turning one buyer problem into a usable worksheet, checklist or mini planner. You get prompts, workflow, examples, quality checks, fix prompts, opt-in copy and compliance notes. This is not a magic income system and not a dump of random AI prompts. It is a practical implementation kit for creating lead magnets, bonuses or client resources faster. Best for people who already have a niche or service and need a simple asset to grow an email list or improve delivery.
+
+---

@@ -1,0 +1,3 @@
+Short listing: Printable Prompt Profit Kit giúp beginner biến ý tưởng AI printable thành mini product pack có workflow, prompts, checklist, examples và launch copy cơ bản. Long listing: Đây không phải là prompt dump. Bạn nhận một quy trình 7 ngày để chọn niche, tạo page ideas, kiểm chất lượng, viết listing và đóng gói delivery ZIP. Dùng cho Etsy/KDP/WarriorPlus concept testing, với compliance note để tránh claim quá đà. CTA mẫu: “Download the kit, follow Day 1–Day 7, and build one compact printable product draft.” Tags: AI printables, KDP prompts, PLR kit, Canva printables, digital product workflow.
+
+---

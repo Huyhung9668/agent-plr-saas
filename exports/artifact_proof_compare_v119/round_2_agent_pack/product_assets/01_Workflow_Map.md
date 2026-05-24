@@ -1,0 +1,3 @@
+Workflow 7 bước: 1) Chọn buyer: coach, freelancer, agency, creator hoặc PLR reseller. 2) Chọn vấn đề nhỏ: thiếu ý tưởng nội dung, không có checklist onboarding, chưa có lead magnet. 3) Chọn format: checklist 1 trang, worksheet 3 trang, planner 5 trang hoặc audit sheet. 4) Dùng prompt niche research để tạo outline. 5) Dùng prompt worksheet để tạo nội dung có ô điền, câu hỏi và hướng dẫn. 6) Kiểm tra bằng checklist: rõ mục tiêu, không claim quá mức, có ví dụ, dễ dùng trong 10–20 phút. 7) Đóng gói: PDF, Canva guide, opt-in copy, email delivery và license note. Không nhảy ngay sang sales page trước khi có ví dụ hoàn chỉnh.
+
+---

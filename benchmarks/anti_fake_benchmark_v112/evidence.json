@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-05-24T08:21:20.197687",
+  "server": "http://127.0.0.1:18088",
+  "status_ok": true,
+  "appVersion": "1.12-benchmark",
+  "status_error": null,
+  "skill_tags_ok": true,
+  "skill_tag_count": 17,
+  "skill_tags_error": null,
+  "route_ok": true,
+  "route": {
+    "ok": true,
+    "agent": "AI Printables KDP Prompt Agent",
+    "agentKey": "ai_printables_kdp_prompt",
+    "matchedTags": [
+      "#ai-printables-kdp-prompt",
+      "#public-launch-audit"
+    ],
+    "skillRoute": "#public-launch-audit",
+    "skillFile": "skills/16_public_launch_audit_ai_printables.md",
+    "brainFiles": [
+      "brain/AI_PRINTABLES_KDP_BRAIN.json",
+      "brain/AI_PRINTABLES_KDP_BRAIN.md",
+      "brain/QUALITY_RULES.md",
+      "quality_gates/PUBLIC_LAUNCH_GATE.md",
+      "brain/LICENSE_COMPLIANCE_RULES.md"
+    ],
+    "routeReason": "public-launch-audit tag matched"
+  },
+  "route_error": null,
+  "chat_ok": true,
+  "chat_error": null,
+  "chat_answer_chars": 2393,
+  "ui_static_ok": true,
+  "zip_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\benchmarks\\ai_printables_kdp_prompt_v111\\round_6\\artifacts\\ai_canva_printable_product_kit\\export\\product_pack.zip",
+  "zip_exists": true,
+  "zip_bytes": 10963,
+  "zip_errors": [],
+  "zip_entry_count": 18,
+  "missing_required_files": [],
+  "placeholder_hits": [],
+  "generic_hits": [
+    "paste_output"
+  ],
+  "total_words": 2055,
+  "specific_marker_count": 21,
+  "thin_files": {
+    "delivery_page.md": 78,
+    "export/FILE_MANIFEST.md": 75,
+    "export/PLACEHOLDER_CHECK.md": 6,
+    "README.md": 75,
+    "refund_policy.md": 69
+  },
+  "per_file_words": {
+    "delivery_page.md": 78,
+    "export/FILE_MANIFEST.md": 75,
+    "export/PLACEHOLDER_CHECK.md": 6,
+    "jv_pack.md": 108,
+    "product_assets/00_Start_Here.md": 167,
+    "product_assets/01_Workflow_Map.md": 159,
+    "product_assets/02_Prompt_Library.md": 190,
+    "product_assets/03_Template_Guide.md": 127,
+    "product_assets/04_Example_Outputs.md": 134,
+    "product_assets/05_Quality_Checklist.md": 128,
+    "product_assets/06_Fix_Prompts.md": 117,
+    "product_assets/07_Listing_Sales_Kit.md": 143,
+    "product_assets/08_License_Compliance.md": 137,
+    "README.md": 75,
+    "refund_policy.md": 69,
+    "sales_page.md": 126,
+    "support_faq.md": 100,
+    "warriorplus_listing.md": 116
+  }
+}

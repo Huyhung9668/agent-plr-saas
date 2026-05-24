@@ -1,0 +1,3 @@
+Sample printable concept: “Client Onboarding Checklist for Freelance Designers.” Buyer: beginner freelance designer. Pain: client projects feel messy after payment. Printable type: checklist plus worksheet. Cover promise: “Map your first client onboarding process in 20 minutes.” Checklist items: confirm payment, collect brand assets, define deadline, request examples, send project timeline, schedule review point, confirm revision rules. Worksheet fields: client name, project goal, required files, deadline, communication channel, next action. CTA: “Need the full client workflow pack? Go to example.com/download.” This example shows specificity, task completion, and a safe operational promise without income guarantees.
+
+---

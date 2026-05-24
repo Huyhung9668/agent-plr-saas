@@ -1,0 +1,3 @@
+Product title: Printable Niche Launch Kit AI. Short description: “A compact AI-assisted workflow for creating your first small printable/KDP niche pack with prompts, checklist, examples, listing copy, and compliance notes.” Core promise: giúp beginner tạo một printable sample pack có cấu trúc mà không bắt đầu từ trang trắng. Bullet points: includes niche filter, 5-page pack structure, prompt library, fix prompts, quality checklist, sample listing, license/compliance guide. CTA: “Download the kit, follow the 7-step workflow, and create your first sample printable pack.” Avoid: income claims, “instant approval”, “guaranteed Etsy/KDP sales”, fake scarcity, copied PLR.
+
+---

@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-05-16T19:27:46",
+  "apply": true,
+  "include_legacy_db": true,
+  "candidates": [],
+  "archived": [],
+  "removed": [],
+  "skipped": [],
+  "before_bytes": 0,
+  "reclaimed_bytes": 0
+}

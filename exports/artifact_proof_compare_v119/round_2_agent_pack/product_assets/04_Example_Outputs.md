@@ -1,0 +1,3 @@
+Ví dụ sản phẩm: “Client Content Planner for Freelance Designers”. Buyer: freelancer thiết kế cần lên nội dung LinkedIn để giới thiệu dịch vụ. Promise: giúp họ biến 1 case study thành 5 ý tưởng bài viết mà không phải viết từ đầu. Trang 1: chọn mục tiêu nội dung: educate, proof, story, offer, FAQ. Trang 2: nhập project gần đây, vấn đề của client, giải pháp, kết quả quan sát được, bài học. Trang 3: tạo 5 post angles: before/after, lesson, checklist, mistake, soft offer. CTA mẫu: “Muốn tôi giúp bạn biến case study thành content plan? Reply CONTENT.” Lưu ý: không hứa có khách hàng mới; chỉ hứa có kế hoạch nội dung rõ hơn.
+
+---

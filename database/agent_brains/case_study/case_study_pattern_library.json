@@ -1,0 +1,351 @@
+{
+  "query": "Tool mode: Auto. Tự dùng brain, project memory và file đính kèm khi hữu ích.\n\n/case_study_patterns AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe",
+  "summary": {
+    "db_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\case_study\\case_study_brain.sqlite",
+    "db_size_mb": 5.42,
+    "documents": 115,
+    "chunks": 598,
+    "text_chars": 1714802,
+    "text_mb": 1.64,
+    "errors": 361,
+    "by_extension": [
+      {
+        "extension": ".txt",
+        "count": 47
+      },
+      {
+        "extension": ".zip",
+        "count": 20
+      },
+      {
+        "extension": ".css",
+        "count": 16
+      },
+      {
+        "extension": ".js",
+        "count": 15
+      },
+      {
+        "extension": ".xlsx",
+        "count": 8
+      },
+      {
+        "extension": ".csv",
+        "count": 3
+      },
+      {
+        "extension": ".rtf",
+        "count": 2
+      },
+      {
+        "extension": ".pptx",
+        "count": 2
+      },
+      {
+        "extension": ".json",
+        "count": 2
+      }
+    ],
+    "source_root": "G:\\file_backup",
+    "source_exists": true,
+    "manifest_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\case_study\\case_study_training_manifest.json",
+    "categories": [
+      {
+        "category": "01_Product_Research",
+        "count": 47
+      },
+      {
+        "category": "02_Sales_Page",
+        "count": 0
+      },
+      {
+        "category": "03_Email_Swipes",
+        "count": 8
+      },
+      {
+        "category": "04_WarriorPlus_JV",
+        "count": 2
+      },
+      {
+        "category": "05_Funnel_OTO",
+        "count": 1
+      },
+      {
+        "category": "06_PLR_License",
+        "count": 6
+      },
+      {
+        "category": "07_SaaS_Ideas",
+        "count": 7
+      },
+      {
+        "category": "08_KDP_Printables",
+        "count": 0
+      },
+      {
+        "category": "09_Kids_Printables",
+        "count": 0
+      },
+      {
+        "category": "10_Case_Studies",
+        "count": 0
+      },
+      {
+        "category": "00_Unsorted",
+        "count": 44
+      }
+    ],
+    "training_mode": "RAG / searchable case-study memory, not model-weight fine-tuning"
+  },
+  "top_patterns": [
+    [
+      "Prompt / Template",
+      10
+    ],
+    [
+      "General Research",
+      5
+    ],
+    [
+      "Compliance / License",
+      4
+    ],
+    [
+      "Funnel / OTO",
+      4
+    ],
+    [
+      "Kids / Education",
+      4
+    ],
+    [
+      "KDP / Printable",
+      1
+    ]
+  ],
+  "top_categories": [
+    [
+      "01_Product_Research",
+      9
+    ],
+    [
+      "00_Unsorted",
+      4
+    ],
+    [
+      "03_Email_Swipes",
+      4
+    ],
+    [
+      "07_SaaS_Ideas",
+      1
+    ]
+  ],
+  "top_hits": [
+    {
+      "title": "ie emulation modes warning",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #4_#5 - Affiliate Center, Emails, Banners\\Affiliate_page\\js\\ie-emulation-modes-warning.js",
+      "category": "03_Email_Swipes",
+      "score": 64,
+      "patterns": [
+        "Prompt / Template",
+        "Compliance / License"
+      ],
+      "excerpt": "// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT // IT'S JUST JUNK FOR OUR DOCS! // ++++++++++++++++++++++++++++++++++++++++++ /*! * Copyright 2014-2015 The Bootstrap Authors * Copyright 2014-2015 Twitter, Inc. * * Licensed under the Creative Commons Attribution 3.0 Unported License. For * details, see https://creativecommons.org/licenses/by/3.0/. */ // Intended to prevent false-positive bug reports about Bootstrap not working properly in old versions of IE due to folks testing using IE's unreliable emulation modes. (function () { 'use strict' function emulatedIEMajorVersion() { var groups = /MSIE ([0-9.]+)/.exec(window.navigator.userAgent) if (groups === null) { return null } var ieVersionNum = parseInt(groups[1], 10) var ieMajorVersion = Math.floor(ieVersionNum) return ieMajorVersion } function actualNonEmulatedIEMajorVersion() { // Detects the actual version of IE in use, even if it's in"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 56,
+      "patterns": [
+        "Funnel / OTO",
+        "Prompt / Template"
+      ],
+      "excerpt": "Sheet: sheet1 Keyword | Type | Volume | Difficulty | Trending % | Technical Complexity | AI-Friendliness | Time-to-Market | Maintenance Overhead | Revenue Potential | Market Competition | Integrations Required | Compliance/Risk 1 rep max calculator | Online Tool | 140000 | Moderate | -0.04 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 1 to 3 number generator | Online Tool | 355 | Extremely Hard | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 10 year loan calculator | Online Tool | 850 | Extremely Hard | 0.24 | 1 | 1 | 1 | 1 | 1 | 3 | 1 | 1 10 year mortgage calculator | Online Tool | 1850 | Extremely Hard | -0.17 | 1 | 1 | 1 | 1 | 1 | 3 | 1 | 2 1099 generator | Online Tool | 1700 | Moderate | 0.76 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 3 1099 software | SaaS | 2750 | Hard | 0 | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 4 1099 tax calculator | Online Tool | 20050 | Extremely Hard | 0.59 | 1 | 1 | 1 | 2 | 2 | 3 | 1 | 3 180 day calculator "
+    },
+    {
+      "title": "ie emulation modes warning",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #3 - Lead Capture & Delivery\\Optin _Page\\js\\ie-emulation-modes-warning.js",
+      "category": "00_Unsorted",
+      "score": 52,
+      "patterns": [
+        "Prompt / Template",
+        "Compliance / License"
+      ],
+      "excerpt": "// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT // IT'S JUST JUNK FOR OUR DOCS! // ++++++++++++++++++++++++++++++++++++++++++ /*! * Copyright 2014-2015 The Bootstrap Authors * Copyright 2014-2015 Twitter, Inc. * * Licensed under the Creative Commons Attribution 3.0 Unported License. For * details, see https://creativecommons.org/licenses/by/3.0/. */ // Intended to prevent false-positive bug reports about Bootstrap not working properly in old versions of IE due to folks testing using IE's unreliable emulation modes. (function () { 'use strict' function emulatedIEMajorVersion() { var groups = /MSIE ([0-9.]+)/.exec(window.navigator.userAgent) if (groups === null) { return null } var ieVersionNum = parseInt(groups[1], 10) var ieMajorVersion = Math.floor(ieVersionNum) return ieMajorVersion } function actualNonEmulatedIEMajorVersion() { // Detects the actual version of IE in use, even if it's in"
+    },
+    {
+      "title": "ie emulation modes warning",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #3 - Lead Capture & Delivery\\Thank_you_Page\\js\\ie-emulation-modes-warning.js",
+      "category": "00_Unsorted",
+      "score": 52,
+      "patterns": [
+        "Prompt / Template",
+        "Compliance / License"
+      ],
+      "excerpt": "// NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT // IT'S JUST JUNK FOR OUR DOCS! // ++++++++++++++++++++++++++++++++++++++++++ /*! * Copyright 2014-2015 The Bootstrap Authors * Copyright 2014-2015 Twitter, Inc. * * Licensed under the Creative Commons Attribution 3.0 Unported License. For * details, see https://creativecommons.org/licenses/by/3.0/. */ // Intended to prevent false-positive bug reports about Bootstrap not working properly in old versions of IE due to folks testing using IE's unreliable emulation modes. (function () { 'use strict' function emulatedIEMajorVersion() { var groups = /MSIE ([0-9.]+)/.exec(window.navigator.userAgent) if (groups === null) { return null } var ieVersionNum = parseInt(groups[1], 10) var ieMajorVersion = Math.floor(ieVersionNum) return ieMajorVersion } function actualNonEmulatedIEMajorVersion() { // Detects the actual version of IE in use, even if it's in"
+    },
+    {
+      "title": "1,200+ Investors for Raising Investments",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\Saas_Growth_Kit_2024\\1,200+ Investors for Raising Investments.xlsx",
+      "category": "07_SaaS_Ideas",
+      "score": 44,
+      "patterns": [
+        "Funnel / OTO",
+        "Prompt / Template",
+        "Kids / Education"
+      ],
+      "excerpt": "0/about, http://admetus.co.uk/ Adrian | de Montfalcon | London | Media, content and tech. Executive Director of Digital Sales Planning at Lionsgate. Previous experience at Warner Bros, Universal, Citigroup and StormHarbour. Bert | De Reyck | Professor at @london-business-school School, Head of Dept at UCL Julien | de Salaberry | Reg. head and GM. 15+ yrs in healthcare w/ leading brands. Global leader w/ cross-cultural mindset. Advisor to startups & incubators in healthcare & technology. Chris | de Sibert | Worked at @hsbc, @bank-of-america • Studied at @tufts-university Lex | Deak | London | Founder @QVenturesCo, Founder @FamilyFridge, Founder @various, @OFF3R ,Studied at @university-of-manchester, | http://www.off3r.com/#contact Laurent | Delaporte | CEO /COO Start-up, Business International - Digital Medias, Advertising, Internet, eCommerce, Software Edition Sachin | Dev Duggal | Found"
+    },
+    {
+      "title": "jquery 3.2.1.slim.min",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #4_#5 - Affiliate Center, Emails, Banners\\Affiliate_page\\js\\jquery-3.2.1.slim.min.js",
+      "category": "03_Email_Swipes",
+      "score": 44,
+      "patterns": [
+        "Prompt / Template"
+      ],
+      "excerpt": "){return T(this,function(a){var b=this[0]||{},c=0,d=this.length;if(void 0===a&&1===b.nodeType)return b.innerHTML;if(\"string\"==typeof a&&!Aa.test(a)&&!ma[(ka.exec(a)||[\"\",\"\"])[1].toLowerCase()]){a=r.htmlPrefilter(a);try{for(;c<d;c++)b=this[c]||{},1===b.nodeType&&(r.cleanData(na(b,!1)),b.innerHTML=a);b=0}catch(e){}}b&&this.empty().append(a)},null,a,arguments.length)},replaceWith:function(){var a=[];return Ja(this,arguments,function(b){var c=this.parentNode;r.inArray(this,a)<0&&(r.cleanData(na(this)),c&&c.replaceChild(b,this))},a)}}),r.each({appendTo:\"append\",prependTo:\"prepend\",insertBefore:\"before\",insertAfter:\"after\",replaceAll:\"replaceWith\"},function(a,b){r.fn[a]=function(a){for(var c,d=[],e=r(a),f=e.length-1,g=0;g<=f;g++)c=g===f?this:this.clone(!0),r(e[g])[b](c),h.apply(d,c.get());return this.pushStack(d)}});var La=/^margin/,Ma=new RegExp(\"^(\"+aa+\")(?!px)[a-z%]+$\",\"i\"),Na=function(b){v"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 44,
+      "patterns": [
+        "Compliance / License"
+      ],
+      "excerpt": "Tool | 2300 | Moderate | -0.22 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 5e encounter calculator | Online Tool | 5100 | Easy | -0.15 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 5e jump calculator | Online Tool | 815 | Extremely Easy | -0.28000000000000003 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 5e npc generator | Online Tool | 2000 | Moderate | -0.24 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 5e treasure generator | Online Tool | 1600 | Easy | -0.21 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 5k calculator | Online Tool | 1250 | Hard | -0.33 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 5k pace calculator | Online Tool | 4650 | Hard | -0.24 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 6 letter wordle solver | Online Tool | 8450 | Hard | -0.16 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 6 month cd calculator | Online Tool | 1350 | Easy | -0.33 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 60 day calculator | Online Tool | 1500 | Hard | 0.04 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 7 letter license pla"
+    },
+    {
+      "title": "jquery 3.2.1.slim.min",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #4_#5 - Affiliate Center, Emails, Banners\\Affiliate_page\\js\\jquery-3.2.1.slim.min.js",
+      "category": "03_Email_Swipes",
+      "score": 44,
+      "patterns": [
+        "Funnel / OTO",
+        "Prompt / Template"
+      ],
+      "excerpt": "rigger:function(){if(\"checkbox\"===this.type&&this.click&&B(this,\"input\"))return this.click(),!1},_default:function(a){return B(a.target,\"a\")}},beforeunload:{postDispatch:function(a){void 0!==a.result&&a.originalEvent&&(a.originalEvent.returnValue=a.result)}}}},r.removeEvent=function(a,b,c){a.removeEventListener&&a.removeEventListener(b,c)},r.Event=function(a,b){return this instanceof r.Event?(a&&a.type?(this.originalEvent=a,this.type=a.type,this.isDefaultPrevented=a.defaultPrevented||void 0===a.defaultPrevented&&a.returnValue===!1?va:wa,this.target=a.target&&3===a.target.nodeType?a.target.parentNode:a.target,this.currentTarget=a.currentTarget,this.relatedTarget=a.relatedTarget):this.type=a,b&&r.extend(this,b),this.timeStamp=a&&a.timeStamp||r.now(),void(this[r.expando]=!0)):new r.Event(a,b)},r.Event.prototype={constructor:r.Event,isDefaultPrevented:wa,isPropagationStopped:wa,isImmediatePr"
+    },
+    {
+      "title": "jquery 3.2.1.slim.min",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #4_#5 - Affiliate Center, Emails, Banners\\Affiliate_page\\js\\jquery-3.2.1.slim.min.js",
+      "category": "03_Email_Swipes",
+      "score": 44,
+      "patterns": [
+        "Prompt / Template"
+      ],
+      "excerpt": "(a){a=\"string\"==typeof a?M(a):r.extend({},a);var b,c,d,e,f=[],g=[],h=-1,i=function(){for(e=e||a.once,d=b=!0;g.length;h=-1){c=g.shift();while(++h<f.length)f[h].apply(c[0],c[1])===!1&&a.stopOnFalse&&(h=f.length,c=!1)}a.memory||(c=!1),b=!1,e&&(f=c?[]:\"\")},j={add:function(){return f&&(c&&!b&&(h=f.length-1,g.push(c)),function d(b){r.each(b,function(b,c){r.isFunction(c)?a.unique&&j.has(c)||f.push(c):c&&c.length&&\"string\"!==r.type(c)&&d(c)})}(arguments),c&&!b&&i()),this},remove:function(){return r.each(arguments,function(a,b){var c;while((c=r.inArray(b,f,c))>-1)f.splice(c,1),c<=h&&h--}),this},has:function(a){return a?r.inArray(a,f)>-1:f.length>0},empty:function(){return f&&(f=[]),this},disable:function(){return e=g=[],f=c=\"\",this},disabled:function(){return!f},lock:function(){return e=g=[],c||b||(f=c=\"\"),this},locked:function(){return!!e},fireWith:function(a,c){return e||(c=c||[],c=[a,c.slice?c"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 44,
+      "patterns": [
+        "Funnel / OTO",
+        "Kids / Education"
+      ],
+      "excerpt": "nline Tool | 2150 | Easy | 0.06 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 acronym solver | Online Tool | 1000 | Hard | -0.06 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 acrostic poem generator | Online Tool | 3750 | Extremely Easy | 0.03 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 acrostic poem maker | Online Tool | 2950 | Easy | 0.03 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 acs citation generator | Online Tool | 16550 | Easy | 0.41 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 act calculator | Online Tool | 4650 | Easy | 0.27 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 act calculator policy | Online Tool | 950 | Easy | 0.59 | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 3 act score calculator | Online Tool | 7000 | Extremely Easy | 0.48 | 1 | 1 | 1 | 1 | 2 | 3 | 1 | 1 act superscore calculator | Online Tool | 1050 | Extremely Easy | 0.06 | 1 | 1 | 1 | 1 | 2 | 2 | 1 | 1 active to passive voice converter | Online Tool | 6175 | Extremely Easy | -0.14000000000000001 | 2 | 2 "
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 44,
+      "patterns": [
+        "General Research"
+      ],
+      "excerpt": "S | 430 | Moderate | 1.07 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 4 accounting software for large business | SaaS | 465 | Easy | -0.05 | 5 | 4 | 5 | 5 | 5 | 5 | 5 | 5 accounting software for law firms | SaaS | 420 | Moderate | 0.26 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 4 accounting software for multiple businesses | SaaS | 845 | Extremely Easy | 0.31 | 5 | 4 | 5 | 5 | 5 | 5 | 4 | 4 accounting software for small construction business | SaaS | 355 | Moderate | 0.12 | 4 | 4 | 4 | 4 | 4 | 4 | 3 | 3 accounting software service | SaaS | 200 | Extremely Hard | 0 | 5 | 4 | 5 | 5 | 5 | 5 | 4 | 4 accounting software uae | SaaS | 840 | Hard | 0.03 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 4 accounting software uk | SaaS | 2250 | Extremely Hard | 0.6 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 4 accounting workflow software | SaaS | 950 | Hard | 0.7 | 4 | 4 | 4 | 4 | 4 | 4 | 4 | 4 accounts payable and receivable software | SaaS | 1040 | Easy "
+    },
+    {
+      "title": "Million Dollar Dealmaker Tool Kit Gumroad SLENDERMAN BBHF",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\customer_pain_points\\Million_Dollar_Dealmaker_Tool_Kit_Gumroad_SLENDERMAN_BBHF.zip",
+      "category": "01_Product_Research",
+      "score": 40,
+      "patterns": [
+        "General Research"
+      ],
+      "excerpt": "ZIP archive: Million_Dollar_Dealmaker_Tool_Kit_Gumroad_SLENDERMAN_BBHF.zip Files inside: - 6-Session_5_Million_Dollar_Dealmaker_Tool_Kit.mp4 - 7-Session_6_Million_Dollar_Dealmaker_Tool_Kit.mp4 - 8-Session_7_Million_Dollar_Dealmaker_Tool_Kit.mp4 - 9-Video_8_Deal_management.mp4 - 10-Video_9_Behind_the_boardroom_doors.mp4 - BestBlackHatForum.com.txt [Skipped: could not extract this file.] - BestBlackHatForum.com.url [Skipped: could not extract this file.] - Customer Journey.xlsx [Skipped: could not extract this file.] - Finance For Sales Sheetv1.1.xlsx [Skipped: could not extract this file.] - MoneyVipProgram.com.txt [Skipped: could not extract this file.] - MoneyVipProgram.com.url [Skipped: could not extract this file.] - PDF_Deal_Management__Customer_Journey_Deck.pdf [Skipped: could not extract this file.] - PDF_Finance_For_Sales_Additional_Resources.pdf [Skipped: could not extract this f"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 32,
+      "patterns": [
+        "General Research"
+      ],
+      "excerpt": "oderate | -0.28999999999999998 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 addition calculator | Online Tool | 835 | Hard | -0.1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 address generator | Online Tool | 8850 | Easy | -0.04 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 2 address verification software | SaaS | 1150 | Hard | -0.63 | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 3 adjective generator | Online Tool | 3200 | Extremely Easy | 0.03 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 adjusted age calculator | Online Tool | 2450 | Easy | 0.02 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 adjusted body weight calculator | Online Tool | 7850 | Easy | 0.03 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 adjusted gross income calculator | Online Tool | 5050 | Hard | -0.48 | 1 | 1 | 1 | 1 | 1 | 3 | 1 | 2 administration software for small business | SaaS | 305 | Moderate | -0.85 | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 3 administrative software | SaaS | 800 | Extremely Easy | 0.28000000000000003 | 5"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 32,
+      "patterns": [
+        "General Research"
+      ],
+      "excerpt": "Moderate | 0.28999999999999998 | 5 | 4 | 5 | 4 | 4 | 4 | 3 | 2 3mf to stl converter | Online Tool | 950 | Extremely Easy | 0.34 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 3pl software | SaaS | 2500 | Easy | 0.83 | 5 | 4 | 5 | 5 | 5 | 4 | 5 | 3 3pl warehouse management software | SaaS | 740 | Easy | 2.16 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 3 3pl wms software | SaaS | 840 | Extremely Easy | 2.16 | 5 | 4 | 5 | 5 | 5 | 4 | 4 | 3 3x rent calculator | Online Tool | 850 | Easy | 0.67 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 4 digit random number generator | Online Tool | 6450 | Extremely Easy | 0.01 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 4 letter wordle solver | Online Tool | 510 | Hard | -0.11 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 4 rule calculator | Online Tool | 1550 | Hard | -0.08 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 401k calculator | Online Tool | 145500 | Hard | -0.2 | 1 | 1 | 1 | 1 | 2 | 3 | 1 | 2 401k calculator with match | Onli"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 32,
+      "patterns": [
+        "General Research"
+      ],
+      "excerpt": "1850 | Easy | 0.15 | 1 | 1 | 1 | 1 | 2 | 3 | 1 | 2 aarp social security calculator | Online Tool | 900 | Hard | 0.22 | 1 | 1 | 1 | 1 | 2 | 3 | 1 | 2 aarp tax calculator | Online Tool | 2650 | Moderate | 0.61 | 2 | 2 | 3 | 3 | 3 | 3 | 2 | 3 aasimar name generator | Online Tool | 2450 | Extremely Easy | -7.0000000000000007E-2 | 1 | 1 | 1 | 1 | 1 | 2 | 1 | 1 aax audio converter | Online Tool | 650 | Easy | 0.13 | 2 | 2 | 2 | 2 | 3 | 3 | 2 | 2 ab testing software | SaaS | 810 | Hard | -7.0000000000000007E-2 | 4 | 3 | 4 | 4 | 4 | 4 | 3 | 3 aba data collection software | SaaS | 1050 | Easy | -0.77 | 4 | 3 | 4 | 4 | 4 | 3 | 3 | 4 aba practice management software | SaaS | 1150 | Moderate | -0.87 | 4 | 3 | 4 | 4 | 4 | 3 | 3 | 3 aba software | SaaS | 1200 | Easy | -0.62 | 4 | 3 | 4 | 4 | 4 | 3 | 3 | 4 abbreviation generator | Online Tool | 20600 | Easy | -0.21 | 2 | 2 | 2 | 2 | 2 | 3 | 1 | 1 abc o"
+    },
+    {
+      "title": "What To Ship Idea List",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\01_Product_Research\\market_research\\What_To_Ship_Idea_List_SLENDERMAN_BBHF\\What_To_Ship_Idea_List.xlsx",
+      "category": "01_Product_Research",
+      "score": 32,
+      "patterns": [
+        "KDP / Printable"
+      ],
+      "excerpt": "nerator | Online Tool | 2500 | Easy | 0.19 | 4 | 4 | 4 | 3 | 4 | 4 | 2 | 2 3d animation software | SaaS | 12900 | Extremely Hard | 0.08 | 5 | 4 | 5 | 5 | 4 | 4 | 3 | 2 3d architecture software | SaaS | 1850 | Extremely Hard | 0.13 | 5 | 4 | 5 | 5 | 5 | 4 | 3 | 2 3d cad software | SaaS | 5900 | Extremely Hard | 0.75 | 5 | 4 | 5 | 5 | 5 | 4 | 3 | 2 3d configurator software | SaaS | 405 | Easy | 0.61 | 4 | 3 | 4 | 4 | 4 | 3 | 3 | 2 3d designing software | SaaS | 7800 | Extremely Hard | 0 | 5 | 4 | 5 | 5 | 4 | 4 | 3 | 2 3d drawing software | SaaS | 2650 | Extremely Hard | 0.09 | 5 | 4 | 5 | 4 | 4 | 4 | 3 | 2 3d fashion design software | SaaS | 1300 | Extremely Hard | -0.11 | 5 | 4 | 5 | 4 | 4 | 3 | 3 | 2 3d font generator | Online Tool | 25600 | Easy | -0.1 | 2 | 2 | 3 | 2 | 3 | 3 | 1 | 1 3d game maker | Online Tool | 5500 | Extremely Hard | 0.11 | 5 | 4 | 5 | 4 | 4 | 4 | 3 | 2 3d gif maker "
+    },
+    {
+      "title": "jquery 1.11.0.min",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #3 - Lead Capture & Delivery\\Optin _Page\\js\\jquery-1.11.0.min.js",
+      "category": "00_Unsorted",
+      "score": 32,
+      "patterns": [
+        "Prompt / Template",
+        "Kids / Education"
+      ],
+      "excerpt": "){for(b=0;d>b;b++)if(n.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=u.test(a)||\"string\"!=typeof a?n(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&n.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?n.unique(f):f)},index:function(a){return a?\"string\"==typeof a?n.inArray(this[0],n(a)):n.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(n.unique(n.merge(this.get(),n(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function E(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}n.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return n.dir(a,\"parentNode\")},parentsUntil:functio"
+    },
+    {
+      "title": "jquery 1.11.0.min",
+      "source_path": "G:\\file_backup\\agent_input_backup_20260515_024325\\01_BUILD_PRODUCT\\02_Product_Creation\\digital_asset_creation\\7WAYS-PROFIT-BITCOIN\\Module #3 - Lead Capture & Delivery\\Thank_you_Page\\js\\jquery-1.11.0.min.js",
+      "category": "00_Unsorted",
+      "score": 32,
+      "patterns": [
+        "Prompt / Template",
+        "Kids / Education"
+      ],
+      "excerpt": "){for(b=0;d>b;b++)if(n.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=u.test(a)||\"string\"!=typeof a?n(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&n.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?n.unique(f):f)},index:function(a){return a?\"string\"==typeof a?n.inArray(this[0],n(a)):n.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(n.unique(n.merge(this.get(),n(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function E(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}n.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return n.dir(a,\"parentNode\")},parentsUntil:functio"
+    }
+  ],
+  "training_readiness": {
+    "score": 40,
+    "decision": "SEED TRAINING ONLY",
+    "documents": 115,
+    "chunks": 598,
+    "category_coverage": 6,
+    "recommendation": "This is only a seed brain. Run /train_full_case_study_brain 1000 or more."
+  },
+  "reuse_rules": [
+    "Use G:\\file_backup as input data / case-study brain.",
+    "Do not copy old assets verbatim into products for sale.",
+    "Do not upload the raw backup folder to GitHub.",
+    "Do not pretend the files are model weights.",
+    "Agent should retrieve patterns, structures, mistakes, examples, and launch workflows from the indexed brain."
+  ]
+}

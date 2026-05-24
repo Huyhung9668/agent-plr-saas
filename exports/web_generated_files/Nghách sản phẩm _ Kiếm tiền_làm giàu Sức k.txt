@@ -1,0 +1,471 @@
+﻿# AI Email Campaign Kit for Beginners  
+## Bản sản phẩm nâng cấp: không bán “30 email AI thô”, mà bán **bộ chiến dịch email có thể triển khai ngay**
+
+Kết luận trực tiếp: **NÊN LÀM**, nhưng không nên đóng gói sản phẩm chỉ là “30 mẫu email ngắn”. Như vậy quá mỏng và dễ bị khách nói: “AI làm được.”  
+Cách đúng là biến nó thành:
+
+> **AI Email Campaign Kit for Beginners**  
+> Bộ mẫu + workflow giúp người mới tạo nhanh chiến dịch email welcome, nurture, bán hàng, affiliate, deadline và kéo lại subscriber cũ mà không phải bắt đầu từ trang trắng.
+
+Buyer cụ thể: **người mới làm affiliate, bán sản phẩm số, creator nhỏ, vendor mới trên WarriorPlus/Gumroad/Payhip chưa biết viết email đều đặn.**
+
+Promise an toàn:
+
+> Giúp người mới có bộ khung email campaign rõ ràng, dễ tùy chỉnh, giảm thời gian viết và tránh các lỗi hype/spam phổ biến — không hứa doanh thu, không hứa conversion.
+
+---
+
+# 1. Định vị sản phẩm để khách không so với AI miễn phí
+
+| Bản yếu dễ bị chê | Bản nên bán |
+|---|---|
+| 30 email AI tạo | 30 email theo 6 use case cụ thể |
+| Không có thứ tự dùng | Có campaign map: gửi email nào trước/sau |
+| Template chung chung | Có placeholder + ví dụ tùy chỉnh |
+| Không có kiểm lỗi | Có checklist chống hype/spam |
+| Không có hướng dẫn | Có prompt tùy biến bằng AI |
+| Bán chữ | Bán hệ thống triển khai email campaign |
+
+## Câu trả lời cho objection: “AI cũng làm được mà?”
+
+Dùng trong sales page:
+
+> Đúng, AI có thể tạo email. Nhưng người mới thường vẫn bị kẹt ở 5 điểm: không biết hỏi AI thế nào, không biết sắp xếp email theo chiến dịch, không biết CTA đặt ra sao, không biết tránh claim quá đà, và không biết sửa email cho hợp với offer của mình. Kit này không chỉ đưa bạn email mẫu, mà đưa luôn cấu trúc campaign, prompt tùy chỉnh, checklist kiểm lỗi và ví dụ dùng thực tế.
+
+---
+
+# 2. Cấu trúc sản phẩm đề xuất
+
+| File | Nội dung | Định dạng |
+|---|---|---|
+| `01_Start_Here.pdf` | Hướng dẫn dùng kit trong 20 phút | PDF |
+| `02_30_Short_Email_Templates.docx` | 30 mẫu email ngắn có placeholder | DOCX/PDF |
+| `03_7_Day_Campaign_Map.pdf` | Lịch gửi email 7 ngày | PDF |
+| `04_AI_Customization_Prompts.pdf` | Prompt biến mẫu thành email riêng | PDF |
+| `05_Pre_Send_Checklist.pdf` | Checklist trước khi gửi email | PDF |
+| `06_Subject_Line_Bank.docx` | 60 subject line gợi ý | DOCX |
+| `07_README_License_Compliance.txt` | Ghi chú quyền dùng và compliance | TXT |
+
+---
+
+# 3. Campaign map mẫu cho buyer
+
+| Ngày | Loại email | Mục tiêu |
+|---|---|---|
+| Ngày 1 | Welcome | Giới thiệu và tạo kỳ vọng |
+| Ngày 2 | Value | Dạy 1 ý đơn giản |
+| Ngày 3 | Problem | Nêu lỗi phổ biến |
+| Ngày 4 | Soft Promo | Gợi ý sản phẩm nhẹ nhàng |
+| Ngày 5 | Affiliate/Offer | Giới thiệu offer cụ thể |
+| Ngày 6 | FAQ/Objection | Xử lý nghi ngại |
+| Ngày 7 | Reminder | Nhắc lại nếu có deadline thật |
+
+---
+
+# 4. 30 mẫu email ngắn bằng tiếng Việt
+
+> Ghi chú: các mẫu dưới đây có thể dùng cho sản phẩm tiếng Việt. Nếu bán trên WarriorPlus, nên làm thêm bản English version.
+
+## Nhóm 1: Welcome Emails
+
+### Email 1: Chào mừng đơn giản  
+**Subject:** Chào mừng bạn đến với [Chủ đề]
+
+Chào [Tên],
+
+Cảm ơn bạn đã đăng ký.
+
+Trong vài email tới, tôi sẽ chia sẻ những cách đơn giản giúp bạn bắt đầu với [Chủ đề] mà không bị quá tải.
+
+Bạn không cần làm mọi thứ hoàn hảo ngay từ đầu.  
+Chỉ cần bắt đầu bằng một bước nhỏ và cải thiện dần.
+
+Bước đầu tiên bạn có thể xem tại đây:  
+[Link]
+
+Thân,  
+[Tên của bạn]
+
+---
+
+### Email 2: Kỳ vọng rõ ràng  
+**Subject:** Trước khi bắt đầu, đọc nhanh điều này
+
+Chào [Tên],
+
+Nếu bạn mới bắt đầu với [Chủ đề], có thể bạn đang thấy hơi rối.
+
+Có quá nhiều công cụ, mẹo, chiến thuật và lời khuyên khác nhau.
+
+Vì vậy tôi muốn giữ mọi thứ đơn giản:  
+mỗi email sẽ tập trung vào một ý dễ làm, một bước rõ ràng, và một hành động nhỏ.
+
+Bắt đầu tại đây:  
+[Link]
+
+---
+
+### Email 3: Quick win đầu tiên  
+**Subject:** Một bước nhỏ để bắt đầu
+
+Chào [Tên],
+
+Đây là quick win đầu tiên của bạn:
+
+[Hành động đơn giản]
+
+Việc này không mất nhiều thời gian, nhưng giúp bạn có điểm bắt đầu thay vì chỉ đọc thêm lý thuyết.
+
+Sau khi làm xong, bạn có thể xem bước tiếp theo ở đây:  
+[Link]
+
+---
+
+### Email 4: Đừng làm phức tạp  
+**Subject:** Bạn không cần làm mọi thứ cùng lúc
+
+Chào [Tên],
+
+Một lỗi phổ biến của người mới là cố học mọi thứ cùng lúc.
+
+Điều đó thường dẫn đến trì hoãn.
+
+Thay vì vậy, hãy chọn một mục tiêu nhỏ:  
+[Mục tiêu nhỏ]
+
+Sau đó dùng một template hoặc checklist để hoàn thành nó.
+
+Tài nguyên này sẽ giúp bạn bắt đầu:  
+[Link]
+
+---
+
+### Email 5: Bạn đang ở đúng chỗ  
+**Subject:** Nếu bạn mới bắt đầu, đây là nơi phù hợp
+
+Chào [Tên],
+
+Nếu bạn đang tìm cách làm [Chủ đề] đơn giản hơn, bạn đang ở đúng chỗ.
+
+Tôi sẽ không gửi cho bạn những chiến thuật quá phức tạp.
+
+Thay vào đó, bạn sẽ nhận được hướng dẫn thực tế, mẫu dễ sửa và các bước có thể làm ngay.
+
+Xem tài nguyên đầu tiên tại đây:  
+[Link]
+
+---
+
+## Nhóm 2: Nurture/Value Emails
+
+### Email 6: Lỗi phổ biến  
+**Subject:** Lỗi người mới hay mắc với [Chủ đề]
+
+Chào [Tên],
+
+Một lỗi phổ biến là bắt đầu mà không có cấu trúc.
+
+Bạn mở file trắng, cố nghĩ nội dung, rồi mất nhiều thời gian chỉ để viết vài dòng đầu tiên.
+
+Cách đơn giản hơn:
+
+1. Chọn một vấn đề cụ thể  
+2. Viết một lời khuyên ngắn  
+3. Kết thúc bằng một CTA rõ ràng
+
+Bạn có thể bắt đầu với mẫu này:  
+[Link]
+
+---
+
+### Email 7: Công thức 3 bước  
+**Subject:** Công thức đơn giản để viết email tốt hơn
+
+Chào [Tên],
+
+Một email tốt không cần dài.
+
+Bạn có thể dùng công thức này:
+
+1. Nêu vấn đề  
+2. Đưa một góc nhìn hữu ích  
+3. Mời người đọc làm bước tiếp theo
+
+Ví dụ:
+
+Vấn đề: [Vấn đề]  
+Gợi ý: [Giải pháp ngắn]  
+CTA: [Link]
+
+Đơn giản thường dễ đọc hơn.
+
+---
+
+### Email 8: Dạy một ý thôi  
+**Subject:** Đừng nhồi quá nhiều vào một email
+
+Chào [Tên],
+
+Khi viết email, đừng cố dạy mọi thứ trong một lần.
+
+Hãy chọn một ý duy nhất.
+
+Ví dụ:
+
+- Một lỗi cần tránh  
+- Một mẹo nhỏ  
+- Một bước hành động  
+- Một ví dụ thực tế
+
+Người đọc dễ hiểu hơn, và bạn cũng dễ viết hơn.
+
+Nếu cần mẫu để bắt đầu, xem tại đây:  
+[Link]
+
+---
+
+### Email 9: List nhỏ vẫn có giá trị  
+**Subject:** List nhỏ không phải vấn đề lớn nhất
+
+Chào [Tên],
+
+Nếu danh sách email của bạn còn nhỏ, đừng bỏ qua nó.
+
+List nhỏ vẫn có giá trị nếu người đọc quan tâm đúng chủ đề.
+
+Điều quan trọng là gửi email nhất quán, hữu ích và có CTA rõ ràng.
+
+Đừng chờ đến khi có list lớn mới bắt đầu luyện kỹ năng email.
+
+Tài nguyên này có thể giúp bạn viết nhanh hơn:  
+[Link]
+
+---
+
+### Email 10: Hỏi đúng trước khi viết  
+**Subject:** Trước khi viết email, hãy hỏi câu này
+
+Chào [Tên],
+
+Trước khi viết email tiếp theo, hãy tự hỏi:
+
+“Người đọc của mình đang mắc kẹt ở đâu?”
+
+Câu hỏi này giúp bạn tránh viết lan man.
+
+Nếu họ đang kẹt ở [Vấn đề], email của bạn nên giúp họ hiểu hoặc làm một bước nhỏ để xử lý vấn đề đó.
+
+Bạn có thể dùng mẫu này để bắt đầu:  
+[Link]
+
+---
+
+## Nhóm 3: Soft Promo Emails
+
+### Email 11: Gợi ý nhẹ nhàng  
+**Subject:** Tài nguyên này có thể giúp bạn
+
+Chào [Tên],
+
+Nếu bạn đang gặp khó với [Vấn đề], tôi nghĩ tài nguyên này có thể hữu ích:
+
+[Sản phẩm]
+
+Nó được thiết kế để giúp người mới bắt đầu với [Chủ đề] bằng template, checklist và hướng dẫn đơn giản.
+
+Không cần bắt đầu từ trang trắng.
+
+Xem chi tiết tại đây:  
+[Link]
+
+---
+
+### Email 12: Không bắt đầu từ số 0  
+**Subject:** Đừng viết mọi thứ từ đầu
+
+Chào [Tên],
+
+Một trong những phần khó nhất của [Chủ đề] là bắt đầu từ số 0.
+
+Bạn không biết viết gì, sắp xếp thế nào, CTA ra sao.
+
+[Sản phẩm] giúp bạn có sẵn khung để tùy chỉnh theo offer và audience của mình.
+
+Xem tại đây:  
+[Link]
+
+---
+
+### Email 13: Ai phù hợp với sản phẩm này  
+**Subject:** Sản phẩm này phù hợp nếu bạn…
+
+Chào [Tên],
+
+[Sản phẩm] phù hợp nếu bạn:
+
+- Mới bắt đầu với [Chủ đề]  
+- Muốn có mẫu để sửa nhanh  
+- Không muốn tự nghĩ cấu trúc từ đầu  
+- Cần checklist để tránh lỗi cơ bản
+
+Nó không dành cho người muốn hệ thống quá nâng cao.
+
+Nếu bạn cần một điểm bắt đầu đơn giản, xem tại đây:  
+[Link]
+
+---
+
+### Email 14: Lợi ích thực tế  
+**Subject:** Một cách viết nhanh hơn
+
+Chào [Tên],
+
+[Sản phẩm] không phải phép màu.
+
+Nó chỉ giúp bạn làm một việc rất thực tế:  
+viết và sắp xếp email nhanh hơn nhờ có sẵn mẫu, prompt và checklist.
+
+Bạn vẫn cần tùy chỉnh cho audience và offer của mình.
+
+Nhưng bạn không phải bắt đầu từ trang trắng.
+
+Xem chi tiết:  
+[Link]
+
+---
+
+### Email 15: Nhắc lại vấn đề  
+**Subject:** Vẫn bị kẹt khi viết email?
+
+Chào [Tên],
+
+Nếu bạn thường mất quá nhiều thời gian để viết một email ngắn, vấn đề có thể không phải là bạn viết kém.
+
+Có thể bạn chỉ thiếu một cấu trúc rõ ràng.
+
+[Sản phẩm] cung cấp các mẫu và workflow để bạn điền, sửa và gửi nhanh hơn.
+
+Xem tại đây:  
+[Link]
+
+---
+
+## Nhóm 4: Affiliate Promo Emails
+
+### Email 16: Giới thiệu affiliate minh bạch  
+**Subject:** Một tài nguyên đáng xem cho [Chủ đề]
+
+Chào [Tên],
+
+Tôi muốn giới thiệu một tài nguyên có thể hữu ích nếu bạn đang làm [Chủ đề].
+
+Tên sản phẩm là [Sản phẩm].
+
+Điểm tôi thích là nó tập trung vào template và hướng dẫn thực tế, thay vì chỉ nói lý thuyết.
+
+Bạn có thể xem tại đây:  
+[Link]
+
+Lưu ý: Đây có thể là affiliate link. Tôi có thể nhận hoa hồng nếu bạn mua qua link này, không làm tăng chi phí của bạn.
+
+---
+
+### Email 17: Vì sao tôi chia sẻ  
+**Subject:** Vì sao tôi gửi bạn tài nguyên này
+
+Chào [Tên],
+
+Tôi chia sẻ [Sản phẩm] vì nó xử lý một vấn đề người mới hay gặp:
+
+[Vấn đề]
+
+Thay vì phải tự nghĩ mọi thứ, bạn có sẵn khung để sửa theo trường hợp của mình.
+
+Nếu phù hợp với bạn, xem tại đây:  
+[Link]
+
+---
+
+### Email 18: Bonus nếu mua qua link  
+**Subject:** Bonus của tôi cho [Sản phẩm]
+
+Chào [Tên],
+
+Nếu bạn quyết định lấy [Sản phẩm] qua link của tôi, tôi sẽ tặng thêm:
+
+[Bonus]
+
+Bonus này giúp bạn áp dụng sản phẩm nhanh hơn và tránh bị kẹt ở bước triển khai.
+
+Xem chi tiết tại đây:  
+[Link]
+
+---
+
+### Email 19: Cách tôi sẽ dùng sản phẩm này  
+**Subject:** Nếu dùng [Sản phẩm], tôi sẽ làm thế này
+
+Chào [Tên],
+
+Nếu tôi dùng [Sản phẩm], tôi sẽ làm đơn giản:
+
+1. Chọn một template phù hợp  
+2. Sửa lại theo audience  
+3. Thêm CTA rõ ràng  
+4. Kiểm tra claim và link  
+5. Gửi thử cho một segment nhỏ
+
+Đừng làm phức tạp.
+
+Xem sản phẩm tại đây:  
+[Link]
+
+---
+
+### Email 20: Review ngắn  
+**Subject:** Nhận xét nhanh về [Sản phẩm]
+
+Chào [Tên],
+
+Tôi đã xem qua [Sản phẩm].
+
+Nó phù hợp nhất với người mới muốn có điểm bắt đầu nhanh cho [Chủ đề].
+
+Điểm mạnh: [Điểm mạnh]  
+Điểm cần nhớ: bạn vẫn nên tùy chỉnh nội dung cho audience riêng.
+
+Xem tại đây:  
+[Link]
+
+---
+
+## Nhóm 5: Deadline/Urgency Emails
+
+> Chỉ dùng deadline khi có deadline thật. Không dùng khan hiếm giả.
+
+### Email 21: Nhắc deadline  
+**Subject:** Nhắc nhanh: [Deadline]
+
+Chào [Tên],
+
+Nhắc nhanh bạn:
+
+Ưu đãi hiện tại cho [Sản phẩm] sẽ kết thúc vào [Deadline].
+
+Nếu bạn đang cân nhắc, bạn có thể xem lại thông tin tại đây:  
+[Link]
+
+Không áp lực. Chỉ là lời nhắc trước khi deadline kết thúc.
+
+---
+
+### Email 22: Bonus sắp kết thúc  
+**Subject:** Bonus kết thúc vào [Deadline]
+
+Chào [Tên],
+
+Bonus cho [Sản phẩm] sẽ kết thúc vào [Deadline].
+
+Bonus gồm:
+
+[Bonus]

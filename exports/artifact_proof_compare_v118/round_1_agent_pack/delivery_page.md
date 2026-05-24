@@ -1,0 +1,3 @@
+Welcome to your download area for Printable Prompt-to-Product Sprint from Example Studio. Access URL sample: example.com/download. Support: support@example.com. Download the ZIP, unzip it locally, then open README.md first. Use files in order from 00_Start_Here.md to 08_License_Compliance.md. If you plan to sell, list, bundle, or give client access, review the license/compliance file before using outside personal implementation. This delivery page does not confirm live payment integration, live customer access, or marketplace approval. Keep a backup copy of your files and customize examples before publishing.
+
+---

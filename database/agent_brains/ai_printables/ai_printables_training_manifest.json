@@ -1,0 +1,40 @@
+{
+  "status": "CREATED",
+  "niche": "AI Printables",
+  "source_root": "G:\\Documents\\udemy-transcript-downloader\\output",
+  "db_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_brain.sqlite",
+  "max_files": null,
+  "scanned_files": 11016,
+  "ingested_documents": 10716,
+  "skipped_files": 300,
+  "chunks": 36757,
+  "errors": 0,
+  "manifest_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\database\\agent_brains\\ai_printables\\ai_printables_training_manifest.json",
+  "created_at": "2026-05-21T15:37:45",
+  "repo_root": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas",
+  "notes": [
+    "Use Udemy transcripts as searchable niche memory/RAG, not model weights.",
+    "Focus on AI-assisted PLR products + KDP covers + coloring books + journals + posters/social media assets.",
+    "Turn lessons into rebrandable systems, packs, prompts, workflow checklists, and launch assets.",
+    "Do not copy course text verbatim into products for sale.",
+    "Every answer should include productization, AI-replacement defense, license/risk caution, and next build action."
+  ],
+  "offer_seeds": [
+    "AI Etsy Printable Bundle Builder",
+    "AI Kids Worksheet Factory",
+    "AI KDP Puzzle Book Launch Kit",
+    "AI Coloring Page Niche Pack",
+    "AI Journal Interior System",
+    "AI Canva Printable Product Kit"
+  ],
+  "categories": [
+    "01_KDP_Kindle",
+    "02_Etsy_Printables",
+    "03_Canva_Bulk_Assets",
+    "04_AI_Image_Prompts",
+    "05_Coloring_Drawing",
+    "06_Journals_Planners",
+    "07_Marketing_Launch",
+    "08_Automation_Workflow"
+  ]
+}

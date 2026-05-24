@@ -1,0 +1,3 @@
+License status from source proof: UNKNOWN. This kit is newly written as a sample artifact, but any third-party PLR, Canva, stock image, font, icon, quote, brand name or marketplace template used with it must be manually reviewed before resale. Safe use: use this content as an implementation guide, customize it, create your own worksheets, and add your own branding. Do not claim guaranteed sales, leads, KDP ranking, Etsy ranking, educational outcomes, therapy results or legal/financial results. For client work, clarify whether the client receives personal use, commercial use, or editable source files. HUMAN REVIEW REQUIRED before selling PLR/MRR/resale rights or uploading bundled Canva templates.
+
+---

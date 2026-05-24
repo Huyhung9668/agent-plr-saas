@@ -1,0 +1,366 @@
+[
+  {
+    "id": "sidebarCloseBtn",
+    "class": "icon-btn sidebar-close-btn",
+    "label": "×",
+    "title": "Đóng lịch sử chat"
+  },
+  {
+    "id": "newChatBtn",
+    "class": "new-chat-btn",
+    "label": "+ Chat mới"
+  },
+  {
+    "id": "sidebarBackdrop",
+    "class": "sidebar-backdrop"
+  },
+  {
+    "id": "sidebarToggleBtn",
+    "class": "icon-btn sidebar-toggle",
+    "label": "☰",
+    "title": "Ẩn/hiện lịch sử chat"
+  },
+  {
+    "id": "psRefreshBtn",
+    "class": "icon-btn",
+    "label": "↻",
+    "title": "Refresh trạng thái dự án"
+  },
+  {
+    "id": "promptLibraryBtn",
+    "class": "icon-btn",
+    "label": "⌘",
+    "title": "Mở thư viện prompt"
+  },
+  {
+    "id": "statusBtn",
+    "class": "icon-btn",
+    "label": "i",
+    "title": "Trạng thái bộ não"
+  },
+  {
+    "id": "exportBtn",
+    "class": "icon-btn",
+    "label": "↓",
+    "title": "Xuất chat Markdown"
+  },
+  {
+    "id": "themeToggleBtn",
+    "class": "icon-btn",
+    "label": "☾",
+    "title": "Đổi sáng/tối"
+  },
+  {
+    "id": "clearBtn",
+    "class": "icon-btn danger-icon",
+    "label": "×",
+    "title": "Xóa nội dung chat hiện tại"
+  },
+  {
+    "id": "jumpPrevBtn",
+    "label": "↑",
+    "title": "Nhảy lên câu hỏi/câu trả lời trước"
+  },
+  {
+    "id": "jumpNextBtn",
+    "label": "↓",
+    "title": "Nhảy xuống câu hỏi/câu trả lời tiếp theo"
+  },
+  {
+    "id": "scrollBottomBtn",
+    "class": "scroll-bottom-btn",
+    "label": "↓",
+    "title": "Nhảy xuống cuối chat"
+  },
+  {
+    "id": "quickActionsToggle",
+    "class": "library-toggle",
+    "label": "Thư viện prompt"
+  },
+  {
+    "id": "retryLastBtn",
+    "class": "retry-last-btn",
+    "label": "Gửi lại lỗi"
+  },
+  {
+    "label": "Analyze PLR",
+    "data_prompt": "Analyze PLR File / Folder: Read this PLR/source note like a license-aware product strategist. Output: summary, niche, useful parts, parts to remove, license/risk level, rebrand recommendation, asset gaps, product kit angle, and final USE / USE ONLY AS RESEARCH / SKIP decision. Source or folder note: [paste here]"
+  },
+  {
+    "label": "Idea Score",
+    "data_prompt": "Product Idea Scoring: Score this idea for Demand, Buyer Pain, AI Replace Risk, Workflow Value, WarriorPlus Fit, Rebrand Potential, Backend Potential, SaaS Potential, Risk, and final decision NEN LAM / CHUA NEN LAM / BO QUA. Also explain what must be added so it is not raw AI content. Idea: [paste idea here]"
+  },
+  {
+    "label": "Upgrade Kit",
+    "data_prompt": "Upgrade Raw Content Into Product Kit: Convert this raw AI/PLR content into a sellable implementation kit. Include workflow, use cases, examples, checklist, customization prompts, planner/sheet, compliance note, file structure, pricing, bump/OTO, and why buyers pay instead of asking AI. Content: [paste here]"
+  },
+  {
+    "label": "Product Assets",
+    "data_prompt": "Create Product Assets: Build a file-by-file product package. Output exact filenames, purpose, required contents, examples to include, quality checks, and build order. Product: [product name]"
+  },
+  {
+    "label": "Full Launch Pack",
+    "data_prompt": "/full_launch_pack AI Email Campaign Kit"
+  },
+  {
+    "label": "Offer Angle",
+    "data_prompt": "Build Offer Angle: Turn this idea into a clear offer. Output buyer, pain, safe promise, mechanism, unique angle, deliverables, proof substitutes, and why AI alone is not enough. Product: [product name]"
+  },
+  {
+    "label": "Sales Page",
+    "data_prompt": "Write Sales Page: Write a complete WarriorPlus-friendly sales page with headline, subheadline, problem, why raw AI/PLR is not enough, solution, what is inside, how it works, bonuses, who it is for/not for, price framing, FAQ, compliance-safe risk reversal, CTA, and the objection 'Can I just ask AI?'. Product: [product name]"
+  },
+  {
+    "label": "Funnel Plan",
+    "data_prompt": "Create Funnel Plan: Build FE, order bump, OTO1, OTO2, downsell, recurring/backend if useful, commission plan, launch checklist, and explain why each upsell sells speed/depth/license instead of more raw AI text. Product: [product name]"
+  },
+  {
+    "label": "W+ Listing",
+    "data_prompt": "Build WarriorPlus Listing: Create Product Title, Short Description, Long Description, Category, Tags, Price, Commission, Refund Policy, Vendor Note, Affiliate Approval Note, Delivery Page Text, and Support Note. Product: [product name]"
+  },
+  {
+    "label": "Swipe Pack",
+    "data_prompt": "Create Affiliate Swipe Pack: Create 3 email swipes, 3 short promo emails, 5 Facebook posts, 5 X posts, 3 subject-line sets, 1 launch announcement, 1 last chance email, and 10 affiliate bonus ideas. Product: [product name]"
+  },
+  {
+    "id": "training_status",
+    "label": "1. Kiểm tra kho",
+    "title": "Xem kho case đã index được bao nhiêu file/chunk",
+    "data_prompt": "/training_status",
+    "data_module_id": "training_status"
+  },
+  {
+    "id": "train_case_study_brain",
+    "label": "2. Index 300",
+    "title": "Index thử 300 file cũ. Chạy bước này nếu kho chưa có dữ liệu.",
+    "data_prompt": "/train_case_study_brain 300",
+    "data_module_id": "train_case_study_brain"
+  },
+  {
+    "id": "case_study_patterns",
+    "label": "3. Rút pattern",
+    "title": "Rút công thức sản phẩm, sales page, funnel, JV từ các case tốt",
+    "data_prompt": "/case_study_patterns AI PLR Prompt Template Packs for KDP Printables kids printable case study sales page funnel JV email swipe",
+    "data_module_id": "case_study_patterns"
+  },
+  {
+    "id": "ai_print_status",
+    "label": "Kho",
+    "title": "Xem bộ não transcript ngách AI printable/KDP/Etsy đã index được bao nhiêu",
+    "data_prompt": "/ai_print_status",
+    "data_module_id": "ai_print_status"
+  },
+  {
+    "id": "ai_print_patterns",
+    "label": "Pattern",
+    "title": "Rút pattern sản phẩm/ngách từ transcript",
+    "data_prompt": "/ai_print_patterns AI Etsy Printable Bundle Builder AI Kids Worksheet Factory AI KDP Puzzle Book Launch Kit AI Coloring Page Niche Pack AI Journal Interior System AI Canva Printable Product Kit",
+    "data_module_id": "ai_print_patterns"
+  },
+  {
+    "id": "ai_print_market",
+    "label": "Market",
+    "title": "Rút market pattern có evidence từ brain",
+    "data_prompt": "/ai_print_market AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price",
+    "data_module_id": "ai_print_market"
+  },
+  {
+    "id": "ai_print_competitor",
+    "label": "Matrix",
+    "title": "Tạo competitor/source matrix từ chunks thật",
+    "data_prompt": "/ai_print_competitor AI printable Etsy KDP coloring journal worksheet Canva prompt pack sales page bundle kit funnel deliverables price",
+    "data_module_id": "ai_print_competitor"
+  },
+  {
+    "id": "ai_print_gap",
+    "label": "Gap",
+    "title": "Tìm offer gap trước khi build ZIP",
+    "data_prompt": "/ai_print_gap Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "ai_print_gap"
+  },
+  {
+    "id": "ai_print_deep",
+    "label": "Chuyên sâu",
+    "title": "Chạy agent ngách ở chế độ chuyên sâu",
+    "data_prompt": "/ai_print_deep AI-assisted PLR products + KDP covers + coloring book + journal + poster/social media assets. Hãy chọn ngách ngon nhất, tạo productized pack, FE/bump/OTO, file tree, 7-day build plan. Offer seeds: AI Etsy Printable Bundle Builder, AI Kids Worksheet Factory, AI KDP Puzzle Book Launch Kit, AI Coloring Page Niche Pack, AI Journal Interior System, AI Canva Printable Product Kit.",
+    "data_module_id": "ai_print_deep"
+  },
+  {
+    "id": "ai_print_build",
+    "label": "Tạo ZIP",
+    "title": "Tạo file sản phẩm thật, sales page, funnel, JV pack, buyer test và ZIP",
+    "data_prompt": "/ai_print_build Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "ai_print_build"
+  },
+  {
+    "label": "Fast Market Pattern",
+    "title": "FAST: market pattern ngắn",
+    "data_prompt": "#ai-printables-kdp-prompt #market-pattern&#10;Rút 3 market pattern chính thật ngắn.",
+    "data_run_mode": "fast"
+  },
+  {
+    "label": "Fast Buyer Test",
+    "title": "FAST: buyer test ngắn",
+    "data_prompt": "#ai-printables-kdp-prompt #buyer-test&#10;Test pack này như buyer trong 5 bullet ngắn.",
+    "data_run_mode": "fast"
+  },
+  {
+    "label": "Fast Product Blueprint",
+    "title": "BALANCED: blueprint nhanh",
+    "data_prompt": "#ai-printables-kdp-prompt #product-blueprint&#10;Tạo blueprint ngắn cho AI Printables/KDP/PLR.",
+    "data_run_mode": "balanced"
+  },
+  {
+    "label": "1. Brain Status",
+    "title": "Kiểm tra brain, skill, tag router",
+    "data_prompt": "/ai_printables_kdp_prompt_status"
+  },
+  {
+    "label": "2. Market Pattern",
+    "title": "Rút market pattern bằng brain",
+    "data_prompt": "#ai-printables-kdp-prompt #market-pattern&#10;Dùng brain AI Printables KDP Prompt Agent để rút market pattern."
+  },
+  {
+    "label": "3. Competitor Matrix",
+    "title": "So sánh competitor matrix",
+    "data_prompt": "#ai-printables-kdp-prompt #competitor-matrix&#10;So sánh vendor/sản phẩm/ngách/price/sales/angle/deliverables."
+  },
+  {
+    "label": "4. Product Blueprint",
+    "title": "Tạo product blueprint",
+    "data_prompt": "#ai-printables-kdp-prompt #product-blueprint&#10;Tạo blueprint sản phẩm AI Printables/KDP/PLR."
+  },
+  {
+    "label": "5. Deep File Writer",
+    "title": "Tạo product assets thật",
+    "data_prompt": "#ai-printables-kdp-prompt #deep-file-writer&#10;Tạo product assets thật, không chỉ mô tả file."
+  },
+  {
+    "label": "6. Buyer Test",
+    "title": "Buyer test",
+    "data_prompt": "#ai-printables-kdp-prompt #buyer-test&#10;Test như buyer mới mua giá $17-$27."
+  },
+  {
+    "label": "7. Export ZIP",
+    "title": "Export ZIP",
+    "data_prompt": "#ai-printables-kdp-prompt #export-zip&#10;Đóng gói sản phẩm hiện tại thành ZIP, tạo manifest và placeholder check."
+  },
+  {
+    "label": "8. Public Launch Audit",
+    "title": "Public launch audit",
+    "data_prompt": "#ai-printables-kdp-prompt #public-launch-audit&#10;Kiểm tra sản phẩm đã public launch được chưa."
+  },
+  {
+    "id": "market_pattern_extract",
+    "label": "1. Market Pattern",
+    "title": "Rút pattern thị trường từ brain data",
+    "data_prompt": "/market_pattern_extract",
+    "data_module_id": "market_pattern_extract"
+  },
+  {
+    "id": "competitor_matrix",
+    "label": "2. Competitor Matrix",
+    "title": "Tạo bảng so sánh đối thủ từ brain",
+    "data_prompt": "/competitor_matrix",
+    "data_module_id": "competitor_matrix"
+  },
+  {
+    "id": "buyer_test",
+    "label": "3. Buyer Test",
+    "title": "Agent đóng vai buyer test sản phẩm",
+    "data_prompt": "/buyer_test Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "buyer_test"
+  },
+  {
+    "id": "prompt_output_test",
+    "label": "4. Prompt Test",
+    "title": "Test chất lượng prompt trong pack",
+    "data_prompt": "/prompt_output_test Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "prompt_output_test"
+  },
+  {
+    "id": "ai_replace_risk_v2",
+    "label": "5. AI Risk",
+    "title": "Tìm chỗ buyer nghĩ ChatGPT cũng làm được",
+    "data_prompt": "/ai_replace_risk Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "ai_replace_risk_v2"
+  },
+  {
+    "id": "public_launch_audit",
+    "label": "6. Launch Gate",
+    "title": "Kiểm tra đủ điều kiện launch public chưa",
+    "data_prompt": "/public_launch_audit Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "public_launch_audit"
+  },
+  {
+    "id": "final_scorecard",
+    "label": "7. Final Score",
+    "title": "Tổng kết điểm và quyết định launch",
+    "data_prompt": "/final_scorecard Lead Magnet Printable Builder For Coaches",
+    "data_module_id": "final_scorecard"
+  },
+  {
+    "class": "active",
+    "label": "FAST",
+    "title": "FAST: topK thấp, không benchmark/export",
+    "data_mode": "fast"
+  },
+  {
+    "label": "BALANCED",
+    "title": "BALANCED: dùng skill + brain vừa đủ",
+    "data_mode": "balanced"
+  },
+  {
+    "label": "DEEP",
+    "title": "DEEP: chậm hơn, dùng nhiều RAG/audit/export",
+    "data_mode": "deep"
+  },
+  {
+    "id": "toggleAiKdpTagsBtn",
+    "label": "Show tags"
+  },
+  {
+    "id": "clearAiKdpTagsBtn",
+    "label": "Clear"
+  },
+  {
+    "id": "promptJumpPrevBtn",
+    "label": "↑",
+    "title": "Lên câu hỏi/câu trả lời trước"
+  },
+  {
+    "id": "promptJumpNextBtn",
+    "label": "↓",
+    "title": "Xuống câu hỏi/câu trả lời tiếp theo"
+  },
+  {
+    "id": "attachBtn",
+    "class": "attach-btn",
+    "label": "+",
+    "title": "Đính kèm file"
+  },
+  {
+    "id": "sendBtn",
+    "class": "send-btn",
+    "label": "➤",
+    "title": "Gửi"
+  },
+  {
+    "id": "artifactCopyBtn",
+    "class": "icon-btn",
+    "label": "⧉",
+    "title": "Copy canvas"
+  },
+  {
+    "id": "artifactDownloadBtn",
+    "class": "icon-btn",
+    "label": "↓",
+    "title": "Tải Markdown"
+  },
+  {
+    "id": "artifactCloseBtn",
+    "class": "icon-btn",
+    "label": "×",
+    "title": "Đóng canvas"
+  }
+]

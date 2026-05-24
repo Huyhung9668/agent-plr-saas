@@ -1,0 +1,3 @@
+Follow this 7-step workflow. Step 1: define buyer, problem, and desired quick win. Step 2: select printable type: checklist, worksheet, tracker, planner, audit, or workbook. Step 3: draft the content using the prompt library. Step 4: turn the draft into a layout brief for Canva, Google Docs, or PDF design. Step 5: run quality checks for clarity, claims, placeholders, and completion value. Step 6: create opt-in copy, thank-you copy, and a simple CTA. Step 7: package the asset with usage notes and compliance language. Do not skip examples and checks; they are what separate a product system from raw AI output.
+
+---

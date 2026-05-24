@@ -1,0 +1,431 @@
+﻿# AI Email Campaign Kit for Beginners — Kế hoạch tạo sản phẩm từ A-Z cho người mới
+
+## DECISION: NÊN LÀM — nhưng phải bán như “hệ thống triển khai chiến dịch”, không bán như “mớ prompt/email thô”
+
+Sản phẩm **AI Email Campaign Kit for Beginners** có tiềm năng tốt cho WarriorPlus vì buyer mới trong ngách affiliate/digital product thường gặp đúng 3 vấn đề:
+
+1. Có sản phẩm hoặc link affiliate nhưng không biết gửi email gì.  
+2. Dùng AI thì ra email chung chung, nghe “máy”, không biết chỉnh.  
+3. Không có campaign map, checklist, CTA, subject line, ví dụ mẫu để triển khai.
+
+Vì Project Memory cho thấy dự án này đã có đủ assets và ZIP đã export, kế hoạch dưới đây là bản **A-Z blueprint** để người mới hiểu cách tạo, đóng gói, bán và nâng cấp sản phẩm này một cách chuyên nghiệp.
+
+---
+
+# 1. Định vị sản phẩm
+
+## Tên đề xuất
+
+**7-Day AI Email Campaign Kit**
+
+Tên hiện tại “AI Email Campaign Kit for Beginners” ổn nhưng hơi rộng. Nên dùng tên bán hàng cụ thể hơn:
+
+> **7-Day AI Email Campaign Kit**  
+> A beginner-friendly system to plan, customize, and send your first simple email campaign for affiliate offers or digital products.
+
+## Buyer cụ thể
+
+| Thành phần | Mô tả |
+|---|---|
+| Buyer chính | Beginner affiliate marketer hoặc new digital product vendor |
+| Platform | WarriorPlus, JVZoo, Gumroad, Payhip, Systeme.io, GetResponse, Aweber |
+| Tài sản hiện có | Link affiliate, PLR đã rebrand, mini product, lead magnet, list nhỏ |
+| Nỗi đau | Không biết viết email, không biết gửi lúc nào, sợ email quá salesy |
+| Kết quả mong muốn | Có campaign 7 ngày rõ ràng để customize và gửi |
+| Mức kỹ năng | Người mới, biết dùng AI cơ bản nhưng thiếu hệ thống |
+| Trigger mua | Chuẩn bị promote sản phẩm, launch mini offer, hoặc muốn bắt đầu email marketing |
+
+## Promise an toàn
+
+Không dùng kiểu:
+
+- “Make commissions fast”
+- “Guaranteed sales”
+- “Get buyers from every email”
+- “Instant income from email”
+
+Dùng promise này:
+
+> **Plan, customize, and launch a simple 7-day email campaign for your affiliate offer or digital product without starting from a blank page or needing advanced copywriting skills.**
+
+Bản tiếng Việt nội bộ:
+
+> Giúp người mới lập kế hoạch, tùy chỉnh và gửi một chiến dịch email 7 ngày cho sản phẩm affiliate hoặc digital product mà không phải viết từ con số 0 và không cần giỏi copywriting.
+
+---
+
+# 2. SCORECARD đánh giá sản phẩm
+
+| Tiêu chí | Điểm | Nhận xét |
+|---|---:|---|
+| Demand | 8.5/10 | Email marketing vẫn là kỹ năng lõi của affiliate/vendor |
+| Buyer Pain | 9/10 | Người mới rất bí email và follow-up |
+| WarriorPlus Fit | 8.5/10 | Hợp buyer thích kit, prompt, template, AI workflow |
+| AI Replace Risk | 7/10 | Cao nếu chỉ bán prompt; giảm mạnh nếu có workflow/checklist/planner |
+| Workflow Value | 9/10 | Campaign map 7 ngày làm sản phẩm thực dụng hơn |
+| Implementation Value | 9/10 | Planner, checklist, ví dụ giúp buyer hành động ngay |
+| Product Depth | 8.5/10 | Đủ bán FE $17-$27 |
+| Backend Potential | 8/10 | Có thể bán DFY campaigns, niche packs, agency license |
+| SaaS Potential | 7.5/10 | Có thể nâng lên tool tạo campaign + kiểm tra claim |
+| Compliance Risk | 6/10 | Cần tránh income claim, fake urgency, spammy wording |
+| Final Score | 8.6/10 | **NÊN LÀM / có thể soft launch** |
+
+---
+
+# 3. Vì sao sản phẩm này không phải “AI-thô”?
+
+| AI-thô bình thường | Product-system nên bán |
+|---|---|
+| 20-30 prompt viết email | Campaign map 7 ngày có thứ tự gửi |
+| 100 subject lines rời rạc | Subject bank chia theo welcome, nurture, promo, deadline, re-engagement |
+| Email template chung chung | Template theo từng use case và có placeholder rõ |
+| Không có hướng dẫn dùng | Có Start Here + workflow + planner |
+| Không có kiểm tra rủi ro | Có pre-send checklist và compliance notes |
+| Không có ví dụ | Có campaign mẫu đã điền cho affiliate/digital product |
+| Dễ bị ChatGPT thay thế | Khó thay thế hơn vì có hệ thống triển khai hoàn chỉnh |
+
+## Buyer-facing objection block
+
+**“Tôi có thể hỏi AI viết email mà, sao phải mua?”**
+
+Có, AI có thể viết email thô. Nhưng người mới vẫn phải biết email nào gửi trước, email nào dùng để educate, khi nào mới giới thiệu offer, CTA nào phù hợp, subject line nào nên tránh hype, và claim nào có thể gây rủi ro. Kit này không chỉ đưa bạn chữ mẫu — nó đưa bạn một quy trình triển khai campaign 7 ngày với template, prompt tùy chỉnh, planner, checklist và ví dụ đã điền.
+
+---
+
+# 4. Product Package — cấu trúc sản phẩm bán được
+
+Đây là bộ file nên có trong ZIP:
+
+```text
+/outputs/AI_Email_Campaign_Kit/product_assets/
+  00_Start_Here.md
+  01_7_Day_Campaign_Map.md
+  02_30_Short_Email_Templates.md
+  03_AI_Customization_Prompts.md
+  04_Pre_Send_Checklist.md
+  05_Subject_Line_Bank.md
+  06_Campaign_Planner.csv
+  07_Example_Campaign.md
+  08_CTA_Bank.md
+  09_License_Compliance.md
+  README.md
+
+/outputs/AI_Email_Campaign_Kit/sales_page/
+  sales_page.md
+  faq_objections.md
+  proof_substitutes.md
+
+/outputs/AI_Email_Campaign_Kit/jv_pack/
+  jv_invite.md
+  affiliate_email_swipes.md
+  social_posts.md
+  review_access_message.md
+  launch_calendar.md
+
+/outputs/AI_Email_Campaign_Kit/saas_plan/
+  ai_email_campaign_builder_mvp.md
+
+/outputs/AI_Email_Campaign_Kit/export/product_zip_ready/
+  AI_Email_Campaign_Kit.zip
+```
+
+---
+
+# 5. Nội dung từng file chính
+
+| File | Mục đích | Nội dung cần có |
+|---|---|---|
+| `00_Start_Here.md` | Giúp buyer dùng đúng thứ tự | Ai nên dùng, cách dùng trong 30-60 phút, checklist bắt đầu |
+| `01_7_Day_Campaign_Map.md` | Xương sống sản phẩm | Ngày 1 welcome, ngày 2 problem, ngày 3 value, ngày 4 soft promo, ngày 5 objection, ngày 6 reminder, ngày 7 final CTA |
+| `02_30_Short_Email_Templates.md` | Core template | Welcome, nurture, promo, affiliate, deadline, re-engagement |
+| `03_AI_Customization_Prompts.md` | Biến template thành riêng | Prompt chỉnh avatar, tone, offer, CTA, subject, compliance |
+| `04_Pre_Send_Checklist.md` | Kiểm tra trước khi gửi | Link, CTA, claim, deadline, disclosure, spam words |
+| `05_Subject_Line_Bank.md` | Tăng tốc viết subject | 80-120 subject lines chia theo use case |
+| `06_Campaign_Planner.csv` | Công cụ triển khai | Ngày gửi, loại email, subject, CTA, link, status |
+| `07_Example_Campaign.md` | Proof substitute | Một campaign mẫu đã điền hoàn chỉnh |
+| `08_CTA_Bank.md` | Giúp không bí CTA | CTA mềm, trực tiếp, affiliate, reminder |
+| `09_License_Compliance.md` | Giảm rủi ro | Không đảm bảo kết quả, affiliate disclosure, deadline thật |
+
+---
+
+# 6. 7-Day Campaign Map mẫu
+
+| Ngày | Loại email | Mục tiêu | CTA |
+|---|---|---|---|
+| Day 1 | Welcome + Context | Giới thiệu và đặt kỳ vọng | “Reply with your biggest challenge” |
+| Day 2 | Problem Email | Gọi đúng vấn đề buyer đang gặp | “See the simple workflow here” |
+| Day 3 | Value Email | Cho tip/checklist hữu ích | “Use this checklist before your next campaign” |
+| Day 4 | Soft Promo | Giới thiệu offer nhẹ nhàng | “Take a look at the product page” |
+| Day 5 | Objection Email | Xử lý nghi ngờ: thời gian, kỹ năng, AI | “Review what’s included” |
+| Day 6 | Bonus/Reminder | Nhắc bonus thật nếu có | “Grab the bonus before the real deadline” |
+| Day 7 | Final Reminder | Tổng kết lợi ích và CTA cuối | “Decide if this is useful for your next campaign” |
+
+---
+
+# 7. Ví dụ email template trong sản phẩm
+
+## Soft Promo Email Template
+
+**Subject:** A simpler way to plan your next email campaign
+
+Hi `[FIRST NAME]`,
+
+If you have a product to promote but you keep getting stuck at the email writing stage, you are not alone.
+
+Most beginners do not need a complicated funnel at first. They need a simple campaign plan:
+
+- what to send first  
+- what problem to talk about  
+- when to introduce the offer  
+- how to follow up without sounding pushy  
+
+That is why I wanted to share `[PRODUCT NAME]`.
+
+It is designed to help `[TARGET BUYER]` achieve `[SPECIFIC OUTCOME]` without `[MAIN OBSTACLE]`.
+
+Inside, you will find `[MAIN DELIVERABLE 1]`, `[MAIN DELIVERABLE 2]`, and `[MAIN DELIVERABLE 3]`.
+
+You can check it here:  
+`[LINK]`
+
+Best,  
+`[YOUR NAME]`
+
+**Compliance note:** Nếu là affiliate email, thêm disclosure ngắn:  
+“This may be an affiliate link, which means I may earn a commission if you choose to buy.”
+
+---
+
+# 8. Prompt pack nên có
+
+Không bán prompt rời rạc. Prompt phải gắn với workflow.
+
+## Prompt 1: Customize email theo avatar
+
+```text
+You are an email marketing assistant. 
+Rewrite the email below for this audience: [AUDIENCE].
+Product: [PRODUCT NAME]
+Main pain: [PAIN]
+Desired outcome: [OUTCOME]
+Tone: clear, helpful, beginner-friendly, not hypey.
+Rules:
+- Do not make income guarantees.
+- Do not use fake scarcity.
+- Keep the email under 180 words.
+- Include one clear CTA.
+Email template:
+[PASTE TEMPLATE]
+Output:
+1. Revised email
+2. Subject line options
+3. CTA options
+4. Compliance warnings
+```
+
+## Prompt 2: Check subject line risk
+
+```text
+Review these subject lines for clarity, curiosity, and compliance.
+Audience: [AUDIENCE]
+Campaign type: [WELCOME / NURTURE / PROMO / DEADLINE / RE-ENGAGEMENT]
+Subject lines:
+[PASTE SUBJECTS]
+
+Score each from 1-10 for:
+- clarity
+- curiosity
+- relevance
+- hype risk
+- spam risk
+
+Then suggest the best 3 and rewrite risky ones.
+```
+
+---
+
+# 9. Sales Page Angle
+
+## Headline
+
+**Build Your First 7-Day Email Campaign Without Starting From A Blank Page**
+
+## Subheadline
+
+A beginner-friendly campaign kit with short editable templates, AI customization prompts, subject lines, CTA bank, planner, checklist, and a filled example campaign for affiliate offers and digital products.
+
+## Problem
+
+Bạn có sản phẩm để quảng bá nhưng mỗi lần mở email editor lại bị kẹt:
+
+- Không biết email đầu tiên nên viết gì.
+- Không biết khi nào nên bán.
+- Không biết follow-up bao nhiêu lần.
+- Sợ email nghe quá “AI”.
+- Sợ dùng claim quá mạnh hoặc deadline không thật.
+
+## Solution
+
+**7-Day AI Email Campaign Kit** giúp bạn đi từ “không biết viết gì” sang một campaign có cấu trúc rõ:
+
+1. Chọn mục tiêu chiến dịch.  
+2. Điền thông tin offer.  
+3. Chọn sequence phù hợp.  
+4. Tùy chỉnh template bằng prompt.  
+5. Kiểm tra claim, CTA, disclosure.  
+6. Gửi hoặc đưa vào autoresponder.
+
+## CTA
+
+**Get the 7-Day AI Email Campaign Kit and build your first simple campaign with a clear map, editable templates, prompts, and checklist.**
+
+---
+
+# 10. Funnel WarriorPlus
+
+| Thành phần | Giá | Bán cái gì | Logic |
+|---|---:|---|---|
+| FE | $17 | 7-Day AI Email Campaign Kit | Bán workflow triển khai |
+| Order Bump | $9 | Subject Line + CTA Booster Pack | Bán tốc độ |
+| OTO1 | $37 | 5 DFY Campaign Examples Pack | Bán chiều sâu |
+| OTO2 | $67-$97 | Client/Agency Campaign Pack | Bán quyền dùng rộng hơn nếu assets tự tạo rõ |
+| Recurring | $19/tháng | Monthly Campaign Club | Bán campaign mới hàng tháng |
+
+**Nguyên tắc upsell:** upsell phải liên quan FE, giải quyết bước tiếp theo, tăng tốc hoặc mở rộng quyền sử dụng. Không nên bán thêm “một đống email” vô tổ chức.
+
+---
+
+# 11. WarriorPlus Listing Draft
+
+| Mục | Nội dung |
+|---|---|
+| Product Title | 7-Day AI Email Campaign Kit |
+| Short Description | A beginner-friendly kit to plan, customize, and launch a simple 7-day email campaign for affiliate offers or digital products. |
+| Category | Email Marketing / Affiliate Marketing / AI Marketing |
+| Tags | email marketing, AI prompts, affiliate emails, campaign templates, beginner marketing |
+| FE Price | $17 |
+| Commission | 75% public, up to 90% selected JV |
+| Refund Policy | 30-day refund if product files are not delivered or do not match the sales page description. No guaranteed sales, commissions, open rates, or business results. |
+| Delivery | Instant access to downloadable ZIP with templates, prompts, planner, checklist, and examples. |
+| Vendor Note | Educational templates and implementation assets. Results depend on offer, list relationship, traffic source, and user execution. |
+
+---
+
+# 12. JV Manager Pack
+
+## JV angle
+
+> This is not another random AI prompt bundle. It is a beginner-friendly email campaign implementation kit that helps new affiliates and digital product sellers plan, customize, check, and send a simple 7-day campaign.
+
+## Affiliate email swipe
+
+**Subject:** A simple email campaign kit for beginners
+
+Hi `[NAME]`,
+
+If your audience struggles to write emails for affiliate offers or digital products, this may help.
+
+**7-Day AI Email Campaign Kit** gives them a simple campaign map, editable templates, AI customization prompts, subject lines, CTA bank, planner, checklist, and a filled example campaign.
+
+It is not positioned as “AI writes everything for you.”  
+It is positioned as a beginner-friendly implementation kit.
+
+You can check it here:  
+`[AFFILIATE LINK]`
+
+Best,  
+`[YOUR NAME]`
+
+---
+
+# 13. License & Compliance Notes
+
+Vì niche có yếu tố kiếm tiền/affiliate, phải kiểm soát claim rất kỹ.
+
+- Không hứa doanh thu, commission, open rate, conversion.
+- Không dùng fake scarcity: “chỉ còn 3 suất” nếu không thật.
+- Deadline phải thật.
+- Nếu là affiliate email, thêm disclosure.
+- Nếu dùng PLR/email swipe làm tham khảo: kiểm tra license trước.
+- Nếu license không rõ: chỉ dùng để nghiên cứu structure, không copy wording.
+- Không bán lại PLR/video/course nếu không có quyền rõ ràng.
+- Tránh claim kiểu “no work”, “guaranteed result”, “instant income”.
+
+**HUMAN REVIEW REQUIRED:** nếu dùng bất kỳ PLR source nào có license không rõ, cần review thủ công trước khi bán hoặc redistribute.
+
+---
+
+# 14. SaaS Upgrade sau này
+
+Không build SaaS trước khi có buyer. Nhưng sau soft launch, có thể nâng thành:
+
+## AI Email Campaign Builder
+
+| Thành phần | Mô tả |
+|---|---|
+| User input | Niche, product, audience, pain, promise, link, deadline, tone |
+| Processing | Generate campaign map, email drafts, subject lines, CTA, compliance flags |
+| Output | 3-day, 5-day, 7-day campaign export |
+| Saved history | Lưu campaign theo product |
+| Export | Markdown, CSV, DOCX/PDF |
+| Upgrade trigger | More campaigns, client exports, whitelabel |
+| Pricing | $19/mo Basic, $49/mo Pro, $97/mo Agency |
+
+SaaS không nên là “tool trần”. Phải đóng gói kèm training, templates, checklist, examples, campaign club.
+
+---
+
+# 15. Kế hoạch triển khai 14 ngày cho người mới
+
+| Ngày | Việc cần làm | Output |
+|---|---|---|
+| Day 1 | Chốt buyer, promise, product name | Offer one-liner |
+| Day 2 | Research 5-10 sản phẩm email/prompt/PLR | Competitor pattern sheet |
+| Day 3 | Viết Campaign Map 7 ngày | `01_7_Day_Campaign_Map.md` |
+| Day 4 | Viết 30 email templates | `02_30_Short_Email_Templates.md` |
+| Day 5 | Viết prompt tùy chỉnh | `03_AI_Customization_Prompts.md` |
+| Day 6 | Tạo checklist + CTA bank | `04_Pre_Send_Checklist.md`, `08_CTA_Bank.md` |
+| Day 7 | Tạo subject line bank | `05_Subject_Line_Bank.md` |
+| Day 8 | Tạo planner CSV | `06_Campaign_Planner.csv` |
+| Day 9 | Tạo example campaign | `07_Example_Campaign.md` |
+| Day 10 | Viết compliance + README | `09_License_Compliance.md`, `README.md` |
+| Day 11 | Viết sales page | `sales_page.md` |
+| Day 12 | Lên funnel + WarriorPlus listing | `funnel_plan.md`, `listing.md` |
+| Day 13 | Tạo JV pack | swipes, outreach, launch calendar |
+| Day 14 | Export ZIP + test delivery | ZIP ready + soft launch checklist |
+
+---
+
+# 16. Final Decision
+
+## NÊN LÀM — với điều kiện định vị đúng
+
+Không bán là:
+
+> “AI viết email kiếm tiền cho bạn.”
+
+Bán là:
+
+> **“Một hệ thống triển khai chiến dịch email 7 ngày cho người mới, có campaign map, template, prompt, subject line, CTA bank, planner, checklist và ví dụ đã điền.”**
+
+Đây là sản phẩm đủ rõ cho FE $17, có bump/OTO hợp lý, có JV angle, có thể nâng lên membership hoặc SaaS nếu soft launch có dữ liệu tốt.
+
+---
+
+# 17. Next Actions — 3 việc làm ngay
+
+1. **Chạy launch readiness review:** mở ZIP và kiểm tra đủ 10 file chính: Start Here, Campaign Map, Templates, Prompts, Checklist, Subject Bank, Planner, Example, CTA Bank, Compliance.  
+2. **Chuẩn bị soft launch 7 ngày:** FE $17, commission 75%-90%, mời 10-20 JV nhỏ trong ngách AI/email/affiliate.  
+3. **Tạo JV outreach tracker:** cột tên JV, email/Facebook, audience, status, review access sent, reply, promo date, notes.
+
+---
+
+## Tự kiểm chất lượng
+
+- [x] Buyer cụ thể: beginner affiliate marketer/new digital product vendor.  
+- [x] Promise cụ thể, thực tế, không hứa thu nhập.  
+- [x] Có package file/ZIP rõ ràng, không chỉ là prompt thô.  
+- [x] Có workflow, checklist, planner, ví dụ và compliance note.  
+- [x] Có sales page angle, funnel, WarriorPlus listing và JV pack.  
+- [x] Có SaaS upgrade nhưng không overbuild trước validation.  
+- [x] Có 3 next actions vận hành ngay.

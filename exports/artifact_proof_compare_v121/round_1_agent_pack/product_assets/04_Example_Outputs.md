@@ -1,0 +1,3 @@
+Ví dụ niche: “Creator Weekly Content Planner”. Buyer: creator mới đăng nội dung không đều. Printable pages: Cover, Start Here, Weekly Topic Planner, Content Pillar Sheet, Caption Draft Sheet, CTA Bank, Simple Metrics Tracker, Repurpose Planner, Weekly Review, Usage Note. Listing angle: “A clean printable planner to organize weekly content ideas before opening Canva or social media.” Risk note: không hứa tăng follower, viral, hoặc doanh thu. Before/After: trước là 20 ý tưởng rời trong ChatGPT; sau là bộ 10 trang có thứ tự sử dụng, trường điền rõ, checklist xuất bản, và mô tả listing an toàn.
+
+---

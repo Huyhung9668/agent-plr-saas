@@ -1,0 +1,3 @@
+Welcome to Printable Lead Magnet Sprint Kit. The goal is simple: choose one audience, one painful problem, and one practical printable asset that helps them complete a small task. Do not start by generating 50 ideas. Start with one lead magnet type: checklist, worksheet, planner, tracker, audit sheet, or mini workbook. Recommended first build: a 3-page worksheet with a cover, action page, and next-step CTA. Use AI for drafting, but manually review for accuracy, claims, formatting, and rights. Your first output should be useful, narrow, and easy to finish in one sitting. Sample niche: “Email Welcome Checklist for New Coaches.”
+
+---

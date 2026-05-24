@@ -1,0 +1,3 @@
+Use these when the output is weak. Fix prompt 1: “Rewrite this printable so every step is action-based and verifiable. Remove vague advice and add fill-in fields.” Fix prompt 2: “Make this asset more beginner-friendly. Add short instructions before each section and one completed example.” Fix prompt 3: “Reduce hype. Remove any implied income, guaranteed leads, or unrealistic speed claims. Replace with operational outcomes.” Fix prompt 4: “Create three niche variations of this printable for coaches, freelancers, and Etsy sellers.” Fix prompt 5: “Audit this for AI-generic language and suggest unique examples, better titles, and stronger workflow value.”
+
+---

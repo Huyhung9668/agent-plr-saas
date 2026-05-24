@@ -1,0 +1,3 @@
+Use this structure for every printable lead magnet. Page 1: Cover with title, subtitle, audience, and outcome. Example: “New Coach Welcome Email Checklist: Plan your first 5 subscriber emails without staring at a blank page.” Page 2: Action checklist with 10–15 verifiable items. Avoid vague items like “write better emails.” Use concrete items like “add one CTA to each email.” Page 3: Worksheet or tracker where the user fills in answers. Add a small next-step CTA at the end: “Want the full campaign map? Visit example.com/download.” Keep design clean, readable, and printable in black-and-white.
+
+---

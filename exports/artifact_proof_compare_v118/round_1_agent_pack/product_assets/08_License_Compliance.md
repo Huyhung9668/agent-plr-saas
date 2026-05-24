@@ -1,0 +1,3 @@
+HUMAN REVIEW REQUIRED. This kit does not grant rights to third-party PLR, Canva templates, fonts, stock images, AI images, KDP assets, or marketplace materials unless your own license explicitly allows it. If you use PLR/MRR/RR, read the original license before resale, editing, bundling, client delivery, or whitelabel use. Avoid copyrighted characters, celebrity names, brand names, lyrics, famous quotes, trademarked themes, medical/therapy claims, income guarantees, and fake scarcity. For kids worksheets, state educational use only and avoid guaranteed learning outcomes. For KDP/Etsy/WarriorPlus, check current platform rules before listing.
+
+---

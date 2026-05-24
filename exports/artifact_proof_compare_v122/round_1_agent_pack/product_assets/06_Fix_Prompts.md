@@ -1,0 +1,3 @@
+Fix Prompt 1 — Remove Hype: “Hãy viết lại copy sau theo hướng thực tế, bỏ income claim, bỏ fake scarcity, bỏ guaranteed result. Giữ lợi ích vận hành.” Fix Prompt 2 — Make It Printable: “Audit worksheet sau: field nào khó dùng, instruction nào thiếu, phần nào quá dài? Đề xuất bản ngắn hơn và dễ in hơn.” Fix Prompt 3 — License Risk: “Đánh dấu mọi yếu tố có thể dính copyright, trademark, Canva/font/stock risk. Output gồm risk, safer replacement, human review required.” Fix Prompt 4 — Buyer Clarity: “Viết lại product description để buyer mới hiểu họ nhận gì, dùng ra sao, và giới hạn kết quả.”
+
+---

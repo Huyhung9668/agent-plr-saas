@@ -1,0 +1,3 @@
+Prompt 1 — Niche Selector: “Bạn là product strategist. Hãy đề xuất 10 lead magnet printable cho buyer: small business coach. Mỗi ý tưởng gồm buyer pain, promised outcome, format, 5 sections, risk note.” Prompt 2 — Worksheet Builder: “Tạo worksheet 3 trang cho chủ đề: Client Content Planner. Bao gồm hướng dẫn, câu hỏi điền vào, checklist cuối trang và ví dụ đã điền. Không hứa tăng doanh thu.” Prompt 3 — Quality Fixer: “Đánh giá worksheet theo: clarity, usefulness, actionability, compliance, AI-generic risk. Cho điểm 1–10 và viết bản sửa.” Prompt 4 — Opt-in Copy: “Viết opt-in page ngắn, CTA rõ, không hype.” Prompt 5 — Repurpose: “Biến worksheet này thành bonus cho Gumroad/Payhip và checklist cho client onboarding.”
+
+---

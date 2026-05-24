@@ -1,0 +1,47 @@
+{
+  "project_slug": "ai_etsy_printable_bundle_builder",
+  "product_name": "AI Etsy Printable Bundle Builder",
+  "active_project_path": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\exports\\products\\AI Etsy Printable Bundle Builder",
+  "current_step": 8,
+  "completed_steps": [
+    6,
+    8
+  ],
+  "last_user_requested_step": 8,
+  "allowed_next_steps": [
+    8
+  ],
+  "files_created": [
+    "00_READ_ME_FIRST/READ_ME_FIRST.md",
+    "01_CORE_PRODUCT/00_Start_Here.md",
+    "01_CORE_PRODUCT/01_Bundle_Workflow.md",
+    "01_CORE_PRODUCT/Bundle_Offer_Map.md",
+    "01_CORE_PRODUCT/README.md",
+    "01_CORE_PRODUCT/manifest.md",
+    "02_TEMPLATES_AND_PROMPTS/02_Niche_And_Buyer_Picker.csv",
+    "02_TEMPLATES_AND_PROMPTS/03_Printable_Bundle_Planner.md",
+    "02_TEMPLATES_AND_PROMPTS/04_AI_Prompt_Library.md",
+    "02_TEMPLATES_AND_PROMPTS/manifest.md",
+    "03_EXAMPLES_AND_CHECKLISTS/05_Example_Bundle_Concepts.md",
+    "03_EXAMPLES_AND_CHECKLISTS/06_Quality_Control_Checklist.md",
+    "03_EXAMPLES_AND_CHECKLISTS/07_License_And_Compliance_Note.md",
+    "03_EXAMPLES_AND_CHECKLISTS/manifest.md",
+    "04_DELIVERY_AND_SUPPORT/buyer_onboarding_email.md",
+    "04_DELIVERY_AND_SUPPORT/delivery_page.md",
+    "04_DELIVERY_AND_SUPPORT/manifest.md",
+    "04_DELIVERY_AND_SUPPORT/refund_policy.md",
+    "04_DELIVERY_AND_SUPPORT/support_faq.md",
+    "05_PROOF_AND_AUDIT/ai_replace_risk_report.md",
+    "05_PROOF_AND_AUDIT/buyer_test_report.md",
+    "05_PROOF_AND_AUDIT/manifest.md",
+    "05_PROOF_AND_AUDIT/refund_risk_report.md",
+    "buyer_onboarding_email.md",
+    "delivery_page.md",
+    "export_manifest.md",
+    "launch_audit.md",
+    "placeholder_check.md",
+    "refund_policy.md",
+    "support_faq.md"
+  ],
+  "files_missing": []
+}

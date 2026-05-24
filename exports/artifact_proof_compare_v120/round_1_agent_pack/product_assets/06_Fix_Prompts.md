@@ -1,0 +1,3 @@
+Fix Prompt — Generic Output: “Output hiện tại quá chung. Hãy viết lại cho buyer [buyer], pain [pain], platform [platform], product type [type]. Thêm 5 chi tiết cụ thể, bỏ buzzword, giữ claim an toàn.” Fix Prompt — Compliance: “Audit nội dung sau để tìm trademark, celebrity, medical/therapy/education guarantee, income claim, fake scarcity. Output: issue, risk, safer rewrite.” Fix Prompt — Listing Weak: “Listing này chưa đủ khác biệt. Hãy thêm mechanism, what’s included, who it is for, proof substitute, FAQ, và câu trả lời ‘Can I just ask AI?’ không phóng đại.” Dùng fix prompt sau mỗi bản nháp, không dùng trước.
+
+---

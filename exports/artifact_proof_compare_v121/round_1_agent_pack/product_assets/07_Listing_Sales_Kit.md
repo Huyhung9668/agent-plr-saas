@@ -1,0 +1,3 @@
+Title mẫu: “Creator Weekly Content Planner — 10-Page Printable Kit for Organizing Content Ideas”. Short description: “A clean printable workflow to plan weekly content topics, captions, CTAs, and simple review notes.” Bullets: includes 10 printable pages, Start Here guide, content pillar sheet, caption draft page, CTA bank, weekly review, personal-use customer note. Safe CTA: “Download, print, and plan your next week of content.” FAQ: “Will this guarantee growth? No. It helps organize your process.” “Can I resell it? Only if your purchased license explicitly allows resale.” “Can I edit in Canva? Editable file included only when provided and licensed.”
+
+---

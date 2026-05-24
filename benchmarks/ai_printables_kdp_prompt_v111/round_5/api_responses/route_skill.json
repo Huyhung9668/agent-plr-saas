@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "agent": "AI Printables KDP Prompt Agent",
+  "agentKey": "ai_printables_kdp_prompt",
+  "matchedTags": [
+    "#ai-printables-kdp-prompt",
+    "#market-pattern",
+    "#competitor-matrix",
+    "#offer-gap",
+    "#product-blueprint",
+    "#deep-file-writer",
+    "#sales-page",
+    "#warriorplus-listing",
+    "#jv-pack",
+    "#buyer-test",
+    "#ai-replace-risk",
+    "#refund-risk",
+    "#license-check",
+    "#public-launch-audit"
+  ],
+  "skillRoute": "#market-pattern",
+  "skillFile": "skills/01_market_pattern_ai_printables.md",
+  "brainFiles": [
+    "brain/AI_PRINTABLES_KDP_BRAIN.json",
+    "brain/AI_PRINTABLES_KDP_BRAIN.md",
+    "brain/MARKET_PATTERNS.md",
+    "brain/COMPETITOR_PATTERNS.md",
+    "brain/OFFER_ANGLES.md"
+  ],
+  "routeReason": "market-pattern tag matched"
+}

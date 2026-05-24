@@ -1,0 +1,18 @@
+# FILE MANIFEST
+
+- `delivery_page.md` (569 bytes)
+- `jv_pack.md` (769 bytes)
+- `product_assets/00_Start_Here.md` (1138 bytes)
+- `product_assets/01_Workflow_Map.md` (1119 bytes)
+- `product_assets/02_Prompt_Library.md` (1323 bytes)
+- `product_assets/03_Template_Guide.md` (915 bytes)
+- `product_assets/04_Example_Outputs.md` (935 bytes)
+- `product_assets/05_Quality_Checklist.md` (938 bytes)
+- `product_assets/06_Fix_Prompts.md` (886 bytes)
+- `product_assets/07_Listing_Sales_Kit.md` (1051 bytes)
+- `product_assets/08_License_Compliance.md` (1037 bytes)
+- `README.md` (587 bytes)
+- `refund_policy.md` (490 bytes)
+- `sales_page.md` (898 bytes)
+- `support_faq.md` (661 bytes)
+- `warriorplus_listing.md` (847 bytes)

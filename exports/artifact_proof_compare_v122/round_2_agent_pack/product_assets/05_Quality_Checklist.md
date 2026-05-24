@@ -1,0 +1,3 @@
+Before publishing, check these items. The buyer is clearly named. The problem is narrow. The printable helps complete one task, not an entire business. Every checklist item is verifiable. The worksheet has fill-in fields, not just advice. The CTA is visible but not pushy. There are no guaranteed income, ranking, conversion, health, legal, or therapy claims. Any AI-generated content has been reviewed by a human. Fonts, icons, images, and Canva elements are allowed for the intended use. No trademarked names, celebrity references, copyrighted quotes, or brand imitation. The final PDF is readable on screen and printable in grayscale.
+
+---

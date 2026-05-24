@@ -1,0 +1,38 @@
+﻿[
+    {
+        "original_path":  "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\AI Printables KDP Promt Skill.zip",
+        "backup_path":  "G:\\file_backup\\Agent_PLR_Saas_large_unused_20260524\\AI Printables KDP Promt Skill.zip",
+        "name":  "AI Printables KDP Promt Skill.zip",
+        "bytes":  5619233110,
+        "mb":  5358.92,
+        "gb":  5.233,
+        "last_write_time":  "2026-05-24T06:39:50",
+        "reason":  "Duplicate original archive; extracted folder remains in project; keep external backup only.",
+        "relevance":  "Duplicate container, not needed for live agent context after extraction/source map.",
+        "status":  "moved_verified"
+    },
+    {
+        "original_path":  "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\AI Printables KDP Promt Skill\\_RECOVERED_3500_20260522\\First_Class_Travel_Secrets_SLENDERMAN_BBHF.zip",
+        "backup_path":  "G:\\file_backup\\Agent_PLR_Saas_large_unused_20260524\\First_Class_Travel_Secrets_SLENDERMAN_BBHF.zip",
+        "name":  "First_Class_Travel_Secrets_SLENDERMAN_BBHF.zip",
+        "bytes":  4744575030,
+        "mb":  4524.78,
+        "gb":  4.419,
+        "last_write_time":  "2026-05-23T04:26:48",
+        "reason":  "Huge recovered travel product ZIP; unrelated to AI Printables/KDP Prompt Agent core.",
+        "relevance":  "Low relevance to AI Printables/KDP/PLR; metadata retained only.",
+        "status":  "moved_verified"
+    },
+    {
+        "original_path":  "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\AI Printables KDP Promt Skill\\_RECOVERED_3500_20260522\\ImagenesParaCuadros_13K_Bundle_SLENDERMAN_BBHF.zip",
+        "backup_path":  "G:\\file_backup\\Agent_PLR_Saas_large_unused_20260524\\ImagenesParaCuadros_13K_Bundle_SLENDERMAN_BBHF.zip",
+        "name":  "ImagenesParaCuadros_13K_Bundle_SLENDERMAN_BBHF.zip",
+        "bytes":  26876803,
+        "mb":  25.63,
+        "gb":  0.025,
+        "last_write_time":  "2026-05-22T17:05:18",
+        "reason":  "Image bundle recovered ZIP; weak relation to KDP prompt skill; archive until explicitly needed.",
+        "relevance":  "Possible image/printable inspiration only; metadata retained.",
+        "status":  "moved_verified"
+    }
+]

@@ -1,0 +1,106 @@
+{
+  "label": "agent",
+  "created_at": "2026-05-24 09:45:28",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 855,
+      "words": 139,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 665,
+      "words": 86,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 1395,
+      "words": 191,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 546,
+      "words": 74,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 674,
+      "words": 99,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 575,
+      "words": 72,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 655,
+      "words": 92,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 675,
+      "words": 92,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 721,
+      "words": 97,
+      "extracted": true
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 1700,
+      "words": 254,
+      "extracted": true
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 845,
+      "words": 121,
+      "extracted": true
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 1151,
+      "words": 181,
+      "extracted": true
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 452,
+      "words": 56,
+      "extracted": true
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 610,
+      "words": 101,
+      "extracted": true
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 3734,
+      "words": 489,
+      "extracted": true
+    },
+    {
+      "file": "README.md",
+      "chars": 2635,
+      "words": 379,
+      "extracted": false
+    }
+  ],
+  "placeholder_hits": [
+    "[support email]"
+  ],
+  "total_words": 2523
+}

@@ -1,0 +1,3 @@
+Dùng checklist này trước khi bán hoặc tặng printable. Buyer có được nêu rõ trong tiêu đề hoặc phần mở đầu không? Printable có giúp hoàn thành một tác vụ cụ thể trong 10–30 phút không? Có ví dụ đã điền chưa? Có phần hướng dẫn dùng trước khi điền không? Có checklist hoàn tất ở cuối không? Có claim rủi ro như “guaranteed leads”, “instant sales”, “rank on KDP” không? Có dùng thương hiệu, nhân vật, quote, logo, hình ảnh, font hoặc Canva asset chưa rõ quyền không? File có tên rõ, ví dụ `Client_Content_Planner.pdf` không? Có license/compliance note kèm theo không? Nếu thiếu ví dụ hoặc hướng dẫn, chưa nên bán.
+
+---

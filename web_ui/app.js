@@ -18,6 +18,8 @@ const attachmentBar = document.getElementById("attachmentBar");
 const statusBtn = document.getElementById("statusBtn");
 const exportBtn = document.getElementById("exportBtn");
 const promptLibraryBtn = document.getElementById("promptLibraryBtn");
+const moreMenuBtn = document.getElementById("moreMenuBtn");
+const moreMenu = document.getElementById("moreMenu");
 const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
 const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
 const sidebarBackdrop = document.getElementById("sidebarBackdrop");
@@ -48,6 +50,75 @@ const quickActions = document.getElementById("quickActions");
 const modeSelector = document.getElementById("modeSelector");
 const toast = document.getElementById("toast");
 
+const aiKdpTagPanel = document.getElementById("aiKdpTagPanel");
+const aiKdpTagChips = document.getElementById("aiKdpTagChips");
+const aiKdpSelectedTags = document.getElementById("aiKdpSelectedTags");
+const clearAiKdpTagsBtn = document.getElementById("clearAiKdpTagsBtn");
+const toggleAiKdpTagsBtn = document.getElementById("toggleAiKdpTagsBtn");
+let advancedPanel = null;
+let advancedToggleBtn = null;
+let proofModeToggle = null;
+let promptDrawerBackdrop = null;
+let quickPromptBar = null;
+let cleanPromptLibrary = null;
+let activePromptTab = "Research";
+const aiKdpPromptTags = ["#ai-printables-kdp-prompt", "#ai-printables", "#kdp", "#plr", "#warriorplus", "#prompt-pack", "#canva-printable", "#coloring-book", "#journal", "#kids-worksheet", "#etsy-printable", "#market-pattern", "#competitor-matrix", "#offer-gap", "#product-blueprint", "#deep-file-writer", "#prompt-output-test", "#buyer-test", "#ai-replace-risk", "#refund-risk", "#license-check", "#sales-page", "#warriorplus-listing", "#jv-pack", "#delivery-support", "#export-zip", "#public-launch-audit"];
+const aiKdpTagGroups = {
+  Agent: ["#ai-printables-kdp-prompt"],
+  Niche: ["#ai-printables", "#kdp", "#plr", "#warriorplus"],
+  "Product Type": ["#prompt-pack", "#canva-printable", "#coloring-book", "#journal", "#kids-worksheet", "#etsy-printable"],
+  Research: ["#market-pattern", "#competitor-matrix", "#offer-gap"],
+  Build: ["#product-blueprint", "#deep-file-writer", "#sales-page", "#warriorplus-listing", "#jv-pack"],
+  Test: ["#buyer-test", "#ai-replace-risk", "#refund-risk", "#license-check", "#public-launch-audit"],
+  Export: ["#delivery-support", "#export-zip"],
+};
+const cleanPromptGroups = {
+  Research: [
+    { id: "idea-matrix", title: "10 Ý Tưởng", desc: "Gợi ý 10 ý tưởng AI Printables/KDP dễ hiểu, có điểm và chọn top 3.", tags: ["#ai-printables-kdp-prompt", "#market-pattern", "#offer-gap"], prompt: "#ai-printables-kdp-prompt #market-pattern #offer-gap\nHãy tạo 10 ý tưởng sản phẩm AI Printables/KDP/PLR để bán trên WarriorPlus. Trả lời dạng bảng: Tên ý tưởng, buyer, pain, deliverables, vì sao không chỉ là prompt thô, rủi ro AI replace, độ dễ làm, điểm /10. Cuối cùng chọn Top 3 và 1 ý tưởng nên làm đầu tiên." },
+    { id: "market-pattern", title: "Market Pattern", desc: "Rút market pattern cho AI Printables/KDP/PLR.", tags: ["#ai-printables-kdp-prompt", "#market-pattern"], prompt: "#ai-printables-kdp-prompt #market-pattern\nRút market pattern cho ngách AI Printables/KDP/PLR." },
+    { id: "competitor-matrix", title: "Competitor Matrix", desc: "So sánh vendor, sản phẩm, giá, sales angle.", tags: ["#ai-printables-kdp-prompt", "#competitor-matrix"], prompt: "#ai-printables-kdp-prompt #competitor-matrix\nSo sánh vendor/sản phẩm/ngách/price/sales/angle/deliverables." },
+    { id: "offer-gap", title: "Offer Gap", desc: "Tìm khoảng trống offer và cách khác prompt pack thô.", tags: ["#ai-printables-kdp-prompt", "#offer-gap"], prompt: "#ai-printables-kdp-prompt #offer-gap\nTìm offer gap cho sản phẩm AI Printables/KDP/PLR này." },
+  ],
+  Build: [
+    { id: "vendor-ready", title: "Vendor Ready", desc: "Tạo full product pack vendor-ready, file dày, manifest, proof và ZIP.", tags: ["#ai-printables-kdp-prompt", "#product-blueprint", "#deep-file-writer", "#export-zip"], prompt: "#ai-printables-kdp-prompt #product-blueprint #deep-file-writer #sales-page #warriorplus-listing #jv-pack #delivery-support #buyer-test #ai-replace-risk #refund-risk #license-check #export-zip\n\nProduct: {{ACTIVE_PRODUCT_NAME}}\n\nHãy tạo VENDOR READY product pack, không phải skeleton. Xuất chung vào thư mục tên sản phẩm, mỗi file chính phải có nội dung sâu/copy-ready, tạo manifest, placeholder scan, proof log và ZIP." },
+    { id: "product-blueprint", title: "Product Blueprint", desc: "Tạo blueprint sản phẩm bán trên WarriorPlus.", tags: ["#ai-printables-kdp-prompt", "#product-blueprint"], prompt: "#ai-printables-kdp-prompt #product-blueprint\nTạo blueprint sản phẩm bán trên WarriorPlus." },
+    { id: "deep-file-writer", title: "Deep File Writer", desc: "Tạo product assets thật, không chỉ mô tả file.", tags: ["#ai-printables-kdp-prompt", "#deep-file-writer"], prompt: "#ai-printables-kdp-prompt #deep-file-writer\nTạo product assets thật, không chỉ mô tả file." },
+    { id: "sales-page", title: "Sales Page", desc: "Viết sales page compliance-safe cho sản phẩm.", tags: ["#ai-printables-kdp-prompt", "#sales-page"], prompt: "#ai-printables-kdp-prompt #sales-page\nViết sales page cho sản phẩm này." },
+    { id: "warriorplus-listing", title: "WarriorPlus Listing", desc: "Tạo title, description, FE price, commission, delivery.", tags: ["#ai-printables-kdp-prompt", "#warriorplus-listing"], prompt: "#ai-printables-kdp-prompt #warriorplus-listing\nTạo WarriorPlus listing cho sản phẩm này." },
+  ],
+  Test: [
+    { id: "buyer-test", title: "Buyer Test", desc: "Test sản phẩm như buyer mới mua giá $17-$27.", tags: ["#ai-printables-kdp-prompt", "#buyer-test"], prompt: "#ai-printables-kdp-prompt #buyer-test\nTest sản phẩm như buyer mới mua giá $17-$27." },
+    { id: "ai-replace-risk", title: "AI Replace Risk", desc: "Chấm rủi ro buyer nghĩ ChatGPT cũng làm được.", tags: ["#ai-printables-kdp-prompt", "#ai-replace-risk"], prompt: "#ai-printables-kdp-prompt #ai-replace-risk\nKiểm tra sản phẩm này có bị buyer nghĩ ChatGPT cũng làm được không." },
+    { id: "refund-risk", title: "Refund Risk", desc: "Tìm lý do refund và kế hoạch giảm rủi ro.", tags: ["#ai-printables-kdp-prompt", "#refund-risk"], prompt: "#ai-printables-kdp-prompt #refund-risk\nChấm refund risk và đề xuất fix plan cho sản phẩm này." },
+    { id: "license-check", title: "License Check", desc: "Kiểm tra copyright, trademark, Canva, KDP, PLR claims.", tags: ["#ai-printables-kdp-prompt", "#license-check"], prompt: "#ai-printables-kdp-prompt #license-check\nKiểm tra license/compliance cho sản phẩm này." },
+  ],
+  Launch: [
+    { id: "jv-pack", title: "JV Pack", desc: "Tạo JV invite, affiliate swipes và promo rules.", tags: ["#ai-printables-kdp-prompt", "#jv-pack"], prompt: "#ai-printables-kdp-prompt #jv-pack\nTạo JV pack và affiliate swipes cho sản phẩm này." },
+    { id: "delivery-support", title: "Delivery Support", desc: "Tạo delivery page, onboarding, FAQ, refund policy.", tags: ["#ai-printables-kdp-prompt", "#delivery-support"], prompt: "#ai-printables-kdp-prompt #delivery-support\nTạo delivery page, buyer onboarding, support FAQ và refund policy." },
+    { id: "export-zip", title: "Export ZIP", desc: "Đóng gói ZIP, tạo manifest và placeholder check.", tags: ["#ai-printables-kdp-prompt", "#export-zip"], prompt: "#ai-printables-kdp-prompt #export-zip\nĐóng gói sản phẩm thành ZIP, tạo manifest và placeholder check." },
+    { id: "public-launch-audit", title: "Public Launch Audit", desc: "Kiểm tra gate trước khi public launch.", tags: ["#ai-printables-kdp-prompt", "#public-launch-audit"], prompt: "#ai-printables-kdp-prompt #public-launch-audit\nKiểm tra sản phẩm đã public launch được chưa." },
+  ],
+};
+const defaultCleanPromptPins = ["idea-matrix", "vendor-ready", "product-blueprint", "deep-file-writer", "buyer-test", "export-zip"];
+const aiKdpSkillMap = {
+  "#market-pattern": "skills/01_market_pattern_ai_printables.md",
+  "#competitor-matrix": "skills/02_competitor_matrix_ai_printables.md",
+  "#offer-gap": "skills/03_offer_gap_ai_printables.md",
+  "#product-blueprint": "skills/04_product_blueprint_ai_printables.md",
+  "#deep-file-writer": "skills/05_deep_file_writer_ai_printables.md",
+  "#prompt-output-test": "skills/06_prompt_output_test_ai_printables.md",
+  "#buyer-test": "skills/07_buyer_test_ai_printables.md",
+  "#ai-replace-risk": "skills/08_ai_replace_risk_ai_printables.md",
+  "#refund-risk": "skills/09_refund_risk_ai_printables.md",
+  "#license-check": "skills/10_license_compliance_ai_printables.md",
+  "#sales-page": "skills/11_sales_page_ai_printables.md",
+  "#warriorplus-listing": "skills/12_warriorplus_listing_ai_printables.md",
+  "#jv-pack": "skills/13_jv_pack_ai_printables.md",
+  "#delivery-support": "skills/14_delivery_support_ai_printables.md",
+  "#export-zip": "skills/15_export_zip_ai_printables.md",
+  "#public-launch-audit": "skills/16_public_launch_audit_ai_printables.md",
+};
+
 const publicServerBaseUrl = "http://103.82.26.216:8088";
 const workspaceId = detectWorkspaceId();
 const workspaceSuffix = workspaceId === "default" ? "" : `_${workspaceId}`;
@@ -61,11 +132,13 @@ const sidebarStorageKey = "master_agent_sidebar_collapsed_v1";
 const promptLibraryStorageKey = "master_agent_prompt_library_open_v1";
 const promptPinnedStorageKey = "master_agent_prompt_pins_v110";
 const promptRecentStorageKey = "master_agent_prompt_recent_v110";
+const readingModeStorageKey = "master_agent_reading_mode_v113";
 const translationHideDelayMs = 180;
 const streamStallTimeoutMs = 120000;
 
 let state = loadState();
 let activeThreadId = state.activeThreadId;
+let aiKdpTagsExpanded = false;
 let pendingAttachments = [];
 let openThreadMenuId = null;
 let serverSyncReady = false;
@@ -86,7 +159,7 @@ let pinnedPromptGroup = null;
 let recentPromptGroup = null;
 let promptPreviewTooltip = null;
 let promptPreviewTimer = null;
-const defaultPromptPlaceholder = prompt?.getAttribute("placeholder") || "Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây...";
+const defaultPromptPlaceholder = "Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây...";
 let selectionTranslateTimer = null;
 let selectionTooltip = null;
 let hoverTooltipInstalled = false;
@@ -100,6 +173,7 @@ let streamStallTimer = null;
 let lastRetryDraft = null;
 let userScrollLocked = false;
 let programmaticScrollUntil = 0;
+let readingModeBtn = null;
 const streamingTextStates = new WeakMap();
 
 applyTheme(loadTheme());
@@ -152,11 +226,14 @@ async function init() {
   renderActiveThread();
   installQuickActionTranslations();
   installPromptLibraryUpgrade();
+  installCleanUiUpgrade();
+  repairVietnameseUiText();
+  scheduleVietnameseUiRepair();
+  installReadingModeToggle();
   installSelectionTranslator();
   installBlackCopy();
   loadStatus();
   loadProjectState();
-  focusPrompt();
 }
 
 function loadTheme() {
@@ -202,15 +279,62 @@ function applyShellPreferences() {
   }
   const mobileDefaultCollapsed = window.matchMedia?.("(max-width: 760px)")?.matches;
   const sidebarCollapsed = storedSidebarState === null ? mobileDefaultCollapsed : storedSidebarState === "1";
-  const libraryOpen = loadSelectValue(promptLibraryStorageKey, "0") === "1";
+  const libraryOpen = false;
   app.classList.toggle("sidebar-collapsed", sidebarCollapsed);
   updateSidebarA11y();
   quickActions?.classList.toggle("collapsed", !libraryOpen);
-  if (quickActionsToggle) quickActionsToggle.textContent = libraryOpen ? "Ẩn thư viện prompt" : "Thư viện prompt";
+  quickActions?.classList.toggle("prompt-drawer", true);
+  if (quickActionsToggle) quickActionsToggle.textContent = "Thư viện prompt";
   if (modelSelect) modelSelect.value = selectedModelPersona;
   if (toolModeSelect) toolModeSelect.value = selectedToolMode;
 }
 
+
+function loadReadingMode() {
+  try {
+    return localStorage.getItem(readingModeStorageKey) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function saveReadingMode(enabled) {
+  try {
+    localStorage.setItem(readingModeStorageKey, enabled ? "1" : "0");
+  } catch {
+    // Ignore localStorage errors.
+  }
+}
+
+function applyReadingMode(enabled, { persist = false } = {}) {
+  document.body.classList.toggle("reading-mode", Boolean(enabled));
+  app?.classList.toggle("reading-mode", Boolean(enabled));
+  if (readingModeBtn) {
+    readingModeBtn.classList.toggle("active", Boolean(enabled));
+    readingModeBtn.textContent = enabled ? "Viết" : "Đọc";
+    readingModeBtn.title = enabled ? "Hiện lại thanh nhập để viết" : "Ẩn thanh trên/dưới để đọc nội dung";
+    readingModeBtn.setAttribute("aria-label", readingModeBtn.title);
+  }
+  if (persist) saveReadingMode(Boolean(enabled));
+  requestAnimationFrame(updateScrollBottomButton);
+}
+
+function toggleReadingMode() {
+  const enabled = !document.body.classList.contains("reading-mode");
+  applyReadingMode(enabled, { persist: true });
+  showToast(enabled ? "Đã bật chế độ đọc: ẩn thanh trên/dưới." : "Đã hiện lại thanh nhập.");
+}
+
+function installReadingModeToggle() {
+  if (readingModeBtn) return;
+  readingModeBtn = document.createElement("button");
+  readingModeBtn.id = "readingModeBtn";
+  readingModeBtn.className = "reading-mode-btn";
+  readingModeBtn.type = "button";
+  readingModeBtn.addEventListener("click", toggleReadingMode);
+  document.body.appendChild(readingModeBtn);
+  applyReadingMode(loadReadingMode());
+}
 function toggleSidebar() {
   const collapsed = !app.classList.contains("sidebar-collapsed");
   setSidebarCollapsed(collapsed);
@@ -232,8 +356,32 @@ function updateSidebarA11y() {
 function togglePromptLibrary(forceOpen = null) {
   const willOpen = forceOpen === null ? quickActions.classList.contains("collapsed") : Boolean(forceOpen);
   quickActions.classList.toggle("collapsed", !willOpen);
-  if (quickActionsToggle) quickActionsToggle.textContent = willOpen ? "Ẩn thư viện prompt" : "Thư viện prompt";
-  saveSelectValue(promptLibraryStorageKey, willOpen ? "1" : "0");
+  quickActions.classList.toggle("prompt-drawer", true);
+  document.body.classList.toggle("prompt-drawer-open", willOpen);
+  promptDrawerBackdrop?.toggleAttribute("hidden", !willOpen);
+  if (quickActionsToggle) quickActionsToggle.textContent = "Thư viện prompt";
+  saveSelectValue(promptLibraryStorageKey, "0");
+}
+
+function toggleMoreMenu(forceOpen = null) {
+  if (!moreMenu) return;
+  const willOpen = forceOpen === null ? moreMenu.hidden : Boolean(forceOpen);
+  moreMenu.hidden = !willOpen;
+  moreMenuBtn?.classList.toggle("active", willOpen);
+}
+
+function toggleAdvancedPanel(forceOpen = null) {
+  if (!advancedPanel) return;
+  const willOpen = forceOpen === null ? advancedPanel.hidden : Boolean(forceOpen);
+  advancedPanel.hidden = !willOpen;
+  advancedToggleBtn?.classList.toggle("active", willOpen);
+  if (advancedToggleBtn) advancedToggleBtn.textContent = willOpen ? "Advanced ▴" : "Advanced ▾";
+}
+
+function toggleProofMode() {
+  const enabled = Boolean(proofModeToggle?.checked);
+  document.body.classList.toggle("proof-mode-on", enabled);
+  showToast(enabled ? "Proof Mode ON" : "Proof Mode OFF");
 }
 
 function selectedPersonaInstruction() {
@@ -261,14 +409,14 @@ function requestQuestionWithControls(text) {
 function loadResponseMode() {
   try {
     const saved = localStorage.getItem(modeStorageKey);
-    return ["auto", "fast", "balanced", "deep"].includes(saved) ? saved : "auto";
+    return ["fast", "balanced", "deep"].includes(saved) ? saved : "fast";
   } catch {
-    return "auto";
+    return "fast";
   }
 }
 
 function applyResponseMode(mode) {
-  responseMode = ["auto", "fast", "balanced", "deep"].includes(mode) ? mode : "auto";
+  responseMode = ["fast", "balanced", "deep"].includes(mode) ? mode : "fast";
   try {
     localStorage.setItem(modeStorageKey, responseMode);
   } catch {
@@ -278,12 +426,15 @@ function applyResponseMode(mode) {
   for (const button of modeSelector.querySelectorAll("button[data-mode]")) {
     button.classList.toggle("active", button.dataset.mode === responseMode);
   }
+  if (responseMode === "deep") {
+    showToast("DEEP mode chậm hơn vì dùng nhiều RAG, audit hoặc ghi file.");
+  }
 }
 
 function selectedResponseMode() {
   const activeButton = modeSelector?.querySelector("button.active[data-mode]");
   const selected = activeButton?.dataset?.mode || responseMode || "fast";
-  return ["auto", "fast", "balanced", "deep"].includes(selected) ? selected : "auto";
+  return ["fast", "balanced", "deep"].includes(selected) ? selected : "fast";
 }
 
 function effectiveModeLabel(text, attachments) {
@@ -352,6 +503,7 @@ async function fetchServerState() {
 }
 
 async function refreshFromServer() {
+  if (document.visibilityState === "visible") return;
   if (!serverSyncReady || isSavingState || activeController || isStreamingAnswer) return;
   if (Date.now() - lastLocalWriteAt < 2500) return;
   const previousActiveThreadId = activeThreadId;
@@ -442,7 +594,7 @@ function removeInterruptedReplies() {
   let changed = false;
   const stoppedTexts = new Set([
     "Đã dừng lượt trả lời này.",
-    "ÄÃ£ dá»«ng lÆ°á»£t tráº£ lá»i nÃ y.",
+    "Đã dừng lượt trả lời này.",
   ]);
   for (const thread of state.threads) {
     const before = thread.messages.length;
@@ -722,6 +874,7 @@ function formatVietnamDateTime(value) {
 function renderActiveThread(options = {}) {
   const preserveScrollTop = Number.isFinite(options.preserveScrollTop) ? options.preserveScrollTop : null;
   const stickToBottom = options.stickToBottom === true;
+  const preserveCurrentScroll = options.preserveCurrentScroll !== false;
   const thread = getActiveThread();
   chat.innerHTML = "";
   if (!thread || !thread.messages.length) {
@@ -740,8 +893,11 @@ function renderActiveThread(options = {}) {
       chat.scrollTop = preserveScrollTop;
       updateScrollBottomButton();
     });
-  } else {
-    requestAnimationFrame(scrollChatToBottom);
+  } else if (preserveCurrentScroll) {
+    requestAnimationFrame(() => {
+      setChatScrollTop(Math.min(chat.scrollTop, Math.max(0, chat.scrollHeight - chat.clientHeight)));
+      updateScrollBottomButton();
+    });
   }
   updateSessionMetrics();
   requestAnimationFrame(updateScrollBottomButton);
@@ -806,8 +962,8 @@ async function loadStatus() {
     }, { docs: 0, chunks: 0 });
     const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
     const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
-  const appVersion = data.appVersion || "1.09";
-    for (const badge of appVersionBadges) badge.textContent = `v${appVersion}`;
+  const appVersion = data.appVersion || "1.11";
+    for (const badge of appVersionBadges) badge.textContent = String(appVersion).startsWith("v") ? appVersion : `v${appVersion}`;
     const caseDocs = Number(data.caseStudyBrain?.documents || 0);
     const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
     const caseLabel = caseDocs ? ` · Case ${formatNumber(caseDocs)} docs/${formatNumber(caseChunks)} chunks` : " · Case Brain chưa index";
@@ -884,6 +1040,23 @@ function renderStatusPanel() {
         <span>${item.text_mb || 0} MB text</span>
       </div>
       <div class="subagent-row">${categories.map((category) => `<span>${escapeHtml(category.category)}: ${formatNumber(category.count)}</span>`).join("") || "<span>Chưa index dữ liệu cũ</span>"}</div>
+    `;
+    grid.appendChild(card);
+  }
+
+  if (brainStatus.aiPrintablesKdpPromptAgent) {
+    const item = brainStatus.aiPrintablesKdpPromptAgent;
+    const card = document.createElement("div");
+    card.className = "status-card ai-kdp-agent-status-card";
+    card.innerHTML = `
+      <div class="status-card-title">AI Printables KDP Prompt Agent</div>
+      <div class="status-card-metrics">
+        <span>Brain: ${item.brainFound ? "FOUND" : "MISSING"}</span>
+        <span>Skills: ${escapeHtml(String(item.skills || "0/16"))}</span>
+        <span>Tags: ${item.tagsReady ? "READY" : "MISSING"}</span>
+        <span>Router: ${item.routerReady ? "READY" : "MISSING"}</span>
+      </div>
+      <div class="subagent-row"><span>${escapeHtml(item.agentFolder || "agents/AI_Printables_KDP_Prompt_Agent")}</span></div>
     `;
     grid.appendChild(card);
   }
@@ -1037,7 +1210,7 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
     const fileBtn = document.createElement("button");
     fileBtn.className = "file-btn";
     fileBtn.type = "button";
-    fileBtn.title = "Tạo file từ trả lời này";
+    fileBtn.title = "Tạo và tải file từ trả lời này";
     fileBtn.textContent = "⇩";
     fileBtn.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -1067,6 +1240,8 @@ function appendMessageToDom(role, content, messageIndex = null, shouldScroll = t
   el.appendChild(body);
   const fileChips = renderMessageFiles(savedMessage, messageIndex, displayContent);
   if (fileChips) el.appendChild(fileChips);
+  const routeDebug = renderRouteDebugPanel(savedMessage);
+  if (routeDebug) el.appendChild(routeDebug);
   el.appendChild(header);
   chat.appendChild(el);
   if (shouldScroll && shouldStickToBottom(scrollIntent)) {
@@ -1332,7 +1507,15 @@ async function createFileFromContent(content, format, titleOverride = "", messag
     const data = await response.json();
     if (!data.ok) throw new Error(data.error || "Không tạo được file.");
     attachGeneratedFileToMessage(messageIndex, data);
-    showToast(`Đã tạo ${data.fileName}. Bấm icon ↓ để tải.`);
+    if (data.dataBase64) {
+      downloadBase64File(data.dataBase64, data.fileName, data.mime);
+      showToast(`Đã tạo và tải ${data.fileName}.`);
+    } else if (data.url) {
+      triggerUrlDownload(apiUrl(data.url), data.fileName);
+      showToast(`Đã tạo ${data.fileName}. Nếu chưa tải, bấm nút ↓ trên file.`);
+    } else {
+      showToast(`Đã tạo ${data.fileName}.`);
+    }
   } catch (error) {
     showToast(friendlyFetchError(error));
   }
@@ -1356,6 +1539,15 @@ function attachGeneratedFileToMessage(messageIndex, file) {
   renderActiveThread({ stickToBottom: true });
 }
 
+function triggerUrlDownload(url, fileName = "agent-output") {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName || "agent-output";
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
 function downloadBase64File(dataBase64, fileName, mime) {
   const binary = atob(dataBase64);
   const bytes = new Uint8Array(binary.length);
@@ -1467,6 +1659,7 @@ async function fetchStreamingAnswer(payload, onDelta) {
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
+  let finalPayload = null;
   while (true) {
     const { value, done } = await reader.read();
     buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
@@ -1475,15 +1668,18 @@ async function fetchStreamingAnswer(payload, onDelta) {
     for (const block of blocks) {
       const event = parseSseBlock(block);
       if (!event) continue;
+      if (event.type === "status" && event.data?.text) { setReplyingState(true, event.data.text); }
       if (event.type === "delta" && event.data?.text) onDelta(event.data.text);
       if (event.type === "meta" && event.data?.mode) {
         responseMode = event.data.mode;
         updateSessionMetrics();
       }
+      if (event.type === "done") finalPayload = event.data || null;
       if (event.type === "error") throw new Error(event.data?.error || "Stream lỗi.");
     }
     if (done) break;
   }
+  return finalPayload;
 }
 
 function requestCancel() {
@@ -1567,7 +1763,7 @@ function retryLastRequest() {
   prompt.value = lastRetryDraft.text || "";
   pendingAttachments = (lastRetryDraft.attachments || []).map((item) => ({ ...item }));
   activeModuleId = lastRetryDraft.module || "";
-  applyResponseMode(lastRetryDraft.mode || "auto");
+  applyResponseMode(lastRetryDraft.mode || "fast");
   clearRetryAvailable();
   saveState();
   renderThreads();
@@ -1726,7 +1922,7 @@ async function sendMessage(options = {}) {
     persistStreamingDraft(true);
   };
   try {
-    await fetchStreamingAnswer(
+    const finalPayload = await fetchStreamingAnswer(
       {
         question: requestQuestionWithControls(text || "Hãy phân tích file người dùng vừa gửi."),
         requestId: activeRequestId,
@@ -1734,6 +1930,10 @@ async function sendMessage(options = {}) {
         attachments: attachmentsForRequest,
         mode: requestMode,
         module: requestModule,
+        tags: collectAiKdpTags(text),
+        agentKey: resolveAiKdpRoute(text).agentKey,
+        skillRoute: resolveAiKdpRoute(text).skillRoute,
+        skillFile: resolveAiKdpRoute(text).skillFile,
       },
       (delta) => {
         resetStreamStallWatchdog();
@@ -1754,6 +1954,8 @@ async function sendMessage(options = {}) {
     } else {
       const clean = stripSourceFooter(streamedAnswer);
       thread.messages[assistantMessageIndex].content = clean;
+      const actionFileAttached = attachActionFileToMessage(assistantMessageIndex, finalPayload?.action);
+      const routeDebugAttached = attachRouteDebugToMessage(assistantMessageIndex, finalPayload?.action);
       if (assistantRendered?.body) {
         const scrollIntent = captureChatScroll();
         renderMessageBody(assistantRendered.body, clean, assistantMessageIndex);
@@ -1765,6 +1967,7 @@ async function sendMessage(options = {}) {
         }
       }
       persistStreamingDraft(true);
+      if (actionFileAttached || routeDebugAttached) renderActiveThread({ stickToBottom: false });
       setLastRetryDraft(null);
     }
   } catch (error) {
@@ -1803,8 +2006,66 @@ async function sendMessage(options = {}) {
     activeModuleId = "";
     loadStatus();
     loadProjectState();
-    focusPrompt();
+    // Do not auto-focus the composer after a response. On long answers this
+    // pulls the viewport back to the bottom and makes the chat feel jumpy.
   }
+}
+
+
+function attachRouteDebugToMessage(messageIndex, action) {
+  if (!action?.route_debug) return false;
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return false;
+  thread.messages[messageIndex].routeDebug = action.route_debug;
+  thread.updatedAt = Date.now();
+  saveState();
+  return true;
+}
+
+function renderRouteDebugPanel(message) {
+  const debug = message?.routeDebug;
+  if (!debug) return null;
+  const wrap = document.createElement("div");
+  wrap.className = "route-debug-panel";
+  const files = Array.isArray(debug.files_used) ? debug.files_used.join(", ") : (debug.files_used || "");
+  wrap.innerHTML = `
+    <strong>Route</strong>
+    <span>${escapeHtml(debug.selected_route || "")}</span>
+    <span>Project: ${escapeHtml(debug.active_project || "")}</span>
+    <span>Product: ${escapeHtml(debug.product_used || "")}</span>
+    <span>API: ${debug.api_called ? "true" : "false"}</span>
+    <span>Cache: ${debug.from_cache ? "true" : "false"}</span>
+    <span>Fallback: ${debug.fallback_used ? "true" : "false"}</span>
+    <span>Prebuilt: ${debug.prebuilt_answer_used ? "true" : "false"}</span>
+    <span>Old answer: ${debug.old_answer_reused ? "true" : "false"}</span>
+    <span>Route type: ${escapeHtml(debug.route_type || "")}</span>
+    <span>Tool: ${escapeHtml(debug.tool_action || "")}</span>
+    <span>Conflict: ${debug.route_conflict ? "true" : "false"}</span>
+    ${files ? `<span>Files: ${escapeHtml(files)}</span>` : ""}
+  `;
+  return wrap;
+}
+
+function attachActionFileToMessage(messageIndex, action) {
+  if (!action?.zip_url && !action?.url) return false;
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return false;
+  const message = thread.messages[messageIndex];
+  const url = action.zip_url || action.url;
+  const fileName = action.fileName || action.zip_name || String(action.zip_path || "product-output.zip").split(/[\\/]/).pop();
+  message.files = Array.isArray(message.files) ? message.files : [];
+  if (message.files.some((file) => file.url === url || file.fileName === fileName)) return false;
+  message.files.unshift({
+    fileName,
+    format: action.format || "zip",
+    mime: action.mime || "application/zip",
+    url,
+    createdAt: Date.now(),
+  });
+  message.fileOutputCollapsed = false;
+  thread.updatedAt = Date.now();
+  saveState();
+  return true;
 }
 
 function appendAssistantMessage(thread, content) {
@@ -1836,7 +2097,7 @@ function createThreadTitle(text) {
 
 function autoResize() {
   prompt.style.height = "auto";
-  prompt.style.height = `${Math.min(prompt.scrollHeight, 180)}px`;
+  prompt.style.height = `${Math.min(prompt.scrollHeight, 120)}px`;
 }
 
 function focusPrompt() {
@@ -1866,7 +2127,7 @@ function restoreChatScroll(intent) {
 }
 
 function setChatScrollTop(top) {
-  programmaticScrollUntil = Date.now() + 180;
+  programmaticScrollUntil = Date.now() + 80;
   chat.scrollTop = Math.max(0, top);
 }
 
@@ -1885,14 +2146,14 @@ function handleChatScroll() {
 
 function scrollChatToBottom() {
   releaseChatScrollLock();
-  programmaticScrollUntil = Date.now() + 180;
+  programmaticScrollUntil = Date.now() + 80;
   chat.scrollTo({ top: chat.scrollHeight, behavior: "auto" });
   updateScrollBottomButton();
 }
 
 function isChatNearBottom() {
   const distance = chat.scrollHeight - chat.scrollTop - chat.clientHeight;
-  return distance < 120;
+  return distance < 24;
 }
 
 function updateScrollBottomButton() {
@@ -1903,7 +2164,7 @@ function updateScrollBottomButton() {
 }
 
 function messageJumpTargets() {
-  return Array.from(chat.querySelectorAll(".msg.user, .msg.assistant:not(.thinking)"));
+  return Array.from(chat.querySelectorAll(".msg.user"));
 }
 
 function jumpToMessage(direction) {
@@ -1923,7 +2184,7 @@ function jumpToMessage(direction) {
   } else {
     target = targets.find((item) => item.offsetTop > current + tolerance) || targets[targets.length - 1];
   }
-  chat.scrollTo({ top: Math.max(0, target.offsetTop - 18), behavior: "smooth" });
+  chat.scrollTo({ top: Math.max(0, target.offsetTop - 22), behavior: "smooth" });
   target.classList.add("jump-highlight");
   setTimeout(() => target.classList.remove("jump-highlight"), 720);
   updateJumpButtons();
@@ -2136,6 +2397,111 @@ function filesFromClipboard(clipboardData) {
   return itemFiles;
 }
 
+
+function collectAiKdpTags(text = prompt?.value || "") {
+  const found = new Set(String(text || "").match(/#[\w-]+/g) || []);
+  for (const tag of aiKdpPromptTags) {
+    if (prompt && new RegExp(`(^|\\s)${escapeRegExp(tag)}(?=\\s|$)`).test(prompt.value)) found.add(tag);
+  }
+  return Array.from(found).filter((tag) => aiKdpPromptTags.includes(tag));
+}
+
+function resolveAiKdpRoute(text = prompt?.value || "") {
+  const tags = collectAiKdpTags(text);
+  const routeTag = tags.find((tag) => aiKdpSkillMap[tag]);
+  const agentSelected = tags.includes("#ai-printables-kdp-prompt") || tags.some((tag) => aiKdpSkillMap[tag]);
+  return {
+    tags,
+    agentKey: agentSelected ? "ai_printables_kdp_prompt" : "",
+    skillRoute: routeTag || "",
+    skillFile: routeTag ? aiKdpSkillMap[routeTag] : "",
+  };
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderAiKdpTagPanel() {
+  if (!aiKdpTagChips) return;
+  aiKdpTagChips.innerHTML = "";
+  aiKdpTagChips.hidden = !aiKdpTagsExpanded;
+  if (toggleAiKdpTagsBtn) toggleAiKdpTagsBtn.textContent = aiKdpTagsExpanded ? "Hide tags" : "Show tags";
+  const currentTags = collectAiKdpTags();
+  const current = new Set(currentTags);
+  if (aiKdpSelectedTags) {
+    aiKdpSelectedTags.innerHTML = "";
+    aiKdpSelectedTags.hidden = !currentTags.length;
+    for (const tag of currentTags) {
+      const selected = document.createElement("button");
+      selected.type = "button";
+      selected.className = "ai-kdp-selected-tag";
+      selected.textContent = `${tag} ×`;
+      selected.title = "Remove this tag";
+      selected.addEventListener("click", () => removeAiKdpTag(tag));
+      aiKdpSelectedTags.appendChild(selected);
+    }
+  }
+  if (!aiKdpTagsExpanded) return;
+  for (const [groupName, tags] of Object.entries(aiKdpTagGroups)) {
+    const group = document.createElement("div");
+    group.className = "ai-kdp-tag-group";
+    const label = document.createElement("div");
+    label.className = "ai-kdp-tag-group-title";
+    label.textContent = groupName;
+    group.appendChild(label);
+    const list = document.createElement("div");
+    list.className = "ai-kdp-tag-group-list";
+    for (const tag of tags) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `ai-kdp-tag-chip ${current.has(tag) ? "active" : ""}`;
+      button.textContent = tag;
+      button.dataset.tag = tag;
+      button.addEventListener("click", () => addAiKdpTag(tag));
+      list.appendChild(button);
+    }
+    group.appendChild(list);
+    aiKdpTagChips.appendChild(group);
+  }
+}
+
+function addAiKdpTag(tag) {
+  if (!prompt || !aiKdpPromptTags.includes(tag)) return;
+  const currentTags = collectAiKdpTags();
+  if (!currentTags.includes(tag)) {
+    const existing = prompt.value.trim();
+    prompt.value = `${tag}${existing ? ` ${existing}` : ""}`;
+    autoResize();
+  }
+  aiKdpTagsExpanded = false;
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
+function toggleAiKdpTags() {
+  aiKdpTagsExpanded = !aiKdpTagsExpanded;
+  renderAiKdpTagPanel();
+}
+
+function removeAiKdpTag(tag) {
+  if (!prompt || !aiKdpPromptTags.includes(tag)) return;
+  const pattern = new RegExp(`(^|\s)${escapeRegExp(tag)}(?=\s|$)`, "g");
+  prompt.value = prompt.value.replace(pattern, " ").replace(/[ \t]{2,}/g, " ").replace(/^\s+/, "");
+  autoResize();
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
+function clearAiKdpTags() {
+  if (!prompt) return;
+  const pattern = new RegExp(aiKdpPromptTags.map(escapeRegExp).join("|"), "g");
+  prompt.value = prompt.value.replace(pattern, "").replace(/[ \t]{2,}/g, " ").replace(/^\s+/, "");
+  autoResize();
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
 sendBtn.addEventListener("click", () => sendMessage({ allowCancel: true }));
 newChatBtn.addEventListener("click", () => createThread("Chat mới"));
 retryLastBtn?.addEventListener("click", retryLastRequest);
@@ -2144,6 +2510,11 @@ sidebarCloseBtn?.addEventListener("click", () => setSidebarCollapsed(true));
 sidebarBackdrop?.addEventListener("click", () => setSidebarCollapsed(true));
 quickActionsToggle?.addEventListener("click", () => togglePromptLibrary());
 promptLibraryBtn?.addEventListener("click", () => togglePromptLibrary(true));
+moreMenuBtn?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleMoreMenu();
+});
+moreMenu?.addEventListener("click", (event) => event.stopPropagation());
 artifactCloseBtn?.addEventListener("click", closeArtifactPanel);
 artifactCopyBtn?.addEventListener("click", copyArtifact);
 artifactDownloadBtn?.addEventListener("click", downloadArtifactMarkdown);
@@ -2169,6 +2540,7 @@ themeToggleBtn.addEventListener("click", toggleTheme);
 exportBtn.addEventListener("click", exportActiveThread);
 statusBtn.addEventListener("click", () => {
   statusPanel.hidden = !statusPanel.hidden;
+  statusPanel.classList.toggle("manual-open", !statusPanel.hidden);
   if (!brainStatus) loadStatus();
 });
 psRefreshBtn?.addEventListener("click", loadProjectState);
@@ -2211,6 +2583,14 @@ function runPromptNow(message = "Đang chạy prompt...") {
 function installPromptLibraryUpgrade() {
   if (!quickActions || quickActions.dataset.v110 === "true") return;
   quickActions.dataset.v110 = "true";
+  quickActions.classList.add("prompt-drawer");
+  quickActions.setAttribute("aria-label", "Prompt library drawer");
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.className = "prompt-drawer-close";
+  closeButton.textContent = "Close";
+  closeButton.addEventListener("click", () => togglePromptLibrary(false));
+  quickActions.prepend(closeButton);
   promptChipBar = document.createElement("div");
   promptChipBar.className = "prompt-chip-bar";
   promptChipBar.hidden = true;
@@ -2223,17 +2603,212 @@ function installPromptLibraryUpgrade() {
   promptSearchInput.className = "prompt-search";
   promptSearchInput.placeholder = "Tìm prompt...";
   searchWrap.appendChild(promptSearchInput);
-  quickActions.insertBefore(searchWrap, quickActions.firstChild);
+  quickActions.insertBefore(searchWrap, closeButton.nextSibling);
   promptSearchInput.addEventListener("input", filterPromptLibrary);
+
+  cleanPromptLibrary = document.createElement("div");
+  cleanPromptLibrary.className = "clean-prompt-library";
+  quickActions.insertBefore(cleanPromptLibrary, searchWrap.nextSibling);
+  renderCleanPromptLibrary();
 
   pinnedPromptGroup = createDynamicPromptGroup("Ghim của bạn", "prompt-pinned-group");
   recentPromptGroup = createDynamicPromptGroup("Gần đây", "prompt-recent-group");
-  quickActions.insertBefore(pinnedPromptGroup, searchWrap.nextSibling);
+  quickActions.insertBefore(pinnedPromptGroup, cleanPromptLibrary.nextSibling);
   quickActions.appendChild(recentPromptGroup);
 
   for (const button of promptLibraryButtons()) enhancePromptButton(button);
   renderDynamicPromptGroups();
   installPromptKeyboardShortcuts();
+}
+
+function installCleanUiUpgrade() {
+  if (document.body.dataset.cleanUiInstalled === "true") return;
+  document.body.dataset.cleanUiInstalled = "true";
+
+  promptDrawerBackdrop = document.createElement("button");
+  promptDrawerBackdrop.type = "button";
+  promptDrawerBackdrop.className = "prompt-drawer-backdrop";
+  promptDrawerBackdrop.hidden = true;
+  promptDrawerBackdrop.setAttribute("aria-label", "Close prompt library");
+  promptDrawerBackdrop.addEventListener("click", () => togglePromptLibrary(false));
+  document.body.appendChild(promptDrawerBackdrop);
+
+  const composerHead = document.querySelector(".composer-head");
+  advancedToggleBtn = document.createElement("button");
+  advancedToggleBtn.id = "advancedToggleBtn";
+  advancedToggleBtn.type = "button";
+  advancedToggleBtn.className = "advanced-toggle";
+  advancedToggleBtn.textContent = "Advanced ▾";
+  advancedToggleBtn.addEventListener("click", () => toggleAdvancedPanel());
+  composerHead?.querySelector(".composer-tools")?.appendChild(advancedToggleBtn);
+
+  quickPromptBar = document.createElement("div");
+  quickPromptBar.id = "quickPromptBar";
+  quickPromptBar.className = "quick-prompt-bar";
+  composerHead?.after(quickPromptBar);
+  renderQuickPromptBar();
+
+  advancedPanel = document.createElement("div");
+  advancedPanel.id = "advancedPanel";
+  advancedPanel.className = "advanced-panel";
+  advancedPanel.hidden = true;
+  advancedPanel.innerHTML = `
+    <button type="button" data-open-prompt-library>Prompt library</button>
+    <button type="button" data-show-tags>Full AI KDP tags</button>
+    <button type="button" data-show-status>Status / brain / router</button>
+    <button type="button" data-export-chat>Export chat</button>
+    <label class="proof-toggle"><input id="proofModeToggle" type="checkbox" /> Proof Mode</label>
+  `;
+  composerHead?.after(advancedPanel);
+  proofModeToggle = document.getElementById("proofModeToggle");
+  advancedPanel.querySelector("[data-open-prompt-library]")?.addEventListener("click", () => togglePromptLibrary(true));
+  advancedPanel.querySelector("[data-show-tags]")?.addEventListener("click", () => {
+    aiKdpTagsExpanded = true;
+    renderAiKdpTagPanel();
+  });
+  advancedPanel.querySelector("[data-show-status]")?.addEventListener("click", () => {
+    statusPanel.hidden = false;
+    loadStatus();
+  });
+  advancedPanel.querySelector("[data-export-chat]")?.addEventListener("click", exportActiveThread);
+  proofModeToggle?.addEventListener("change", toggleProofMode);
+}
+
+function allCleanPrompts() {
+  return Object.values(cleanPromptGroups).flat();
+}
+
+function getPinnedCleanPromptIds() {
+  const stored = loadSelectValue("clean_prompt_pins_v113", "");
+  if (!stored) return [...defaultCleanPromptPins];
+  const pins = stored.split(",").filter(Boolean);
+  return pins.includes("idea-matrix") ? pins : ["idea-matrix", ...pins].slice(0, 6);
+}
+
+function savePinnedCleanPromptIds(ids) {
+  saveSelectValue("clean_prompt_pins_v113", ids.slice(0, 12).join(","));
+}
+
+function isCleanPromptPinned(id) {
+  return getPinnedCleanPromptIds().includes(id);
+}
+
+function toggleCleanPromptPin(id) {
+  const pins = getPinnedCleanPromptIds();
+  const next = pins.includes(id) ? pins.filter((item) => item !== id) : [id, ...pins];
+  savePinnedCleanPromptIds(next);
+  renderQuickPromptBar();
+  renderCleanPromptLibrary();
+}
+
+function activeProductNameForPrompt() {
+  return (brainStatus?.activeProject?.product_name || psProjectName?.textContent || "").trim();
+}
+
+function fillPromptTemplate(rawPrompt, promptItem) {
+  let nextPrompt = rawPrompt || "";
+  if (nextPrompt.includes("{{ACTIVE_PRODUCT_NAME}}")) {
+    const activeProductName = activeProductNameForPrompt();
+    if (!activeProductName || activeProductName === "—") {
+      showToast("PRODUCT_REQUIRED: hãy tạo/chọn active product trước khi chạy prompt này.");
+      return null;
+    }
+    nextPrompt = nextPrompt.replaceAll("{{ACTIVE_PRODUCT_NAME}}", activeProductName);
+  }
+  return nextPrompt;
+}
+
+function useCleanPrompt(promptItem, closeDrawer = true) {
+  if (!prompt || !promptItem) return;
+  const filledPrompt = fillPromptTemplate(promptItem.prompt, promptItem);
+  if (filledPrompt === null) return;
+  prompt.value = filledPrompt;
+  activeModuleId = "";
+  clearPromptChip();
+  const fastPromptIds = new Set(["idea-matrix", "market-pattern", "competitor-matrix", "offer-gap", "buyer-test", "ai-replace-risk", "refund-risk", "license-check"]);
+  applyResponseMode(promptItem.id === "vendor-ready" ? "deep" : (fastPromptIds.has(promptItem.id) ? "fast" : "balanced"));
+  autoResize();
+  renderAiKdpTagPanel();
+  if (closeDrawer) togglePromptLibrary(false);
+  focusPrompt();
+  showToast(`Đã chèn prompt: ${promptItem.title}`);
+}
+
+function renderQuickPromptBar() {
+  if (!quickPromptBar) return;
+  const byId = new Map(allCleanPrompts().map((item) => [item.id, item]));
+  const prompts = getPinnedCleanPromptIds().map((id) => byId.get(id)).filter(Boolean).slice(0, 6);
+  quickPromptBar.innerHTML = `<span class="quick-prompt-label">Không biết chọn? Bấm:</span>`;
+  for (const item of prompts) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "quick-prompt-chip";
+    button.textContent = item.id === "idea-matrix" ? "10 ý tưởng" : item.id === "vendor-ready" ? "Vendor Ready" : item.id === "deep-file-writer" ? "Write Files" : item.title.replace("Product ", "");
+    button.title = item.desc;
+    button.addEventListener("click", () => useCleanPrompt(item, false));
+    quickPromptBar.appendChild(button);
+  }
+  const libraryButton = document.createElement("button");
+  libraryButton.type = "button";
+  libraryButton.className = "quick-prompt-chip library-chip";
+  libraryButton.textContent = "Thư viện prompt ▾";
+  libraryButton.addEventListener("click", () => togglePromptLibrary(true));
+  quickPromptBar.appendChild(libraryButton);
+}
+
+function renderCleanPromptLibrary() {
+  if (!cleanPromptLibrary) return;
+  const query = (promptSearchInput?.value || "").trim().toLowerCase();
+  cleanPromptLibrary.innerHTML = "";
+
+  const tabs = document.createElement("div");
+  tabs.className = "clean-prompt-tabs";
+  for (const groupName of Object.keys(cleanPromptGroups)) {
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.className = groupName === activePromptTab ? "active" : "";
+    tab.textContent = groupName.toUpperCase();
+    tab.addEventListener("click", () => {
+      activePromptTab = groupName;
+      renderCleanPromptLibrary();
+    });
+    tabs.appendChild(tab);
+  }
+  cleanPromptLibrary.appendChild(tabs);
+
+  const cards = document.createElement("div");
+  cards.className = "clean-prompt-cards";
+  const source = query ? allCleanPrompts() : cleanPromptGroups[activePromptTab];
+  const matches = source.filter((item) => {
+    const haystack = `${item.title} ${item.desc} ${item.tags.join(" ")}`.toLowerCase();
+    return !query || haystack.includes(query);
+  });
+  for (const item of matches) {
+    const card = document.createElement("article");
+    card.className = "clean-prompt-card";
+    const tagHtml = item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
+    card.innerHTML = `
+      <div class="clean-prompt-card-main">
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.desc)}</p>
+        <div class="clean-prompt-tags">${tagHtml}</div>
+      </div>
+      <div class="clean-prompt-card-actions">
+        <button type="button" data-pin-clean-prompt="${escapeHtml(item.id)}">${isCleanPromptPinned(item.id) ? "Unpin" : "Pin"}</button>
+        <button type="button" data-use-clean-prompt="${escapeHtml(item.id)}">Dùng</button>
+      </div>
+    `;
+    card.querySelector("[data-pin-clean-prompt]")?.addEventListener("click", () => toggleCleanPromptPin(item.id));
+    card.querySelector("[data-use-clean-prompt]")?.addEventListener("click", () => useCleanPrompt(item, true));
+    cards.appendChild(card);
+  }
+  if (!matches.length) {
+    const empty = document.createElement("div");
+    empty.className = "clean-prompt-empty";
+    empty.textContent = "Không tìm thấy prompt phù hợp.";
+    cards.appendChild(empty);
+  }
+  cleanPromptLibrary.appendChild(cards);
 }
 
 function promptLibraryButtons() {
@@ -2271,7 +2846,7 @@ function handlePromptLibraryButton(button) {
   const promptText = button.dataset.prompt || "";
   const moduleId = button.dataset.moduleId || moduleIdFromLabel(label);
   activeModuleId = moduleId || "";
-  applyResponseMode(button.dataset.deepModule === "true" ? "deep" : "balanced");
+  applyResponseMode(button.dataset.runMode || (button.dataset.deepModule === "true" ? "deep" : "balanced"));
   addRecentPrompt(button);
   renderDynamicPromptGroups();
 
@@ -2323,6 +2898,7 @@ function clearPromptChip() {
 }
 
 function filterPromptLibrary() {
+  renderCleanPromptLibrary();
   const query = (promptSearchInput?.value || "").trim().toLowerCase();
   for (const group of Array.from(quickActions.querySelectorAll(".quick-group:not(.prompt-dynamic-group)"))) {
     let visible = false;
@@ -2935,6 +3511,7 @@ window.addEventListener("paste", (event) => {
   }
 });
 document.addEventListener("click", () => {
+  toggleMoreMenu(false);
   closeFileMenus();
   if (!openThreadMenuId) return;
   openThreadMenuId = null;
@@ -2946,16 +3523,27 @@ document.addEventListener("keydown", (event) => {
     setSidebarCollapsed(true);
     return;
   }
+  if (document.body.classList.contains("reading-mode")) {
+    applyReadingMode(false, { persist: true });
+    return;
+  }
   if (!artifactPanel?.hidden) closeArtifactPanel();
+  if (moreMenu && !moreMenu.hidden) toggleMoreMenu(false);
+  if (quickActions && !quickActions.classList.contains("collapsed")) togglePromptLibrary(false);
   if (openThreadMenuId) {
     openThreadMenuId = null;
     renderThreads();
   }
 });
 window.addEventListener("focus", refreshFromServer);
-setInterval(refreshFromServer, 5000);
+// Disabled: periodic refresh re-rendered chat while reading and caused scroll jumps.
 
-prompt.addEventListener("input", autoResize);
+prompt.addEventListener("input", () => {
+  autoResize();
+  renderAiKdpTagPanel();
+});
+clearAiKdpTagsBtn?.addEventListener("click", clearAiKdpTags);
+toggleAiKdpTagsBtn?.addEventListener("click", toggleAiKdpTags);
 prompt.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
@@ -2964,19 +3552,12 @@ prompt.addEventListener("keydown", (event) => {
 });
 
 installTextRepair();
+repairVietnameseUiText();
+renderAiKdpTagPanel();
 
 function installTextRepair() {
+  // One-shot repair only. A live MutationObserver caused font flicker and scroll/layout jumps.
   repairVisibleText(document.body);
-  const observer = new MutationObserver((mutations) => {
-    for (const mutation of mutations) {
-      if (mutation.type === "characterData") {
-        repairTextNode(mutation.target);
-        continue;
-      }
-      for (const node of mutation.addedNodes) repairVisibleText(node);
-    }
-  });
-  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
 }
 
 function repairVisibleText(root) {
@@ -3057,3 +3638,102 @@ function repairMojibake(value) {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function repairVietnameseUiText() {
+  const setText = (selector, value) => {
+    const element = document.querySelector(selector);
+    if (element) element.textContent = value;
+  };
+  const setAttr = (selector, name, value) => {
+    const element = document.querySelector(selector);
+    if (element) element.setAttribute(name, value);
+  };
+  setText('.sidebar-close-btn', '×');
+  setAttr('.sidebar-close-btn', 'title', 'Đóng lịch sử chat');
+  setAttr('.sidebar-close-btn', 'aria-label', 'Đóng lịch sử chat');
+  setAttr('#sidebarBackdrop', 'aria-label', 'Đóng lịch sử chat');
+  setAttr('#workspaceTabs', 'aria-label', 'Chọn kênh chat');
+  setText('#newChatBtn', '+ Chat mới');
+  setText('.search-box span', 'Tìm');
+  setAttr('#threadSearch', 'placeholder', 'Tìm chủ đề...');
+  setText('.section-label', 'Gần đây');
+  setText('.user-name', 'Người dùng');
+  setText('#brainSummary', 'Đang kiểm tra brain...');
+  setText('.ps-label', 'Dự án:');
+  setText('#psProjectName', '—');
+  setText('#psNextAction', '—');
+  setAttr('#psRefreshBtn', 'title', 'Refresh trạng thái dự án');
+  setAttr('.topbar-controls', 'aria-label', 'Cấu hình chat');
+  setText('label:has(#modelSelect) span', 'Chế độ AI');
+  setText('label:has(#toolModeSelect) span', 'Công cụ');
+  const modelLabels = { agent: 'Agent chủ', planner: 'Planner sâu', creator: 'Dựng nội dung', critic: 'Phản biện launch' };
+  for (const option of document.querySelectorAll('#modelSelect option')) option.textContent = modelLabels[option.value] || option.textContent;
+  const toolLabels = { auto: 'Tự động', files: 'File/RAG', case: 'Case Study Brain', launch: 'Launch OS', none: 'Tắt' };
+  for (const option of document.querySelectorAll('#toolModeSelect option')) option.textContent = toolLabels[option.value] || option.textContent;
+  setText('#moreMenuBtn', '⋯');
+  setText('#promptLibraryBtn', 'Thư viện prompt');
+  setText('#statusBtn', 'Trạng thái brain');
+  setText('#exportBtn', 'Xuất chat Markdown');
+  setText('#themeToggleBtn', 'Đổi sáng/tối');
+  setText('#clearBtn', 'Xóa chat');
+  setText('#quickActionsToggle', 'Thư viện prompt');
+  setText('#messageCount', '0 tin nhắn');
+  setText('#activeModeLabel', 'Nhanh');
+  setText('#replyStatus', 'Đang trả lời...');
+  setText('#retryLastBtn', 'Gửi lại lỗi');
+  setAttr('#modeSelector', 'aria-label', 'Chế độ trả lời');
+  setAttr('[data-mode="fast"]', 'title', 'FAST: topK thấp, không benchmark/export');
+  setAttr('[data-mode="balanced"]', 'title', 'BALANCED: dùng skill + brain vừa đủ');
+  setAttr('[data-mode="deep"]', 'title', 'DEEP: chậm hơn, dùng nhiều RAG/audit/export');
+  setAttr('.prompt-nav', 'aria-label', 'Điều hướng câu hỏi');
+  setText('#promptJumpPrevBtn', '↑');
+  setText('#promptJumpNextBtn', '↓');
+  setAttr('#promptJumpPrevBtn', 'title', 'Lên câu hỏi trước');
+  setAttr('#promptJumpNextBtn', 'title', 'Xuống câu hỏi tiếp theo');
+  setAttr('#attachBtn', 'title', 'Đính kèm file');
+  setAttr('#prompt', 'placeholder', 'Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây...');
+  setText('#sendBtn', '➤');
+  setAttr('#sendBtn', 'title', 'Gửi');
+  setAttr('#artifactPanel', 'aria-label', 'Canvas kết quả');
+  setText('.artifact-label', 'Canvas kết quả');
+  setText('#artifactTitle', 'Nội dung trả lời');
+  setText('#artifactCopyBtn', '⧉');
+  setText('#artifactDownloadBtn', '⇩');
+  setText('#artifactCloseBtn', '×');
+  setAttr('#artifactCopyBtn', 'title', 'Copy canvas');
+  setAttr('#artifactDownloadBtn', 'title', 'Tải Markdown');
+  setAttr('#artifactCloseBtn', 'title', 'Đóng canvas');
+}
+
+
+
+
+function scheduleVietnameseUiRepair() {
+  const delays = [0, 80, 250, 600, 1200, 2200];
+  for (const delay of delays) {
+    setTimeout(() => {
+      repairVisibleText(document.body);
+      repairVietnameseUiText();
+      if (prompt) prompt.placeholder = defaultPromptPlaceholder;
+    }, delay);
+  }
+}

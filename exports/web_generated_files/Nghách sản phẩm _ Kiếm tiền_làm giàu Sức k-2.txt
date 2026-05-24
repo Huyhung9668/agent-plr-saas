@@ -1,0 +1,926 @@
+﻿# AI Email Campaign Kit for Beginners  
+## 30 Short English Email Templates — bản dùng được ngay
+
+## 1. VERDICT
+
+**NÊN LÀM**, nhưng không bán dưới dạng “30 email AI tạo”. Bản đó quá mỏng.  
+Sản phẩm nên đóng gói thành **beginner email campaign kit**: có email mẫu, thứ tự dùng, prompt tùy chỉnh, checklist kiểm lỗi và planner.
+
+Góc bán tốt hơn:
+
+> **AI Email Campaign Kit for Beginners** helps beginner affiliate marketers and digital product sellers write simple welcome, nurture, promo, affiliate, deadline, and re-engagement emails without starting from a blank page.
+
+---
+
+## 2. PRODUCT ANGLE
+
+| Thành phần | Nội dung |
+|---|---|
+| Buyer | Beginner affiliate marketer, new WarriorPlus/Gumroad/Payhip seller, creator nhỏ mới có list |
+| Pain | Không biết viết email gì, gửi theo thứ tự nào, CTA ra sao, sợ viết quá salesy |
+| Promise | Có sẵn 30 email ngắn tiếng Anh để tùy chỉnh nhanh cho campaign đầu tiên |
+| Safe positioning | Không hứa doanh thu, không hứa conversion, chỉ giúp viết nhanh hơn và có cấu trúc hơn |
+| Mechanism | Templates + campaign logic + placeholders + AI customization prompt + pre-send checklist |
+
+---
+
+## 3. CAMPAIGN LOGIC
+
+Chia 30 email thành 6 nhóm để buyer biết dùng đúng lúc, không phải copy ngẫu nhiên.
+
+| Nhóm | Số email | Dùng khi nào |
+|---|---:|---|
+| Welcome | 5 | Khi người mới đăng ký list |
+| Nurture / Value | 5 | Xây niềm tin, dạy một ý nhỏ |
+| Soft Promo | 5 | Giới thiệu sản phẩm nhẹ nhàng |
+| Affiliate Promo | 5 | Quảng bá sản phẩm affiliate minh bạch |
+| Deadline / Urgency | 5 | Chỉ dùng khi có deadline thật |
+| Re-engagement | 5 | Kéo lại subscriber ít tương tác |
+
+---
+
+# 4. 30 SHORT EMAIL ASSETS
+
+> Copy các email này vào file:  
+> `02_30_Short_Email_Templates.docx`  
+> Placeholder chính: `[Name]`, `[Topic]`, `[Problem]`, `[Product]`, `[Benefit]`, `[Link]`, `[Bonus]`, `[Deadline]`, `[Your Name]`.
+
+---
+
+## A. Welcome Emails
+
+### Email 1: Simple Welcome
+
+**Subject:** Welcome — start here
+
+Hi [Name],
+
+Thanks for joining.
+
+Over the next few emails, I’ll share simple tips to help you with [Topic] without making it complicated.
+
+If you’re new, don’t worry. You don’t need to do everything at once.
+
+Start with one small step.
+
+Here’s a good place to begin:
+
+[Link]
+
+Talk soon,  
+[Your Name]
+
+---
+
+### Email 2: What To Expect
+
+**Subject:** What you can expect from me
+
+Hi [Name],
+
+Quick note before we begin.
+
+I’ll keep these emails simple, practical, and beginner-friendly.
+
+No hype.  
+No complicated theory.  
+Just useful ideas you can apply to [Topic].
+
+Your first resource is here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 3: Beginner Starting Point
+
+**Subject:** New to [Topic]? Read this first
+
+Hi [Name],
+
+If you’re new to [Topic], it can feel overwhelming.
+
+There are tools, strategies, tips, and opinions everywhere.
+
+But you don’t need all of that right now.
+
+You need a simple starting point.
+
+Start here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 4: Your First Small Win
+
+**Subject:** Your first small win
+
+Hi [Name],
+
+Let’s keep this easy.
+
+Your first small win is:
+
+[Simple Action]
+
+It should only take a few minutes, but it can help you build momentum.
+
+After that, check this out:
+
+[Link]
+
+Talk soon,  
+[Your Name]
+
+---
+
+### Email 5: Don’t Overthink It
+
+**Subject:** Don’t overthink the first step
+
+Hi [Name],
+
+Most beginners get stuck because they try to make everything perfect.
+
+You don’t need perfect.
+
+You need a clear next step.
+
+For now, focus on this:
+
+[Action Step]
+
+When you’re ready, continue here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+## B. Nurture / Value Emails
+
+### Email 6: Common Mistake
+
+**Subject:** A common beginner mistake
+
+Hi [Name],
+
+One common mistake with [Topic] is trying to do too much too soon.
+
+You don’t need a complex plan at the beginning.
+
+Start with one problem, one useful idea, and one clear next step.
+
+That simple structure is enough to begin.
+
+Here’s a resource that can help:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 7: Simple 3-Step Framework
+
+**Subject:** A simple 3-step framework
+
+Hi [Name],
+
+Here’s a simple framework you can use for [Topic]:
+
+1. Identify the main problem  
+2. Share one useful solution  
+3. Give a clear next step
+
+That’s it.
+
+Simple is easier to understand and easier to act on.
+
+You can see an example here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 8: Teach One Thing
+
+**Subject:** Teach one thing at a time
+
+Hi [Name],
+
+A simple way to create better emails is to teach one thing at a time.
+
+Not five ideas.  
+Not a full lesson.  
+Not everything you know.
+
+Just one useful point.
+
+Then give the reader a clear next step.
+
+Example:
+
+[Tip]  
+[Why it matters]  
+[Link]
+
+Talk soon,  
+[Your Name]
+
+---
+
+### Email 9: Small List Reminder
+
+**Subject:** Small list? That’s okay
+
+Hi [Name],
+
+If your email list is small, don’t ignore it.
+
+A small list can still be useful if the people on it care about your topic.
+
+Focus on three things:
+
+Be helpful.  
+Be consistent.  
+Make clear offers.
+
+This resource may help you get started:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 10: Before You Write
+
+**Subject:** Before you write your next email
+
+Hi [Name],
+
+Before writing your next email, ask this:
+
+“What problem is my reader trying to solve right now?”
+
+That question keeps your message focused.
+
+If the problem is [Problem], your email should help them understand or take one small step toward solving it.
+
+Need a starting point?
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+## C. Soft Promo Emails
+
+### Email 11: Helpful Recommendation
+
+**Subject:** This may help with [Problem]
+
+Hi [Name],
+
+If you’re struggling with [Problem], this may help.
+
+[Product] was created to make [Topic] easier for beginners.
+
+Inside, you’ll find:
+
+- [Feature 1]
+- [Feature 2]
+- [Feature 3]
+
+It gives you a starting point so you don’t have to create everything from scratch.
+
+Check it out here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 12: No Blank Page
+
+**Subject:** Stop starting from a blank page
+
+Hi [Name],
+
+Starting from a blank page is one of the hardest parts of [Topic].
+
+You sit down to create something useful…
+
+Then spend too much time wondering what to write.
+
+[Product] gives you simple templates and examples you can customize for your own audience.
+
+Take a look here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 13: Who This Is For
+
+**Subject:** Is this right for you?
+
+Hi [Name],
+
+[Product] may be right for you if:
+
+- You’re new to [Topic]
+- You want a simple starting point
+- You don’t want to write everything from scratch
+- You prefer templates and examples
+
+It’s not designed for advanced users who want a complex system.
+
+If you want something beginner-friendly, check it out here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 14: Practical Tool
+
+**Subject:** A practical tool for beginners
+
+Hi [Name],
+
+I like simple tools that help people take action.
+
+That’s why [Product] is useful.
+
+It doesn’t try to overwhelm you with theory.
+
+It gives you practical templates, prompts, and checklists you can use to create [Result].
+
+You can see it here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 15: Still Stuck?
+
+**Subject:** Still stuck with [Problem]?
+
+Hi [Name],
+
+If [Problem] is slowing you down, you’re not alone.
+
+Many beginners get stuck because they don’t have a simple structure to follow.
+
+[Product] gives you a practical starting point so you can move faster and avoid overthinking.
+
+Details here:
+
+[Link]
+
+Talk soon,  
+[Your Name]
+
+---
+
+## D. Affiliate Promo Emails
+
+### Email 16: Honest Recommendation
+
+**Subject:** A useful resource for [Topic]
+
+Hi [Name],
+
+Quick note: I found a resource that may help if you’re working on [Topic].
+
+It’s called [Product], and it focuses on helping beginners with [Benefit].
+
+What I like is that it gives you practical templates instead of only theory.
+
+You can review it here:
+
+[Link]
+
+Disclosure: I may earn a commission if you buy through my link, at no extra cost to you.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 17: Why I’m Sharing This
+
+**Subject:** Why I’m sharing this with you
+
+Hi [Name],
+
+I’m sharing [Product] because it helps with a common beginner problem:
+
+[Problem]
+
+Instead of trying to figure everything out alone, you get a simple structure to follow.
+
+That can make the process easier and less frustrating.
+
+Here’s the link:
+
+[Link]
+
+Disclosure: This may be an affiliate link.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 18: My Bonus
+
+**Subject:** My bonus for [Product]
+
+Hi [Name],
+
+If you decide to get [Product] through my link, I’m also including this bonus:
+
+[Bonus]
+
+This bonus is designed to help you apply the product faster and avoid getting stuck.
+
+You can get access here:
+
+[Link]
+
+After purchase, follow the bonus instructions on the page.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 19: Quick Review
+
+**Subject:** My quick thoughts on [Product]
+
+Hi [Name],
+
+I took a look at [Product], and here’s my quick take.
+
+It’s best for beginners who want help with [Topic] without building everything from scratch.
+
+The strongest part is:
+
+[Strong Point]
+
+The main thing to remember:
+
+You’ll still need to customize it for your own audience and offer.
+
+If you want to check it out, here’s the link:
+
+[Link]
+
+Disclosure: This may be an affiliate link.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 20: How I Would Use It
+
+**Subject:** How I would use [Product]
+
+Hi [Name],
+
+If I were using [Product], I would keep it simple.
+
+Step 1: Choose one template  
+Step 2: Customize it for my audience  
+Step 3: Add my offer or next step  
+Step 4: Check the links and claims  
+Step 5: Send and track the response
+
+Don’t overcomplicate it.
+
+You can see it here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+## E. Deadline / Urgency Emails
+
+> Chỉ dùng nếu deadline, bonus hoặc giá thay đổi là thật. Không dùng khan hiếm giả.
+
+### Email 21: Deadline Reminder
+
+**Subject:** Quick reminder: [Deadline]
+
+Hi [Name],
+
+Quick reminder:
+
+The current offer for [Product] is available until [Deadline].
+
+If you’ve been thinking about getting it, now is a good time to review the page and decide if it fits your needs.
+
+Here’s the link:
+
+[Link]
+
+No pressure — just a reminder before the deadline.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 22: Last Chance To Review
+
+**Subject:** Last chance to review this
+
+Hi [Name],
+
+This is a quick last reminder about [Product].
+
+If you want the current offer, bonus, or pricing, make sure to check the page before [Deadline].
+
+Here’s the link:
+
+[Link]
+
+If it’s not a fit, no problem.
+
+I just didn’t want you to miss it if you were interested.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 23: Bonus Ending
+
+**Subject:** Bonus ends soon
+
+Hi [Name],
+
+My bonus for [Product] is available until [Deadline].
+
+The bonus includes:
+
+[Bonus]
+
+It’s designed to help you use the product more easily and take action faster.
+
+You can get access here:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 24: Price Change Reminder
+
+**Subject:** Price changes soon
+
+Hi [Name],
+
+Just a quick reminder:
+
+The current price for [Product] is scheduled to change after [Deadline].
+
+If you want to get it at the current price, you can review the details here:
+
+[Link]
+
+Make sure it fits your needs before buying.
+
+Best,  
+[Your Name]
+
+---
+
+### Email 25: Final Reminder
+
+**Subject:** Final reminder
+
+Hi [Name],
+
+Final reminder about [Product].
+
+If you want access to the current offer, here’s the link:
+
+[Link]
+
+This is best for beginners who want help with [Topic] using simple templates and practical steps.
+
+If that sounds useful, take a look before [Deadline].
+
+Best,  
+[Your Name]
+
+---
+
+## F. Re-Engagement Emails
+
+### Email 26: Still Interested?
+
+**Subject:** Still interested in [Topic]?
+
+Hi [Name],
+
+Are you still interested in [Topic]?
+
+If yes, I’ll keep sending useful tips, templates, and resources.
+
+If not, no problem.
+
+But if you’re still working on [Goal], here’s a simple resource that may help:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 27: Quick Check-In
+
+**Subject:** Quick check-in
+
+Hi [Name],
+
+Just checking in.
+
+Have you made progress with [Topic] recently?
+
+If not, don’t worry. It’s easy to get busy or stuck.
+
+A good way to restart is to take one small action today:
+
+[Simple Action]
+
+And if you want help, this may be useful:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 28: Want To Restart?
+
+**Subject:** Want to restart?
+
+Hi [Name],
+
+If you stopped working on [Topic], you don’t need to start over completely.
+
+Just restart with one simple step.
+
+Here’s a good one:
+
+[Action]
+
+Small progress is better than waiting for the perfect time.
+
+You can also use this resource to make it easier:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 29: In Case You Missed This
+
+**Subject:** In case you missed this
+
+Hi [Name],
+
+In case you missed it, I shared this resource recently:
+
+[Product]
+
+It helps with [Benefit] by giving you:
+
+- [Template]
+- [Prompt]
+- [Checklist]
+- [Example]
+
+If you’re still working on [Topic], it may be worth reviewing.
+
+Here’s the link:
+
+[Link]
+
+Best,  
+[Your Name]
+
+---
+
+### Email 30: Preference Email
+
+**Subject:** What would help you most?
+
+Hi [Name],
+
+Quick question:
+
+What would help you most with [Topic] right now?
+
+1. More templates  
+2. More examples  
+3. A simple checklist  
+4. A step-by-step guide
+
+You can reply with the number.
+
+Your answer helps me send more useful resources.
+
+Best,  
+[Your Name]
+
+---
+
+# 5. WHY BUY IF AI CAN DO THIS?
+
+Đây là block nên đưa vào sales page hoặc README:
+
+> Yes, AI can generate email text. But beginners often still struggle with what to ask, which email to send first, how to connect emails into a campaign, how to avoid hype, and how to customize templates for a real offer. This kit gives you a structured set of beginner-friendly emails, campaign logic, editable placeholders, AI customization prompts, and a pre-send checklist so you can move faster without starting from a blank page.
+
+Bản này trung thực. Không phủ nhận AI. Mình bán **cấu trúc + tiết kiệm thời gian + giảm lỗi triển khai**.
+
+---
+
+# 6. PACKAGING
+
+Đóng gói ZIP như sau:
+
+```text
+/outputs/AI_Email_Campaign_Kit_For_Beginners/product_assets/
+│
+├── 01_Start_Here.pdf
+├── 02_30_Short_Email_Templates.docx
+├── 02_30_Short_Email_Templates.pdf
+├── 03_7_Day_Campaign_Map.pdf
+├── 04_AI_Email_Customization_Prompts.pdf
+├── 05_Pre_Send_Email_Checklist.pdf
+├── 06_Subject_Line_Starter_Bank.docx
+├── 07_README_License_Compliance.txt
+```
+
+## Nội dung tối thiểu từng file
+
+| File | Mục đích | Nội dung cần có |
+|---|---|---|
+| `01_Start_Here.pdf` | Hướng dẫn buyer dùng sản phẩm | Cách chọn email, sửa placeholder, kiểm tra CTA, gửi thử |
+| `02_30_Short_Email_Templates.docx` | Core asset | 30 email ở trên, chia theo 6 nhóm |
+| `03_7_Day_Campaign_Map.pdf` | Biến template thành campaign | Ngày 1 welcome, ngày 2 value, ngày 3 problem, ngày 4 promo, ngày 5 affiliate, ngày 6 FAQ, ngày 7 reminder |
+| `04_AI_Email_Customization_Prompts.pdf` | Tăng giá trị, chống “AI thô” | Prompt để buyer biến email theo niche, offer, audience |
+| `05_Pre_Send_Email_Checklist.pdf` | Giảm lỗi triển khai | Check subject, link, CTA, claim, deadline, affiliate disclosure |
+| `06_Subject_Line_Starter_Bank.docx` | Bonus | 50-60 subject lines chia theo welcome, value, promo, deadline |
+| `07_README_License_Compliance.txt` | Compliance | Không hứa kết quả, không spam, không dùng deadline giả |
+
+---
+
+# 7. AI CUSTOMIZATION PROMPT CHO BUYER
+
+Đưa prompt này vào file `04_AI_Email_Customization_Prompts.pdf`.
+
+```text
+Act as a beginner-friendly email marketing assistant.
+
+I will give you:
+1. My niche
+2. My target audience
+3. My product or affiliate offer
+4. The email template I want to customize
+
+Your task:
+Rewrite the email so it fits my audience and offer.
+
+Rules:
+- Keep the email short.
+- Use simple English.
+- Avoid hype and unrealistic claims.
+- Do not promise income, sales, or guaranteed results.
+- Keep the tone helpful and practical.
+- Include one clear call to action.
+- Keep all placeholders clear if information is missing.
+- Add 3 subject line options.
+
+My niche:
+[Insert niche]
+
+My target audience:
+[Insert audience]
+
+My offer:
+[Insert product or affiliate offer]
+
+Main problem my audience has:
+[Insert problem]
+
+Template to customize:
+[Paste template here]
+```
+
+---
+
+# 8. PRE-SEND CHECKLIST
+
+Đưa phần này vào `05_Pre_Send_Email_Checklist.pdf`.
+
+```text
+Before sending your email, check:
+
+[ ] Did I replace all placeholders?
+[ ] Is the subject line clear and not misleading?
+[ ] Is there only one main call to action?
+[ ] Does the link work?
+[ ] Did I avoid income guarantees or unrealistic claims?
+[ ] If this is an affiliate email, did I include a disclosure?
+[ ] If I mention a deadline, is it real?
+[ ] Is the email short and easy to read?
+[ ] Does the email match my audience and offer?
+[ ] Did I send a test email to myself first?
+```
+
+---
+
+# 9. COMPLIANCE CHECK
+
+Không dùng các câu kiểu:
+
+- “Guaranteed sales”
+- “Instant commissions”
+- “Copy and paste profits”
+- “Make money from every email”
+- “No work needed”
+- “Secret loophole”
+
+Nên dùng:
+
+- “Beginner-friendly email templates”
+- “Write faster without starting from a blank page”
+- “Simple campaign structure”
+- “Customizable email examples”
+- “Use AI to adapt each email to your offer”
+- “No results are guaranteed”
+
+Disclaimer nên đưa vào README:
+
+```text
+These templates are provided for educational and marketing planning purposes only. 
+Results depend on your audience, offer, email list quality, traffic source, platform, and execution. 
+No income, sales, conversion, or performance results are guaranteed. 
+Always follow your email marketing platform’s rules and applicable laws.
+```
+
+---
+
+# Tự kiểm chất lượng
+
+- [x] Audience cụ thể: beginner affiliate marketer / digital product seller.  
+- [x] Có 30 email tiếng Anh ngắn, chia đúng use case.  
+- [x] Không hứa thu nhập, không hứa conversion, không dùng khan hiếm giả.  
+- [x] Có campaign logic để sản phẩm không chỉ là “AI text”.  
+- [x] Có prompt tùy chỉnh, checklist gửi email, packaging ZIP rõ ràng.  
+- [x] Có block trả lời objection: “AI làm được mà sao phải mua?”  
+- [x] Có thể copy ngay thành DOCX/PDF để đóng gói bán FE $17.

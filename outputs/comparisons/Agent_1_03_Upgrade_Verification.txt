@@ -1,0 +1,43 @@
+Agent 1.03 Upgrade Verification
+Date: 2026-05-16
+
+Summary
+- Version upgraded from 1.02 to 1.03.
+- Web UI title verified in browser: Agent chủ v1.03.
+- Server status API reports appVersion: 1.03.
+- Chat UI executed /buyer_test AI Email Campaign Kit for Beginners and returned BUYER TEST CREATED.
+- Chat UI executed /full_launch_pack AI Email Campaign Kit for Beginners and returned FULL LAUNCH PACK WORKSPACE READY.
+
+Execution Evidence
+- ZIP exists: outputs/AI_Email_Campaign_Kit/export/AI_Email_Campaign_Kit_Launch_Pack.zip
+- ZIP entries: 97
+- Empty files in ZIP: 0
+
+Required governance files included in ZIP
+- AGENT_STATUS.md: YES
+- QUALITY_GATE.md: YES
+- LAUNCH_READINESS.md: YES
+- launch/REAL_LAUNCH_CHECKLIST.md: YES
+
+New test mode files
+- outputs/AI_Email_Campaign_Kit/testing/buyer_test.md
+- outputs/AI_Email_Campaign_Kit/testing/jv_test.md
+- outputs/AI_Email_Campaign_Kit/sales_page/sales_page_critic.md
+- outputs/AI_Email_Campaign_Kit/feedback/feedback_upgrade_plan.md
+- outputs/AI_Email_Campaign_Kit/versioning/CHANGELOG.md
+
+Deep core file word counts
+- product_assets/02_30_Short_Email_Templates.md: 2421 words
+- sales_page/sales_page.md: 1356 words
+- jv_pack/affiliate_email_swipes.md: 1059 words
+- delivery_page/delivery_page.md: 542 words
+- email_funnel/buyer_onboarding_emails.md: 730 words
+
+Tests
+- python -m py_compile web_app.py launch_actions.py launch_os_db.py evals/test_agent_depth.py scripts/clean_chunks.py: PASS
+- node --check web_ui/app.js: PASS
+- python evals/test_agent_depth.py: PASS
+
+Launch Readiness Policy
+- Agent 1.03 no longer treats ZIP export alone as public launch proven.
+- Full ZIP creation is soft launch ready only until delivery, payment, and reviewer/JV feedback are tested.

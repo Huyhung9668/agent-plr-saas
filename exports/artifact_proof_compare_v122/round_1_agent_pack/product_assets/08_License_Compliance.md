@@ -1,0 +1,3 @@
+HUMAN REVIEW REQUIRED. Bộ này được tạo như tài sản mới dựa trên pattern nghiên cứu, không xác nhận quyền resale của bất kỳ file PLR, Canva template, PDF, ZIP, font, ảnh AI hoặc training asset bên ngoài. Người mua có thể dùng nội dung hướng dẫn, prompt và checklist để tạo sản phẩm riêng. Không được hiểu đây là tư vấn pháp lý. Trước khi bán printable/KDP/PLR pack, hãy kiểm tra: quyền thương mại của ảnh, font, icon, template; chính sách Canva/KDP/Etsy/WarriorPlus; trademark và copyright; quyền dùng AI-generated images; claim giáo dục, trẻ em, sức khỏe hoặc tài chính. Khi không chắc, dùng asset đó làm research, không phân phối lại.
+
+---

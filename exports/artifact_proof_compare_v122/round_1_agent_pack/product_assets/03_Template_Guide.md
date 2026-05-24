@@ -1,0 +1,3 @@
+Template pack nên có 5 loại trang: Cover Page, Quick Start Page, Main Worksheet, Tracker Page, Review Page. Với mỗi trang, dùng layout sạch: tiêu đề lớn, hướng dẫn ngắn, khoảng trắng đủ viết, icon đơn giản, không dùng hình bản quyền. Ví dụ niche “Creator Weekly Content Planner”: Cover ghi tên pack; Quick Start hướng dẫn lập kế hoạch 15 phút; Main Worksheet chia content pillars; Tracker theo dõi publish status; Review Page ghi bài nào hoạt động tốt. File nên xuất PDF cho người dùng cuối và bản editable nếu license cho phép. Nếu dùng Canva template, đừng bán lại element premium khi license không rõ.
+
+---

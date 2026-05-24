@@ -1,0 +1,10 @@
+{
+  "required": [
+    "Files created",
+    "File paths",
+    "Content status",
+    "Placeholder status",
+    "Quality gate",
+    "Next Action"
+  ]
+}

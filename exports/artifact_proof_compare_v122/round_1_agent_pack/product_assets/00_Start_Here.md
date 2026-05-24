@@ -1,0 +1,3 @@
+Bắt đầu bằng một niche nhỏ, không chọn “all printables”. Ví dụ an toàn: habit tracker cho creator, weekly planner cho freelancer, coloring page cho người lớn thích thư giãn, hoặc worksheet tổ chức nội dung cho coach. Mục tiêu trong 60 phút đầu không phải tạo sản phẩm hoàn hảo, mà tạo một “sample pack” gồm 5 trang printable, 1 listing draft, 1 checklist kiểm chất lượng và 1 ghi chú license. Làm theo thứ tự: chọn buyer, chọn pain, tạo prompt, kiểm tra output, sửa lỗi, viết mô tả bán hàng, đóng gói ZIP. Không dùng thương hiệu, nhân vật nổi tiếng, lyrics, quote có bản quyền hoặc claim giáo dục/y tế quá mức.
+
+---

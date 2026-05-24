@@ -1,0 +1,3 @@
+Q: Can I use this for Etsy, KDP, Gumroad, Payhip or WarriorPlus? A: Yes as a workflow, but each platform has its own rules. Q: Does it guarantee sales? A: No. It helps you create and package a better product asset. Q: Can I resell the kit as PLR? A: Not unless your purchase license explicitly says so. Benchmark version assumes personal/commercial use for your own created outputs only. Q: Can AI create this for free? A: AI can draft pieces, but this kit gives sequence, checks, examples and compliance reminders. Q: What if I use Canva? A: Verify Canva element/font/template rights before resale.
+
+---

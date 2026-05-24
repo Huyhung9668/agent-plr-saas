@@ -1,0 +1,59 @@
+{
+  "agent": "AI Printables KDP Prompt Agent",
+  "version": "v1.11",
+  "global_tags": [
+    "#ai-printables-kdp-prompt",
+    "#ai-printables",
+    "#kdp",
+    "#plr",
+    "#warriorplus",
+    "#prompt-pack",
+    "#canva-printable",
+    "#coloring-book",
+    "#journal",
+    "#kids-worksheet",
+    "#etsy-printable",
+    "#market-pattern",
+    "#competitor-matrix",
+    "#offer-gap",
+    "#product-blueprint",
+    "#deep-file-writer",
+    "#prompt-output-test",
+    "#buyer-test",
+    "#ai-replace-risk",
+    "#refund-risk",
+    "#license-check",
+    "#sales-page",
+    "#warriorplus-listing",
+    "#jv-pack",
+    "#delivery-support",
+    "#export-zip",
+    "#public-launch-audit"
+  ],
+  "tag_to_skill": {
+    "#market-pattern": "skills/01_market_pattern_ai_printables.md",
+    "#competitor-matrix": "skills/02_competitor_matrix_ai_printables.md",
+    "#offer-gap": "skills/03_offer_gap_ai_printables.md",
+    "#product-blueprint": "skills/04_product_blueprint_ai_printables.md",
+    "#deep-file-writer": "skills/05_deep_file_writer_ai_printables.md",
+    "#prompt-output-test": "skills/06_prompt_output_test_ai_printables.md",
+    "#buyer-test": "skills/07_buyer_test_ai_printables.md",
+    "#ai-replace-risk": "skills/08_ai_replace_risk_ai_printables.md",
+    "#refund-risk": "skills/09_refund_risk_ai_printables.md",
+    "#license-check": "skills/10_license_compliance_ai_printables.md",
+    "#sales-page": "skills/11_sales_page_ai_printables.md",
+    "#warriorplus-listing": "skills/12_warriorplus_listing_ai_printables.md",
+    "#jv-pack": "skills/13_jv_pack_ai_printables.md",
+    "#delivery-support": "skills/14_delivery_support_ai_printables.md",
+    "#export-zip": "skills/15_export_zip_ai_printables.md",
+    "#public-launch-audit": "skills/16_public_launch_audit_ai_printables.md"
+  },
+  "default_brain": [
+    "brain/AI_PRINTABLES_KDP_BRAIN.json"
+  ],
+  "agent_key": "ai_printables_kdp_prompt",
+  "agent_folder": "agents/AI_Printables_KDP_Prompt_Agent",
+  "agent_tag": {
+    "#ai-printables-kdp-prompt": "AI_Printables_KDP_Prompt_Agent"
+  }
+}

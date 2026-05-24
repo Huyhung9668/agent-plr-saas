@@ -1,0 +1,36 @@
+{
+  "project_slug": "AI_PLR_Prompt_Template_Pack",
+  "project_name": "AI PLR Prompt Template Pack",
+  "completed": {
+    "offer_analysis": false,
+    "product_assets": false,
+    "sales_page": false,
+    "funnel": false,
+    "jv_pack": false,
+    "warriorplus_listing": false,
+    "delivery_page": false,
+    "email_funnel": false,
+    "saas_plan": true,
+    "support": false,
+    "license": false,
+    "export_zip": false
+  },
+  "offer_analysis": "MISSING",
+  "product_assets": "MISSING",
+  "sales_page": "MISSING",
+  "funnel": "MISSING",
+  "jv_pack": "MISSING",
+  "warriorplus_listing": "MISSING",
+  "delivery_page": "MISSING",
+  "email_funnel": "MISSING",
+  "saas_plan": "DONE",
+  "support": "MISSING",
+  "license": "MISSING",
+  "export_zip": "MISSING",
+  "launch_readiness": 6,
+  "next_actions": [
+    "deep_create_product_assets",
+    "write_sales_page",
+    "create_funnel"
+  ]
+}

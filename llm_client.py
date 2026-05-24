@@ -5,6 +5,8 @@ from urllib import request
 from urllib.error import URLError
 
 from config import OPENAI_API_BASE, OPENAI_API_KEY, OPENAI_API_MODE, OPENAI_MODEL, OPENAI_REASONING_EFFORT
+
+LLM_REQUEST_TIMEOUT_SECONDS = 120
 from prompts import (
     ANALYSIS_PROMPT,
     BONUS_STACK_PROMPT,
@@ -96,7 +98,7 @@ def _chat(
     except ImportError as error:
         raise RuntimeError("OpenAI package is missing. Install with: pip install openai") from error
 
-    client_kwargs = {"api_key": OPENAI_API_KEY}
+    client_kwargs = {"api_key": OPENAI_API_KEY, "timeout": LLM_REQUEST_TIMEOUT_SECONDS}
     if OPENAI_API_BASE:
         client_kwargs["base_url"] = OPENAI_API_BASE
     client = OpenAI(**client_kwargs)
@@ -135,7 +137,7 @@ def _chat_stream(
     except ImportError as error:
         raise RuntimeError("OpenAI package is missing. Install with: pip install openai") from error
 
-    client_kwargs = {"api_key": OPENAI_API_KEY}
+    client_kwargs = {"api_key": OPENAI_API_KEY, "timeout": LLM_REQUEST_TIMEOUT_SECONDS}
     if OPENAI_API_BASE:
         client_kwargs["base_url"] = OPENAI_API_BASE
     client = OpenAI(**client_kwargs)

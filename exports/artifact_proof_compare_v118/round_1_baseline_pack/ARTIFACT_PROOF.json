@@ -1,0 +1,104 @@
+{
+  "label": "baseline",
+  "created_at": "2026-05-24 09:51:53",
+  "files": [
+    {
+      "file": "product_assets/00_Start_Here.md",
+      "chars": 883,
+      "words": 134,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/01_Workflow_Map.md",
+      "chars": 803,
+      "words": 124,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/02_Prompt_Library.md",
+      "chars": 1280,
+      "words": 185,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/03_Template_Guide.md",
+      "chars": 908,
+      "words": 130,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/04_Example_Outputs.md",
+      "chars": 846,
+      "words": 134,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/05_Quality_Checklist.md",
+      "chars": 836,
+      "words": 131,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/06_Fix_Prompts.md",
+      "chars": 977,
+      "words": 140,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/07_Listing_Sales_Kit.md",
+      "chars": 892,
+      "words": 123,
+      "extracted": true
+    },
+    {
+      "file": "product_assets/08_License_Compliance.md",
+      "chars": 911,
+      "words": 130,
+      "extracted": true
+    },
+    {
+      "file": "sales_page.md",
+      "chars": 994,
+      "words": 141,
+      "extracted": true
+    },
+    {
+      "file": "warriorplus_listing.md",
+      "chars": 997,
+      "words": 136,
+      "extracted": true
+    },
+    {
+      "file": "jv_pack.md",
+      "chars": 1012,
+      "words": 146,
+      "extracted": true
+    },
+    {
+      "file": "delivery_page.md",
+      "chars": 815,
+      "words": 121,
+      "extracted": true
+    },
+    {
+      "file": "support_faq.md",
+      "chars": 830,
+      "words": 132,
+      "extracted": true
+    },
+    {
+      "file": "refund_policy.md",
+      "chars": 4121,
+      "words": 615,
+      "extracted": true
+    },
+    {
+      "file": "README.md",
+      "chars": 984,
+      "words": 139,
+      "extracted": true
+    }
+  ],
+  "placeholder_hits": [],
+  "total_words": 2661
+}

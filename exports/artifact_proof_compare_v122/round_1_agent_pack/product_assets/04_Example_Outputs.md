@@ -1,0 +1,3 @@
+Sample niche: “Creator Weekly Content Planner”. Buyer: creator mới đăng bài không đều và thiếu cấu trúc. 5-page pack mẫu: 1) Cover: Creator Weekly Content Planner. 2) Quick Start: chọn 3 mục tiêu tuần này. 3) Content Pillar Sheet: Educational, Story, Offer, Engagement. 4) Publishing Tracker: platform, topic, status, CTA. 5) Weekly Review: bài tốt nhất, bài cần sửa, ý tưởng tuần sau. Listing sample: “A simple printable planner to help creators organize one week of content without starting from a blank page.” Đây là proof substitute: buyer thấy workflow và output mẫu, không phải lời hứa doanh thu.
+
+---

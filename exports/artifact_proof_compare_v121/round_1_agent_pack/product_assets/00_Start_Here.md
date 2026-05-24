@@ -1,0 +1,3 @@
+Bắt đầu bằng một mục tiêu nhỏ: tạo một printable mini-pack có thể demo được, không phải xây “đế chế KDP” ngay. Chọn một trong ba ngách an toàn: planner cho creator, worksheet cho người lớn học kỹ năng mềm, hoặc coloring page thư giãn cho người lớn. Tránh trademark, nhân vật nổi tiếng, brand, celebrity, quote có bản quyền, và claim giáo dục/therapy quá mạnh. Quy trình dùng: đọc Workflow Map, chạy Prompt Library, chọn một Template Guide, xem Example Outputs, dùng Quality Checklist, sửa bằng Fix Prompts, rồi lấy Listing Sales Kit để viết mô tả bán hàng. Không upload bán trước khi kiểm tra license và policy nền tảng.
+
+---

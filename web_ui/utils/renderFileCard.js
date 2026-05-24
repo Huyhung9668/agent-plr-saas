@@ -1,4 +1,4 @@
-const FILE_PATTERN = /\b([\w.-]+\.(?:md|txt|pdf|json|csv|js|ts|py|html|zip))\b/gi;
+﻿const FILE_PATTERN = /\b([\w.-]+\.(?:md|txt|pdf|json|csv|js|ts|py|html|zip))\b/gi;
 const CODEBLOCK_FILE_PATTERN = /```[\w-]*\s+(?:filename=["']?([\w.-]+)["']?)[^\n]*\n([\s\S]+?)```/gi;
 const DECLARED_FILE_PATTERN = /(?:^|\n)(?:file|tên file|filename)[:\s]+[`"]?([\w.-]+\.(?:md|txt|pdf|json|csv|js|ts|py|html|zip))[`"]?/gi;
 const DECLARED_FILE_BLOCK_PATTERN = /(?:^|\n)FILE:\s*[`"]?([\w.-]+\.(?:md|txt|pdf|json|csv|js|ts|py|html|zip))[`"]?\s*\n(?:DESC:\s*([^\n]+)\s*\n)?---\s*\n([\s\S]*)/i;
@@ -54,19 +54,19 @@ function createFileCard(filename, content, description = "") {
   const copy = document.createElement("button");
   copy.className = "fc-btn fc-btn-copy btn-copy";
   copy.type = "button";
-  copy.textContent = "Copy";
+  copy.textContent = "Sao chép";
   copy.addEventListener("click", async () => {
     await copyFileCardContent(content);
-    copy.textContent = "Copied";
+    copy.textContent = "Đã chép";
     notifyFileCard("Đã copy nội dung file.");
-    setTimeout(() => (copy.textContent = "Copy"), 900);
+    setTimeout(() => (copy.textContent = "Sao chép"), 900);
   });
   actions.appendChild(copy);
 
   const download = document.createElement("button");
   download.className = "fc-btn fc-btn-dl btn-download";
   download.type = "button";
-  download.textContent = "Download";
+  download.textContent = "Tải";
   download.addEventListener("click", () => {
     downloadFileCardContent(filename, content, ext);
     notifyFileCard(`Đã tải ${filename}.`);
@@ -79,6 +79,9 @@ function createFileCard(filename, content, description = "") {
 
 function parseMessageFileParts(content, messageId = "output") {
   const text = String(content || "");
+  if ((text.match(/^#\s*FILE\s+\d+\s*:/gim) || []).length >= 2) {
+    return [{ type: "text", content: text }];
+  }
   const declaredBlock = text.match(DECLARED_FILE_BLOCK_PATTERN);
   if (declaredBlock) {
     const start = declaredBlock.index || 0;
@@ -238,3 +241,6 @@ function notifyFileCard(message) {
 
 window.createFileCard = createFileCard;
 window.parseMessageFileParts = parseMessageFileParts;
+
+
+

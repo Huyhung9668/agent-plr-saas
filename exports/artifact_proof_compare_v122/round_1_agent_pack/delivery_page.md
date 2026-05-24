@@ -1,0 +1,3 @@
+Welcome to Printable Niche Launch Kit AI. Access your files at example.com/download. Start with `README.md`, then open `00_Start_Here.md`. Do not jump straight to prompts; the workflow and checklist prevent weak output. Suggested order: read Start Here, choose one niche, complete the workflow map, use Prompt Library, build a 5-page sample, compare with Example Outputs, run Quality Checklist, apply Fix Prompts, then write your listing with Listing Sales Kit. Support: email support@example.com with your order ID and clear question. Example Studio usually replies within two business days. This page does not confirm live delivery integration or payment testing.
+
+---

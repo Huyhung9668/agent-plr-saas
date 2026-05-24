@@ -1,0 +1,3 @@
+JV invite: “Printable Prompt Profit Kit is a beginner-friendly AI printable implementation product for creators who want more than prompt dumps.” Affiliate angle: promote workflow, speed of organization, examples, checklist, and compliance clarity. Do not claim buyers will make money or rank on KDP. Swipe 1 subject: “AI printables without the prompt-dump problem.” Swipe 2 subject: “A 7-day workflow for your first printable product draft.” Social post: “If your audience has AI prompts but no finished product, this kit gives them the missing workflow.” Bonus ideas: Canva setup checklist, niche brainstorm sheet, 5 sample listing rewrites. Review access: send to support@example.com with audience details.
+
+---
