@@ -1,0 +1,178 @@
+{
+  "01_product_idea_niche": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "02_market_competitor_pattern": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "03_product_decision": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "04_product_blueprint": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "05_core_product_files": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "06_templates_csv_worksheets": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "07_prompt_library": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "08_examples_sample_outputs": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "09_quality_checklist": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "10_license_compliance": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "11_delivery_support": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "12_product_core_review": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "13_score_each_file": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "14_ai_replace_risk_audit": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "15_beginner_confusion_audit": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "16_prompt_output_test": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "17_buyer_simulation_test": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "18_refund_auditor_test": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "19_fix_weak_parts": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "20_rescore_product": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "21_add_more_example_outputs": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "22_add_checklists": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "23_add_fix_prompts": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "24_final_compliance_review": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "25_sales_page_strategy": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "26_sales_page_copy": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "27_sales_page_claim_audit": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "28_warriorplus_listing": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "29_jv_manager_plan": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "30_jv_page_jv_invite": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "31_affiliate_email_swipes": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "32_social_posts_promo_assets": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "33_bonus_order_bump_oto_map": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "34_final_folder_packaging": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "35_placeholder_check_export_manifest": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "36_export_zip_test_delivery_flow": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "37_soft_launch_review_access": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "38_feedback_log": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "39_buyer_questions_refund_reasons": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "40_v2_fixes": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "41_public_launch_checklist": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "42_public_launch": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "43_support_refund_affiliate_tracking": {
+    "score": 10,
+    "missing_sections": []
+  },
+  "44_oto_decision_sp2_decision": {
+    "score": 10,
+    "missing_sections": []
+  }
+}

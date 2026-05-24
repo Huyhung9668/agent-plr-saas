@@ -1,0 +1,992 @@
+[
+  {
+    "skill_id": "01_product_idea_niche",
+    "step_number": 1,
+    "skill_name": "Product Idea / Niche",
+    "file_path": "skills/01_product_idea_niche.md",
+    "phase": "Phase 1",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "product idea",
+      "niche",
+      "ý tưởng",
+      "y tuong"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "02_market_competitor_pattern",
+    "step_number": 2,
+    "skill_name": "Market / Competitor Pattern",
+    "file_path": "skills/02_market_competitor_pattern.md",
+    "phase": "Phase 1",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "market",
+      "competitor",
+      "pattern",
+      "đối thủ",
+      "doi thu"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "03_product_decision",
+    "step_number": 3,
+    "skill_name": "Product Decision",
+    "file_path": "skills/03_product_decision.md",
+    "phase": "Phase 1",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "product decision",
+      "chọn sản phẩm",
+      "chon san pham"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "04_product_blueprint",
+    "step_number": 4,
+    "skill_name": "Product Blueprint",
+    "file_path": "skills/04_product_blueprint.md",
+    "phase": "Phase 1",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "blueprint",
+      "product blueprint",
+      "bản thiết kế",
+      "ban thiet ke"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "05_core_product_files",
+    "step_number": 5,
+    "skill_name": "Core Product Files",
+    "file_path": "skills/05_core_product_files.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "core product files",
+      "core files"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_5_core_product_files/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "06_templates_csv_worksheets",
+    "step_number": 6,
+    "skill_name": "Templates / CSV / Worksheets",
+    "file_path": "skills/06_templates_csv_worksheets.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "templates",
+      "csv",
+      "worksheets",
+      "worksheet"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_6_templates_csv_worksheets/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "07_prompt_library",
+    "step_number": 7,
+    "skill_name": "Prompt Library",
+    "file_path": "skills/07_prompt_library.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "prompt library",
+      "prompt prompts"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_7_prompt_library/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "08_examples_sample_outputs",
+    "step_number": 8,
+    "skill_name": "Examples / Sample Outputs",
+    "file_path": "skills/08_examples_sample_outputs.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "examples",
+      "sample outputs",
+      "ví dụ",
+      "vi du"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_8_examples_sample_outputs/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "09_quality_checklist",
+    "step_number": 9,
+    "skill_name": "Quality Checklist",
+    "file_path": "skills/09_quality_checklist.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "quality checklist",
+      "checklist chất lượng"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_9_quality_checklist/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "10_license_compliance",
+    "step_number": 10,
+    "skill_name": "License / Compliance",
+    "file_path": "skills/10_license_compliance.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "license",
+      "compliance",
+      "giấy phép",
+      "giay phep"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_10_license_compliance/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "11_delivery_support",
+    "step_number": 11,
+    "skill_name": "Delivery / Support",
+    "file_path": "skills/11_delivery_support.md",
+    "phase": "Phase 2",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "delivery",
+      "support",
+      "hỗ trợ",
+      "ho tro"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "step_11_delivery_support/"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "12_product_core_review",
+    "step_number": 12,
+    "skill_name": "Product Core Review",
+    "file_path": "skills/12_product_core_review.md",
+    "phase": "Phase 2",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "product core review",
+      "core review"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "product_core_review.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "13_score_each_file",
+    "step_number": 13,
+    "skill_name": "Chấm điểm từng file",
+    "file_path": "skills/13_score_each_file.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "chấm điểm từng file",
+      "score each file",
+      "file score"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "file_by_file_scorecard.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "14_ai_replace_risk_audit",
+    "step_number": 14,
+    "skill_name": "AI Replace Risk Audit",
+    "file_path": "skills/14_ai_replace_risk_audit.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "ai replace risk",
+      "replace risk"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "ai_replace_risk_audit.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "15_beginner_confusion_audit",
+    "step_number": 15,
+    "skill_name": "Beginner Confusion Audit",
+    "file_path": "skills/15_beginner_confusion_audit.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "beginner confusion",
+      "confusion audit",
+      "người mới rối"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "beginner_confusion_audit.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "16_prompt_output_test",
+    "step_number": 16,
+    "skill_name": "Prompt Output Test",
+    "file_path": "skills/16_prompt_output_test.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "prompt output test",
+      "test prompt thật"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "prompt_output_test.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "17_buyer_simulation_test",
+    "step_number": 17,
+    "skill_name": "Buyer Simulation Test",
+    "file_path": "skills/17_buyer_simulation_test.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "buyer test",
+      "buyer simulation",
+      "test như buyer"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "buyer_simulation_test.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "18_refund_auditor_test",
+    "step_number": 18,
+    "skill_name": "Refund Auditor Test",
+    "file_path": "skills/18_refund_auditor_test.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "refund risk",
+      "refund auditor",
+      "hoàn tiền"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "refund_auditor_test.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "19_fix_weak_parts",
+    "step_number": 19,
+    "skill_name": "Fix Weak Parts",
+    "file_path": "skills/19_fix_weak_parts.md",
+    "phase": "Phase 3",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "fix weak parts",
+      "sửa phần yếu",
+      "nâng cấp từng phần"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "weak_parts_fix_log.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "20_rescore_product",
+    "step_number": 20,
+    "skill_name": "Re-score Product",
+    "file_path": "skills/20_rescore_product.md",
+    "phase": "Phase 3",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "rescore",
+      "re-score",
+      "chấm điểm lại"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "product_rescore_report.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "21_add_more_example_outputs",
+    "step_number": 21,
+    "skill_name": "Add More Example Outputs",
+    "file_path": "skills/21_add_more_example_outputs.md",
+    "phase": "Phase 4",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "more example outputs",
+      "thêm example output"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "more_example_outputs.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "22_add_checklists",
+    "step_number": 22,
+    "skill_name": "Add Checklists",
+    "file_path": "skills/22_add_checklists.md",
+    "phase": "Phase 4",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "add checklists",
+      "thêm checklist"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "checklists.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "23_add_fix_prompts",
+    "step_number": 23,
+    "skill_name": "Add Fix Prompts",
+    "file_path": "skills/23_add_fix_prompts.md",
+    "phase": "Phase 4",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "fix prompts",
+      "thêm fix prompt"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "fix_prompts.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "24_final_compliance_review",
+    "step_number": 24,
+    "skill_name": "Final Compliance Review",
+    "file_path": "skills/24_final_compliance_review.md",
+    "phase": "Phase 4",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "final compliance review",
+      "compliance review"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "final_compliance_review.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "25_sales_page_strategy",
+    "step_number": 25,
+    "skill_name": "Sales Page Strategy",
+    "file_path": "skills/25_sales_page_strategy.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "sales page strategy",
+      "strategy sales"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "sales_page_strategy.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "26_sales_page_copy",
+    "step_number": 26,
+    "skill_name": "Sales Page Copy",
+    "file_path": "skills/26_sales_page_copy.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "sales page copy",
+      "copy bán hàng"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "sales_page_copy.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "27_sales_page_claim_audit",
+    "step_number": 27,
+    "skill_name": "Sales Page Claim Audit",
+    "file_path": "skills/27_sales_page_claim_audit.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "claim audit",
+      "sales claim"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "sales_page_claim_audit.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "28_warriorplus_listing",
+    "step_number": 28,
+    "skill_name": "WarriorPlus Listing",
+    "file_path": "skills/28_warriorplus_listing.md",
+    "phase": "Phase 5",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "warriorplus listing",
+      "listing"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "warriorplus_listing.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "29_jv_manager_plan",
+    "step_number": 29,
+    "skill_name": "JV Manager Plan",
+    "file_path": "skills/29_jv_manager_plan.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "jv manager plan",
+      "jv plan"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "jv_manager_plan.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "30_jv_page_jv_invite",
+    "step_number": 30,
+    "skill_name": "JV Page / JV Invite",
+    "file_path": "skills/30_jv_page_jv_invite.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "jv page",
+      "jv invite"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "jv_page_jv_invite.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "31_affiliate_email_swipes",
+    "step_number": 31,
+    "skill_name": "Affiliate Email Swipes",
+    "file_path": "skills/31_affiliate_email_swipes.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "affiliate email",
+      "email swipes"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "affiliate_email_swipes.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "32_social_posts_promo_assets",
+    "step_number": 32,
+    "skill_name": "Social Posts / Promo Assets",
+    "file_path": "skills/32_social_posts_promo_assets.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "social posts",
+      "promo assets"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "social_posts_promo_assets.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "33_bonus_order_bump_oto_map",
+    "step_number": 33,
+    "skill_name": "Bonus / Order Bump / OTO Map",
+    "file_path": "skills/33_bonus_order_bump_oto_map.md",
+    "phase": "Phase 5",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "bonus",
+      "order bump",
+      "oto map"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "bonus_order_bump_oto_map.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "34_final_folder_packaging",
+    "step_number": 34,
+    "skill_name": "Final Folder Packaging",
+    "file_path": "skills/34_final_folder_packaging.md",
+    "phase": "Phase 6",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "final folder packaging",
+      "đóng gói folder"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "final_folder_packaging.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "35_placeholder_check_export_manifest",
+    "step_number": 35,
+    "skill_name": "Placeholder Check + Export Manifest",
+    "file_path": "skills/35_placeholder_check_export_manifest.md",
+    "phase": "Phase 6",
+    "route_type": "hybrid_action",
+    "trigger_keywords": [
+      "placeholder check",
+      "export manifest",
+      "manifest test"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "export_manifest.md",
+      "placeholder_check.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "36_export_zip_test_delivery_flow",
+    "step_number": 36,
+    "skill_name": "Export ZIP + Test ZIP / Delivery Flow",
+    "file_path": "skills/36_export_zip_test_delivery_flow.md",
+    "phase": "Phase 6",
+    "route_type": "tool_action",
+    "trigger_keywords": [
+      "export zip",
+      "test zip",
+      "delivery flow"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "final_product.zip"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "37_soft_launch_review_access",
+    "step_number": 37,
+    "skill_name": "Soft Launch / Review Access",
+    "file_path": "skills/37_soft_launch_review_access.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "soft launch",
+      "review access"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "soft_launch_plan.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "38_feedback_log",
+    "step_number": 38,
+    "skill_name": "Feedback Log",
+    "file_path": "skills/38_feedback_log.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "feedback log",
+      "lấy feedback"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "feedback_log.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "39_buyer_questions_refund_reasons",
+    "step_number": 39,
+    "skill_name": "Buyer Questions / Refund Reasons",
+    "file_path": "skills/39_buyer_questions_refund_reasons.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "buyer questions",
+      "refund reasons"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "buyer_questions_refund_reasons.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "40_v2_fixes",
+    "step_number": 40,
+    "skill_name": "V2 Fixes",
+    "file_path": "skills/40_v2_fixes.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "v2 fixes",
+      "v2 upgrade",
+      "sửa bản v2"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "v2_fixes.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "41_public_launch_checklist",
+    "step_number": 41,
+    "skill_name": "Public Launch Checklist",
+    "file_path": "skills/41_public_launch_checklist.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "public launch checklist",
+      "launch checklist"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "public_launch_checklist.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "42_public_launch",
+    "step_number": 42,
+    "skill_name": "Public Launch",
+    "file_path": "skills/42_public_launch.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "public launch",
+      "launch public"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "public_launch.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "43_support_refund_affiliate_tracking",
+    "step_number": 43,
+    "skill_name": "Support / Refund / Affiliate Tracking",
+    "file_path": "skills/43_support_refund_affiliate_tracking.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "support tracking",
+      "refund tracking",
+      "affiliate tracking"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "support_refund_affiliate_tracking.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  },
+  {
+    "skill_id": "44_oto_decision_sp2_decision",
+    "step_number": 44,
+    "skill_name": "OTO Decision hoặc SP2 Decision",
+    "file_path": "skills/44_oto_decision_sp2_decision.md",
+    "phase": "Phase 7",
+    "route_type": "ai_content",
+    "trigger_keywords": [
+      "oto decision",
+      "sp2 decision",
+      "sản phẩm 2",
+      "san pham 2"
+    ],
+    "required_inputs": [
+      "product_name or active_project",
+      "active_project_path",
+      "user_message"
+    ],
+    "output_files": [
+      "oto_decision_sp2_decision.md"
+    ],
+    "min_score_to_pass": 10,
+    "status": "active"
+  }
+]

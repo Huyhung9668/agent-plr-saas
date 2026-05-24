@@ -1,0 +1,9 @@
+[
+  {
+    "iteration": 1,
+    "returncode": 0,
+    "failed_skills": {},
+    "stdout_tail": "PASS tests/test_product_routes.py::test_explicit_step_routes\nPASS tests/test_product_routes.py::test_extract_explicit_step_range\nPASS tests/test_product_routes.py::test_generic_future_step_uses_ai_for_content\nPASS tests/test_product_routes.py::test_phase5_uses_real_ai_chat\nPASS tests/test_product_routes.py::test_route_debug_does_not_run_old_step\nPASS tests/test_product_routes.py::test_step34_uses_real_ai_packaging\nPASS tests/test_product_routes.py::test_step35_uses_real_ai_export_manifest\nPASS tests/test_product_routes.py::test_unsupported_tool_still_stops\nPASS tests/test_skill_router.py::test_debug_complaint_stops_normal_route\nPASS tests/test_skill_router.py::test_explicit_step_beats_keywords\nPASS tests/test_skill_router.py::test_explicit_steps_1_44_route_to_matching_skill\nPASS tests/test_skill_router.py::test_extract_step_40_and_44\nPASS tests/test_skill_router.py::test_key_skill_routes\nPASS tests/test_skill_quality.py::test_skill_quality_scores_and_outputs\nPASS tests/test_product_isolation.py::test_project_slug_isolation_names\nPASS tests/test_ai_api_required.py::test_ai_api_required_by_route_type\nPASS tests/test_44_skill_prompts.py::test_all_44_skill_prompts_have_three_routeable_prompts\n\nALL TESTS PASSED\n",
+    "stderr_tail": ""
+  }
+]

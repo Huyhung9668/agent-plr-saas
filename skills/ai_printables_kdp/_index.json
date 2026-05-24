@@ -1,0 +1,511 @@
+{
+  "name": "ai_printables_kdp",
+  "version": "v1.0",
+  "skill_folder": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\skills\\ai_printables_kdp",
+  "data_sources": {
+    "main": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\AI Printables KDP Promt Skill",
+    "recovered_required": "G:\\Documents\\warriorplus MMO\\Agent PLR Saas\\input_files\\AI Printables KDP Promt Skill\\_RECOVERED_3500_20260522"
+  },
+  "progressive_disclosure": "Load only this index first; load full markdown only when tags or routing phrases match.",
+  "global_tags": [
+    "#ai-printables",
+    "#kdp",
+    "#plr",
+    "#warriorplus",
+    "#prompt-pack",
+    "#canva-printable",
+    "#coloring-book",
+    "#journal",
+    "#kids-worksheet",
+    "#etsy-printable",
+    "#market-pattern",
+    "#competitor-matrix",
+    "#offer-gap",
+    "#product-blueprint",
+    "#deep-file-writer",
+    "#prompt-output-test",
+    "#buyer-test",
+    "#ai-replace-risk",
+    "#refund-risk",
+    "#license-check",
+    "#sales-page",
+    "#warriorplus-listing",
+    "#jv-pack",
+    "#delivery-support",
+    "#export-zip",
+    "#public-launch-audit"
+  ],
+  "skills": [
+    {
+      "file": "01_market_pattern_ai_printables.md",
+      "name": "Market Pattern AI Printables",
+      "short_description": "??c d? li?u ??u v?o ?? r?t pattern th? tr??ng AI Printables / KDP / PLR.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#market-pattern"
+      ],
+      "example_trigger": "#ai-printables #kdp #market-pattern Ph?n t?ch 5 ng?ch AI Printables ngon nh?t t? d? li?u ??u v?o."
+    },
+    {
+      "file": "02_competitor_matrix_ai_printables.md",
+      "name": "Competitor Matrix AI Printables",
+      "short_description": "So s?nh vendor / s?n ph?m / ng?ch / gi? / sales / angle.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#competitor-matrix"
+      ],
+      "example_trigger": "#ai-printables #kdp #competitor-matrix So s?nh c?c s?n ph?m AI Printables/KDP b?n t?t nh?t trong d? li?u."
+    },
+    {
+      "file": "03_offer_gap_ai_printables.md",
+      "name": "Offer Gap AI Printables",
+      "short_description": "T?m kho?ng tr?ng ?? s?n ph?m m?i kh?ng gi?ng prompt pack th?.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#offer-gap"
+      ],
+      "example_trigger": "#ai-printables #offer-gap T?m kho?ng tr?ng cho prompt pack KDP printables."
+    },
+    {
+      "file": "04_product_blueprint_ai_printables.md",
+      "name": "Product Blueprint AI Printables",
+      "short_description": "T?o blueprint s?n ph?m ho?n ch?nh.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#product-blueprint"
+      ],
+      "example_trigger": "#ai-printables #product-blueprint T?o blueprint cho AI Coloring Page Niche Pack Builder."
+    },
+    {
+      "file": "05_deep_file_writer_ai_printables.md",
+      "name": "Deep File Writer AI Printables",
+      "short_description": "Vi?t n?i dung th?t cho t?ng file s?n ph?m.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#deep-file-writer"
+      ],
+      "example_trigger": "#ai-printables #deep-file-writer T?o to?n b? product assets th?t cho AI Kids Worksheet Factory."
+    },
+    {
+      "file": "06_prompt_output_test_ai_printables.md",
+      "name": "Prompt Output Test AI Printables",
+      "short_description": "Test prompt trong pack c? ra output d?ng ???c kh?ng.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#prompt-output-test"
+      ],
+      "example_trigger": "#ai-printables #prompt-output-test Ki?m tra prompt n?y c? ra output t?t kh?ng."
+    },
+    {
+      "file": "07_buyer_test_ai_printables.md",
+      "name": "Buyer Test AI Printables",
+      "short_description": "Gi? l?m buyer m?i mua pack gi? $17-$27.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#buyer-test"
+      ],
+      "example_trigger": "#ai-printables #buyer-test Test pack n?y nh? buyer m?i mua gi? $17."
+    },
+    {
+      "file": "08_ai_replace_risk_ai_printables.md",
+      "name": "AI Replace Risk AI Printables",
+      "short_description": "Ki?m tra buyer c? ngh? ?ChatGPT c?ng l?m ???c? kh?ng.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#ai-replace-risk"
+      ],
+      "example_trigger": "#ai-printables #ai-replace-risk Pack n?y c? b? ChatGPT replace kh?ng?"
+    },
+    {
+      "file": "09_refund_risk_ai_printables.md",
+      "name": "Refund Risk AI Printables",
+      "short_description": "T?m l? do buyer refund.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#refund-risk"
+      ],
+      "example_trigger": "#ai-printables #refund-risk T?m l? do buyer c? th? refund pack n?y."
+    },
+    {
+      "file": "10_license_compliance_ai_printables.md",
+      "name": "License Compliance AI Printables",
+      "short_description": "Ki?m tra license/compliance cho AI Printables/KDP/Canva/PLR.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#license-check"
+      ],
+      "example_trigger": "#ai-printables #license-check Ki?m tra PLR rights, Canva rights v? KDP copyright."
+    },
+    {
+      "file": "11_sales_page_ai_printables.md",
+      "name": "Sales Page AI Printables",
+      "short_description": "Vi?t sales page cho s?n ph?m.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#sales-page"
+      ],
+      "example_trigger": "#ai-printables #sales-page Vi?t sales page cho AI Kids Worksheet Factory."
+    },
+    {
+      "file": "12_warriorplus_listing_ai_printables.md",
+      "name": "WarriorPlus Listing AI Printables",
+      "short_description": "T?o listing cho WarriorPlus.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#warriorplus-listing"
+      ],
+      "example_trigger": "#ai-printables #warriorplus-listing T?o listing WarriorPlus cho s?n ph?m n?y."
+    },
+    {
+      "file": "13_jv_pack_ai_printables.md",
+      "name": "JV Pack AI Printables",
+      "short_description": "T?o JV pack / affiliate swipes.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#jv-pack"
+      ],
+      "example_trigger": "#ai-printables #jv-pack T?o JV pack v? affiliate swipes."
+    },
+    {
+      "file": "14_delivery_support_ai_printables.md",
+      "name": "Delivery Support AI Printables",
+      "short_description": "T?o delivery page, onboarding email, support FAQ, refund policy.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#delivery-support"
+      ],
+      "example_trigger": "#ai-printables #delivery-support T?o delivery page v? support FAQ."
+    },
+    {
+      "file": "15_export_zip_ai_printables.md",
+      "name": "Export ZIP AI Printables",
+      "short_description": "??ng g?i s?n ph?m th?nh ZIP th?t.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#export-zip"
+      ],
+      "example_trigger": "#ai-printables #export-zip ??ng g?i s?n ph?m hi?n t?i th?nh ZIP v? t?o manifest."
+    },
+    {
+      "file": "16_public_launch_audit_ai_printables.md",
+      "name": "Public Launch Audit AI Printables",
+      "short_description": "Ki?m tra c? launch ???c ch?a.",
+      "trigger_tags": [
+        "#ai-printables",
+        "#kdp",
+        "#plr",
+        "#warriorplus",
+        "#prompt-pack",
+        "#canva-printable",
+        "#coloring-book",
+        "#journal",
+        "#kids-worksheet",
+        "#etsy-printable",
+        "#public-launch-audit"
+      ],
+      "example_trigger": "#ai-printables #public-launch-audit Ki?m tra tr??c khi b?n public launch."
+    }
+  ],
+  "routing_rules": [
+    {
+      "if_user_asks": [
+        "ng?ch n?y ngon kh?ng",
+        "5 ? t??ng ng?ch",
+        "AI Printables n?n l?m g?",
+        "ng?ch n?o b?n t?t"
+      ],
+      "call": [
+        "01_market_pattern_ai_printables.md",
+        "02_competitor_matrix_ai_printables.md",
+        "03_offer_gap_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "t?o s?n ph?m",
+        "l?n c?u tr?c pack",
+        "t?o blueprint",
+        "t?o offer"
+      ],
+      "call": [
+        "04_product_blueprint_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "vi?t file th?t",
+        "t?o product assets",
+        "t?o prompt pack",
+        "t?o start here",
+        "t?o checklist"
+      ],
+      "call": [
+        "05_deep_file_writer_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "test prompt",
+        "prompt n?y c? ra output t?t kh?ng",
+        "ki?m tra prompt"
+      ],
+      "call": [
+        "06_prompt_output_test_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "test nh? buyer",
+        "ng??i mua c? hi?u kh?ng",
+        "pack n?y ??ng ti?n kh?ng"
+      ],
+      "call": [
+        "07_buyer_test_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "ChatGPT c?ng l?m ???c kh?ng",
+        "AI replace risk",
+        "c? b? gi?ng h?ng AI th? kh?ng"
+      ],
+      "call": [
+        "08_ai_replace_risk_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "c? refund kh?ng",
+        "r?i ro ho?n ti?n",
+        "buyer th?t v?ng ? ??u"
+      ],
+      "call": [
+        "09_refund_risk_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "license",
+        "commercial use",
+        "PLR rights",
+        "Canva rights",
+        "KDP copyright",
+        "trademark"
+      ],
+      "call": [
+        "10_license_compliance_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "vi?t sales page",
+        "copy b?n h?ng",
+        "headline",
+        "CTA"
+      ],
+      "call": [
+        "11_sales_page_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "WarriorPlus listing",
+        "FE price",
+        "commission",
+        "product description",
+        "affiliate approval"
+      ],
+      "call": [
+        "12_warriorplus_listing_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "JV pack",
+        "affiliate swipes",
+        "JV invite",
+        "social posts"
+      ],
+      "call": [
+        "13_jv_pack_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "delivery page",
+        "support FAQ",
+        "buyer onboarding",
+        "refund policy"
+      ],
+      "call": [
+        "14_delivery_support_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "export ZIP",
+        "??ng g?i",
+        "t?o file zip",
+        "manifest",
+        "placeholder check"
+      ],
+      "call": [
+        "15_export_zip_ai_printables.md"
+      ]
+    },
+    {
+      "if_user_asks": [
+        "launch ???c ch?a",
+        "public launch audit",
+        "ki?m tra tr??c khi b?n",
+        "quality gate"
+      ],
+      "call": [
+        "16_public_launch_audit_ai_printables.md"
+      ]
+    }
+  ],
+  "self_improving_rule": [
+    "Identify related skill",
+    "Patch skill markdown",
+    "Increase version",
+    "Write _changelog.md",
+    "Write _usage_log.md",
+    "If same error happens twice, update skill before answering"
+  ]
+}
