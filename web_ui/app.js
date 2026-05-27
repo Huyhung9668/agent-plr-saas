@@ -962,12 +962,13 @@ async function loadStatus() {
     }, { docs: 0, chunks: 0 });
     const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
     const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
-  const appVersion = data.appVersion || "1.11";
-    for (const badge of appVersionBadges) badge.textContent = String(appVersion).startsWith("v") ? appVersion : `v${appVersion}`;
+  const appVersion = data.appVersion || "1.15-web-ui";
+  const displayVersion = String(appVersion).startsWith("v") ? String(appVersion) : `${appVersion.startsWith('v') ? appVersion : 'v' + appVersion}`;
+    for (const badge of appVersionBadges) badge.textContent = displayVersion;
     const caseDocs = Number(data.caseStudyBrain?.documents || 0);
     const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
     const caseLabel = caseDocs ? ` · Case ${formatNumber(caseDocs)} docs/${formatNumber(caseChunks)} chunks` : " · Case Brain chưa index";
-    brainSummary.textContent = `v${appVersion} · ${data.apiReady ? "API 5.5 sẵn sàng" : "API chưa sẵn sàng"} · ${thinking} · ${detail} · ${formatNumber(totals.docs)} tài liệu · ${formatNumber(totals.chunks)} chunks${caseLabel}`;
+    brainSummary.textContent = `${displayVersion} · ${data.apiReady ? "API 5.5 sẵn sàng" : "API chưa sẵn sàng"} · ${thinking} · ${detail} · ${formatNumber(totals.docs)} tài liệu · ${formatNumber(totals.chunks)} chunks${caseLabel}`;
     renderStatusPanel();
   } catch {
     brainSummary.textContent = "Không đọc được trạng thái local.";
