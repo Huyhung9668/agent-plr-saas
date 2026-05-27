@@ -1,0 +1,3740 @@
+﻿const app = document.querySelector(".app");
+const chat = document.getElementById("chat");
+const prompt = document.getElementById("prompt");
+const sendBtn = document.getElementById("sendBtn");
+const scrollBottomBtn = document.getElementById("scrollBottomBtn");
+const jumpPrevBtn = document.getElementById("jumpPrevBtn");
+const jumpNextBtn = document.getElementById("jumpNextBtn");
+const promptJumpPrevBtn = document.getElementById("promptJumpPrevBtn");
+const promptJumpNextBtn = document.getElementById("promptJumpNextBtn");
+const clearBtn = document.getElementById("clearBtn");
+const newChatBtn = document.getElementById("newChatBtn");
+const threadList = document.getElementById("threadList");
+const threadSearch = document.getElementById("threadSearch");
+const themeToggleBtn = document.getElementById("themeToggleBtn");
+const attachBtn = document.getElementById("attachBtn");
+const fileInput = document.getElementById("fileInput");
+const attachmentBar = document.getElementById("attachmentBar");
+const statusBtn = document.getElementById("statusBtn");
+const exportBtn = document.getElementById("exportBtn");
+const promptLibraryBtn = document.getElementById("promptLibraryBtn");
+const moreMenuBtn = document.getElementById("moreMenuBtn");
+const moreMenu = document.getElementById("moreMenu");
+const sidebarToggleBtn = document.getElementById("sidebarToggleBtn");
+const sidebarCloseBtn = document.getElementById("sidebarCloseBtn");
+const sidebarBackdrop = document.getElementById("sidebarBackdrop");
+const quickActionsToggle = document.getElementById("quickActionsToggle");
+const modelSelect = document.getElementById("modelSelect");
+const toolModeSelect = document.getElementById("toolModeSelect");
+const messageCount = document.getElementById("messageCount");
+const activeModeLabel = document.getElementById("activeModeLabel");
+const retryLastBtn = document.getElementById("retryLastBtn");
+const replyStatus = document.getElementById("replyStatus");
+const artifactPanel = document.getElementById("artifactPanel");
+const artifactTitle = document.getElementById("artifactTitle");
+const artifactBody = document.getElementById("artifactBody");
+const artifactCopyBtn = document.getElementById("artifactCopyBtn");
+const artifactDownloadBtn = document.getElementById("artifactDownloadBtn");
+const artifactCloseBtn = document.getElementById("artifactCloseBtn");
+const statusPanel = document.getElementById("statusPanel");
+const brainSummary = document.getElementById("brainSummary");
+const projectStateBar = document.getElementById("projectStateBar");
+const psProjectName = document.getElementById("psProjectName");
+const psReadiness = document.getElementById("psReadiness");
+const psNextAction = document.getElementById("psNextAction");
+const psRefreshBtn = document.getElementById("psRefreshBtn");
+const appVersionBadges = document.querySelectorAll("[data-app-version]");
+const workspaceBadge = document.getElementById("workspaceBadge");
+const workspaceTabs = document.getElementById("workspaceTabs");
+const quickActions = document.getElementById("quickActions");
+const modeSelector = document.getElementById("modeSelector");
+const toast = document.getElementById("toast");
+
+const aiKdpTagPanel = document.getElementById("aiKdpTagPanel");
+const aiKdpTagChips = document.getElementById("aiKdpTagChips");
+const aiKdpSelectedTags = document.getElementById("aiKdpSelectedTags");
+const clearAiKdpTagsBtn = document.getElementById("clearAiKdpTagsBtn");
+const toggleAiKdpTagsBtn = document.getElementById("toggleAiKdpTagsBtn");
+let advancedPanel = null;
+let advancedToggleBtn = null;
+let proofModeToggle = null;
+let promptDrawerBackdrop = null;
+let quickPromptBar = null;
+let cleanPromptLibrary = null;
+let activePromptTab = "Research";
+const aiKdpPromptTags = ["#ai-printables-kdp-prompt", "#ai-printables", "#kdp", "#plr", "#warriorplus", "#prompt-pack", "#canva-printable", "#coloring-book", "#journal", "#kids-worksheet", "#etsy-printable", "#market-pattern", "#competitor-matrix", "#offer-gap", "#product-blueprint", "#deep-file-writer", "#prompt-output-test", "#buyer-test", "#ai-replace-risk", "#refund-risk", "#license-check", "#sales-page", "#warriorplus-listing", "#jv-pack", "#delivery-support", "#export-zip", "#public-launch-audit"];
+const aiKdpTagGroups = {
+  Agent: ["#ai-printables-kdp-prompt"],
+  Niche: ["#ai-printables", "#kdp", "#plr", "#warriorplus"],
+  "Product Type": ["#prompt-pack", "#canva-printable", "#coloring-book", "#journal", "#kids-worksheet", "#etsy-printable"],
+  Research: ["#market-pattern", "#competitor-matrix", "#offer-gap"],
+  Build: ["#product-blueprint", "#deep-file-writer", "#sales-page", "#warriorplus-listing", "#jv-pack"],
+  Test: ["#buyer-test", "#ai-replace-risk", "#refund-risk", "#license-check", "#public-launch-audit"],
+  Export: ["#delivery-support", "#export-zip"],
+};
+const cleanPromptGroups = {
+  Research: [
+    { id: "idea-matrix", title: "10 Ý Tưởng", desc: "Gợi ý 10 ý tưởng AI Printables/KDP dễ hiểu, có điểm và chọn top 3.", tags: ["#ai-printables-kdp-prompt", "#market-pattern", "#offer-gap"], prompt: "#ai-printables-kdp-prompt #market-pattern #offer-gap\nHãy tạo 10 ý tưởng sản phẩm AI Printables/KDP/PLR để bán trên WarriorPlus. Trả lời dạng bảng: Tên ý tưởng, buyer, pain, deliverables, vì sao không chỉ là prompt thô, rủi ro AI replace, độ dễ làm, điểm /10. Cuối cùng chọn Top 3 và 1 ý tưởng nên làm đầu tiên." },
+    { id: "market-pattern", title: "Market Pattern", desc: "Rút market pattern cho AI Printables/KDP/PLR.", tags: ["#ai-printables-kdp-prompt", "#market-pattern"], prompt: "#ai-printables-kdp-prompt #market-pattern\nRút market pattern cho ngách AI Printables/KDP/PLR." },
+    { id: "competitor-matrix", title: "Competitor Matrix", desc: "So sánh vendor, sản phẩm, giá, sales angle.", tags: ["#ai-printables-kdp-prompt", "#competitor-matrix"], prompt: "#ai-printables-kdp-prompt #competitor-matrix\nSo sánh vendor/sản phẩm/ngách/price/sales/angle/deliverables." },
+    { id: "offer-gap", title: "Offer Gap", desc: "Tìm khoảng trống offer và cách khác prompt pack thô.", tags: ["#ai-printables-kdp-prompt", "#offer-gap"], prompt: "#ai-printables-kdp-prompt #offer-gap\nTìm offer gap cho sản phẩm AI Printables/KDP/PLR này." },
+  ],
+  Build: [
+    { id: "vendor-ready", title: "Vendor Ready", desc: "Tạo full product pack vendor-ready, file dày, manifest, proof và ZIP.", tags: ["#ai-printables-kdp-prompt", "#product-blueprint", "#deep-file-writer", "#export-zip"], prompt: "#ai-printables-kdp-prompt #product-blueprint #deep-file-writer #sales-page #warriorplus-listing #jv-pack #delivery-support #buyer-test #ai-replace-risk #refund-risk #license-check #export-zip\n\nProduct: {{ACTIVE_PRODUCT_NAME}}\n\nHãy tạo VENDOR READY product pack, không phải skeleton. Xuất chung vào thư mục tên sản phẩm, mỗi file chính phải có nội dung sâu/copy-ready, tạo manifest, placeholder scan, proof log và ZIP." },
+    { id: "product-blueprint", title: "Product Blueprint", desc: "Tạo blueprint sản phẩm bán trên WarriorPlus.", tags: ["#ai-printables-kdp-prompt", "#product-blueprint"], prompt: "#ai-printables-kdp-prompt #product-blueprint\nTạo blueprint sản phẩm bán trên WarriorPlus." },
+    { id: "deep-file-writer", title: "Deep File Writer", desc: "Tạo product assets thật, không chỉ mô tả file.", tags: ["#ai-printables-kdp-prompt", "#deep-file-writer"], prompt: "#ai-printables-kdp-prompt #deep-file-writer\nTạo product assets thật, không chỉ mô tả file." },
+    { id: "sales-page", title: "Sales Page", desc: "Viết sales page compliance-safe cho sản phẩm.", tags: ["#ai-printables-kdp-prompt", "#sales-page"], prompt: "#ai-printables-kdp-prompt #sales-page\nViết sales page cho sản phẩm này." },
+    { id: "warriorplus-listing", title: "WarriorPlus Listing", desc: "Tạo title, description, FE price, commission, delivery.", tags: ["#ai-printables-kdp-prompt", "#warriorplus-listing"], prompt: "#ai-printables-kdp-prompt #warriorplus-listing\nTạo WarriorPlus listing cho sản phẩm này." },
+  ],
+  Test: [
+    { id: "buyer-test", title: "Buyer Test", desc: "Test sản phẩm như buyer mới mua giá $17-$27.", tags: ["#ai-printables-kdp-prompt", "#buyer-test"], prompt: "#ai-printables-kdp-prompt #buyer-test\nTest sản phẩm như buyer mới mua giá $17-$27." },
+    { id: "ai-replace-risk", title: "AI Replace Risk", desc: "Chấm rủi ro buyer nghĩ ChatGPT cũng làm được.", tags: ["#ai-printables-kdp-prompt", "#ai-replace-risk"], prompt: "#ai-printables-kdp-prompt #ai-replace-risk\nKiểm tra sản phẩm này có bị buyer nghĩ ChatGPT cũng làm được không." },
+    { id: "refund-risk", title: "Refund Risk", desc: "Tìm lý do refund và kế hoạch giảm rủi ro.", tags: ["#ai-printables-kdp-prompt", "#refund-risk"], prompt: "#ai-printables-kdp-prompt #refund-risk\nChấm refund risk và đề xuất fix plan cho sản phẩm này." },
+    { id: "license-check", title: "License Check", desc: "Kiểm tra copyright, trademark, Canva, KDP, PLR claims.", tags: ["#ai-printables-kdp-prompt", "#license-check"], prompt: "#ai-printables-kdp-prompt #license-check\nKiểm tra license/compliance cho sản phẩm này." },
+  ],
+  Launch: [
+    { id: "jv-pack", title: "JV Pack", desc: "Tạo JV invite, affiliate swipes và promo rules.", tags: ["#ai-printables-kdp-prompt", "#jv-pack"], prompt: "#ai-printables-kdp-prompt #jv-pack\nTạo JV pack và affiliate swipes cho sản phẩm này." },
+    { id: "delivery-support", title: "Delivery Support", desc: "Tạo delivery page, onboarding, FAQ, refund policy.", tags: ["#ai-printables-kdp-prompt", "#delivery-support"], prompt: "#ai-printables-kdp-prompt #delivery-support\nTạo delivery page, buyer onboarding, support FAQ và refund policy." },
+    { id: "export-zip", title: "Export ZIP", desc: "Đóng gói ZIP, tạo manifest và placeholder check.", tags: ["#ai-printables-kdp-prompt", "#export-zip"], prompt: "#ai-printables-kdp-prompt #export-zip\nĐóng gói sản phẩm thành ZIP, tạo manifest và placeholder check." },
+    { id: "public-launch-audit", title: "Public Launch Audit", desc: "Kiểm tra gate trước khi public launch.", tags: ["#ai-printables-kdp-prompt", "#public-launch-audit"], prompt: "#ai-printables-kdp-prompt #public-launch-audit\nKiểm tra sản phẩm đã public launch được chưa." },
+  ],
+};
+const defaultCleanPromptPins = ["idea-matrix", "vendor-ready", "product-blueprint", "deep-file-writer", "buyer-test", "export-zip"];
+const aiKdpSkillMap = {
+  "#market-pattern": "skills/01_market_pattern_ai_printables.md",
+  "#competitor-matrix": "skills/02_competitor_matrix_ai_printables.md",
+  "#offer-gap": "skills/03_offer_gap_ai_printables.md",
+  "#product-blueprint": "skills/04_product_blueprint_ai_printables.md",
+  "#deep-file-writer": "skills/05_deep_file_writer_ai_printables.md",
+  "#prompt-output-test": "skills/06_prompt_output_test_ai_printables.md",
+  "#buyer-test": "skills/07_buyer_test_ai_printables.md",
+  "#ai-replace-risk": "skills/08_ai_replace_risk_ai_printables.md",
+  "#refund-risk": "skills/09_refund_risk_ai_printables.md",
+  "#license-check": "skills/10_license_compliance_ai_printables.md",
+  "#sales-page": "skills/11_sales_page_ai_printables.md",
+  "#warriorplus-listing": "skills/12_warriorplus_listing_ai_printables.md",
+  "#jv-pack": "skills/13_jv_pack_ai_printables.md",
+  "#delivery-support": "skills/14_delivery_support_ai_printables.md",
+  "#export-zip": "skills/15_export_zip_ai_printables.md",
+  "#public-launch-audit": "skills/16_public_launch_audit_ai_printables.md",
+};
+
+const publicServerBaseUrl = "http://103.82.26.216:8088";
+const workspaceId = detectWorkspaceId();
+const workspaceSuffix = workspaceId === "default" ? "" : `_${workspaceId}`;
+const threadStorageKey = `master_agent_threads_v2${workspaceSuffix}`;
+const themeStorageKey = "master_agent_theme_v1";
+const syncStorageKey = `master_agent_threads_file_sync_v1${workspaceSuffix}`;
+const modeStorageKey = "master_agent_response_mode_v2";
+const modelStorageKey = "master_agent_model_persona_v1";
+const toolModeStorageKey = "master_agent_tool_mode_v1";
+const sidebarStorageKey = "master_agent_sidebar_collapsed_v1";
+const promptLibraryStorageKey = "master_agent_prompt_library_open_v1";
+const promptPinnedStorageKey = "master_agent_prompt_pins_v110";
+const promptRecentStorageKey = "master_agent_prompt_recent_v110";
+const readingModeStorageKey = "master_agent_reading_mode_v113";
+const translationHideDelayMs = 180;
+const streamStallTimeoutMs = 120000;
+
+let state = loadState();
+let activeThreadId = state.activeThreadId;
+let aiKdpTagsExpanded = false;
+let pendingAttachments = [];
+let openThreadMenuId = null;
+let serverSyncReady = false;
+let saveTimer = null;
+let isSavingState = false;
+let isLoadingServerState = false;
+let activeController = null;
+let brainStatus = null;
+let responseMode = loadResponseMode();
+let isStreamingAnswer = false;
+let lastStreamSaveAt = 0;
+let lastLocalWriteAt = 0;
+let activeModuleId = "";
+let activePromptChip = null;
+let promptChipBar = null;
+let promptSearchInput = null;
+let pinnedPromptGroup = null;
+let recentPromptGroup = null;
+let promptPreviewTooltip = null;
+let promptPreviewTimer = null;
+const defaultPromptPlaceholder = "Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây...";
+let selectionTranslateTimer = null;
+let selectionTooltip = null;
+let hoverTooltipInstalled = false;
+let selectedModelPersona = loadSelectValue(modelStorageKey, "agent");
+let selectedToolMode = loadSelectValue(toolModeStorageKey, "auto");
+let activeArtifactContent = "";
+let activeRequestId = "";
+let streamRenderTimer = null;
+let lastStreamRenderedText = "";
+let streamStallTimer = null;
+let lastRetryDraft = null;
+let userScrollLocked = false;
+let programmaticScrollUntil = 0;
+let readingModeBtn = null;
+const streamingTextStates = new WeakMap();
+
+applyTheme(loadTheme());
+applyResponseMode(responseMode);
+applyShellPreferences();
+init();
+
+function initWorkspaceUi() {
+  const label = workspaceId === "default" ? "Chat chính" : `Chat ${workspaceId}`;
+  if (workspaceBadge) workspaceBadge.textContent = label;
+  document.title = `${label} · Agent chủ`;
+  workspaceTabs?.querySelectorAll("[data-workspace-tab]").forEach((tab) => {
+    const isActive = tab.dataset.workspaceTab === workspaceId;
+    tab.classList.toggle("active", isActive);
+    tab.setAttribute("aria-current", isActive ? "page" : "false");
+  });
+}
+
+function detectWorkspaceId() {
+  const firstSegment = decodeURIComponent(window.location.pathname || "")
+    .split("/")
+    .filter(Boolean)[0];
+  if (!firstSegment || ["api", "app.js", "styles.css", "favicon.ico"].includes(firstSegment)) return "default";
+  return firstSegment.replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 48) || "default";
+}
+
+function workspaceApiUrl(path) {
+  const separator = path.includes("?") ? "&" : "?";
+  return apiUrl(`${path}${separator}workspace=${encodeURIComponent(workspaceId)}`);
+}
+
+function apiUrl(path) {
+  if (window.location.protocol === "file:") {
+    return `${publicServerBaseUrl}${path}`;
+  }
+  return path;
+}
+
+async function init() {
+  initWorkspaceUi();
+  await syncInitialState();
+  removeInterruptedReplies();
+  if (!state.threads.length) createThread("Chat mới", { skipRender: true });
+  if (!activeThreadId || !state.threads.some((thread) => thread.id === activeThreadId)) {
+    activeThreadId = state.threads[0]?.id || null;
+  }
+  saveLocalState();
+  queueServerSave();
+  renderThreads();
+  renderActiveThread();
+  installQuickActionTranslations();
+  installPromptLibraryUpgrade();
+  installCleanUiUpgrade();
+  repairVietnameseUiText();
+  scheduleVietnameseUiRepair();
+  installReadingModeToggle();
+  installSelectionTranslator();
+  installBlackCopy();
+  loadStatus();
+  loadProjectState();
+}
+
+function loadTheme() {
+  try {
+    return localStorage.getItem(themeStorageKey) || "dark";
+  } catch {
+    return "dark";
+  }
+}
+
+function applyTheme(theme) {
+  app.dataset.theme = theme;
+  themeToggleBtn.textContent = theme === "dark" ? "☀" : "☾";
+  localStorage.setItem(themeStorageKey, theme);
+}
+
+function toggleTheme() {
+  applyTheme(app.dataset.theme === "dark" ? "light" : "dark");
+}
+
+function loadSelectValue(key, fallback) {
+  try {
+    return localStorage.getItem(key) || fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveSelectValue(key, value) {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Ignore private mode/localStorage errors.
+  }
+}
+
+function applyShellPreferences() {
+  let storedSidebarState = null;
+  try {
+    storedSidebarState = localStorage.getItem(sidebarStorageKey);
+  } catch {
+    storedSidebarState = null;
+  }
+  const mobileDefaultCollapsed = window.matchMedia?.("(max-width: 760px)")?.matches;
+  const sidebarCollapsed = storedSidebarState === null ? mobileDefaultCollapsed : storedSidebarState === "1";
+  const libraryOpen = false;
+  app.classList.toggle("sidebar-collapsed", sidebarCollapsed);
+  updateSidebarA11y();
+  quickActions?.classList.toggle("collapsed", !libraryOpen);
+  quickActions?.classList.toggle("prompt-drawer", true);
+  if (quickActionsToggle) quickActionsToggle.textContent = "Thư viện prompt";
+  if (modelSelect) modelSelect.value = selectedModelPersona;
+  if (toolModeSelect) toolModeSelect.value = selectedToolMode;
+}
+
+
+function loadReadingMode() {
+  try {
+    return localStorage.getItem(readingModeStorageKey) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function saveReadingMode(enabled) {
+  try {
+    localStorage.setItem(readingModeStorageKey, enabled ? "1" : "0");
+  } catch {
+    // Ignore localStorage errors.
+  }
+}
+
+function applyReadingMode(enabled, { persist = false } = {}) {
+  document.body.classList.toggle("reading-mode", Boolean(enabled));
+  app?.classList.toggle("reading-mode", Boolean(enabled));
+  if (readingModeBtn) {
+    readingModeBtn.classList.toggle("active", Boolean(enabled));
+    readingModeBtn.textContent = enabled ? "Viết" : "Đọc";
+    readingModeBtn.title = enabled ? "Hiện lại thanh nhập để viết" : "Ẩn thanh trên/dưới để đọc nội dung";
+    readingModeBtn.setAttribute("aria-label", readingModeBtn.title);
+  }
+  if (persist) saveReadingMode(Boolean(enabled));
+  requestAnimationFrame(updateScrollBottomButton);
+}
+
+function toggleReadingMode() {
+  const enabled = !document.body.classList.contains("reading-mode");
+  applyReadingMode(enabled, { persist: true });
+  showToast(enabled ? "Đã bật chế độ đọc: ẩn thanh trên/dưới." : "Đã hiện lại thanh nhập.");
+}
+
+function installReadingModeToggle() {
+  if (readingModeBtn) return;
+  readingModeBtn = document.createElement("button");
+  readingModeBtn.id = "readingModeBtn";
+  readingModeBtn.className = "reading-mode-btn";
+  readingModeBtn.type = "button";
+  readingModeBtn.addEventListener("click", toggleReadingMode);
+  document.body.appendChild(readingModeBtn);
+  applyReadingMode(loadReadingMode());
+}
+function toggleSidebar() {
+  const collapsed = !app.classList.contains("sidebar-collapsed");
+  setSidebarCollapsed(collapsed);
+}
+
+function setSidebarCollapsed(collapsed) {
+  app.classList.toggle("sidebar-collapsed", Boolean(collapsed));
+  saveSelectValue(sidebarStorageKey, collapsed ? "1" : "0");
+  updateSidebarA11y();
+}
+
+function updateSidebarA11y() {
+  const collapsed = app.classList.contains("sidebar-collapsed");
+  sidebarToggleBtn?.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  sidebarCloseBtn?.setAttribute("aria-hidden", collapsed ? "true" : "false");
+  sidebarBackdrop?.setAttribute("aria-hidden", collapsed ? "true" : "false");
+}
+
+function togglePromptLibrary(forceOpen = null) {
+  const willOpen = forceOpen === null ? quickActions.classList.contains("collapsed") : Boolean(forceOpen);
+  quickActions.classList.toggle("collapsed", !willOpen);
+  quickActions.classList.toggle("prompt-drawer", true);
+  document.body.classList.toggle("prompt-drawer-open", willOpen);
+  promptDrawerBackdrop?.toggleAttribute("hidden", !willOpen);
+  if (quickActionsToggle) quickActionsToggle.textContent = "Thư viện prompt";
+  saveSelectValue(promptLibraryStorageKey, "0");
+}
+
+function toggleMoreMenu(forceOpen = null) {
+  if (!moreMenu) return;
+  const willOpen = forceOpen === null ? moreMenu.hidden : Boolean(forceOpen);
+  moreMenu.hidden = !willOpen;
+  moreMenuBtn?.classList.toggle("active", willOpen);
+}
+
+function toggleAdvancedPanel(forceOpen = null) {
+  if (!advancedPanel) return;
+  const willOpen = forceOpen === null ? advancedPanel.hidden : Boolean(forceOpen);
+  advancedPanel.hidden = !willOpen;
+  advancedToggleBtn?.classList.toggle("active", willOpen);
+  if (advancedToggleBtn) advancedToggleBtn.textContent = willOpen ? "Advanced ▴" : "Advanced ▾";
+}
+
+function toggleProofMode() {
+  const enabled = Boolean(proofModeToggle?.checked);
+  document.body.classList.toggle("proof-mode-on", enabled);
+  showToast(enabled ? "Proof Mode ON" : "Proof Mode OFF");
+}
+
+function selectedPersonaInstruction() {
+  const modelMap = {
+    agent: "",
+    planner: "Persona: Planner sâu. Trả lời như chiến lược gia sản phẩm, ưu tiên roadmap, rủi ro, checklist hành động.",
+    creator: "Persona: Content builder. Tạo nội dung hoàn chỉnh, có cấu trúc file, ví dụ dùng được ngay, không chỉ outline.",
+    critic: "Persona: Launch critic. Audit thẳng tay, tìm lỗi bán hàng, thiếu proof, license risk, missing assets, rồi đưa fix list.",
+  };
+  const toolMap = {
+    auto: "Tool mode: Auto. Tự dùng brain, project memory và file đính kèm khi hữu ích.",
+    files: "Tool mode: Files/RAG. Ưu tiên nội dung file đính kèm, Case Study Brain từ dữ liệu cũ, và brain/source đã index.",
+    case: "Tool mode: Case Study Brain. Ưu tiên kho dữ liệu cũ G:\\file_backup để rút pattern, case study, sales page, funnel, JV, KDP/kids printable; không copy nguyên văn.",
+    launch: "Tool mode: Launch OS. Ưu tiên active project, launch readiness, asset checklist, funnel/JV/export status.",
+    none: "Tool mode: Off. Trả lời trực tiếp, chỉ dùng ngữ cảnh chat khi đủ.",
+  };
+  return [modelMap[selectedModelPersona] || "", toolMap[selectedToolMode] || ""].filter(Boolean).join("\n");
+}
+
+function requestQuestionWithControls(text) {
+  const instruction = selectedPersonaInstruction();
+  return instruction ? `${instruction}\n\n${text}` : text;
+}
+
+function loadResponseMode() {
+  try {
+    const saved = localStorage.getItem(modeStorageKey);
+    return ["fast", "balanced", "deep"].includes(saved) ? saved : "fast";
+  } catch {
+    return "fast";
+  }
+}
+
+function applyResponseMode(mode) {
+  responseMode = ["fast", "balanced", "deep"].includes(mode) ? mode : "fast";
+  try {
+    localStorage.setItem(modeStorageKey, responseMode);
+  } catch {
+    // Ignore private mode/localStorage errors.
+  }
+  if (!modeSelector) return;
+  for (const button of modeSelector.querySelectorAll("button[data-mode]")) {
+    button.classList.toggle("active", button.dataset.mode === responseMode);
+  }
+  if (responseMode === "deep") {
+    showToast("DEEP mode chậm hơn vì dùng nhiều RAG, audit hoặc ghi file.");
+  }
+}
+
+function selectedResponseMode() {
+  const activeButton = modeSelector?.querySelector("button.active[data-mode]");
+  const selected = activeButton?.dataset?.mode || responseMode || "fast";
+  return ["fast", "balanced", "deep"].includes(selected) ? selected : "fast";
+}
+
+function effectiveModeLabel(text, attachments) {
+  const selected = selectedResponseMode();
+  const compact = String(text || "").replace(/\s+/g, " ").trim().toLowerCase();
+  const wantsDepth = ["chi tiết", "từng bước", "kế hoạch", "phân tích", "viết cho tôi", "tạo cho tôi", "làm cho tôi"].some((item) =>
+    compact.includes(item)
+  );
+  const wantsAsset = ["sales page", "warriorplus", "funnel", "oto", "bonus stack", "email swipe", "offer", "analyze offer", "analyze plr", "analyze plr file", "product idea scoring", "idea scoring", "product depth checker", "depth check", "upgrade raw content", "upgrade raw ai", "buyer avatar", "product assets", "quality control checklist", "qc checklist", "export zip", "warriorplus listing", "jv page", "jv/affiliate", "affiliate swipe pack", "prospect tracker", "outreach messages", "affiliate tier", "review access", "traffic content", "email funnel", "saas potential", "saas mvp", "saas upgrade", "membership planner", "whitelabel license", "market gap", "competitor pattern", "scan plr library", "export product", "launch pack"].some((item) =>
+    compact.includes(item)
+  );
+  if (wantsAsset && selected !== "deep") return "Tạo asset";
+  if (selected !== "deep" && !attachments.length && compact.length <= 90 && !wantsDepth) return "Nhanh gọn";
+  return { auto: "Auto", fast: "Nhanh", balanced: "Cân bằng", deep: "Sâu" }[selected] || "Auto";
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(threadStorageKey);
+    const parsed = raw ? JSON.parse(raw) : null;
+    return normalizeState(parsed);
+  } catch {
+    return { threads: [], activeThreadId: null };
+  }
+}
+
+async function syncInitialState() {
+  const localState = state;
+  const serverState = await fetchServerState();
+  if (!serverState) {
+    serverSyncReady = false;
+    return;
+  }
+
+  const shouldImportLocal =
+    !localStorage.getItem(syncStorageKey) &&
+    localState.threads.some((thread) => thread.messages.length) &&
+    !serverState.threads.some((thread) => thread.messages.length);
+  const importBase = shouldImportLocal
+    ? { threads: serverState.threads.filter((thread) => thread.messages.length), activeThreadId: serverState.activeThreadId }
+    : serverState;
+  const merged = !serverState.threads.length || shouldImportLocal ? mergeStates(importBase, localState) : serverState;
+  state = merged;
+  activeThreadId = merged.activeThreadId;
+  serverSyncReady = true;
+  localStorage.setItem(syncStorageKey, "1");
+  saveLocalState();
+  if (merged.threads.length !== serverState.threads.length || merged.activeThreadId !== serverState.activeThreadId) {
+    queueServerSave();
+  }
+}
+
+async function fetchServerState() {
+  if (isLoadingServerState) return null;
+  isLoadingServerState = true;
+  try {
+    const response = await fetch(workspaceApiUrl("/api/threads"));
+    const data = await response.json();
+    if (!data.ok || !data.state) return null;
+    return normalizeState(data.state);
+  } catch {
+    return null;
+  } finally {
+    isLoadingServerState = false;
+  }
+}
+
+async function refreshFromServer() {
+  if (document.visibilityState === "visible") return;
+  if (!serverSyncReady || isSavingState || activeController || isStreamingAnswer) return;
+  if (Date.now() - lastLocalWriteAt < 2500) return;
+  const previousActiveThreadId = activeThreadId;
+  const previousScrollTop = chat.scrollTop;
+  const wasNearBottom = isChatNearBottom();
+  const serverState = await fetchServerState();
+  if (!serverState || !serverState.threads.length) return;
+  state = serverState;
+  activeThreadId = serverState.activeThreadId || serverState.threads[0].id;
+  saveLocalState();
+  renderThreads();
+  if (activeThreadId === previousActiveThreadId) {
+    renderActiveThread({ preserveScrollTop: previousScrollTop, stickToBottom: wasNearBottom });
+  } else {
+    renderActiveThread();
+  }
+}
+
+function normalizeState(raw) {
+  if (!raw || !Array.isArray(raw.threads)) return { threads: [], activeThreadId: null };
+  const threads = raw.threads.map(normalizeThread).sort(byRecent);
+  const active = raw.activeThreadId && threads.some((thread) => thread.id === raw.activeThreadId)
+    ? raw.activeThreadId
+    : (threads[0]?.id || null);
+  return { threads, activeThreadId: active };
+}
+
+function mergeStates(serverState, localState) {
+  const byId = new Map();
+  for (const thread of [...serverState.threads, ...localState.threads]) {
+    const existing = byId.get(thread.id);
+    if (!existing || (thread.updatedAt || 0) >= (existing.updatedAt || 0)) byId.set(thread.id, thread);
+  }
+  const threads = Array.from(byId.values()).sort(byRecent);
+  const active = localState.activeThreadId && threads.some((thread) => thread.id === localState.activeThreadId)
+    ? localState.activeThreadId
+    : (serverState.activeThreadId && threads.some((thread) => thread.id === serverState.activeThreadId)
+      ? serverState.activeThreadId
+      : (threads[0]?.id || null));
+  return { threads, activeThreadId: active };
+}
+
+function normalizeThread(thread) {
+  return {
+    id: thread.id || createClientId(),
+    title: thread.title || "Chat mới",
+    messages: Array.isArray(thread.messages) ? thread.messages.map(normalizeMessage) : [],
+    pinned: Boolean(thread.pinned),
+    createdAt: thread.createdAt || Date.now(),
+    updatedAt: thread.updatedAt || Date.now(),
+  };
+}
+
+function normalizeMessage(message) {
+  return {
+    role: message.role === "assistant" ? "assistant" : "user",
+    content: stripSourceFooter(String(message.content || "")),
+    createdAt: normalizeTimestamp(message.createdAt || message.timestamp),
+  };
+}
+
+function normalizeTimestamp(value) {
+  const number = Number(value || 0);
+  return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function createClientId() {
+  if (window.crypto?.randomUUID) return window.crypto.randomUUID();
+  const randomPart = Math.random().toString(36).slice(2, 12);
+  return `thread_${Date.now().toString(36)}_${randomPart}`;
+}
+
+function saveState() {
+  state.threads.sort(byRecent);
+  state.activeThreadId = activeThreadId;
+  saveLocalState();
+  queueServerSave();
+}
+
+function saveLocalState() {
+  state.threads.sort(byRecent);
+  state.activeThreadId = activeThreadId;
+  lastLocalWriteAt = Date.now();
+  localStorage.setItem(threadStorageKey, JSON.stringify(state));
+}
+
+function removeInterruptedReplies() {
+  let changed = false;
+  const stoppedTexts = new Set([
+    "Đã dừng lượt trả lời này.",
+    "Đã dừng lượt trả lời này.",
+  ]);
+  for (const thread of state.threads) {
+    const before = thread.messages.length;
+    thread.messages = thread.messages.filter((message) => {
+      return !(message.role === "assistant" && stoppedTexts.has(String(message.content || "").trim()));
+    });
+    if (thread.messages.length !== before) {
+      thread.updatedAt = Date.now();
+      changed = true;
+    }
+  }
+  if (changed) {
+    saveLocalState();
+    queueServerSave();
+  }
+}
+
+function queueServerSave() {
+  if (!serverSyncReady) return;
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveStateToServer, 180);
+}
+
+function persistStreamingDraft(force = false) {
+  const now = Date.now();
+  if (!force && now - lastStreamSaveAt < 900) return;
+  lastStreamSaveAt = now;
+  const thread = getActiveThread();
+  if (thread) thread.updatedAt = now;
+  state.activeThreadId = activeThreadId;
+  saveLocalState();
+  queueServerSave();
+}
+
+async function saveStateToServer() {
+  if (!serverSyncReady) return;
+  isSavingState = true;
+  try {
+    await fetch(workspaceApiUrl("/api/threads"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ state }),
+    });
+  } catch {
+    // LocalStorage remains the fallback while the local server restarts.
+  } finally {
+    isSavingState = false;
+  }
+}
+
+function getActiveThread() {
+  return state.threads.find((thread) => thread.id === activeThreadId) || state.threads[0];
+}
+
+function createThread(title = "Chat mới", options = {}) {
+  const thread = {
+    id: createClientId(),
+    title,
+    messages: [],
+    pinned: false,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  };
+  state.threads.unshift(thread);
+  activeThreadId = thread.id;
+  saveState();
+  if (!options.skipRender) {
+    renderThreads();
+    renderActiveThread();
+    focusPrompt();
+  }
+}
+
+function byRecent(a, b) {
+  if (Boolean(a.pinned) !== Boolean(b.pinned)) return a.pinned ? -1 : 1;
+  return (b.updatedAt || 0) - (a.updatedAt || 0);
+}
+
+function renderThreads() {
+  state.threads.sort(byRecent);
+  threadList.innerHTML = "";
+  const query = (threadSearch?.value || "").trim().toLowerCase();
+  const filtered = state.threads.filter((thread) => {
+    if (!query) return true;
+    const haystack = [thread.title, ...thread.messages.map((message) => message.content)].join(" ").toLowerCase();
+    return haystack.includes(query);
+  });
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "thread-empty";
+    empty.textContent = "Không tìm thấy chat.";
+    threadList.appendChild(empty);
+    return;
+  }
+
+  for (const thread of filtered) {
+    const item = document.createElement("div");
+    item.className = `thread-item${thread.id === activeThreadId ? " active" : ""}${thread.pinned ? " pinned" : ""}`;
+
+    const openButton = document.createElement("button");
+    openButton.type = "button";
+    openButton.className = "thread-main";
+    openButton.addEventListener("click", () => {
+      activeThreadId = thread.id;
+      openThreadMenuId = null;
+      saveState();
+      renderThreads();
+      renderActiveThread();
+    });
+
+    const titleRow = document.createElement("div");
+    titleRow.className = "thread-title-row";
+    const title = document.createElement("div");
+    title.className = "thread-title";
+    title.textContent = thread.title;
+    titleRow.appendChild(title);
+    if (thread.pinned) {
+      const badge = document.createElement("span");
+      badge.className = "thread-pin-badge";
+      badge.textContent = "Ghim";
+      titleRow.appendChild(badge);
+    }
+
+    const preview = document.createElement("div");
+    preview.className = "thread-preview";
+    preview.textContent = previewText(thread);
+    const time = document.createElement("div");
+    time.className = "thread-time";
+    time.textContent = `VN ${formatVietnamDateTime(latestThreadTime(thread))}`;
+    openButton.appendChild(titleRow);
+    openButton.appendChild(time);
+    openButton.appendChild(preview);
+    item.appendChild(openButton);
+
+    const menuButton = document.createElement("button");
+    menuButton.type = "button";
+    menuButton.className = "thread-menu-btn";
+    menuButton.title = "Tùy chọn chat";
+    menuButton.setAttribute("aria-label", "Tùy chọn chat");
+    menuButton.textContent = "⋯";
+    menuButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openThreadMenuId = openThreadMenuId === thread.id ? null : thread.id;
+      renderThreads();
+    });
+    item.appendChild(menuButton);
+    if (openThreadMenuId === thread.id) item.appendChild(renderThreadMenu(thread));
+    threadList.appendChild(item);
+  }
+}
+
+function renderThreadMenu(thread) {
+  const menu = document.createElement("div");
+  menu.className = "thread-menu";
+  const actions = [
+    ["Đổi tên", () => renameThread(thread.id), ""],
+    [thread.pinned ? "Bỏ ghim" : "Ghim lên đầu", () => togglePinThread(thread.id), ""],
+    ["Nhân bản", () => duplicateThread(thread.id), ""],
+    ["Xóa chat", () => deleteThread(thread.id), "danger"],
+  ];
+  for (const [label, handler, className] of actions) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = label;
+    if (className) button.className = className;
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      handler();
+    });
+    menu.appendChild(button);
+  }
+  return menu;
+}
+
+function renameThread(threadId) {
+  const thread = state.threads.find((item) => item.id === threadId);
+  if (!thread) return;
+  const nextTitle = window.prompt("Đổi tên đoạn chat", thread.title);
+  if (!nextTitle) {
+    openThreadMenuId = null;
+    renderThreads();
+    return;
+  }
+  thread.title = nextTitle.replace(/\s+/g, " ").trim().slice(0, 80) || thread.title;
+  thread.updatedAt = Date.now();
+  openThreadMenuId = null;
+  saveState();
+  renderThreads();
+}
+
+function togglePinThread(threadId) {
+  const thread = state.threads.find((item) => item.id === threadId);
+  if (!thread) return;
+  thread.pinned = !thread.pinned;
+  thread.updatedAt = Date.now();
+  openThreadMenuId = null;
+  saveState();
+  renderThreads();
+}
+
+function duplicateThread(threadId) {
+  const thread = state.threads.find((item) => item.id === threadId);
+  if (!thread) return;
+  const copy = {
+    ...thread,
+    id: createClientId(),
+    title: `${thread.title} - bản sao`.slice(0, 80),
+    messages: thread.messages.map((message) => ({ ...message })),
+    pinned: false,
+    createdAt: Date.now(),
+    updatedAt: Date.now(),
+  };
+  state.threads.unshift(copy);
+  activeThreadId = copy.id;
+  openThreadMenuId = null;
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  showToast("Đã nhân bản chat.");
+}
+
+function deleteThread(threadId) {
+  const thread = state.threads.find((item) => item.id === threadId);
+  if (!thread) return;
+  if (!window.confirm(`Xóa "${thread.title}"?`)) {
+    openThreadMenuId = null;
+    renderThreads();
+    return;
+  }
+  state.threads = state.threads.filter((item) => item.id !== threadId);
+  if (!state.threads.length) createThread("Chat mới", { skipRender: true });
+  if (activeThreadId === threadId) {
+    state.threads.sort(byRecent);
+    activeThreadId = state.threads[0].id;
+  }
+  openThreadMenuId = null;
+  saveState();
+  renderThreads();
+  renderActiveThread();
+}
+
+function previewText(thread) {
+  const last = [...thread.messages].reverse().find((message) => message.role === "user" || message.role === "assistant");
+  if (!last) return "Chưa có nội dung";
+  return last.content.replace(/\s+/g, " ").trim().slice(0, 72) || "Chưa có nội dung";
+}
+
+function latestThreadTime(thread) {
+  const last = [...(thread.messages || [])].reverse().find((message) => message.role === "user" || message.role === "assistant");
+  return normalizeTimestamp(last?.createdAt) || normalizeTimestamp(thread.updatedAt) || normalizeTimestamp(thread.createdAt) || Date.now();
+}
+
+function messageTime(thread, message) {
+  return normalizeTimestamp(message?.createdAt) || normalizeTimestamp(thread?.updatedAt) || normalizeTimestamp(thread?.createdAt) || Date.now();
+}
+
+function formatVietnamDateTime(value) {
+  const timestamp = normalizeTimestamp(value) || Date.now();
+  try {
+    return new Intl.DateTimeFormat("vi-VN", {
+      timeZone: "Asia/Ho_Chi_Minh",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(new Date(timestamp));
+  } catch {
+    const date = new Date(timestamp);
+    const pad = (item) => String(item).padStart(2, "0");
+    return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  }
+}
+
+function renderActiveThread(options = {}) {
+  const preserveScrollTop = Number.isFinite(options.preserveScrollTop) ? options.preserveScrollTop : null;
+  const stickToBottom = options.stickToBottom === true;
+  const preserveCurrentScroll = options.preserveCurrentScroll !== false;
+  const thread = getActiveThread();
+  chat.innerHTML = "";
+  if (!thread || !thread.messages.length) {
+    renderWelcome();
+    updateSessionMetrics();
+    requestAnimationFrame(updateScrollBottomButton);
+    return;
+  }
+  for (const [index, message] of thread.messages.entries()) {
+    appendMessageToDom(message.role, message.content, index, false);
+  }
+  if (stickToBottom) {
+    requestAnimationFrame(scrollChatToBottom);
+  } else if (preserveScrollTop !== null) {
+    requestAnimationFrame(() => {
+      chat.scrollTop = preserveScrollTop;
+      updateScrollBottomButton();
+    });
+  } else if (preserveCurrentScroll) {
+    requestAnimationFrame(() => {
+      setChatScrollTop(Math.min(chat.scrollTop, Math.max(0, chat.scrollHeight - chat.clientHeight)));
+      updateScrollBottomButton();
+    });
+  }
+  updateSessionMetrics();
+  requestAnimationFrame(updateScrollBottomButton);
+}
+
+function renderWelcome() {
+  const starter = document.createElement("div");
+  starter.className = "welcome";
+  starter.innerHTML = `
+    <div class="welcome-mark">M</div>
+    <h1>Hôm nay build offer nào?</h1>
+    <p>Chọn một prompt mẫu hoặc nhập trực tiếp để phân tích PLR, tạo product kit, sales page, funnel, JV pack và kế hoạch SaaS.</p>
+    <div class="starter-grid">
+      <button type="button" data-starter-prompt="Phân tích 3 ý tưởng sản phẩm PLR + SaaS dễ bán trên WarriorPlus nhất dựa trên brain hiện tại. Với mỗi ý tưởng: buyer pain, deliverables, FE/OTO, SaaS angle, risk, next action.">Ý tưởng có thể bán</button>
+      <button type="button" data-starter-prompt="Audit active project hiện tại. Chấm điểm launch readiness, liệt kê missing assets, rủi ro license/compliance, và 10 việc cần làm tiếp theo theo thứ tự ưu tiên.">Audit launch</button>
+      <button type="button" data-starter-prompt="Tạo full launch pack cho AI PLR Rebrand Kit: product assets, sales page, WarriorPlus listing, JV pack, email funnel, traffic content, delivery page, export checklist.">Full launch pack</button>
+      <button type="button" data-starter-prompt="Nâng nội dung thô/PLR này thành product kit bán được. Hãy tạo workflow, checklist, examples, prompts, planner, compliance note, pricing, bump/OTO và ZIP structure. Nội dung: ">Nâng content thô</button>
+    </div>
+  `;
+  chat.appendChild(starter);
+  updateScrollBottomButton();
+}
+
+function updateSessionMetrics() {
+  const thread = getActiveThread();
+  const count = thread?.messages?.length || 0;
+  if (messageCount) messageCount.textContent = `${count} tin nhắn`;
+  if (activeModeLabel) {
+    const labels = { auto: "Auto", quick: "Nhanh gọn", fast: "Nhanh", asset: "Tạo asset", balanced: "Cân bằng", deep: "Sâu" };
+    const modelLabels = { agent: "Agent chủ", planner: "Planner sâu", creator: "Dựng nội dung", critic: "Phản biện" };
+    const modeLabel = `${modelLabels[selectedModelPersona] || "Agent"} · ${labels[selectedResponseMode()] || "Nhanh"}`;
+    activeModeLabel.textContent = isStreamingAnswer ? `${modeLabel} · Đang trả lời` : modeLabel;
+  }
+}
+
+function setReplyingState(isActive, label = "Đang trả lời...") {
+  isStreamingAnswer = Boolean(isActive);
+  if (replyStatus) {
+    replyStatus.hidden = !isActive;
+    replyStatus.textContent = label;
+  }
+  if (sendBtn) {
+    sendBtn.textContent = isActive ? "■" : "➤";
+    sendBtn.title = isActive ? "Dừng trả lời" : "Gửi";
+    sendBtn.disabled = false;
+    sendBtn.classList.toggle("is-running", Boolean(isActive));
+    sendBtn.setAttribute("aria-label", isActive ? "Dừng trả lời" : "Gửi");
+  }
+  updateSessionMetrics();
+}
+
+async function loadStatus() {
+  try {
+    const response = await fetch(apiUrl("/api/status"));
+    const data = await response.json();
+    if (!data.ok) return;
+    brainStatus = data;
+    const totals = (data.brains || []).reduce((acc, brain) => {
+      acc.docs += brain.documents || 0;
+      acc.chunks += brain.chunks || 0;
+      return acc;
+    }, { docs: 0, chunks: 0 });
+    const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
+    const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
+  const appVersion = data.appVersion || "1.15-web-ui";
+  const displayVersion = String(appVersion).startsWith("v") ? String(appVersion) : `${appVersion.startsWith('v') ? appVersion : 'v' + appVersion}`;
+    for (const badge of appVersionBadges) badge.textContent = displayVersion;
+    const caseDocs = Number(data.caseStudyBrain?.documents || 0);
+    const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
+    const caseLabel = caseDocs ? ` · Case ${formatNumber(caseDocs)} docs/${formatNumber(caseChunks)} chunks` : " · Case Brain chưa index";
+    brainSummary.textContent = `${displayVersion} · ${data.apiReady ? "API 5.5 sẵn sàng" : "API chưa sẵn sàng"} · ${thinking} · ${detail} · ${formatNumber(totals.docs)} tài liệu · ${formatNumber(totals.chunks)} chunks${caseLabel}`;
+    renderStatusPanel();
+  } catch {
+    brainSummary.textContent = "Không đọc được trạng thái local.";
+  }
+}
+
+async function loadProjectState() {
+  try {
+    const response = await fetch(apiUrl("/api/project_state"));
+    if (!response.ok) return;
+    const state = await response.json();
+    if (!state.ok && !state.project_name) return;
+    const nextActions = Array.isArray(state.next_actions) ? state.next_actions : [];
+    const readinessRaw = Number(state.launch_readiness || 0);
+    const readiness = readinessRaw <= 10 ? Math.round(readinessRaw * 10) : Math.round(readinessRaw);
+    if (psProjectName) psProjectName.textContent = state.project_name || "—";
+    if (psReadiness) psReadiness.textContent = `${readiness}%`;
+    if (psNextAction) psNextAction.textContent = nextActions[0] || state.next_best_action || "—";
+    if (projectStateBar) projectStateBar.hidden = false;
+  } catch {
+    // Silent: project state is a convenience panel, not a blocking UI feature.
+  }
+}
+
+function renderStatusPanel() {
+  if (!brainStatus) return;
+  statusPanel.innerHTML = "";
+  const grid = document.createElement("div");
+  grid.className = "status-grid";
+  for (const brain of brainStatus.brains || []) {
+    const card = document.createElement("div");
+    card.className = "status-card";
+    card.innerHTML = `
+      <div class="status-card-title">${escapeHtml(brain.name)}</div>
+      <div class="status-card-metrics">
+        <span>${formatNumber(brain.documents)} docs</span>
+        <span>${formatNumber(brain.chunks)} chunks</span>
+        <span>${brain.textMb} MB text</span>
+      </div>
+      <div class="subagent-row">${(brain.subagents || []).map((item) => `<span>${escapeHtml(item.name)}</span>`).join("")}</div>
+    `;
+    grid.appendChild(card);
+  }
+  if (brainStatus.launchOs?.tables?.length) {
+    const card = document.createElement("div");
+    card.className = "status-card";
+    const tableCount = brainStatus.launchOs.tables.length;
+    const savedCount = Object.values(brainStatus.launchOs.counts || {}).reduce((sum, value) => sum + Number(value || 0), 0);
+    card.innerHTML = `
+      <div class="status-card-title">Launch OS Database</div>
+      <div class="status-card-metrics">
+        <span>${formatNumber(tableCount)} tables</span>
+        <span>${formatNumber(savedCount)} records</span>
+      </div>
+      <div class="subagent-row">${brainStatus.launchOs.tables.slice(0, 10).map((item) => `<span>${escapeHtml(item)}</span>`).join("")}</div>
+    `;
+    grid.appendChild(card);
+  }
+  if (brainStatus.caseStudyBrain) {
+    const item = brainStatus.caseStudyBrain;
+    const categories = (item.categories || []).filter((category) => Number(category.count || 0) > 0).slice(0, 8);
+    const card = document.createElement("div");
+    card.className = "status-card";
+    card.innerHTML = `
+      <div class="status-card-title">Case Study Brain</div>
+      <div class="project-meta">${escapeHtml(item.training_mode || "RAG memory")} · ${item.source_exists ? "source OK" : "missing source"}</div>
+      <div class="status-card-metrics">
+        <span>${formatNumber(item.documents || 0)} docs</span>
+        <span>${formatNumber(item.chunks || 0)} chunks</span>
+        <span>${item.text_mb || 0} MB text</span>
+      </div>
+      <div class="subagent-row">${categories.map((category) => `<span>${escapeHtml(category.category)}: ${formatNumber(category.count)}</span>`).join("") || "<span>Chưa index dữ liệu cũ</span>"}</div>
+    `;
+    grid.appendChild(card);
+  }
+
+  if (brainStatus.aiPrintablesKdpPromptAgent) {
+    const item = brainStatus.aiPrintablesKdpPromptAgent;
+    const card = document.createElement("div");
+    card.className = "status-card ai-kdp-agent-status-card";
+    card.innerHTML = `
+      <div class="status-card-title">AI Printables KDP Prompt Agent</div>
+      <div class="status-card-metrics">
+        <span>Brain: ${item.brainFound ? "FOUND" : "MISSING"}</span>
+        <span>Skills: ${escapeHtml(String(item.skills || "0/16"))}</span>
+        <span>Tags: ${item.tagsReady ? "READY" : "MISSING"}</span>
+        <span>Router: ${item.routerReady ? "READY" : "MISSING"}</span>
+      </div>
+      <div class="subagent-row"><span>${escapeHtml(item.agentFolder || "agents/AI_Printables_KDP_Prompt_Agent")}</span></div>
+    `;
+    grid.appendChild(card);
+  }
+  if (brainStatus.activeProject?.product_name) {
+    const project = brainStatus.activeProject;
+    const doneAssets = (project.assets || []).filter((item) => item.status === "done").length;
+    const totalAssets = (project.assets || []).length || 1;
+    const nextActions = (project.next_actions || []).slice(0, 3);
+    const missing = (project.missing_assets || []).slice(0, 6);
+    const projectCard = document.createElement("div");
+    projectCard.className = "status-card project-status-card";
+    projectCard.innerHTML = `
+      <div class="status-card-title">Active Project</div>
+      <div class="project-name">${escapeHtml(project.product_name)}</div>
+      <div class="project-meta">${escapeHtml(project.buyer || "Buyer chưa khóa")} · ${escapeHtml(project.price || "Price chưa khóa")}</div>
+      <div class="project-progress" aria-label="Launch readiness">
+        <span style="width:${Math.max(0, Math.min(100, Number(project.launch_readiness || 0) * 10))}%"></span>
+      </div>
+      <div class="status-card-metrics">
+        <span>Readiness ${Number(project.launch_readiness || 0).toFixed(1)}/10</span>
+        <span>${doneAssets}/${totalAssets} assets</span>
+        <span>Status ${escapeHtml(project.status || "idea")}</span>
+      </div>
+      <div class="project-mini-list">
+        <strong>Next:</strong> ${nextActions.map((item) => `<span>${escapeHtml(item)}</span>`).join("") || "<span>Review launch</span>"}
+      </div>
+      <div class="project-mini-list missing">
+        <strong>Missing:</strong> ${missing.map((item) => `<span>${escapeHtml(item)}</span>`).join("") || "<span>None</span>"}
+      </div>
+    `;
+    grid.appendChild(projectCard);
+  }
+  statusPanel.appendChild(grid);
+}
+
+function renderAttachments() {
+  attachmentBar.innerHTML = "";
+  for (const [index, attachment] of pendingAttachments.entries()) {
+    const chip = document.createElement("div");
+    chip.className = `attachment-chip ${attachment.type === "error" ? "error" : ""}`;
+    const label = document.createElement("span");
+    label.textContent = attachment.name || "file";
+    label.title = attachment.notice || attachment.type || attachment.name || "file";
+    chip.appendChild(label);
+    if (attachment.url) {
+      chip.appendChild(createIconLink("↗", apiUrl(attachment.url), "Mở đọc file", "attachment-open-btn"));
+      chip.appendChild(createIconLink("↓", apiUrl(attachment.url), "Tải file về máy", "attachment-download-btn", attachment.name || "file"));
+    }
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "×";
+    remove.title = "Bỏ file";
+    remove.addEventListener("click", () => {
+      pendingAttachments.splice(index, 1);
+      renderAttachments();
+    });
+    chip.appendChild(remove);
+    attachmentBar.appendChild(chip);
+  }
+}
+
+async function uploadFiles(files) {
+  const selected = Array.from(files || []);
+  if (!selected.length) return;
+  const loading = { name: `${selected.length} file`, type: "loading", text: "", notice: "Đang đọc file..." };
+  pendingAttachments.push(loading);
+  renderAttachments();
+  try {
+    const formData = new FormData();
+    for (const file of selected.slice(0, 10)) {
+      formData.append("files", file, file.name);
+    }
+    const response = await fetch(workspaceApiUrl("/api/upload"), {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    pendingAttachments = pendingAttachments.filter((item) => item !== loading);
+    if (!data.ok) {
+      pendingAttachments.push({ name: "Upload lỗi", type: "error", text: "", notice: data.error || "Không upload được file." });
+    } else {
+      pendingAttachments.push(...(data.attachments || []));
+      showToast("Đã đọc file.");
+    }
+  } catch (error) {
+    pendingAttachments = pendingAttachments.filter((item) => item !== loading);
+    pendingAttachments.push({ name: "Upload lỗi", type: "error", text: "", notice: friendlyFetchError(error) });
+  }
+  fileInput.value = "";
+  renderAttachments();
+}
+
+function appendMessageToDom(role, content, messageIndex = null, shouldScroll = true) {
+  const scrollIntent = captureChatScroll();
+  const thread = getActiveThread();
+  const savedMessage = thread && Number.isInteger(messageIndex) ? thread.messages[messageIndex] : null;
+  const hasSavedAttachments = Array.isArray(savedMessage?.attachments) && savedMessage.attachments.length > 0;
+  let displayContent = role === "assistant" ? stripSourceFooter(content) : (hasSavedAttachments ? stripAttachmentSummary(content) : content);
+  if (role === "assistant" && savedMessage?.fileOutputCollapsed && Array.isArray(savedMessage.files) && savedMessage.files.length) {
+    displayContent = `**${inferArtifactTitle(displayContent)}**`;
+  }
+  const el = document.createElement("div");
+  el.className = `msg ${role}`;
+
+  const header = document.createElement("div");
+  header.className = "msg-actions";
+  if (role === "user" && Number.isInteger(messageIndex)) {
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit-msg-btn";
+    editBtn.type = "button";
+    editBtn.title = "Sửa và gửi lại";
+    editBtn.textContent = "✎";
+    editBtn.addEventListener("click", () => editUserMessage(messageIndex));
+    header.appendChild(editBtn);
+  }
+  if (role === "assistant" && Number.isInteger(messageIndex)) {
+    const canvasBtn = document.createElement("button");
+    canvasBtn.className = "artifact-msg-btn";
+    canvasBtn.type = "button";
+    canvasBtn.title = "Mở canvas kết quả";
+    canvasBtn.textContent = "▣";
+    canvasBtn.addEventListener("click", () => openArtifactPanel(currentMessageContent(messageIndex, displayContent)));
+    header.appendChild(canvasBtn);
+
+    const retryBtn = document.createElement("button");
+    retryBtn.className = "retry-msg-btn";
+    retryBtn.type = "button";
+    retryBtn.title = "Tạo lại câu trả lời";
+    retryBtn.textContent = "↻";
+    retryBtn.addEventListener("click", () => regenerateAssistantMessage(messageIndex));
+    header.appendChild(retryBtn);
+  }
+  const copyBtn = document.createElement("button");
+  copyBtn.className = "copy-btn";
+  copyBtn.type = "button";
+  copyBtn.title = role === "assistant" ? "Copy toàn bộ trả lời" : "Copy câu hỏi";
+  copyBtn.textContent = "⧉";
+  copyBtn.addEventListener("click", async () => {
+    try {
+      await copyText(currentMessageContent(messageIndex, displayContent));
+      copyBtn.textContent = "✓";
+      showToast("Đã copy.");
+      setTimeout(() => (copyBtn.textContent = "⧉"), 900);
+    } catch (error) {
+      showToast(friendlyFetchError(error));
+    }
+  });
+  header.appendChild(copyBtn);
+
+  if (role === "assistant") {
+    const fileBtn = document.createElement("button");
+    fileBtn.className = "file-btn";
+    fileBtn.type = "button";
+    fileBtn.title = "Tạo và tải file từ trả lời này";
+    fileBtn.textContent = "⇩";
+    fileBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      showFileMenu(fileBtn, currentMessageContent(messageIndex, displayContent), messageIndex);
+    });
+    header.appendChild(fileBtn);
+  }
+
+  if (Number.isInteger(messageIndex)) {
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-msg-btn";
+    deleteBtn.type = "button";
+    deleteBtn.title = "Xóa mẩu chat này";
+    deleteBtn.textContent = "×";
+    deleteBtn.addEventListener("click", () => deleteMessage(messageIndex));
+    header.appendChild(deleteBtn);
+  }
+
+  const meta = document.createElement("div");
+  meta.className = "msg-meta";
+  meta.textContent = `${role === "assistant" ? "Agent" : "Bạn"} · VN ${formatVietnamDateTime(messageTime(thread, savedMessage))}`;
+  el.appendChild(meta);
+
+  const body = document.createElement("div");
+  body.className = "msg-body";
+  renderMessageBody(body, displayContent, messageIndex);
+  el.appendChild(body);
+  const fileChips = renderMessageFiles(savedMessage, messageIndex, displayContent);
+  if (fileChips) el.appendChild(fileChips);
+  const routeDebug = renderRouteDebugPanel(savedMessage);
+  if (routeDebug) el.appendChild(routeDebug);
+  el.appendChild(header);
+  chat.appendChild(el);
+  if (shouldScroll && shouldStickToBottom(scrollIntent)) {
+    scrollChatToBottom();
+  } else {
+    restoreChatScroll(scrollIntent);
+    updateScrollBottomButton();
+  }
+  return { el, body };
+}
+
+function currentMessageContent(messageIndex, fallback) {
+  const thread = getActiveThread();
+  if (thread && Number.isInteger(messageIndex) && thread.messages[messageIndex]) {
+    return stripSourceFooter(thread.messages[messageIndex].content || fallback || "");
+  }
+  return stripSourceFooter(fallback || "");
+}
+
+function renderMessageBody(target, content, messageIndex = null) {
+  stopStreamingText(target);
+  const parser = window.parseMessageFileParts;
+  const createCard = window.createFileCard;
+  if (typeof parser !== "function" || typeof createCard !== "function") {
+    target.innerHTML = renderMarkdown(escapeHtml(content));
+    return;
+  }
+
+  const parts = parser(content, Number.isInteger(messageIndex) ? messageIndex + 1 : Date.now());
+  const hasFile = parts.some((part) => part.type === "file");
+  if (!hasFile) {
+    target.innerHTML = renderMarkdown(escapeHtml(content));
+    return;
+  }
+
+  target.innerHTML = "";
+  for (const part of parts) {
+    if (part.type === "file") {
+      target.appendChild(createCard(part.filename, part.content, part.description));
+      continue;
+    }
+    if (!String(part.content || "").trim()) continue;
+    const textWrap = document.createElement("div");
+    textWrap.innerHTML = renderMarkdown(escapeHtml(part.content));
+    target.appendChild(textWrap);
+  }
+}
+
+function stopStreamingText(target) {
+  const state = streamingTextStates.get(target);
+  if (!state) return;
+  if (state.timer) clearTimeout(state.timer);
+  streamingTextStates.delete(target);
+}
+
+function showFileMenu(anchor, content, messageIndex = null) {
+  closeFileMenus();
+  if (!content.trim()) {
+    showToast("Chưa có nội dung để tạo file.");
+    return;
+  }
+  const menu = document.createElement("div");
+  menu.className = "file-menu";
+  const compactButton = document.createElement("button");
+  compactButton.type = "button";
+  compactButton.textContent = "Prompt gọn MD";
+  compactButton.addEventListener("click", async (event) => {
+    event.stopPropagation();
+    await createFileFromContent(compactPromptContent(content), "md", "prompt-gon", messageIndex);
+    closeFileMenus();
+  });
+  menu.appendChild(compactButton);
+  const formats = [
+    ["md", "Markdown"],
+    ["txt", "Text"],
+    ["html", "HTML"],
+    ["docx", "Word"],
+    ["pdf", "PDF"],
+    ["json", "JSON"],
+    ["csv", "CSV"],
+  ];
+  for (const [format, label] of formats) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = label;
+    button.addEventListener("click", async (event) => {
+      event.stopPropagation();
+      await createFileFromContent(content, format, "", messageIndex);
+      closeFileMenus();
+    });
+    menu.appendChild(button);
+  }
+  anchor.closest(".msg-actions")?.appendChild(menu);
+}
+
+function closeFileMenus() {
+  document.querySelectorAll(".file-menu").forEach((menu) => menu.remove());
+}
+
+function createIconLink(text, href, title, className, downloadName = "") {
+  const link = document.createElement("a");
+  link.className = className;
+  link.href = href;
+  link.title = title;
+  link.setAttribute("aria-label", title);
+  link.textContent = text;
+  if (downloadName) link.download = downloadName;
+  if (!downloadName) link.target = "_blank";
+  if (!downloadName) link.rel = "noopener";
+  return link;
+}
+
+function renderMessageFiles(message, messageIndex, fallbackContent = "") {
+  const attachments = Array.isArray(message?.attachments) ? message.attachments : [];
+  const generatedFiles = Array.isArray(message?.files) ? message.files : [];
+  if (!attachments.length && !generatedFiles.length) return null;
+
+  const wrap = document.createElement("div");
+  wrap.className = "message-file-list";
+  for (const attachment of attachments) {
+    if (!attachment?.name) continue;
+    wrap.appendChild(renderFileChip({
+      name: attachment.name,
+      url: attachment.url,
+      openTitle: "Mở đọc file gốc",
+      downloadTitle: "Tải file gốc",
+    }));
+  }
+  for (const file of generatedFiles) {
+    if (!file?.fileName) continue;
+    const chip = renderFileChip({
+      name: file.fileName,
+      url: file.url,
+      openTitle: "Mở đọc nội dung",
+      downloadTitle: "Tải file về máy",
+    });
+    chip.querySelector("[data-open-file]")?.addEventListener("click", (event) => {
+      event.preventDefault();
+      openArtifactPanel(currentMessageContent(messageIndex, fallbackContent));
+    });
+    wrap.appendChild(chip);
+  }
+  return wrap.childElementCount ? wrap : null;
+}
+
+function renderFileChip({ name, url, openTitle, downloadTitle }) {
+  const chip = document.createElement("div");
+  chip.className = "message-file-chip";
+  const fileName = document.createElement("span");
+  fileName.className = "message-file-name";
+  fileName.textContent = name;
+  fileName.title = name;
+  chip.appendChild(fileName);
+
+  if (url) {
+    const open = createIconLink("↗", apiUrl(`${url}${url.includes("?") ? "&" : "?"}view=1`), openTitle, "message-file-icon");
+    open.dataset.openFile = "true";
+    chip.appendChild(open);
+    chip.appendChild(createIconLink("↓", apiUrl(url), downloadTitle, "message-file-icon", name));
+  }
+  return chip;
+}
+
+function openArtifactPanel(content) {
+  activeArtifactContent = stripSourceFooter(content || "");
+  if (!activeArtifactContent.trim()) {
+    showToast("Chưa có nội dung để mở canvas.");
+    return;
+  }
+  const title = inferArtifactTitle(activeArtifactContent);
+  artifactTitle.textContent = title;
+  artifactBody.innerHTML = renderMarkdown(escapeHtml(activeArtifactContent));
+  artifactPanel.hidden = false;
+  artifactPanel.classList.add("show");
+}
+
+function closeArtifactPanel() {
+  artifactPanel.classList.remove("show");
+  artifactPanel.hidden = true;
+}
+
+function inferArtifactTitle(content) {
+  const firstHeading = String(content || "").split("\n").find((line) => /^#{1,3}\s+\S/.test(line.trim()));
+  if (firstHeading) return firstHeading.replace(/^#{1,3}\s+/, "").trim().slice(0, 80);
+  const firstLine = String(content || "").split("\n").find((line) => line.trim());
+  return (firstLine || "Nội dung trả lời").replace(/[*`#]/g, "").trim().slice(0, 80) || "Nội dung trả lời";
+}
+
+async function copyArtifact() {
+  if (!activeArtifactContent.trim()) return;
+  await copyText(activeArtifactContent);
+  showToast("Đã copy canvas.");
+}
+
+function downloadArtifactMarkdown() {
+  if (!activeArtifactContent.trim()) return;
+  const blob = new Blob([activeArtifactContent], { type: "text/markdown;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${safeDownloadName(artifactTitle.textContent || "agent-canvas")}.md`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast("Đã tải Markdown.");
+}
+
+async function copyText(text) {
+  const value = String(text || "");
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(value);
+      return true;
+    }
+  } catch {
+    // Fallback below handles HTTP/insecure clipboard restrictions.
+  }
+  const textarea = document.createElement("textarea");
+  textarea.value = value;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.left = "-9999px";
+  textarea.style.top = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const ok = document.execCommand("copy");
+  textarea.remove();
+  if (!ok) throw new Error("Trình duyệt chặn copy tự động.");
+  return true;
+}
+
+function compactPromptContent(content) {
+  const clean = stripSourceFooter(String(content || ""))
+    .replace(/\r\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+  const lines = clean.split("\n");
+  const kept = [];
+  let inPromptBlock = false;
+  for (const line of lines) {
+    const normalized = line.trim().toLowerCase();
+    if (/^(#{1,4}\s*)?(prompt|prompts|master prompt|system prompt|user prompt|copy prompt|file prompt|prompt sử dụng|prompt su dung)\b/.test(normalized)) {
+      inPromptBlock = true;
+    }
+    if (inPromptBlock) kept.push(line);
+    if (inPromptBlock && kept.length > 20 && /^#{1,3}\s+\S/.test(line.trim()) && !/prompt/i.test(line)) {
+      kept.pop();
+      break;
+    }
+  }
+  const body = (kept.join("\n").trim() || clean).slice(0, 60000);
+  return `# Prompt gon\n\n${body}\n`;
+}
+
+async function createFileFromContent(content, format, titleOverride = "", messageIndex = null) {
+  const thread = getActiveThread();
+  const title = safeDownloadName(titleOverride || thread?.title || "agent-output");
+  showToast(`Đang tạo file ${format.toUpperCase()}...`);
+  try {
+    const response = await fetch(apiUrl("/api/create_file"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content, format, title }),
+    });
+    const data = await response.json();
+    if (!data.ok) throw new Error(data.error || "Không tạo được file.");
+    attachGeneratedFileToMessage(messageIndex, data);
+    if (data.dataBase64) {
+      downloadBase64File(data.dataBase64, data.fileName, data.mime);
+      showToast(`Đã tạo và tải ${data.fileName}.`);
+    } else if (data.url) {
+      triggerUrlDownload(apiUrl(data.url), data.fileName);
+      showToast(`Đã tạo ${data.fileName}. Nếu chưa tải, bấm nút ↓ trên file.`);
+    } else {
+      showToast(`Đã tạo ${data.fileName}.`);
+    }
+  } catch (error) {
+    showToast(friendlyFetchError(error));
+  }
+}
+
+function attachGeneratedFileToMessage(messageIndex, file) {
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return;
+  const message = thread.messages[messageIndex];
+  message.files = Array.isArray(message.files) ? message.files : [];
+  message.files.push({
+    fileName: file.fileName,
+    format: file.format,
+    mime: file.mime,
+    url: file.url,
+    createdAt: Date.now(),
+  });
+  message.fileOutputCollapsed = true;
+  thread.updatedAt = Date.now();
+  saveState();
+  renderActiveThread({ stickToBottom: true });
+}
+
+function triggerUrlDownload(url, fileName = "agent-output") {
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName || "agent-output";
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+function downloadBase64File(dataBase64, fileName, mime) {
+  const binary = atob(dataBase64);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+  const blob = new Blob([bytes], { type: mime || "application/octet-stream" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName || "agent-output";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(link.href);
+}
+
+function deleteMessage(messageIndex) {
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex)) return;
+  if (messageIndex < 0 || messageIndex >= thread.messages.length) return;
+  thread.messages.splice(messageIndex, 1);
+  if (!thread.messages.length) {
+    thread.title = "Chat mới";
+  }
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  showToast("Đã xóa mẩu chat.");
+}
+
+function editUserMessage(messageIndex) {
+  const thread = getActiveThread();
+  const message = thread?.messages?.[messageIndex];
+  if (!message || message.role !== "user") return;
+  prompt.value = stripAttachmentSummary(message.content || "");
+  pendingAttachments = [];
+  thread.messages = thread.messages.slice(0, messageIndex);
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  autoResize();
+  focusPrompt();
+  showToast("Đã đưa câu hỏi về ô nhập.");
+}
+
+function regenerateAssistantMessage(messageIndex) {
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex)) return;
+  const previousUserIndex = findPreviousUserMessageIndex(thread, messageIndex);
+  if (previousUserIndex < 0) {
+    showToast("Không tìm thấy câu hỏi để tạo lại.");
+    return;
+  }
+  const userText = stripAttachmentSummary(thread.messages[previousUserIndex].content || "");
+  thread.messages = thread.messages.slice(0, previousUserIndex);
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  prompt.value = userText;
+  autoResize();
+  sendMessage();
+}
+
+function findPreviousUserMessageIndex(thread, fromIndex) {
+  for (let index = fromIndex - 1; index >= 0; index -= 1) {
+    if (thread.messages[index]?.role === "user") return index;
+  }
+  return -1;
+}
+
+function stripAttachmentSummary(text) {
+  return String(text || "").split("\n\nFile 1:")[0].trim();
+}
+
+function appendThinking(label = null) {
+  const scrollIntent = captureChatScroll();
+  const el = document.createElement("div");
+  el.className = "msg assistant thinking";
+  el.innerHTML = `
+    <div class="typing-indicator" aria-label="Agent đang nhập">
+      <div class="ai-avatar">M</div>
+      <div class="typing-dots"><span></span><span></span><span></span></div>
+    </div>
+  `;
+  chat.appendChild(el);
+  if (shouldStickToBottom(scrollIntent)) {
+    scrollChatToBottom();
+  } else {
+    restoreChatScroll(scrollIntent);
+    updateScrollBottomButton();
+  }
+  return () => el.remove();
+}
+
+async function fetchStreamingAnswer(payload, onDelta) {
+  const response = await fetch(apiUrl("/api/chat_stream"), {
+    method: "POST",
+    signal: activeController.signal,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok || !response.body) {
+    throw new Error(`Server stream lỗi: ${response.status}`);
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let finalPayload = null;
+  while (true) {
+    const { value, done } = await reader.read();
+    buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
+    const blocks = buffer.split("\n\n");
+    buffer = blocks.pop() || "";
+    for (const block of blocks) {
+      const event = parseSseBlock(block);
+      if (!event) continue;
+      if (event.type === "status" && event.data?.text) { setReplyingState(true, event.data.text); }
+      if (event.type === "delta" && event.data?.text) onDelta(event.data.text);
+      if (event.type === "meta" && event.data?.mode) {
+        responseMode = event.data.mode;
+        updateSessionMetrics();
+      }
+      if (event.type === "done") finalPayload = event.data || null;
+      if (event.type === "error") throw new Error(event.data?.error || "Stream lỗi.");
+    }
+    if (done) break;
+  }
+  return finalPayload;
+}
+
+function requestCancel() {
+  const requestId = activeRequestId;
+  if (activeController) activeController.abort();
+  activeController = null;
+  setReplyingState(false);
+  flushStreamRender();
+  clearStreamStallWatchdog();
+  if (requestId) {
+    fetch(apiUrl("/api/cancel"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId }),
+    }).catch(() => {});
+  }
+  markRetryAvailable("Đã hủy. Có thể gửi lại câu hỏi vừa rồi.");
+  showToast("Đã hủy lượt trả lời.");
+}
+
+function setLastRetryDraft(draft) {
+  lastRetryDraft = draft ? {
+    ...draft,
+    attachments: (draft.attachments || []).map((item) => ({ ...item })),
+    createdAt: Date.now(),
+  } : null;
+  updateRetryButton();
+}
+
+function markRetryAvailable(message = "Có thể gửi lại câu hỏi vừa rồi.") {
+  if (lastRetryDraft) {
+    lastRetryDraft.failedAt = Date.now();
+    lastRetryDraft.failureMessage = message;
+  }
+  updateRetryButton();
+}
+
+function clearRetryAvailable() {
+  if (lastRetryDraft) {
+    lastRetryDraft.failedAt = null;
+    lastRetryDraft.failureMessage = "";
+  }
+  updateRetryButton();
+}
+
+function updateRetryButton() {
+  if (!retryLastBtn) return;
+  const canRetry = Boolean(lastRetryDraft?.failedAt || lastRetryDraft?.allowManualRetry);
+  retryLastBtn.hidden = !canRetry;
+  retryLastBtn.title = lastRetryDraft?.failureMessage || "Gửi lại câu hỏi gần nhất";
+}
+
+function clearStreamStallWatchdog() {
+  if (streamStallTimer) {
+    clearTimeout(streamStallTimer);
+    streamStallTimer = null;
+  }
+}
+
+function resetStreamStallWatchdog() {
+  clearStreamStallWatchdog();
+  const requestId = activeRequestId;
+  streamStallTimer = setTimeout(() => {
+    if (!activeController || requestId !== activeRequestId) return;
+    requestCancel();
+    markRetryAvailable("Kết nối/model không trả thêm nội dung trong 120 giây. Bấm gửi lại để chạy lại.");
+    showToast("Lượt trả lời bị treo quá lâu, đã dừng.");
+  }, streamStallTimeoutMs);
+}
+
+function retryLastRequest() {
+  if (!lastRetryDraft) {
+    showToast("Chưa có câu hỏi nào để gửi lại.");
+    return;
+  }
+  if (activeController) requestCancel();
+  const thread = state.threads.find((item) => item.id === lastRetryDraft.threadId) || getActiveThread();
+  if (!thread) return;
+  activeThreadId = thread.id;
+  removeLastFailedAttempt(thread, lastRetryDraft.userContent, Boolean(lastRetryDraft.allowManualRetry));
+  prompt.value = lastRetryDraft.text || "";
+  pendingAttachments = (lastRetryDraft.attachments || []).map((item) => ({ ...item }));
+  activeModuleId = lastRetryDraft.module || "";
+  applyResponseMode(lastRetryDraft.mode || "fast");
+  clearRetryAvailable();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+  renderAttachments();
+  autoResize();
+  focusPrompt();
+  sendMessage();
+}
+
+function removeLastFailedAttempt(thread, userContent, forceAssistantRemoval = false) {
+  if (!thread?.messages?.length) return;
+  while (thread.messages.length && thread.messages.at(-1)?.role === "assistant") {
+    const content = String(thread.messages.at(-1)?.content || "").trim();
+    if (forceAssistantRemoval || !content || content.includes("Kết nối bị ngắt") || content.includes("API model đang tạm lỗi") || content.includes("Model chưa trả nội dung")) {
+      thread.messages.pop();
+      forceAssistantRemoval = false;
+      continue;
+    }
+    break;
+  }
+  const last = thread.messages.at(-1);
+  if (last?.role === "user" && String(last.content || "") === String(userContent || "")) {
+    thread.messages.pop();
+  }
+  thread.updatedAt = Date.now();
+}
+
+function scheduleStreamRender(thread, assistantMessageIndex, assistantRendered, getText) {
+  if (streamRenderTimer) return;
+  streamRenderTimer = setTimeout(() => {
+    streamRenderTimer = null;
+    const scrollIntent = captureChatScroll();
+    const clean = stripSourceFooter(getText());
+    if (clean === lastStreamRenderedText) return;
+    lastStreamRenderedText = clean;
+    thread.messages[assistantMessageIndex].content = clean;
+    if (assistantRendered?.body) {
+      renderStreamingText(assistantRendered.body, clean);
+    }
+    persistStreamingDraft(false);
+    if (shouldStickToBottom(scrollIntent)) {
+      scrollChatToBottom();
+    } else {
+      restoreChatScroll(scrollIntent);
+    }
+    updateScrollBottomButton();
+  }, 140);
+}
+
+function renderStreamingText(target, text) {
+  stopStreamingText(target);
+  renderMessageBody(target, text);
+}
+
+function flushStreamRender() {
+  if (streamRenderTimer) {
+    clearTimeout(streamRenderTimer);
+    streamRenderTimer = null;
+  }
+}
+
+function parseSseBlock(block) {
+  const lines = String(block || "").split("\n");
+  let type = "message";
+  const dataLines = [];
+  for (const line of lines) {
+    if (line.startsWith("event:")) type = line.slice(6).trim();
+    if (line.startsWith("data:")) dataLines.push(line.slice(5).trimStart());
+  }
+  if (!dataLines.length) return null;
+  try {
+    return { type, data: JSON.parse(dataLines.join("\n")) };
+  } catch {
+    return null;
+  }
+}
+
+async function sendMessage(options = {}) {
+  if (activeController) {
+    if (options.allowCancel) {
+      requestCancel();
+      return;
+    }
+    showToast("Agent đang trả lời. Bấm nút vuông để dừng trước khi gửi câu mới.");
+    return;
+  }
+
+  const typedText = prompt.value.trim();
+  const chipPrompt = activePromptChip?.prompt || "";
+  const text = chipPrompt ? `${chipPrompt}${typedText ? `\n\n${typedText}` : ""}` : typedText;
+  if (!text && !pendingAttachments.length) return;
+  const thread = getActiveThread();
+  if (!thread) {
+    createThread(typedText || activePromptChip?.label || text || "Chat mới");
+    return sendMessage();
+  }
+
+  if (!thread.messages.length && ["Chat mới", "Đoạn chat mới"].includes(thread.title)) {
+    thread.title = createThreadTitle(typedText || activePromptChip?.label || text || pendingAttachments[0]?.name || "Phân tích file");
+  }
+
+  const attachmentSummary = formatAttachmentSummary(pendingAttachments);
+  const userContent = attachmentSummary ? `${text || "Hãy phân tích file này."}\n\n${attachmentSummary}` : text;
+  const attachmentsForRequest = pendingAttachments.filter((item) => item.type !== "loading");
+  const requestMode = selectedResponseMode();
+  const requestModule = activeModuleId || "";
+  setLastRetryDraft({
+    threadId: thread.id,
+    text: typedText,
+    userContent,
+    attachments: attachmentsForRequest,
+    mode: requestMode,
+    module: requestModule,
+    allowManualRetry: false,
+  });
+  responseMode = requestMode;
+  applyResponseMode(requestMode);
+  const thinkingLabel = effectiveModeLabel(text, attachmentsForRequest);
+  thread.messages.push({
+    role: "user",
+    content: userContent,
+    createdAt: Date.now(),
+    attachments: attachmentsForRequest.map((item) => ({ ...item, text: "" })),
+  });
+  const userMessageIndex = thread.messages.length - 1;
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  releaseChatScrollLock();
+  appendMessageToDom("user", userContent, userMessageIndex);
+  prompt.value = "";
+  clearPromptChip();
+  pendingAttachments = [];
+  renderAttachments();
+  autoResize();
+
+  activeController = new AbortController();
+  activeRequestId = createClientId();
+  lastStreamSaveAt = 0;
+  setReplyingState(true, "Đang gửi câu hỏi...");
+  resetStreamStallWatchdog();
+  let stopThinking = appendThinking(thinkingLabel);
+  let assistantMessageIndex = null;
+  let assistantRendered = null;
+  let streamedAnswer = "";
+  const ensureAssistantMessage = () => {
+    if (assistantMessageIndex !== null) return;
+    if (stopThinking) {
+      stopThinking();
+      stopThinking = null;
+    }
+    thread.messages.push({ role: "assistant", content: "", createdAt: Date.now() });
+    assistantMessageIndex = thread.messages.length - 1;
+    assistantRendered = appendMessageToDom("assistant", "", assistantMessageIndex);
+    persistStreamingDraft(true);
+  };
+  try {
+    const finalPayload = await fetchStreamingAnswer(
+      {
+        question: requestQuestionWithControls(text || "Hãy phân tích file người dùng vừa gửi."),
+        requestId: activeRequestId,
+        history: thread.messages.slice(-10),
+        attachments: attachmentsForRequest,
+        mode: requestMode,
+        module: requestModule,
+        tags: collectAiKdpTags(text),
+        agentKey: resolveAiKdpRoute(text).agentKey,
+        skillRoute: resolveAiKdpRoute(text).skillRoute,
+        skillFile: resolveAiKdpRoute(text).skillFile,
+      },
+      (delta) => {
+        resetStreamStallWatchdog();
+        setReplyingState(true, "Đang trả lời...");
+        ensureAssistantMessage();
+        streamedAnswer += delta;
+        scheduleStreamRender(thread, assistantMessageIndex, assistantRendered, () => streamedAnswer);
+      }
+    );
+    flushStreamRender();
+    if (stopThinking) {
+      stopThinking();
+      stopThinking = null;
+    }
+    if (assistantMessageIndex === null) {
+      appendAssistantMessage(thread, "Model chưa trả nội dung.");
+      markRetryAvailable("Model chưa trả nội dung. Bấm gửi lại để chạy lại.");
+    } else {
+      const clean = stripSourceFooter(streamedAnswer);
+      thread.messages[assistantMessageIndex].content = clean;
+      const actionFileAttached = attachActionFileToMessage(assistantMessageIndex, finalPayload?.action);
+      const routeDebugAttached = attachRouteDebugToMessage(assistantMessageIndex, finalPayload?.action);
+      if (assistantRendered?.body) {
+        const scrollIntent = captureChatScroll();
+        renderMessageBody(assistantRendered.body, clean, assistantMessageIndex);
+        if (shouldStickToBottom(scrollIntent)) {
+          scrollChatToBottom();
+        } else {
+          restoreChatScroll(scrollIntent);
+          updateScrollBottomButton();
+        }
+      }
+      persistStreamingDraft(true);
+      if (actionFileAttached || routeDebugAttached) renderActiveThread({ stickToBottom: false });
+      setLastRetryDraft(null);
+    }
+  } catch (error) {
+    if (stopThinking) {
+      stopThinking();
+      stopThinking = null;
+    }
+    if (error?.name === "AbortError") {
+      if (assistantMessageIndex !== null && streamedAnswer.trim()) {
+        persistStreamingDraft(true);
+      }
+      if (assistantMessageIndex === null) {
+        markRetryAvailable("Kết nối bị ngắt hoặc bạn đã hủy. Bấm gửi lại để chạy lại.");
+        showToast("Kết nối bị ngắt, có thể gửi lại.");
+      } else {
+        markRetryAvailable("Câu trả lời bị ngắt giữa chừng. Bấm gửi lại để chạy lại từ câu hỏi cũ.");
+      }
+    } else {
+      if (assistantMessageIndex !== null && streamedAnswer.trim()) {
+        persistStreamingDraft(true);
+      }
+      appendAssistantMessage(thread, friendlyFetchError(error));
+      markRetryAvailable("Có lỗi khi trả lời. Bấm gửi lại để chạy lại.");
+    }
+  } finally {
+    flushStreamRender();
+    clearStreamStallWatchdog();
+    activeController = null;
+    activeRequestId = "";
+    lastStreamRenderedText = "";
+    setReplyingState(false);
+    persistStreamingDraft(true);
+    saveState();
+    renderThreads();
+    updateSessionMetrics();
+    activeModuleId = "";
+    loadStatus();
+    loadProjectState();
+    // Do not auto-focus the composer after a response. On long answers this
+    // pulls the viewport back to the bottom and makes the chat feel jumpy.
+  }
+}
+
+
+function attachRouteDebugToMessage(messageIndex, action) {
+  if (!action?.route_debug) return false;
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return false;
+  thread.messages[messageIndex].routeDebug = action.route_debug;
+  thread.updatedAt = Date.now();
+  saveState();
+  return true;
+}
+
+function renderRouteDebugPanel(message) {
+  const debug = message?.routeDebug;
+  if (!debug) return null;
+  const wrap = document.createElement("div");
+  wrap.className = "route-debug-panel";
+  const files = Array.isArray(debug.files_used) ? debug.files_used.join(", ") : (debug.files_used || "");
+  wrap.innerHTML = `
+    <strong>Route</strong>
+    <span>${escapeHtml(debug.selected_route || "")}</span>
+    <span>Project: ${escapeHtml(debug.active_project || "")}</span>
+    <span>Product: ${escapeHtml(debug.product_used || "")}</span>
+    <span>API: ${debug.api_called ? "true" : "false"}</span>
+    <span>Cache: ${debug.from_cache ? "true" : "false"}</span>
+    <span>Fallback: ${debug.fallback_used ? "true" : "false"}</span>
+    <span>Prebuilt: ${debug.prebuilt_answer_used ? "true" : "false"}</span>
+    <span>Old answer: ${debug.old_answer_reused ? "true" : "false"}</span>
+    <span>Route type: ${escapeHtml(debug.route_type || "")}</span>
+    <span>Tool: ${escapeHtml(debug.tool_action || "")}</span>
+    <span>Conflict: ${debug.route_conflict ? "true" : "false"}</span>
+    ${files ? `<span>Files: ${escapeHtml(files)}</span>` : ""}
+  `;
+  return wrap;
+}
+
+function attachActionFileToMessage(messageIndex, action) {
+  if (!action?.zip_url && !action?.url) return false;
+  const thread = getActiveThread();
+  if (!thread || !Number.isInteger(messageIndex) || !thread.messages[messageIndex]) return false;
+  const message = thread.messages[messageIndex];
+  const url = action.zip_url || action.url;
+  const fileName = action.fileName || action.zip_name || String(action.zip_path || "product-output.zip").split(/[\\/]/).pop();
+  message.files = Array.isArray(message.files) ? message.files : [];
+  if (message.files.some((file) => file.url === url || file.fileName === fileName)) return false;
+  message.files.unshift({
+    fileName,
+    format: action.format || "zip",
+    mime: action.mime || "application/zip",
+    url,
+    createdAt: Date.now(),
+  });
+  message.fileOutputCollapsed = false;
+  thread.updatedAt = Date.now();
+  saveState();
+  return true;
+}
+
+function appendAssistantMessage(thread, content) {
+  const clean = stripSourceFooter(content);
+  thread.messages.push({ role: "assistant", content: clean, createdAt: Date.now() });
+  const assistantMessageIndex = thread.messages.length - 1;
+  thread.updatedAt = Date.now();
+  saveState();
+  appendMessageToDom("assistant", clean, assistantMessageIndex);
+}
+
+function formatAttachmentSummary(attachments) {
+  const ready = attachments.filter((item) => item.type !== "loading");
+  if (!ready.length) return "";
+  return ready.map((item, index) => `File ${index + 1}: ${item.name}\nGhi chú: ${item.notice || item.type}`).join("\n\n");
+}
+
+function friendlyFetchError(error) {
+  const message = String(error || "");
+  if (message.includes("Failed to fetch")) {
+    return `Không kết nối được server ${publicServerBaseUrl}. Hãy chạy lại web server rồi refresh trang: uv run --with-requirements requirements.txt python web_app.py --host 0.0.0.0 --port 8088`;
+  }
+  return message;
+}
+
+function createThreadTitle(text) {
+  return text.replace(/\s+/g, " ").trim().slice(0, 42) || "Chat mới";
+}
+
+function autoResize() {
+  prompt.style.height = "auto";
+  prompt.style.height = `${Math.min(prompt.scrollHeight, 120)}px`;
+}
+
+function focusPrompt() {
+  try {
+    prompt.focus({ preventScroll: true });
+  } catch {
+    prompt.focus();
+  }
+}
+
+function captureChatScroll() {
+  return {
+    top: chat.scrollTop,
+    height: chat.scrollHeight,
+    nearBottom: isChatNearBottom(),
+    locked: userScrollLocked,
+  };
+}
+
+function shouldStickToBottom(intent) {
+  return !userScrollLocked && !intent?.locked && intent?.nearBottom;
+}
+
+function restoreChatScroll(intent) {
+  if (!intent) return;
+  setChatScrollTop(intent.top);
+}
+
+function setChatScrollTop(top) {
+  programmaticScrollUntil = Date.now() + 80;
+  chat.scrollTop = Math.max(0, top);
+}
+
+function releaseChatScrollLock() {
+  userScrollLocked = false;
+}
+
+function handleChatScroll() {
+  if (Date.now() < programmaticScrollUntil) {
+    updateScrollBottomButton();
+    return;
+  }
+  userScrollLocked = !isChatNearBottom();
+  updateScrollBottomButton();
+}
+
+function scrollChatToBottom() {
+  releaseChatScrollLock();
+  programmaticScrollUntil = Date.now() + 80;
+  chat.scrollTo({ top: chat.scrollHeight, behavior: "auto" });
+  updateScrollBottomButton();
+}
+
+function isChatNearBottom() {
+  const distance = chat.scrollHeight - chat.scrollTop - chat.clientHeight;
+  return distance < 24;
+}
+
+function updateScrollBottomButton() {
+  if (!scrollBottomBtn) return;
+  const canScroll = chat.scrollHeight > chat.clientHeight + 40;
+  scrollBottomBtn.classList.toggle("show", canScroll && !isChatNearBottom());
+  updateJumpButtons();
+}
+
+function messageJumpTargets() {
+  return Array.from(chat.querySelectorAll(".msg.user"));
+}
+
+function jumpToMessage(direction) {
+  const targets = messageJumpTargets();
+  if (!targets.length) return;
+  const current = chat.scrollTop;
+  const tolerance = 12;
+  let target = null;
+  if (direction < 0) {
+    for (let index = targets.length - 1; index >= 0; index -= 1) {
+      if (targets[index].offsetTop < current - tolerance) {
+        target = targets[index];
+        break;
+      }
+    }
+    target ||= targets[0];
+  } else {
+    target = targets.find((item) => item.offsetTop > current + tolerance) || targets[targets.length - 1];
+  }
+  chat.scrollTo({ top: Math.max(0, target.offsetTop - 22), behavior: "smooth" });
+  target.classList.add("jump-highlight");
+  setTimeout(() => target.classList.remove("jump-highlight"), 720);
+  updateJumpButtons();
+}
+
+function updateJumpButtons() {
+  const targets = messageJumpTargets();
+  const canJump = targets.length > 1;
+  for (const button of [jumpPrevBtn, jumpNextBtn, promptJumpPrevBtn, promptJumpNextBtn]) {
+    if (button) button.disabled = !canJump;
+  }
+}
+
+function exportActiveThread() {
+  const thread = getActiveThread();
+  if (!thread) return;
+  const lines = [`# ${thread.title}`, "", `Export: ${new Date().toLocaleString("vi-VN")}`, ""];
+  for (const message of thread.messages) {
+    lines.push(`## ${message.role === "user" ? "Bạn" : "Agent chủ"}`, "", message.content, "");
+  }
+  const blob = new Blob([lines.join("\n")], { type: "text/markdown;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `${safeDownloadName(thread.title)}.md`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast("Đã xuất Markdown.");
+}
+
+function safeDownloadName(value) {
+  return value.replace(/[<>:"/\\|?*\x00-\x1f]+/g, "_").trim().slice(0, 80) || "agent-chat";
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(showToast.timer);
+  showToast.timer = setTimeout(() => toast.classList.remove("show"), 1500);
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat("vi-VN").format(value || 0);
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderMarkdown(text) {
+  const lines = text.split("\n");
+  const out = [];
+  let list = null;
+  let inCode = false;
+  const closeList = () => {
+    if (list) {
+      out.push(`</${list}>`);
+      list = null;
+    }
+  };
+  const inline = (value) =>
+    value.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/`([^`]+)`/g, "<code>$1</code>");
+  const isTableRow = (value) => {
+    const trimmed = value.trim();
+    return trimmed.startsWith("|") && trimmed.endsWith("|") && trimmed.split("|").length >= 4;
+  };
+  const isTableDivider = (value) => {
+    const cells = splitTableCells(value);
+    return cells.length > 1 && cells.every((cell) => /^:?-{3,}:?$/.test(cell.trim()));
+  };
+  const splitTableCells = (value) => value.trim().replace(/^\|/, "").replace(/\|$/, "").split("|").map((cell) => cell.trim());
+  const renderTable = (startIndex) => {
+    const header = splitTableCells(lines[startIndex]);
+    const rows = [];
+    let index = startIndex + 2;
+    while (index < lines.length && isTableRow(lines[index])) {
+      rows.push(splitTableCells(lines[index]));
+      index += 1;
+    }
+    const columnCount = Math.max(header.length, ...rows.map((row) => row.length));
+    const normalize = (row) => Array.from({ length: columnCount }, (_, cellIndex) => row[cellIndex] || "");
+    out.push('<div class="table-wrap"><table>');
+    out.push(`<thead><tr>${normalize(header).map((cell) => `<th>${inline(cell)}</th>`).join("")}</tr></thead>`);
+    out.push("<tbody>");
+    for (const row of rows) {
+      out.push(`<tr>${normalize(row).map((cell) => `<td>${inline(cell)}</td>`).join("")}</tr>`);
+    }
+    out.push("</tbody></table></div>");
+    return index;
+  };
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+    const trimmed = line.trim();
+    if (trimmed.startsWith("```")) {
+      closeList();
+      out.push(inCode ? "</code></pre>" : "<pre><code>");
+      inCode = !inCode;
+      continue;
+    }
+    if (inCode) {
+      out.push(`${line}\n`);
+      continue;
+    }
+    if (!trimmed) {
+      closeList();
+      continue;
+    }
+    if (
+      index + 1 < lines.length &&
+      isTableRow(lines[index]) &&
+      isTableRow(lines[index + 1]) &&
+      isTableDivider(lines[index + 1])
+    ) {
+      closeList();
+      index = renderTable(index) - 1;
+      continue;
+    }
+    const heading = trimmed.match(/^(#{1,3})\s+(.+)$/);
+    if (heading) {
+      closeList();
+      const level = Math.min(heading[1].length + 1, 4);
+      out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+      continue;
+    }
+    const unordered = trimmed.match(/^[-*]\s+(.+)$/);
+    if (unordered) {
+      if (list !== "ul") {
+        closeList();
+        list = "ul";
+        out.push("<ul>");
+      }
+      out.push(`<li>${inline(unordered[1])}</li>`);
+      continue;
+    }
+    const ordered = trimmed.match(/^\d+\.\s+(.+)$/);
+    if (ordered) {
+      if (list !== "ol") {
+        closeList();
+        list = "ol";
+        out.push("<ol>");
+      }
+      out.push(`<li>${inline(ordered[1])}</li>`);
+      continue;
+    }
+    closeList();
+    out.push(`<p>${inline(trimmed)}</p>`);
+  }
+  closeList();
+  if (inCode) out.push("</code></pre>");
+  return renderEvidenceBlock(renderScorecard(out.join("")));
+}
+
+function renderScorecard(html) {
+  return html.replace(/(<table[\s\S]*?<\/table>)/g, (match) =>
+    match
+      .replace(/\bPASS\b/g, '<span class="sc-pass">PASS</span>')
+      .replace(/\bFAIL\b/g, '<span class="sc-fail">FAIL</span>')
+      .replace(/\bHigh\b/g, '<span class="sc-high">High</span>')
+      .replace(/\bMedium\b/g, '<span class="sc-medium">Medium</span>')
+      .replace(/\bLow\b/g, '<span class="sc-low">Low</span>')
+  );
+}
+
+function renderEvidenceBlock(html) {
+  return html.replace(
+    /<h([2-4])>DATA USED<\/h\1>([\s\S]*?)(?=<h[2-4]>|$)/g,
+    '<details class="evidence-block"><summary>DATA USED</summary>$2</details>'
+  );
+}
+
+function stripSourceFooter(text) {
+  const stopPrefixes = [
+    "Nguồn brain hữu ích",
+    "Nguon brain huu ich",
+    "Nguồn hữu ích",
+    "Brain/source hữu ích",
+    "Sources used",
+    "Useful brain sources",
+    "Nếu bạn muốn",
+    "Neu ban muon",
+  ];
+  const lines = String(text || "").split("\n");
+  const kept = [];
+  for (const line of lines) {
+    const normalized = line.trim().replace(/^#+\s*/, "").replace(/^[-*]\s*/, "").trim();
+    if (stopPrefixes.some((prefix) => normalized.startsWith(prefix))) break;
+    kept.push(line);
+  }
+  return kept.join("\n").trim();
+}
+
+function filesFromClipboard(clipboardData) {
+  if (!clipboardData) return [];
+  const files = Array.from(clipboardData.files || []);
+  if (files.length) return files;
+  const itemFiles = [];
+  for (const item of Array.from(clipboardData.items || [])) {
+    if (item.kind !== "file") continue;
+    const file = item.getAsFile();
+    if (!file) continue;
+    const extension = file.type.split("/").pop() || "png";
+    const name = file.name || `clipboard-image-${Date.now()}.${extension}`;
+    itemFiles.push(new File([file], name, { type: file.type || "application/octet-stream" }));
+  }
+  return itemFiles;
+}
+
+
+function collectAiKdpTags(text = prompt?.value || "") {
+  const found = new Set(String(text || "").match(/#[\w-]+/g) || []);
+  for (const tag of aiKdpPromptTags) {
+    if (prompt && new RegExp(`(^|\\s)${escapeRegExp(tag)}(?=\\s|$)`).test(prompt.value)) found.add(tag);
+  }
+  return Array.from(found).filter((tag) => aiKdpPromptTags.includes(tag));
+}
+
+function resolveAiKdpRoute(text = prompt?.value || "") {
+  const tags = collectAiKdpTags(text);
+  const routeTag = tags.find((tag) => aiKdpSkillMap[tag]);
+  const agentSelected = tags.includes("#ai-printables-kdp-prompt") || tags.some((tag) => aiKdpSkillMap[tag]);
+  return {
+    tags,
+    agentKey: agentSelected ? "ai_printables_kdp_prompt" : "",
+    skillRoute: routeTag || "",
+    skillFile: routeTag ? aiKdpSkillMap[routeTag] : "",
+  };
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function renderAiKdpTagPanel() {
+  if (!aiKdpTagChips) return;
+  aiKdpTagChips.innerHTML = "";
+  aiKdpTagChips.hidden = !aiKdpTagsExpanded;
+  if (toggleAiKdpTagsBtn) toggleAiKdpTagsBtn.textContent = aiKdpTagsExpanded ? "Hide tags" : "Show tags";
+  const currentTags = collectAiKdpTags();
+  const current = new Set(currentTags);
+  if (aiKdpSelectedTags) {
+    aiKdpSelectedTags.innerHTML = "";
+    aiKdpSelectedTags.hidden = !currentTags.length;
+    for (const tag of currentTags) {
+      const selected = document.createElement("button");
+      selected.type = "button";
+      selected.className = "ai-kdp-selected-tag";
+      selected.textContent = `${tag} ×`;
+      selected.title = "Remove this tag";
+      selected.addEventListener("click", () => removeAiKdpTag(tag));
+      aiKdpSelectedTags.appendChild(selected);
+    }
+  }
+  if (!aiKdpTagsExpanded) return;
+  for (const [groupName, tags] of Object.entries(aiKdpTagGroups)) {
+    const group = document.createElement("div");
+    group.className = "ai-kdp-tag-group";
+    const label = document.createElement("div");
+    label.className = "ai-kdp-tag-group-title";
+    label.textContent = groupName;
+    group.appendChild(label);
+    const list = document.createElement("div");
+    list.className = "ai-kdp-tag-group-list";
+    for (const tag of tags) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `ai-kdp-tag-chip ${current.has(tag) ? "active" : ""}`;
+      button.textContent = tag;
+      button.dataset.tag = tag;
+      button.addEventListener("click", () => addAiKdpTag(tag));
+      list.appendChild(button);
+    }
+    group.appendChild(list);
+    aiKdpTagChips.appendChild(group);
+  }
+}
+
+function addAiKdpTag(tag) {
+  if (!prompt || !aiKdpPromptTags.includes(tag)) return;
+  const currentTags = collectAiKdpTags();
+  if (!currentTags.includes(tag)) {
+    const existing = prompt.value.trim();
+    prompt.value = `${tag}${existing ? ` ${existing}` : ""}`;
+    autoResize();
+  }
+  aiKdpTagsExpanded = false;
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
+function toggleAiKdpTags() {
+  aiKdpTagsExpanded = !aiKdpTagsExpanded;
+  renderAiKdpTagPanel();
+}
+
+function removeAiKdpTag(tag) {
+  if (!prompt || !aiKdpPromptTags.includes(tag)) return;
+  const pattern = new RegExp(`(^|\s)${escapeRegExp(tag)}(?=\s|$)`, "g");
+  prompt.value = prompt.value.replace(pattern, " ").replace(/[ \t]{2,}/g, " ").replace(/^\s+/, "");
+  autoResize();
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
+function clearAiKdpTags() {
+  if (!prompt) return;
+  const pattern = new RegExp(aiKdpPromptTags.map(escapeRegExp).join("|"), "g");
+  prompt.value = prompt.value.replace(pattern, "").replace(/[ \t]{2,}/g, " ").replace(/^\s+/, "");
+  autoResize();
+  renderAiKdpTagPanel();
+  prompt.focus();
+}
+
+sendBtn.addEventListener("click", () => sendMessage({ allowCancel: true }));
+newChatBtn.addEventListener("click", () => createThread("Chat mới"));
+retryLastBtn?.addEventListener("click", retryLastRequest);
+sidebarToggleBtn?.addEventListener("click", toggleSidebar);
+sidebarCloseBtn?.addEventListener("click", () => setSidebarCollapsed(true));
+sidebarBackdrop?.addEventListener("click", () => setSidebarCollapsed(true));
+quickActionsToggle?.addEventListener("click", () => togglePromptLibrary());
+promptLibraryBtn?.addEventListener("click", () => togglePromptLibrary(true));
+moreMenuBtn?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleMoreMenu();
+});
+moreMenu?.addEventListener("click", (event) => event.stopPropagation());
+artifactCloseBtn?.addEventListener("click", closeArtifactPanel);
+artifactCopyBtn?.addEventListener("click", copyArtifact);
+artifactDownloadBtn?.addEventListener("click", downloadArtifactMarkdown);
+modelSelect?.addEventListener("change", () => {
+  selectedModelPersona = modelSelect.value;
+  saveSelectValue(modelStorageKey, selectedModelPersona);
+  updateSessionMetrics();
+  showToast(`Chế độ AI: ${modelSelect.options[modelSelect.selectedIndex]?.text || selectedModelPersona}`);
+});
+toolModeSelect?.addEventListener("change", () => {
+  selectedToolMode = toolModeSelect.value;
+  saveSelectValue(toolModeStorageKey, selectedToolMode);
+  showToast(`Công cụ: ${toolModeSelect.options[toolModeSelect.selectedIndex]?.text || selectedToolMode}`);
+});
+scrollBottomBtn?.addEventListener("click", scrollChatToBottom);
+jumpPrevBtn?.addEventListener("click", () => jumpToMessage(-1));
+jumpNextBtn?.addEventListener("click", () => jumpToMessage(1));
+promptJumpPrevBtn?.addEventListener("click", () => jumpToMessage(-1));
+promptJumpNextBtn?.addEventListener("click", () => jumpToMessage(1));
+attachBtn.addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", () => uploadFiles(fileInput.files));
+themeToggleBtn.addEventListener("click", toggleTheme);
+exportBtn.addEventListener("click", exportActiveThread);
+statusBtn.addEventListener("click", () => {
+  statusPanel.hidden = !statusPanel.hidden;
+  statusPanel.classList.toggle("manual-open", !statusPanel.hidden);
+  if (!brainStatus) loadStatus();
+});
+psRefreshBtn?.addEventListener("click", loadProjectState);
+threadSearch.addEventListener("input", renderThreads);
+chat.addEventListener("scroll", handleChatScroll, { passive: true });
+chat.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-starter-prompt]");
+  if (!button) return;
+  prompt.value = button.dataset.starterPrompt || "";
+  applyResponseMode(button.textContent.toLowerCase().includes("audit") ? "deep" : "balanced");
+  autoResize();
+  runPromptNow(`Đang chạy: ${button.textContent.trim()}`);
+});
+quickActions.addEventListener("click", (event) => {
+  const pinButton = event.target.closest("[data-prompt-pin]");
+  if (pinButton) {
+    const button = pinButton.closest("button[data-prompt]");
+    if (button) togglePinnedPrompt(button);
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
+  const button = event.target.closest("button[data-prompt]");
+  if (!button) return;
+  handlePromptLibraryButton(button);
+});
+
+function runPromptNow(message = "Đang chạy prompt...") {
+  if (activeController) {
+    requestCancel();
+    showToast("Đã dừng lượt cũ, chạy lệnh mới...");
+    setTimeout(() => sendMessage(), 0);
+    return true;
+  }
+  showToast(message);
+  sendMessage();
+  return true;
+}
+
+function installPromptLibraryUpgrade() {
+  if (!quickActions || quickActions.dataset.v110 === "true") return;
+  quickActions.dataset.v110 = "true";
+  quickActions.classList.add("prompt-drawer");
+  quickActions.setAttribute("aria-label", "Prompt library drawer");
+  const closeButton = document.createElement("button");
+  closeButton.type = "button";
+  closeButton.className = "prompt-drawer-close";
+  closeButton.textContent = "Close";
+  closeButton.addEventListener("click", () => togglePromptLibrary(false));
+  quickActions.prepend(closeButton);
+  promptChipBar = document.createElement("div");
+  promptChipBar.className = "prompt-chip-bar";
+  promptChipBar.hidden = true;
+  prompt?.parentNode?.insertBefore(promptChipBar, prompt);
+
+  const searchWrap = document.createElement("div");
+  searchWrap.className = "prompt-search-wrap";
+  promptSearchInput = document.createElement("input");
+  promptSearchInput.type = "search";
+  promptSearchInput.className = "prompt-search";
+  promptSearchInput.placeholder = "Tìm prompt...";
+  searchWrap.appendChild(promptSearchInput);
+  quickActions.insertBefore(searchWrap, closeButton.nextSibling);
+  promptSearchInput.addEventListener("input", filterPromptLibrary);
+
+  cleanPromptLibrary = document.createElement("div");
+  cleanPromptLibrary.className = "clean-prompt-library";
+  quickActions.insertBefore(cleanPromptLibrary, searchWrap.nextSibling);
+  renderCleanPromptLibrary();
+
+  pinnedPromptGroup = createDynamicPromptGroup("Ghim của bạn", "prompt-pinned-group");
+  recentPromptGroup = createDynamicPromptGroup("Gần đây", "prompt-recent-group");
+  quickActions.insertBefore(pinnedPromptGroup, cleanPromptLibrary.nextSibling);
+  quickActions.appendChild(recentPromptGroup);
+
+  for (const button of promptLibraryButtons()) enhancePromptButton(button);
+  renderDynamicPromptGroups();
+  installPromptKeyboardShortcuts();
+}
+
+function installCleanUiUpgrade() {
+  if (document.body.dataset.cleanUiInstalled === "true") return;
+  document.body.dataset.cleanUiInstalled = "true";
+
+  promptDrawerBackdrop = document.createElement("button");
+  promptDrawerBackdrop.type = "button";
+  promptDrawerBackdrop.className = "prompt-drawer-backdrop";
+  promptDrawerBackdrop.hidden = true;
+  promptDrawerBackdrop.setAttribute("aria-label", "Close prompt library");
+  promptDrawerBackdrop.addEventListener("click", () => togglePromptLibrary(false));
+  document.body.appendChild(promptDrawerBackdrop);
+
+  const composerHead = document.querySelector(".composer-head");
+  advancedToggleBtn = document.createElement("button");
+  advancedToggleBtn.id = "advancedToggleBtn";
+  advancedToggleBtn.type = "button";
+  advancedToggleBtn.className = "advanced-toggle";
+  advancedToggleBtn.textContent = "Advanced ▾";
+  advancedToggleBtn.addEventListener("click", () => toggleAdvancedPanel());
+  composerHead?.querySelector(".composer-tools")?.appendChild(advancedToggleBtn);
+
+  quickPromptBar = document.createElement("div");
+  quickPromptBar.id = "quickPromptBar";
+  quickPromptBar.className = "quick-prompt-bar";
+  composerHead?.after(quickPromptBar);
+  renderQuickPromptBar();
+
+  advancedPanel = document.createElement("div");
+  advancedPanel.id = "advancedPanel";
+  advancedPanel.className = "advanced-panel";
+  advancedPanel.hidden = true;
+  advancedPanel.innerHTML = `
+    <button type="button" data-open-prompt-library>Prompt library</button>
+    <button type="button" data-show-tags>Full AI KDP tags</button>
+    <button type="button" data-show-status>Status / brain / router</button>
+    <button type="button" data-export-chat>Export chat</button>
+    <label class="proof-toggle"><input id="proofModeToggle" type="checkbox" /> Proof Mode</label>
+  `;
+  composerHead?.after(advancedPanel);
+  proofModeToggle = document.getElementById("proofModeToggle");
+  advancedPanel.querySelector("[data-open-prompt-library]")?.addEventListener("click", () => togglePromptLibrary(true));
+  advancedPanel.querySelector("[data-show-tags]")?.addEventListener("click", () => {
+    aiKdpTagsExpanded = true;
+    renderAiKdpTagPanel();
+  });
+  advancedPanel.querySelector("[data-show-status]")?.addEventListener("click", () => {
+    statusPanel.hidden = false;
+    loadStatus();
+  });
+  advancedPanel.querySelector("[data-export-chat]")?.addEventListener("click", exportActiveThread);
+  proofModeToggle?.addEventListener("change", toggleProofMode);
+}
+
+function allCleanPrompts() {
+  return Object.values(cleanPromptGroups).flat();
+}
+
+function getPinnedCleanPromptIds() {
+  const stored = loadSelectValue("clean_prompt_pins_v113", "");
+  if (!stored) return [...defaultCleanPromptPins];
+  const pins = stored.split(",").filter(Boolean);
+  return pins.includes("idea-matrix") ? pins : ["idea-matrix", ...pins].slice(0, 6);
+}
+
+function savePinnedCleanPromptIds(ids) {
+  saveSelectValue("clean_prompt_pins_v113", ids.slice(0, 12).join(","));
+}
+
+function isCleanPromptPinned(id) {
+  return getPinnedCleanPromptIds().includes(id);
+}
+
+function toggleCleanPromptPin(id) {
+  const pins = getPinnedCleanPromptIds();
+  const next = pins.includes(id) ? pins.filter((item) => item !== id) : [id, ...pins];
+  savePinnedCleanPromptIds(next);
+  renderQuickPromptBar();
+  renderCleanPromptLibrary();
+}
+
+function activeProductNameForPrompt() {
+  return (brainStatus?.activeProject?.product_name || psProjectName?.textContent || "").trim();
+}
+
+function fillPromptTemplate(rawPrompt, promptItem) {
+  let nextPrompt = rawPrompt || "";
+  if (nextPrompt.includes("{{ACTIVE_PRODUCT_NAME}}")) {
+    const activeProductName = activeProductNameForPrompt();
+    if (!activeProductName || activeProductName === "—") {
+      showToast("PRODUCT_REQUIRED: hãy tạo/chọn active product trước khi chạy prompt này.");
+      return null;
+    }
+    nextPrompt = nextPrompt.replaceAll("{{ACTIVE_PRODUCT_NAME}}", activeProductName);
+  }
+  return nextPrompt;
+}
+
+function useCleanPrompt(promptItem, closeDrawer = true) {
+  if (!prompt || !promptItem) return;
+  const filledPrompt = fillPromptTemplate(promptItem.prompt, promptItem);
+  if (filledPrompt === null) return;
+  prompt.value = filledPrompt;
+  activeModuleId = "";
+  clearPromptChip();
+  const fastPromptIds = new Set(["idea-matrix", "market-pattern", "competitor-matrix", "offer-gap", "buyer-test", "ai-replace-risk", "refund-risk", "license-check"]);
+  applyResponseMode(promptItem.id === "vendor-ready" ? "deep" : (fastPromptIds.has(promptItem.id) ? "fast" : "balanced"));
+  autoResize();
+  renderAiKdpTagPanel();
+  if (closeDrawer) togglePromptLibrary(false);
+  focusPrompt();
+  showToast(`Đã chèn prompt: ${promptItem.title}`);
+}
+
+function renderQuickPromptBar() {
+  if (!quickPromptBar) return;
+  const byId = new Map(allCleanPrompts().map((item) => [item.id, item]));
+  const prompts = getPinnedCleanPromptIds().map((id) => byId.get(id)).filter(Boolean).slice(0, 6);
+  quickPromptBar.innerHTML = `<span class="quick-prompt-label">Không biết chọn? Bấm:</span>`;
+  for (const item of prompts) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "quick-prompt-chip";
+    button.textContent = item.id === "idea-matrix" ? "10 ý tưởng" : item.id === "vendor-ready" ? "Vendor Ready" : item.id === "deep-file-writer" ? "Write Files" : item.title.replace("Product ", "");
+    button.title = item.desc;
+    button.addEventListener("click", () => useCleanPrompt(item, false));
+    quickPromptBar.appendChild(button);
+  }
+  const libraryButton = document.createElement("button");
+  libraryButton.type = "button";
+  libraryButton.className = "quick-prompt-chip library-chip";
+  libraryButton.textContent = "Thư viện prompt ▾";
+  libraryButton.addEventListener("click", () => togglePromptLibrary(true));
+  quickPromptBar.appendChild(libraryButton);
+}
+
+function renderCleanPromptLibrary() {
+  if (!cleanPromptLibrary) return;
+  const query = (promptSearchInput?.value || "").trim().toLowerCase();
+  cleanPromptLibrary.innerHTML = "";
+
+  const tabs = document.createElement("div");
+  tabs.className = "clean-prompt-tabs";
+  for (const groupName of Object.keys(cleanPromptGroups)) {
+    const tab = document.createElement("button");
+    tab.type = "button";
+    tab.className = groupName === activePromptTab ? "active" : "";
+    tab.textContent = groupName.toUpperCase();
+    tab.addEventListener("click", () => {
+      activePromptTab = groupName;
+      renderCleanPromptLibrary();
+    });
+    tabs.appendChild(tab);
+  }
+  cleanPromptLibrary.appendChild(tabs);
+
+  const cards = document.createElement("div");
+  cards.className = "clean-prompt-cards";
+  const source = query ? allCleanPrompts() : cleanPromptGroups[activePromptTab];
+  const matches = source.filter((item) => {
+    const haystack = `${item.title} ${item.desc} ${item.tags.join(" ")}`.toLowerCase();
+    return !query || haystack.includes(query);
+  });
+  for (const item of matches) {
+    const card = document.createElement("article");
+    card.className = "clean-prompt-card";
+    const tagHtml = item.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("");
+    card.innerHTML = `
+      <div class="clean-prompt-card-main">
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.desc)}</p>
+        <div class="clean-prompt-tags">${tagHtml}</div>
+      </div>
+      <div class="clean-prompt-card-actions">
+        <button type="button" data-pin-clean-prompt="${escapeHtml(item.id)}">${isCleanPromptPinned(item.id) ? "Unpin" : "Pin"}</button>
+        <button type="button" data-use-clean-prompt="${escapeHtml(item.id)}">Dùng</button>
+      </div>
+    `;
+    card.querySelector("[data-pin-clean-prompt]")?.addEventListener("click", () => toggleCleanPromptPin(item.id));
+    card.querySelector("[data-use-clean-prompt]")?.addEventListener("click", () => useCleanPrompt(item, true));
+    cards.appendChild(card);
+  }
+  if (!matches.length) {
+    const empty = document.createElement("div");
+    empty.className = "clean-prompt-empty";
+    empty.textContent = "Không tìm thấy prompt phù hợp.";
+    cards.appendChild(empty);
+  }
+  cleanPromptLibrary.appendChild(cards);
+}
+
+function promptLibraryButtons() {
+  return Array.from(quickActions?.querySelectorAll(".quick-group:not(.prompt-dynamic-group) button[data-prompt]") || []);
+}
+
+function createDynamicPromptGroup(title, className) {
+  const group = document.createElement("div");
+  group.className = `quick-group prompt-dynamic-group ${className}`;
+  group.hidden = true;
+  const label = document.createElement("span");
+  label.className = "quick-group-title";
+  label.textContent = title;
+  group.appendChild(label);
+  return group;
+}
+
+function enhancePromptButton(button) {
+  if (button.dataset.promptEnhanced === "true") return;
+  button.dataset.promptEnhanced = "true";
+  if (!button.querySelector("[data-prompt-pin]")) {
+    const pin = document.createElement("span");
+    pin.dataset.promptPin = "true";
+    pin.className = "prompt-pin";
+    pin.textContent = isPromptPinned(button.dataset.prompt) ? "📌" : "📎";
+    pin.title = isPromptPinned(button.dataset.prompt) ? "Bỏ ghim prompt" : "Ghim prompt";
+    button.appendChild(pin);
+  }
+  button.addEventListener("mouseenter", () => schedulePromptPreview(button));
+  button.addEventListener("mouseleave", hidePromptPreview);
+}
+
+function handlePromptLibraryButton(button) {
+  const label = buttonTextLabel(button);
+  const promptText = button.dataset.prompt || "";
+  const moduleId = button.dataset.moduleId || moduleIdFromLabel(label);
+  activeModuleId = moduleId || "";
+  applyResponseMode(button.dataset.runMode || (button.dataset.deepModule === "true" ? "deep" : "balanced"));
+  addRecentPrompt(button);
+  renderDynamicPromptGroups();
+
+  if (button.dataset.autoRun === "true") {
+    prompt.value = promptText;
+    autoResize();
+    clearPromptChip();
+    runPromptNow(`Đang chạy: ${label}`);
+    return;
+  }
+
+  setPromptChip({ label, prompt: promptText, moduleId: activeModuleId, deep: button.dataset.deepModule === "true" });
+  autoResize();
+  focusPrompt();
+  showToast(`Đã chọn prompt: ${label}. Gõ thêm nội dung rồi bấm gửi.`);
+}
+
+function setPromptChip(chip) {
+  activePromptChip = chip;
+  activeModuleId = chip.moduleId || "";
+  if (prompt) {
+    prompt.placeholder = `Thêm nội dung cho ${chip.label}... hoặc bấm ➤ để chạy ngay`;
+  }
+  renderPromptChip();
+}
+
+function renderPromptChip() {
+  if (!promptChipBar) return;
+  promptChipBar.innerHTML = "";
+  if (!activePromptChip) {
+    promptChipBar.hidden = true;
+    return;
+  }
+  const chip = document.createElement("button");
+  chip.type = "button";
+  chip.className = "prompt-chip";
+  chip.title = "Bấm để gỡ prompt này";
+  chip.innerHTML = `<span>⚡ ${escapeHtml(activePromptChip.label)}</span><strong>×</strong>`;
+  chip.addEventListener("click", clearPromptChip);
+  promptChipBar.appendChild(chip);
+  promptChipBar.hidden = false;
+}
+
+function clearPromptChip() {
+  activePromptChip = null;
+  activeModuleId = "";
+  if (prompt) prompt.placeholder = defaultPromptPlaceholder;
+  renderPromptChip();
+}
+
+function filterPromptLibrary() {
+  renderCleanPromptLibrary();
+  const query = (promptSearchInput?.value || "").trim().toLowerCase();
+  for (const group of Array.from(quickActions.querySelectorAll(".quick-group:not(.prompt-dynamic-group)"))) {
+    let visible = false;
+    for (const button of Array.from(group.querySelectorAll("button[data-prompt]"))) {
+      const haystack = `${buttonTextLabel(button)} ${button.dataset.prompt || ""}`.toLowerCase();
+      const match = !query || haystack.includes(query);
+      button.hidden = !match;
+      visible = visible || match;
+    }
+    group.hidden = !visible;
+  }
+}
+
+function togglePinnedPrompt(button) {
+  const key = button.dataset.prompt || "";
+  const pins = loadPromptList(promptPinnedStorageKey);
+  const exists = pins.some((item) => item.prompt === key);
+  const next = exists ? pins.filter((item) => item.prompt !== key) : [promptRecordFromButton(button), ...pins].slice(0, 12);
+  savePromptList(promptPinnedStorageKey, next);
+  for (const item of promptLibraryButtons()) {
+    const pin = item.querySelector("[data-prompt-pin]");
+    if (pin) pin.textContent = isPromptPinned(item.dataset.prompt) ? "📌" : "📎";
+  }
+  renderDynamicPromptGroups();
+}
+
+function isPromptPinned(promptText) {
+  return loadPromptList(promptPinnedStorageKey).some((item) => item.prompt === promptText);
+}
+
+function addRecentPrompt(button) {
+  const record = promptRecordFromButton(button);
+  const recent = loadPromptList(promptRecentStorageKey).filter((item) => item.prompt !== record.prompt);
+  savePromptList(promptRecentStorageKey, [record, ...recent].slice(0, 5));
+}
+
+function promptRecordFromButton(button) {
+  return {
+    label: buttonTextLabel(button),
+    prompt: button.dataset.prompt || "",
+    moduleId: button.dataset.moduleId || moduleIdFromLabel(buttonTextLabel(button)),
+    autoRun: button.dataset.autoRun === "true",
+    deep: button.dataset.deepModule === "true",
+  };
+}
+
+function renderDynamicPromptGroups() {
+  renderPromptRecords(pinnedPromptGroup, loadPromptList(promptPinnedStorageKey), "pin");
+  renderPromptRecords(recentPromptGroup, loadPromptList(promptRecentStorageKey), "recent");
+}
+
+function renderPromptRecords(group, records, kind) {
+  if (!group) return;
+  group.querySelectorAll("button[data-prompt]").forEach((button) => button.remove());
+  group.hidden = !records.length;
+  for (const record of records) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.prompt = record.prompt;
+    button.dataset.module = "true";
+    if (record.moduleId) button.dataset.moduleId = record.moduleId;
+    if (record.autoRun) button.dataset.autoRun = "true";
+    if (record.deep) button.dataset.deepModule = "true";
+    button.textContent = record.label;
+    const pin = document.createElement("span");
+    pin.dataset.promptPin = "true";
+    pin.className = "prompt-pin";
+    pin.textContent = kind === "pin" ? "📌" : "📎";
+    button.appendChild(pin);
+    enhancePromptButton(button);
+    group.appendChild(button);
+  }
+}
+
+function loadPromptList(key) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || "[]");
+    return Array.isArray(value) ? value.filter((item) => item && item.prompt && item.label) : [];
+  } catch {
+    return [];
+  }
+}
+
+function savePromptList(key, list) {
+  try {
+    localStorage.setItem(key, JSON.stringify(list));
+  } catch {
+    // localStorage may be unavailable in private mode.
+  }
+}
+
+function buttonTextLabel(button) {
+  return String(button?.childNodes?.[0]?.textContent || button?.textContent || "").replace(/[📎📌]/g, "").trim();
+}
+
+function installPromptKeyboardShortcuts() {
+  document.addEventListener("keydown", (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "l") {
+      event.preventDefault();
+      togglePromptLibrary();
+      promptSearchInput?.focus();
+      return;
+    }
+    if (event.key === "Escape" && activePromptChip) {
+      clearPromptChip();
+      showToast("Đã gỡ prompt chip.");
+    }
+  });
+}
+
+function schedulePromptPreview(button) {
+  clearTimeout(promptPreviewTimer);
+  promptPreviewTimer = setTimeout(() => showPromptPreview(button), 600);
+}
+
+function showPromptPreview(button) {
+  hidePromptPreview();
+  const text = (button.dataset.prompt || "").replace(/\s+/g, " ").slice(0, 300);
+  if (!text) return;
+  promptPreviewTooltip = document.createElement("div");
+  promptPreviewTooltip.className = "prompt-preview-tooltip";
+  promptPreviewTooltip.textContent = text;
+  document.body.appendChild(promptPreviewTooltip);
+  const rect = button.getBoundingClientRect();
+  const top = Math.max(12, rect.top - promptPreviewTooltip.offsetHeight - 10);
+  const left = Math.min(window.innerWidth - promptPreviewTooltip.offsetWidth - 12, Math.max(12, rect.left));
+  promptPreviewTooltip.style.top = `${top}px`;
+  promptPreviewTooltip.style.left = `${left}px`;
+}
+
+function hidePromptPreview() {
+  clearTimeout(promptPreviewTimer);
+  promptPreviewTooltip?.remove();
+  promptPreviewTooltip = null;
+}
+
+function moduleIdFromLabel(value) {
+  const label = String(value || "").trim().toLowerCase();
+  const map = {
+    "analyze plr": "analyze_plr",
+    "idea score": "idea_score",
+    "depth check": "depth_check",
+    "upgrade kit": "upgrade_kit",
+    "product assets": "product_assets",
+    "deep assets": "deep_create_product_assets",
+    "deep file": "deep_write_file",
+    "qc checklist": "qc_checklist",
+    "completeness": "asset_completeness",
+    "readiness": "launch_readiness",
+    "export zip": "export_zip",
+    "launch pack": "launch_pack",
+    "offer angle": "offer_angle",
+    "sales page": "sales_page",
+    "objections": "objections",
+    "funnel plan": "funnel_plan",
+    "w+ listing": "warriorplus_listing",
+    "proof": "proof",
+    "delivery": "delivery_page",
+    "onboarding": "onboarding",
+    "jv page": "jv_page",
+    "swipe pack": "swipe_pack",
+    "prospects": "prospects",
+    "outreach": "outreach",
+    "tiers": "tiers",
+    "review access": "review_access",
+    "saas potential": "saas_potential",
+    "mvp plan": "mvp_plan",
+    "membership": "membership",
+    "whitelabel": "whitelabel",
+    "product line": "product_line",
+    "scan library": "scan_library",
+    "market gap": "market_gap",
+    "competitor": "competitor",
+    "platform fit": "platform_fit",
+    "localize en": "translate_english",
+    "storage report": "storage_report",
+    "optimize storage": "optimize_storage",
+    "train 300 files": "train_case_study_brain",
+    "train full 1000": "train_full_case_study_brain",
+    "search case study": "case_study_search",
+    "extract patterns": "case_study_patterns",
+    "training status": "training_status",
+    "training report": "export_training_report",
+    "kho": "ai_print_status",
+    "index 300": "ai_print_train",
+    "tìm": "ai_print_search",
+    "tim": "ai_print_search",
+    "pattern": "ai_print_patterns",
+    "market": "ai_print_market",
+    "matrix": "ai_print_competitor",
+    "gap": "ai_print_gap",
+    "evidence": "ai_print_evidence",
+    "1. market pattern": "market_pattern_extract",
+    "2. competitor matrix": "competitor_matrix",
+    "3. buyer test": "buyer_test",
+    "4. prompt test": "prompt_output_test",
+    "5. ai risk": "ai_replace_risk_v2",
+    "6. launch gate": "public_launch_audit",
+    "7. final score": "final_scorecard",
+    "chuyên sâu": "ai_print_deep",
+    "chuyen sau": "ai_print_deep",
+    "tạo zip": "ai_print_build",
+    "tao zip": "ai_print_build",
+    "build zip": "ai_print_build",
+    "report": "ai_print_report",
+    "30-step workflow": "workflow_30",
+    "ai workflow": "ai_workflow_20",
+    "kdp prompt pack": "case_study_search",
+  };
+  return map[label] || "";
+}
+
+function installQuickActionTranslations() {
+  const labelMap = {
+    "Build Product": "Xây sản phẩm",
+    "Sale Page / Funnel": "Trang bán hàng / Phễu bán hàng",
+    "JV Manager": "Quản lý JV / tiếp thị liên kết",
+    "SaaS / Membership": "SaaS / Gói thành viên",
+    "Market Research": "Nghiên cứu thị trường",
+    "Analyze PLR": "Phân tích PLR",
+    "Idea Score": "Chấm điểm ý tưởng",
+    "Depth Check": "Kiểm tra độ sâu sản phẩm",
+    "Upgrade Kit": "Nâng cấp thành bộ sản phẩm",
+    "Product Assets": "Tài sản sản phẩm",
+    "Deep Assets": "Viết sâu toàn bộ file sản phẩm",
+    "Deep File": "Viết sâu một file cụ thể",
+    "QC Checklist": "Checklist kiểm chất lượng",
+    "Completeness": "Kiểm tra đủ file chưa",
+    "Readiness": "Độ sẵn sàng launch",
+    "Export ZIP": "Xuất file ZIP",
+    "Launch Pack": "Bộ launch",
+    "Full Launch Pack": "Bộ launch đầy đủ",
+    "Offer Angle": "Góc chào bán",
+    "Sales Page": "Trang bán hàng",
+    "Objections": "Xử lý phản đối",
+    "Funnel Plan": "Kế hoạch phễu",
+    "W+ Listing": "Listing WarriorPlus",
+    "Proof": "Bằng chứng thay thế",
+    "Delivery": "Trang giao hàng",
+    "Onboarding": "Email hướng dẫn sau mua",
+    "JV Page": "Trang JV",
+    "Swipe Pack": "Bộ email/post quảng bá",
+    "Prospects": "Danh sách JV tiềm năng",
+    "Outreach": "Tin nhắn tiếp cận",
+    "Tiers": "Tầng hoa hồng affiliate",
+    "Review Access": "Quyền truy cập review",
+    "SaaS Potential": "Tiềm năng SaaS",
+    "MVP Plan": "Kế hoạch MVP",
+    "Membership": "Gói thành viên",
+    "Whitelabel": "Giấy phép whitelabel",
+    "Product Line": "Dòng sản phẩm",
+    "Scan Library": "Quét thư viện",
+    "Market Gap": "Khoảng trống thị trường",
+    "Competitor": "Đối thủ",
+    "Platform Fit": "Độ hợp nền tảng",
+    "Localize EN": "Bản địa hóa sang thị trường tiếng Anh",
+    "Storage Report": "Báo cáo dung lượng",
+    "Optimize Storage": "Tối ưu dung lượng",
+    "Training / Case Study Brain": "Huấn luyện nhẹ / Kho case study",
+    "AI Printables": "Agent ngách AI printable / KDP / Etsy / Canva",
+    "Train 300 Files": "Index thử 300 file cũ",
+    "Train Full 1000": "Index sâu 1000 file cũ",
+    "Search Case Study": "Tìm trong kho case study",
+    "Extract Patterns": "Rút pattern từ case study",
+    "Training Status": "Trạng thái training brain",
+    "Training Report": "Xuất báo cáo training",
+    "30-Step Workflow": "Quy trình hoàn thành 30 bước",
+    "AI Workflow": "Quy trình ra lệnh AI 20 bước",
+    "KDP Prompt Pack": "Ngách KDP Prompt & Template Pack",
+    "Nhanh": "Trả lời nhanh",
+    "Cân bằng": "Cân bằng tốc độ và độ sâu",
+    "Sâu": "Phân tích sâu nhất",
+  };
+  for (const item of document.querySelectorAll(".quick-group-title, .quick-actions button, .mode-selector button")) {
+    const label = item.textContent.trim();
+    const vi = labelMap[label] || translateEnglishText(label);
+    if (!vi || vi.toLowerCase() === label.toLowerCase()) continue;
+    item.dataset.viLabel = vi;
+    item.setAttribute("title", `${label} → ${vi}`);
+  }
+  if (hoverTooltipInstalled) return;
+  hoverTooltipInstalled = true;
+  document.addEventListener("mouseover", (event) => {
+    const target = event.target.closest("[data-vi-label]");
+    if (!target || !document.body.contains(target)) return;
+    showFloatingTranslation(target.dataset.viLabel, target.getBoundingClientRect(), "hover");
+  });
+  document.addEventListener("mouseout", (event) => {
+    if (!event.target.closest("[data-vi-label]")) return;
+    hideFloatingTranslationSoon();
+  });
+}
+
+function installSelectionTranslator() {
+  document.addEventListener("selectionchange", scheduleSelectionTranslation);
+  document.addEventListener("mouseup", scheduleSelectionTranslation);
+  document.addEventListener("pointerup", scheduleSelectionTranslation);
+  document.addEventListener("dblclick", scheduleSelectionTranslation);
+  document.addEventListener("touchend", scheduleSelectionTranslation);
+  document.addEventListener("keyup", (event) => {
+    if (event.key === "Shift" || event.key.startsWith("Arrow")) scheduleSelectionTranslation();
+  });
+}
+
+function installBlackCopy() {
+  document.addEventListener("copy", (event) => {
+    const selection = window.getSelection();
+    const text = selection?.toString() || "";
+    if (!text.trim() || !selectionInsideApp(selection)) return;
+    event.preventDefault();
+    event.clipboardData?.setData("text/plain", text);
+    event.clipboardData?.setData(
+      "text/html",
+      `<div style="color:#000000;background:#ffffff;font-family:Segoe UI,Arial,sans-serif;line-height:1.55;">${escapeHtml(text).replaceAll("\n", "<br>")}</div>`
+    );
+  });
+}
+
+function scheduleSelectionTranslation() {
+  clearTimeout(selectionTranslateTimer);
+  selectionTranslateTimer = setTimeout(showSelectionTranslation, 25);
+}
+
+function showSelectionTranslation() {
+  const selection = window.getSelection();
+  const text = selection?.toString().replace(/\s+/g, " ").trim() || "";
+  if (!text || text.length > 90 || !selectionInsideApp(selection)) {
+    hideFloatingTranslation();
+    return;
+  }
+  const translated = translateEnglishText(text);
+  if (!translated || translated.toLowerCase() === text.toLowerCase()) {
+    hideFloatingTranslation();
+    return;
+  }
+  const range = selection.rangeCount ? selection.getRangeAt(0) : null;
+  const rect = range?.getBoundingClientRect();
+  if (!rect || (!rect.width && !rect.height)) return;
+  showFloatingTranslation(translated, rect, "selection");
+}
+
+function selectionInsideApp(selection) {
+  if (!selection || !selection.rangeCount) return false;
+  const node = selection.anchorNode?.nodeType === Node.ELEMENT_NODE ? selection.anchorNode : selection.anchorNode?.parentElement;
+  return Boolean(node?.closest?.(".app"));
+}
+
+function showFloatingTranslation(text, rect, mode = "selection") {
+  const tooltip = floatingTranslationEl();
+  clearTimeout(tooltip.hideTimer);
+  tooltip.textContent = text;
+  tooltip.dataset.mode = mode;
+  tooltip.classList.add("show");
+  const padding = 10;
+  const left = Math.min(window.innerWidth - tooltip.offsetWidth - padding, Math.max(padding, rect.left + rect.width / 2 - tooltip.offsetWidth / 2));
+  const top = Math.max(padding, rect.top - tooltip.offsetHeight - 9);
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+
+function hideFloatingTranslationSoon() {
+  const tooltip = floatingTranslationEl();
+  clearTimeout(tooltip.hideTimer);
+  tooltip.hideTimer = setTimeout(hideFloatingTranslation, translationHideDelayMs);
+}
+
+function hideFloatingTranslation() {
+  if (selectionTooltip) selectionTooltip.classList.remove("show");
+}
+
+function floatingTranslationEl() {
+  if (selectionTooltip) return selectionTooltip;
+  selectionTooltip = document.createElement("div");
+  selectionTooltip.className = "translation-popover";
+  selectionTooltip.addEventListener("mouseenter", () => clearTimeout(selectionTooltip.hideTimer));
+  selectionTooltip.addEventListener("mouseleave", hideFloatingTranslationSoon);
+  document.body.appendChild(selectionTooltip);
+  return selectionTooltip;
+}
+
+function translateEnglishText(value) {
+  const original = String(value || "").trim();
+  if (!original || /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(original)) {
+    return "";
+  }
+  const normalized = normalizeTranslationKey(original);
+  const phraseMap = translationDictionary();
+  if (phraseMap[normalized]) return phraseMap[normalized];
+
+  const words = normalized.match(/[a-z0-9+]+/g) || [];
+  if (!words.length) return "";
+  const translatedWords = [];
+  let known = 0;
+  for (let index = 0; index < words.length; index += 1) {
+    const four = words.slice(index, index + 4).join(" ");
+    const three = words.slice(index, index + 3).join(" ");
+    const two = words.slice(index, index + 2).join(" ");
+    if (phraseMap[four]) {
+      translatedWords.push(phraseMap[four]);
+      known += 4;
+      index += 3;
+    } else if (phraseMap[three]) {
+      translatedWords.push(phraseMap[three]);
+      known += 3;
+      index += 2;
+    } else if (phraseMap[two]) {
+      translatedWords.push(phraseMap[two]);
+      known += 2;
+      index += 1;
+    } else if (lookupTranslatedWord(words[index], phraseMap)) {
+      translatedWords.push(lookupTranslatedWord(words[index], phraseMap));
+      known += 1;
+    } else {
+      translatedWords.push(words[index]);
+    }
+  }
+  if (!known) return "";
+  const coverage = known / words.length;
+  if (words.length > 1 && coverage < 0.35) return "";
+  return translatedWords.join(" ");
+}
+
+function lookupTranslatedWord(word, phraseMap) {
+  if (phraseMap[word]) return phraseMap[word];
+  const candidates = [];
+  if (word.endsWith("ies") && word.length > 4) candidates.push(`${word.slice(0, -3)}y`);
+  if (word.endsWith("es") && word.length > 3) candidates.push(word.slice(0, -2));
+  if (word.endsWith("s") && word.length > 3) candidates.push(word.slice(0, -1));
+  if (word.endsWith("ing") && word.length > 5) candidates.push(word.slice(0, -3), `${word.slice(0, -3)}e`);
+  if (word.endsWith("ed") && word.length > 4) candidates.push(word.slice(0, -2), `${word.slice(0, -1)}`);
+  for (const candidate of candidates) {
+    if (phraseMap[candidate]) return phraseMap[candidate];
+  }
+  return "";
+}
+
+function normalizeTranslationKey(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201c\u201d]/g, '"')
+    .replace(/[^a-z0-9+/\s-]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function translationDictionary() {
+  return {
+    "agent": "tác nhân AI",
+    "affiliate": "tiếp thị liên kết",
+    "affiliate marketer": "người làm affiliate",
+    "affiliate disclosure": "thông báo có link affiliate",
+    "ai": "trí tuệ nhân tạo",
+    "angle": "góc tiếp cận",
+    "analyze": "phân tích",
+    "analyze offer": "phân tích offer",
+    "analyze plr": "phân tích PLR",
+    "asset": "tài sản",
+    "assets": "tài sản",
+    "build": "xây dựng",
+    "build product": "xây sản phẩm",
+    "buyer": "người mua",
+    "buyer avatar": "chân dung khách hàng",
+    "bank": "ngân hàng mẫu",
+    "bonus": "quà tặng kèm",
+    "campaign": "chiến dịch",
+    "campaign map": "bản đồ chiến dịch",
+    "check": "kiểm tra",
+    "checklist": "danh sách kiểm tra",
+    "commission": "hoa hồng",
+    "commissions": "hoa hồng",
+    "competitor": "đối thủ",
+    "compliance": "tuân thủ",
+    "completeness": "độ đầy đủ",
+    "content": "nội dung",
+    "copy": "sao chép",
+    "cta": "lời kêu gọi hành động",
+    "delivery": "giao hàng",
+    "depth": "độ sâu",
+    "depth check": "kiểm tra độ sâu",
+    "digital": "kỹ thuật số",
+    "digital product": "sản phẩm số",
+    "digital product vendor": "người bán sản phẩm số",
+    "email": "email",
+    "example": "ví dụ",
+    "examples": "ví dụ",
+    "export": "xuất",
+    "export zip": "xuất ZIP",
+    "facebook": "Facebook",
+    "fake urgency": "khẩn cấp giả",
+    "file": "tệp",
+    "files": "các tệp",
+    "fe": "sản phẩm đầu phễu",
+    "funnel": "phễu bán hàng",
+    "funnel plan": "kế hoạch phễu",
+    "full launch pack": "bộ launch đầy đủ",
+    "idea": "ý tưởng",
+    "idea score": "chấm điểm ý tưởng",
+    "implementation": "triển khai",
+    "income": "thu nhập",
+    "income guarantee": "cam kết thu nhập",
+    "jv": "đối tác liên doanh",
+    "jv manager": "quản lý JV",
+    "jv page": "trang JV",
+    "jv pack": "bộ tài liệu JV",
+    "launch": "ra mắt",
+    "launch pack": "bộ launch",
+    "listing": "trang listing",
+    "localize": "bản địa hóa",
+    "market": "thị trường",
+    "market gap": "khoảng trống thị trường",
+    "market research": "nghiên cứu thị trường",
+    "membership": "gói thành viên",
+    "mvp": "bản tối thiểu có thể bán/thử",
+    "mvp plan": "kế hoạch MVP",
+    "objection": "phản đối",
+    "objections": "xử lý phản đối",
+    "offer": "lời chào bán",
+    "offer angle": "góc chào bán",
+    "onboarding": "hướng dẫn sau mua",
+    "oto": "upsell sau khi mua",
+    "outreach": "tiếp cận",
+    "outreach tracker": "bảng theo dõi tiếp cận",
+    "overbuild": "xây quá mức / làm quá sớm trước khi kiểm chứng",
+    "platform": "nền tảng",
+    "platform fit": "độ hợp nền tảng",
+    "plr": "quyền nhãn riêng PLR",
+    "planner": "bảng lập kế hoạch",
+    "promo": "quảng bá",
+    "promo date": "ngày quảng bá",
+    "promise": "lời hứa kết quả",
+    "prompt": "câu lệnh prompt",
+    "prompts": "các câu lệnh prompt",
+    "product": "sản phẩm",
+    "product assets": "tài sản sản phẩm",
+    "product line": "dòng sản phẩm",
+    "product vendor": "người bán sản phẩm",
+    "proof": "bằng chứng",
+    "prospects": "khách/JV tiềm năng",
+    "qc": "kiểm chất lượng",
+    "qc checklist": "checklist kiểm chất lượng",
+    "readiness": "độ sẵn sàng",
+    "review": "xem xét",
+    "review access": "quyền truy cập review",
+    "risk": "rủi ro",
+    "saas": "phần mềm dạng dịch vụ",
+    "saas potential": "tiềm năng SaaS",
+    "sales": "bán hàng",
+    "sales page": "trang bán hàng",
+    "sales page angle": "góc trang bán hàng",
+    "scan": "quét",
+    "scan library": "quét thư viện",
+    "score": "điểm",
+    "sent": "đã gửi",
+    "soft": "mềm / thử nghiệm nhẹ",
+    "soft launch": "ra mắt thử nghiệm nhẹ",
+    "status": "trạng thái",
+    "storage": "dung lượng lưu trữ",
+    "storage report": "báo cáo dung lượng",
+    "subject line": "tiêu đề email",
+    "subject bank": "ngân hàng tiêu đề email",
+    "swipe": "mẫu quảng bá tham khảo",
+    "swipe pack": "bộ mẫu quảng bá",
+    "template": "mẫu",
+    "templates": "các mẫu",
+    "tiers": "các tầng",
+    "traffic": "lưu lượng truy cập",
+    "upgrade": "nâng cấp",
+    "upgrade kit": "nâng cấp thành bộ sản phẩm",
+    "validation": "kiểm chứng thị trường",
+    "vendor": "người bán",
+    "warriorplus": "nền tảng WarriorPlus",
+    "warriorplus listing": "listing WarriorPlus",
+    "w+ listing": "listing WarriorPlus",
+    "whitelabel": "giấy phép bán lại dưới thương hiệu riêng",
+    "workflow": "quy trình làm việc",
+    "zip": "tệp nén ZIP",
+  };
+}
+modeSelector?.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-mode]");
+  if (!button) return;
+  applyResponseMode(button.dataset.mode);
+  const label = button.textContent.trim() || "Nhanh";
+  showToast(`Chế độ: ${label}`);
+});
+
+clearBtn.addEventListener("click", () => {
+  const thread = getActiveThread();
+  if (!thread) return;
+  if (thread.messages.length && !window.confirm("Xóa nội dung chat hiện tại?")) return;
+  thread.messages = [];
+  thread.title = "Chat mới";
+  thread.updatedAt = Date.now();
+  saveState();
+  renderThreads();
+  renderActiveThread();
+});
+
+window.addEventListener("dragover", (event) => event.preventDefault());
+window.addEventListener("drop", (event) => {
+  event.preventDefault();
+  if (event.dataTransfer?.files?.length) uploadFiles(event.dataTransfer.files);
+});
+window.addEventListener("paste", (event) => {
+  const pastedFiles = filesFromClipboard(event.clipboardData);
+  if (pastedFiles.length) {
+    event.preventDefault();
+    uploadFiles(pastedFiles);
+  }
+});
+document.addEventListener("click", () => {
+  toggleMoreMenu(false);
+  closeFileMenus();
+  if (!openThreadMenuId) return;
+  openThreadMenuId = null;
+  renderThreads();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (!app.classList.contains("sidebar-collapsed") && window.matchMedia?.("(max-width: 760px)")?.matches) {
+    setSidebarCollapsed(true);
+    return;
+  }
+  if (document.body.classList.contains("reading-mode")) {
+    applyReadingMode(false, { persist: true });
+    return;
+  }
+  if (!artifactPanel?.hidden) closeArtifactPanel();
+  if (moreMenu && !moreMenu.hidden) toggleMoreMenu(false);
+  if (quickActions && !quickActions.classList.contains("collapsed")) togglePromptLibrary(false);
+  if (openThreadMenuId) {
+    openThreadMenuId = null;
+    renderThreads();
+  }
+});
+window.addEventListener("focus", refreshFromServer);
+// Disabled: periodic refresh re-rendered chat while reading and caused scroll jumps.
+
+prompt.addEventListener("input", () => {
+  autoResize();
+  renderAiKdpTagPanel();
+});
+clearAiKdpTagsBtn?.addEventListener("click", clearAiKdpTags);
+toggleAiKdpTagsBtn?.addEventListener("click", toggleAiKdpTags);
+prompt.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    sendMessage();
+  }
+});
+
+installTextRepair();
+repairVietnameseUiText();
+renderAiKdpTagPanel();
+
+function installTextRepair() {
+  // One-shot repair only. A live MutationObserver caused font flicker and scroll/layout jumps.
+  repairVisibleText(document.body);
+}
+
+function repairVisibleText(root) {
+  if (!root) return;
+  if (root.nodeType === Node.TEXT_NODE) {
+    repairTextNode(root);
+    return;
+  }
+  if (root.nodeType !== Node.ELEMENT_NODE) return;
+  const repairElementAttributes = (element) => {
+    for (const attr of ["title", "aria-label", "placeholder", "value"]) {
+      if (element.hasAttribute?.(attr)) {
+        const value = element.getAttribute(attr);
+        const repaired = repairMojibake(value);
+        if (repaired !== value) element.setAttribute(attr, repaired);
+      }
+    }
+  };
+  repairElementAttributes(root);
+  for (const element of root.querySelectorAll?.("*") || []) {
+    repairElementAttributes(element);
+  }
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let node = walker.nextNode();
+  while (node) {
+    repairTextNode(node);
+    node = walker.nextNode();
+  }
+}
+
+function repairTextNode(node) {
+  const repaired = repairMojibake(node.nodeValue);
+  if (repaired !== node.nodeValue) node.nodeValue = repaired;
+}
+
+function repairMojibake(value) {
+  const text = String(value || "");
+  if (!/[ÃÂÄÆâáºá»]/.test(text)) return text;
+  const cp1252 = {
+    0x20ac: 0x80,
+    0x201a: 0x82,
+    0x0192: 0x83,
+    0x201e: 0x84,
+    0x2026: 0x85,
+    0x2020: 0x86,
+    0x2021: 0x87,
+    0x02c6: 0x88,
+    0x2030: 0x89,
+    0x0160: 0x8a,
+    0x2039: 0x8b,
+    0x0152: 0x8c,
+    0x017d: 0x8e,
+    0x2018: 0x91,
+    0x2019: 0x92,
+    0x201c: 0x93,
+    0x201d: 0x94,
+    0x2022: 0x95,
+    0x2013: 0x96,
+    0x2014: 0x97,
+    0x02dc: 0x98,
+    0x2122: 0x99,
+    0x0161: 0x9a,
+    0x203a: 0x9b,
+    0x0153: 0x9c,
+    0x017e: 0x9e,
+    0x0178: 0x9f,
+  };
+  try {
+    const bytes = Array.from(text, (char) => {
+      const code = char.charCodeAt(0);
+      return cp1252[code] ?? (code <= 255 ? code : null);
+    });
+    if (bytes.some((byte) => byte === null)) return text;
+    const decoded = new TextDecoder("utf-8", { fatal: true }).decode(new Uint8Array(bytes));
+    return decoded;
+  } catch {
+    return text;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function repairVietnameseUiText() {
+  const setText = (selector, value) => {
+    const element = document.querySelector(selector);
+    if (element) element.textContent = value;
+  };
+  const setAttr = (selector, name, value) => {
+    const element = document.querySelector(selector);
+    if (element) element.setAttribute(name, value);
+  };
+  setText('.sidebar-close-btn', '×');
+  setAttr('.sidebar-close-btn', 'title', 'Đóng lịch sử chat');
+  setAttr('.sidebar-close-btn', 'aria-label', 'Đóng lịch sử chat');
+  setAttr('#sidebarBackdrop', 'aria-label', 'Đóng lịch sử chat');
+  setAttr('#workspaceTabs', 'aria-label', 'Chọn kênh chat');
+  setText('#newChatBtn', '+ Chat mới');
+  setText('.search-box span', 'Tìm');
+  setAttr('#threadSearch', 'placeholder', 'Tìm chủ đề...');
+  setText('.section-label', 'Gần đây');
+  setText('.user-name', 'Người dùng');
+  setText('#brainSummary', 'Đang kiểm tra brain...');
+  setText('.ps-label', 'Dự án:');
+  setText('#psProjectName', '—');
+  setText('#psNextAction', '—');
+  setAttr('#psRefreshBtn', 'title', 'Refresh trạng thái dự án');
+  setAttr('.topbar-controls', 'aria-label', 'Cấu hình chat');
+  setText('label:has(#modelSelect) span', 'Chế độ AI');
+  setText('label:has(#toolModeSelect) span', 'Công cụ');
+  const modelLabels = { agent: 'Agent chủ', planner: 'Planner sâu', creator: 'Dựng nội dung', critic: 'Phản biện launch' };
+  for (const option of document.querySelectorAll('#modelSelect option')) option.textContent = modelLabels[option.value] || option.textContent;
+  const toolLabels = { auto: 'Tự động', files: 'File/RAG', case: 'Case Study Brain', launch: 'Launch OS', none: 'Tắt' };
+  for (const option of document.querySelectorAll('#toolModeSelect option')) option.textContent = toolLabels[option.value] || option.textContent;
+  setText('#moreMenuBtn', '⋯');
+  setText('#promptLibraryBtn', 'Thư viện prompt');
+  setText('#statusBtn', 'Trạng thái brain');
+  setText('#exportBtn', 'Xuất chat Markdown');
+  setText('#themeToggleBtn', 'Đổi sáng/tối');
+  setText('#clearBtn', 'Xóa chat');
+  setText('#quickActionsToggle', 'Thư viện prompt');
+  setText('#messageCount', '0 tin nhắn');
+  setText('#activeModeLabel', 'Nhanh');
+  setText('#replyStatus', 'Đang trả lời...');
+  setText('#retryLastBtn', 'Gửi lại lỗi');
+  setAttr('#modeSelector', 'aria-label', 'Chế độ trả lời');
+  setAttr('[data-mode="fast"]', 'title', 'FAST: topK thấp, không benchmark/export');
+  setAttr('[data-mode="balanced"]', 'title', 'BALANCED: dùng skill + brain vừa đủ');
+  setAttr('[data-mode="deep"]', 'title', 'DEEP: chậm hơn, dùng nhiều RAG/audit/export');
+  setAttr('.prompt-nav', 'aria-label', 'Điều hướng câu hỏi');
+  setText('#promptJumpPrevBtn', '↑');
+  setText('#promptJumpNextBtn', '↓');
+  setAttr('#promptJumpPrevBtn', 'title', 'Lên câu hỏi trước');
+  setAttr('#promptJumpNextBtn', 'title', 'Xuống câu hỏi tiếp theo');
+  setAttr('#attachBtn', 'title', 'Đính kèm file');
+  setAttr('#prompt', 'placeholder', 'Nhập câu hỏi, dán ảnh, hoặc kéo file vào đây...');
+  setText('#sendBtn', '➤');
+  setAttr('#sendBtn', 'title', 'Gửi');
+  setAttr('#artifactPanel', 'aria-label', 'Canvas kết quả');
+  setText('.artifact-label', 'Canvas kết quả');
+  setText('#artifactTitle', 'Nội dung trả lời');
+  setText('#artifactCopyBtn', '⧉');
+  setText('#artifactDownloadBtn', '⇩');
+  setText('#artifactCloseBtn', '×');
+  setAttr('#artifactCopyBtn', 'title', 'Copy canvas');
+  setAttr('#artifactDownloadBtn', 'title', 'Tải Markdown');
+  setAttr('#artifactCloseBtn', 'title', 'Đóng canvas');
+}
+
+
+
+
+function scheduleVietnameseUiRepair() {
+  const delays = [0, 80, 250, 600, 1200, 2200];
+  for (const delay of delays) {
+    setTimeout(() => {
+      repairVisibleText(document.body);
+      repairVietnameseUiText();
+      if (prompt) prompt.placeholder = defaultPromptPlaceholder;
+    }, delay);
+  }
+}
