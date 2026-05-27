@@ -963,7 +963,7 @@ async function loadStatus() {
     const thinking = data.reasoningEffort ? `Thinking ${String(data.reasoningEffort).toUpperCase()}` : "Thinking mặc định";
     const detail = data.answerDetail ? `Detail ${String(data.answerDetail).toUpperCase()}` : "Detail HIGH";
   const appVersion = data.appVersion || "1.15-web-ui";
-  const displayVersion = String(appVersion).startsWith("v") ? String(appVersion) : `${appVersion.startsWith('v') ? appVersion : 'v' + appVersion}`;
+  const displayVersion = String(appVersion).startsWith("v") ? String(appVersion) : `${appVersion.startsWith('v') ? appVersion : 'v1.15-web-ui' + appVersion}`;
     for (const badge of appVersionBadges) badge.textContent = displayVersion;
     const caseDocs = Number(data.caseStudyBrain?.documents || 0);
     const caseChunks = Number(data.caseStudyBrain?.chunks || 0);
